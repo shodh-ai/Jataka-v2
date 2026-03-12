@@ -2,24 +2,8 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronDown, Loader2, CheckCircle2, Menu, X } from "lucide-react";
-// Import the supabase client
+import { ChevronDown, Loader2, Menu, X } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient"; 
-
-interface GradientBorderProps {
-  children: React.ReactNode;
-  className?: string;
-  rounded?: string;
-}
-
-const GradientBorder = ({ children, className = "", rounded = "rounded-[20px]" }: GradientBorderProps) => (
-  <div className={`relative ${className} bg-[#ffffff05] ${rounded} border border-[#ffffff0a]`}>
-    <div className={`absolute inset-0 pointer-events-none z-[1] p-px ${rounded} `} />
-    <div className="relative z-10 h-full">
-      {children}
-    </div>
-  </div>
-);
 
 export default function BookPilotPage() {
   const router = useRouter();
@@ -39,7 +23,7 @@ export default function BookPilotPage() {
 
   const scrollToSection = (sectionId: string) => {
     setIsMobileMenuOpen(false); // Close mobile menu
-    if (sectionId === "home" || sectionId === "demo" || sectionId === "features") {
+    if (sectionId === "hero" || sectionId === "problem" || sectionId === "features" || sectionId === "pipeline" || sectionId === "brain") {
       sessionStorage.setItem("targetSection", sectionId);
       router.push("/");
     }
@@ -86,218 +70,194 @@ export default function BookPilotPage() {
     }
   };
 
-  // Added text-base for mobile to prevent iOS zoom on focus, md:text-sm for desktop
-  const inputClasses = "w-full px-4 py-3 bg-[#ffffff0a] border border-white/20 rounded-md focus:outline-none focus:border-[#566fe9] transition-colors text-white text-base md:text-sm placeholder-white/30";
+  const inputClasses = "w-full px-4 py-3 bg-[var(--bg-surface)] border border-[var(--border)] rounded-[4px] focus:outline-none focus:border-[var(--text-dim)] transition-colors text-[var(--text)] text-base md:text-sm placeholder-[var(--text-muted)]";
 
   return (
-    <div className="bg-[#0b132b] min-h-screen w-full relative overflow-x-hidden text-white selection:bg-[#566fe9]/30">
-      
-      {/* Background Ambient Glows */}
-      <div className="fixed top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-white opacity-5 rounded-full blur-[80px] md:blur-[150px] pointer-events-none" />
-      <div className="fixed bottom-0 left-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-[#566fe9] opacity-10 rounded-full blur-[80px] md:blur-[150px] pointer-events-none" />
-
-      {/* Header */}
-      <header className="fixed top-0 md:top-6 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-[100px] py-4 md:py-0 max-w-[1920px] mx-auto w-full relative bg-[#0b132b]/80 md:bg-transparent backdrop-blur-md md:backdrop-blur-none border-b border-white/10 md:border-none">
-        <img className="h-7 md:h-9 w-auto" alt="Logo" src="jatakalogo.svg" />
+    <>
+      {/* ── NAV ── */}
+      <nav className="fixed top-0 left-0 right-0 z-[200] h-[64px] bg-[rgba(6,12,22,0.88)] backdrop-blur-[14px] border-b border-[rgba(255,255,255,0.06)] px-[24px] md:px-[48px] flex items-center justify-between">
+        <div className="flex items-center cursor-pointer" onClick={() => scrollToSection("hero")}>
+          <svg className="h-[22px] w-auto block" viewBox="489.5 574 2305.4 484.92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M877.432 574C930.994 574 974.419 617.425 974.419 670.987C974.418 697.813 963.525 722.093 945.923 739.648C924.44 761.073 901.681 786.114 901.681 816.454C901.681 846.795 924.441 871.837 945.923 893.264C963.526 910.822 974.418 935.105 974.419 961.932C974.419 1015.49 930.994 1058.92 877.432 1058.92C850.604 1058.92 826.319 1048.02 808.76 1030.42C787.337 1008.94 762.298 986.181 731.959 986.181C701.621 986.181 676.582 1008.94 655.159 1030.42C637.6 1048.02 613.315 1058.92 586.487 1058.92C532.925 1058.92 489.5 1015.49 489.5 961.932C489.502 908.371 532.926 864.953 586.487 864.953C613.316 864.954 637.601 875.848 655.159 893.453C676.582 914.934 701.622 937.691 731.959 937.691C762.297 937.691 787.402 914.81 808.854 893.357C830.307 871.902 853.191 846.795 853.191 816.454C853.191 786.114 830.432 761.074 808.949 739.649C791.346 722.093 780.454 697.813 780.453 670.987C780.453 617.426 823.871 574.002 877.432 574Z" fill="#E8E4DC"/>
+            <path d="M877.508 908.275C878.976 937.203 902.175 960.398 931.103 961.862L934.013 961.933C902.769 961.933 877.44 987.265 877.437 1018.51C877.435 987.266 852.105 961.933 820.862 961.933C852.106 961.931 877.437 936.601 877.437 905.358L877.508 908.275Z" fill="#FF2424"/>
+            <path d="M1292.08 685.6V907.648C1292.08 932.992 1285.03 952.72 1270.92 966.832C1257.09 980.944 1237.36 988 1211.73 988H1156V931.84H1191.86C1204.53 931.84 1213.6 928.96 1219.08 923.2C1224.55 917.152 1227.28 907.792 1227.28 895.12V685.6H1292.08Z" fill="#E8E4DC"/>
+            <path d="M1332.31 988L1442.9 685.6H1520.66L1630.39 988H1560.83L1537.51 921.904H1422.59L1399.27 988H1332.31ZM1439.87 869.632H1519.79L1479.62 754.72L1439.87 869.632Z" fill="#E8E4DC"/>
+            <path d="M1621.19 685.6H1860.52V741.328H1773.26V988H1708.46V741.328H1621.19V685.6Z" fill="#E8E4DC"/>
+            <path d="M1851.07 988L1961.66 685.6H2039.42L2149.15 988H2079.6L2056.27 921.904H1941.36L1918.03 988H1851.07ZM1958.64 869.632H2038.56L1998.38 754.72L1958.64 869.632Z" fill="#E8E4DC"/>
+            <path d="M2199.4 686.032H2264.2V821.68L2385.16 686.032H2463.79L2352.76 810.448L2471.13 988H2393.37L2306.97 860.56L2264.2 908.512V988H2199.4V686.032Z" fill="#E8E4DC"/>
+            <path d="M2496.82 988L2607.41 685.6H2685.17L2794.9 988H2725.35L2702.02 921.904H2587.11L2563.78 988H2496.82ZM2604.39 869.632H2684.31L2644.13 754.72L2604.39 869.632Z" fill="#E8E4DC"/>
+          </svg>
+        </div>
         
-        {/* Desktop Nav */}
-        <nav className="hidden md:inline-flex items-center gap-8 px-8 py-[6px] bg-[#ffffff0a] rounded-xl border border-white/5 backdrop-blur-md absolute left-1/2 -translate-x-1/2">
-          {[
-            { label: "Home", id: "home" },
-            { label: "Demo", id: "demo" },
-            { label: "What we do", id: "features" },
-          ].map((item, i) => (
-            <button 
-              key={i} 
-              onClick={() => scrollToSection(item.id)}
-              className="text-sm font-medium transition-opacity opacity-60 hover:opacity-100"
-            >
-              {item.label}
-            </button>
-          ))}
-          <button 
-            onClick={() => router.push('/book-pilot')}
-            className="w-[131px] h-[42px] px-[6px] py-[6px] rounded-md border border-[#ffffff66] bg-transparent hover:bg-[#ffffff0a] transition-colors text-sm font-medium flex items-center justify-center"
-          >
-            Book a Pilot
-          </button>
-        </nav>
+        {/* Desktop Nav Links */}
+        <ul className="hidden md:flex gap-[36px] list-none items-center m-0 p-0">
+          <li><button onClick={() => scrollToSection("problem")} className="text-[var(--text-dim)] hover:text-[var(--text)] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Problem</button></li>
+          <li><button onClick={() => scrollToSection("features")} className="text-[var(--text-dim)] hover:text-[var(--text)] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Features</button></li>
+          <li><button onClick={() => scrollToSection("pipeline")} className="text-[var(--text-dim)] hover:text-[var(--text)] transition-colors text-[13.5px] font-medium tracking-[0.4px]">How It Works</button></li>
+          <li><button onClick={() => scrollToSection("brain")} className="text-[var(--text-dim)] hover:text-[var(--text)] transition-colors text-[13.5px] font-medium tracking-[0.4px]">DevTools</button></li>
+        </ul>
 
         {/* Mobile Hamburger */}
-        <button 
-          className="md:hidden text-white p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X /> : <Menu />}
+        <button className="md:hidden text-white p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
-          <div className="absolute top-[100%] left-0 w-full bg-[#0b132b] border-b border-white/10 p-6 flex flex-col gap-6 md:hidden shadow-2xl animate-in slide-in-from-top-5">
-             {[
-                { label: "Home", id: "home" },
-                { label: "Services", id: "services" },
-                { label: "Pricing", id: "pricing" },
-                { label: "What we do", id: "how-it-works" }
-              ].map((item, i) => (
-                <button 
-                  key={i} 
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-left text-lg font-medium opacity-80 active:opacity-100 py-2 border-b border-white/5"
-                >
-                  {item.label}
-                </button>
-              ))}
-              <button 
-                onClick={() => {
-                  router.push('/book-pilot');
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full py-4 mt-2 rounded-md border border-white/20 bg-white/5 font-medium"
-              >
-                Book a Pilot
-              </button>
+          <div className="absolute top-[64px] left-0 w-full bg-[var(--bg-surface)] border-b border-[var(--border)] p-6 flex flex-col gap-6 md:hidden shadow-2xl animate-in slide-in-from-top-2 z-[190]">
+            <button onClick={() => scrollToSection("problem")} className="text-left text-lg font-medium text-[var(--text)] py-2 border-b border-[var(--border)]">Problem</button>
+            <button onClick={() => scrollToSection("features")} className="text-left text-lg font-medium text-[var(--text)] py-2 border-b border-[var(--border)]">Features</button>
+            <button onClick={() => scrollToSection("pipeline")} className="text-left text-lg font-medium text-[var(--text)] py-2 border-b border-[var(--border)]">How It Works</button>
+            <button onClick={() => scrollToSection("brain")} className="text-left text-lg font-medium text-[var(--text)] py-2 border-b border-[var(--border)]">DevTools</button>
           </div>
         )}
-      </header>
+      </nav>
 
-      {/* Main Content */}
-      <main className="flex flex-col items-center w-full pt-32 md:pt-40 pb-20 px-4 md:px-4">
-        <div className="max-w-3xl w-full mx-auto">
+      {/* ── MAIN CONTENT ── */}
+      <main className="min-h-screen pt-[120px] pb-[80px] px-[24px] relative overflow-hidden flex justify-center items-center">
+        <div className="grid-bg"></div>
+
+        <div className="w-full max-w-[800px] relative z-10 flex flex-col items-center">
+          
+          {/* Form Header */}
           {!isSubmitted && (
-            <div className="text-center mb-8 md:mb-12">
-              <div className="inline-block font-bold text-[#566fe9] text-xs md:text-sm tracking-[2.80px] px-4 py-1 rounded-full mb-4 md:mb-6 border border-white/5 bg-white/5 md:border-none md:bg-transparent">
-                BOOK A PILOT
+            <div className="flex flex-col items-center text-center mb-[48px] max-w-[600px]">
+              <div className="inline-flex items-center gap-[9px] bg-[var(--accent-red-dim)] border border-[rgba(255,36,36,0.28)] px-[18px] py-[6px] mb-[24px] text-[11.5px] font-bold uppercase tracking-[2.5px] color-[var(--accent-red)] text-[#FF2424]">
+                <span className="text-[8px]">▶</span> Book A Demo
               </div>
-              <h1 className="bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(255,255,255,0.4)_100%)] [-webkit-background-clip:text] bg-clip-text text-transparent font-semibold text-3xl md:text-[48px] leading-[1.2] md:leading-[130%] tracking-[1%] text-center mb-6">
-                Get a 20-minute demo tailored to your engineering workflow
+              <h1 className="font-archivo text-[clamp(32px,5vw,48px)] leading-[0.93] tracking-[-2px] uppercase mb-[24px]">
+                <span className="cut-white block mb-[4px]">See the Execution</span>
+                <span className="cut-white block mb-[4px]">Engine in Action</span>
               </h1>
+              <p className="text-[16px] text-[var(--text-dim)] max-w-[480px] leading-[1.65]">
+                Get a tailored 20-minute technical deep-dive. 
+              </p>
             </div>
           )}
 
           {isSubmitted ? (
-            <div className="flex justify-center w-full">
-              <GradientBorder className="w-full max-w-[533px] h-auto min-h-[300px] md:h-[328px] p-8 md:p-[60px] flex items-center justify-center" rounded="rounded-[20px]">
-                <div className="flex flex-col items-center text-center gap-[36px] md:gap-[36px] w-full h-full">
-                  <div className="flex items-center justify-center ">
-                    <img src="/tick.svg" alt="Tick" className="w-16 h-16 md:w-[84px] md:h-[84px]" />
-                  </div>
-                  <div className="space-y-4 md:space-y-2">
-                    <h2 className="text-2xl md:text-[40px] font-semibold tracking-[2%] bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(255,255,255,0.6)_100%)] [-webkit-background-clip:text] bg-clip-text text-transparent leading-tight">
-                      Pilot Scheduled!
-                    </h2>
-                    <p className="text-sm md:text-base text-white/70 max-w-md mx-auto">
-                      You’ll hear from our team shortly with your pilot details.
-                    </p>
-                  </div>
+            <div className="w-full max-w-[533px] bg-[var(--bg-card)] border border-[var(--border)] p-[40px] md:p-[60px] flex items-center justify-center rounded-[4px]">
+              <div className="flex flex-col items-center text-center gap-[36px] w-full">
+                <div className="w-[84px] h-[84px] rounded-full bg-[rgba(126,231,135,0.1)] flex items-center justify-center border border-[#7EE787]">
+                  <span className="text-[40px] text-[#7EE787]">✓</span>
                 </div>
-              </GradientBorder>
+                <div className="space-y-[12px]">
+                  <h2 className="font-archivo text-[32px] md:text-[40px] uppercase tracking-[-1px] text-[var(--text)] leading-tight">
+                    Demo Scheduled.
+                  </h2>
+                  <p className="text-[15px] text-[var(--text-dim)] max-w-md mx-auto leading-[1.6]">
+                    You’ll hear from our technical team shortly with your pilot details.
+                  </p>
+                </div>
+              </div>
             </div>
           ) : (
-            <GradientBorder className="p-6 md:p-10 w-full">
-              <form onSubmit={handleSubmit} className="space-y-6">
-              
-              {/* Row 1 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm text-[#D1D5DB] mb-2">Name</label>
-                  <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange} className={inputClasses} placeholder="Your full name" />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm text-[#D1D5DB] mb-2">Work Email Address</label>
-                  <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} className={inputClasses} placeholder="you@company.com" />
-                </div>
-              </div>
-
-              {/* Row 2 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="company" className="block text-sm text-[#D1D5DB] mb-2">Company Name</label>
-                  <input type="text" id="company" name="company" required value={formData.company} onChange={handleChange} className={inputClasses} placeholder="Your company" />
-                </div>
-                <div>
-                  <label htmlFor="contactNumber" className="block text-sm text-[#D1D5DB] mb-2">Contact Number</label>
-                  <input type="tel" id="contactNumber" name="contactNumber" required value={formData.contactNumber} onChange={handleChange} className={inputClasses} placeholder="Contact number" />
-                </div>
-              </div>
-
-              {/* Row 3 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="relative">
-                  <label htmlFor="teamSize" className="block text-sm text-[#D1D5DB] mb-2">Team Size</label>
-                  <div className="relative">
-                    <select id="teamSize" name="teamSize" required value={formData.teamSize} onChange={handleChange} className={`${inputClasses} appearance-none cursor-pointer`}>
-                      <option value="" className="bg-[#0b132b]">Select Size</option>
-                      <option value="1-10" className="bg-[#0b132b]">1-10</option>
-                      <option value="10-50" className="bg-[#0b132b]">10-50</option>
-                      <option value="50-100" className="bg-[#0b132b]">50-100</option>
-                      <option value="100+" className="bg-[#0b132b]">100+</option>
-                    </select>
-                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" />
+            <div className="w-full bg-[var(--bg-card)] border border-[var(--border)] p-[32px] md:p-[48px] rounded-[4px]">
+              <form onSubmit={handleSubmit} className="space-y-[24px]">
+                
+                {/* Row 1 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
+                  <div>
+                    <label htmlFor="name" className="block text-[13px] font-bold tracking-[1px] uppercase text-[var(--text-muted)] mb-[10px]">Name</label>
+                    <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange} className={inputClasses} placeholder="Your full name" />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-[13px] font-bold tracking-[1px] uppercase text-[var(--text-muted)] mb-[10px]">Work Email</label>
+                    <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} className={inputClasses} placeholder="you@company.com" />
                   </div>
                 </div>
-                <div className="relative">
-                  <label htmlFor="role" className="block text-sm text-[#D1D5DB] mb-2">Role/Position</label>
-                  <div className="relative">
-                    <select id="role" name="role" required value={formData.role} onChange={handleChange} className={`${inputClasses} appearance-none cursor-pointer`}>
-                      <option value="" className="bg-[#0b132b]">Select Role</option>
-                      <option value="Lead Engineer" className="bg-[#0b132b]">Lead Engineer</option>
-                      <option value="CTO" className="bg-[#0b132b]">CTO</option>
-                      <option value="Product Manager" className="bg-[#0b132b]">Product Manager</option>
-                      <option value="Developer" className="bg-[#0b132b]">Developer</option>
-                    </select>
-                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" />
+
+                {/* Row 2 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
+                  <div>
+                    <label htmlFor="company" className="block text-[13px] font-bold tracking-[1px] uppercase text-[var(--text-muted)] mb-[10px]">Company Name</label>
+                    <input type="text" id="company" name="company" required value={formData.company} onChange={handleChange} className={inputClasses} placeholder="Your company" />
+                  </div>
+                  <div>
+                    <label htmlFor="contactNumber" className="block text-[13px] font-bold tracking-[1px] uppercase text-[var(--text-muted)] mb-[10px]">Contact Number</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" required value={formData.contactNumber} onChange={handleChange} className={inputClasses} placeholder="Contact number" />
                   </div>
                 </div>
-              </div>
 
-              {/* Row 4 */}
-              <div>
-                <label htmlFor="problem" className="block text-sm text-[#D1D5DB] mb-2">What Problem Are You Looking to Solve?</label>
-                <textarea id="problem" name="problem" value={formData.problem} onChange={handleChange} rows={4} className={`${inputClasses} resize-none h-[120px]`} placeholder="" />
-              </div>
+                {/* Row 3 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
+                  <div>
+                    <label htmlFor="teamSize" className="block text-[13px] font-bold tracking-[1px] uppercase text-[var(--text-muted)] mb-[10px]">Team Size</label>
+                    <div className="relative">
+                      <select id="teamSize" name="teamSize" required value={formData.teamSize} onChange={handleChange} className={`${inputClasses} appearance-none cursor-pointer`}>
+                        <option value="" className="bg-[var(--bg-surface)]">Select Size</option>
+                        <option value="1-10" className="bg-[var(--bg-surface)]">1-10</option>
+                        <option value="10-50" className="bg-[var(--bg-surface)]">10-50</option>
+                        <option value="50-100" className="bg-[var(--bg-surface)]">50-100</option>
+                        <option value="100+" className="bg-[var(--bg-surface)]">100+</option>
+                      </select>
+                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-[16px] h-[16px] text-[var(--text-muted)] pointer-events-none" />
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="role" className="block text-[13px] font-bold tracking-[1px] uppercase text-[var(--text-muted)] mb-[10px]">Role/Position</label>
+                    <div className="relative">
+                      <select id="role" name="role" required value={formData.role} onChange={handleChange} className={`${inputClasses} appearance-none cursor-pointer`}>
+                        <option value="" className="bg-[var(--bg-surface)]">Select Role</option>
+                        <option value="Salesforce Architect" className="bg-[var(--bg-surface)]">Salesforce Architect</option>
+                        <option value="Salesforce Developer" className="bg-[var(--bg-surface)]">Salesforce Developer</option>
+                        <option value="QA / Test Engineer" className="bg-[var(--bg-surface)]">QA / Test Engineer</option>
+                        <option value="Engineering Manager / VP" className="bg-[var(--bg-surface)]">Engineering Manager / VP</option>
+                        <option value="Other" className="bg-[var(--bg-surface)]">Other</option>
+                      </select>
+                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-[16px] h-[16px] text-[var(--text-muted)] pointer-events-none" />
+                    </div>
+                  </div>
+                </div>
 
-              {/* Submit Button */}
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="relative group cursor-pointer w-full h-[54px] px-6 py-4 bg-[#ffffff1a] rounded-md backdrop-blur-md border border-white/20 hover:bg-[#ffffff26] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-              <div className="absolute inset-0 bg-white/20 blur-xl rounded-full opacity-0 group-hover:opacity-30 transition-opacity" />
-                  <span className="relative font-medium text-sm flex items-center justify-center gap-2">
+                {/* Row 4 */}
+                <div>
+                  <label htmlFor="problem" className="block text-[13px] font-bold tracking-[1px] uppercase text-[var(--text-muted)] mb-[10px]">What Problem Are You Looking to Solve?</label>
+                  <textarea id="problem" name="problem" value={formData.problem} onChange={handleChange} rows={4} className={`${inputClasses} resize-none h-[120px]`} placeholder="Tell us about your CI/CD setup, SOQL limit issues, or scaling challenges..." />
+                </div>
+
+                {/* Submit Button */}
+                <div className="pt-[16px]">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed rounded-[4px] py-[20px] text-[16px]"
+                  >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="animate-spin h-4 w-4" />
-                        Submitting...
+                        <Loader2 className="animate-spin h-[18px] w-[18px]" />
+                        SUBMITTING...
                       </>
                     ) : (
-                      "Book a Pilot"
+                      "BOOK A DEMO"
                     )}
-                  </span>
-                </button>
-              </div>
+                  </button>
+                </div>
 
               </form>
-            </GradientBorder>
+            </div>
           )}
         </div>
       </main>
 
-      <footer className="w-full flex flex-col items-center gap-16 px-4 pb-10">
-         <div className="flex flex-col items-center gap-8 pt-10 border-t border-white/5 w-full max-w-[400px]">
-            <div className="flex flex-col items-center gap-2">
-               <img className="h-12 w-auto" alt="Logo" src="jatakalogo.svg" />
-               <span className="opacity-50 text-sm">by</span>
-               <img className="h-8 w-auto" alt="Logo" src="shodhlogo.svg" />
-            </div>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-               {["Privacy Policy", "Terms and conditions", "Contact"].map((link, i) => (
-                 <a key={i} href="#" className="text-sm opacity-60 hover:opacity-100 transition-opacity whitespace-nowrap">{link}</a>
-               ))}
-            </div>
-         </div>
+      {/* ── FOOTER ── */}
+      <footer className="bg-[var(--bg)] border-t border-[var(--border)] px-[24px] md:px-[48px] py-[40px] flex flex-col md:flex-row items-center justify-between gap-[20px]">
+        <div className="flex items-center gap-[14px]">
+          <svg className="h-[19px] w-auto" viewBox="489.5 574 2305.4 484.92" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M877.432 574C930.994 574 974.419 617.425 974.419 670.987C974.418 697.813 963.525 722.093 945.923 739.648C924.44 761.073 901.681 786.114 901.681 816.454C901.681 846.795 924.441 871.837 945.923 893.264C963.526 910.822 974.418 935.105 974.419 961.932C974.419 1015.49 930.994 1058.92 877.432 1058.92C850.604 1058.92 826.319 1048.02 808.76 1030.42C787.337 1008.94 762.298 986.181 731.959 986.181C701.621 986.181 676.582 1008.94 655.159 1030.42C637.6 1048.02 613.315 1058.92 586.487 1058.92C532.925 1058.92 489.5 1015.49 489.5 961.932C489.502 908.371 532.926 864.953 586.487 864.953C613.316 864.954 637.601 875.848 655.159 893.453C676.582 914.934 701.622 937.691 731.959 937.691C762.297 937.691 787.402 914.81 808.854 893.357C830.307 871.902 853.191 846.795 853.191 816.454C853.191 786.114 830.432 761.074 808.949 739.649C791.346 722.093 780.454 697.813 780.453 670.987C780.453 617.426 823.871 574.002 877.432 574Z" fill="#3A4F6A"/>
+            <path d="M1292.08 685.6V907.648C1292.08 932.992 1285.03 952.72 1270.92 966.832C1257.09 980.944 1237.36 988 1211.73 988H1156V931.84H1191.86C1204.53 931.84 1213.6 928.96 1219.08 923.2C1224.55 917.152 1227.28 907.792 1227.28 895.12V685.6H1292.08Z" fill="#3A4F6A"/>
+            <path d="M1332.31 988L1442.9 685.6H1520.66L1630.39 988H1560.83L1537.51 921.904H1422.59L1399.27 988H1332.31ZM1439.87 869.632H1519.79L1479.62 754.72L1439.87 869.632Z" fill="#3A4F6A"/>
+            <path d="M1621.19 685.6H1860.52V741.328H1773.26V988H1708.46V741.328H1621.19V685.6Z" fill="#3A4F6A"/>
+            <path d="M1851.07 988L1961.66 685.6H2039.42L2149.15 988H2079.6L2056.27 921.904H1941.36L1918.03 988H1851.07ZM1958.64 869.632H2038.56L1998.38 754.72L1958.64 869.632Z" fill="#3A4F6A"/>
+            <path d="M2199.4 686.032H2264.2V821.68L2385.16 686.032H2463.79L2352.76 810.448L2471.13 988H2393.37L2306.97 860.56L2264.2 908.512V988H2199.4V686.032Z" fill="#3A4F6A"/>
+            <path d="M2496.82 988L2607.41 685.6H2685.17L2794.9 988H2725.35L2702.02 921.904H2587.11L2563.78 988H2496.82ZM2604.39 869.632H2684.31L2644.13 754.72L2604.39 869.632Z" fill="#3A4F6A"/>
+          </svg>
+          <div className="font-archivo text-[11px] uppercase tracking-[2px] text-[var(--text-muted)]">jataka.shodh.ai</div>
+        </div>
+        <div className="text-[13px] text-[var(--text-muted)] text-center md:text-right">
+          2025 Jataka · Runtime Governance for Salesforce · All rights reserved.
+        </div>
       </footer>
-    </div>
+    </>
   );
 }

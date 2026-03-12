@@ -1,24 +1,221 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --bg: #060C16;
+  --bg-surface: #0C1320;
+  --bg-card: #0F1928;
+  --bg-card-hover: #141F30;
+  --text: #E8E4DC;
+  --text-dim: #7A8BA8;
+  --text-muted: #3A4F6A;
+  --accent-red: #FF2424;
+  --accent-red-dim: rgba(255, 36, 36, 0.12);
+  --accent-red-glow: rgba(255, 36, 36, 0.28);
+  --border: rgba(255,255,255,0.06);
+  --border-strong: rgba(255,255,255,0.11);
+  --grid-color: rgba(255,255,255,0.022);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-plus-jakarta-sans);
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-* {
-  font-family: var(--font-plus-jakarta-sans);
+/* Typography utilities */
+.font-archivo {
+  font-family: var(--font-archivo-black), sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+/* Tactical Grid */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Cut Text Effect */
+.cut-white {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--text) 0px, var(--text) 3px,
+    transparent 3px, transparent 6px
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.cut-red {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--accent-red) 0px, var(--accent-red) 3px,
+    transparent 3px, transparent 6px
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+/* Navigation button CTA */
+.nav-cta {
+  background: var(--accent-red) !important;
+  color: #fff !important;
+  padding: 7px 20px !important;
+  font-family: var(--font-archivo-black), sans-serif !important;
+  font-size: 11px !important;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Primary Button */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--accent-red);
+  color: #fff;
+  padding: 16px 34px;
+  font-family: var(--font-archivo-black), sans-serif;
+  font-size: 14px; letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none; border: none; cursor: pointer;
+  box-shadow: 8px 8px 0 var(--accent-red-glow);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.btn-primary:hover {
+  transform: translate(-2px,-2px);
+  box-shadow: 11px 11px 0 var(--accent-red-glow);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: transparent;
+  color: var(--text);
+  padding: 16px 34px;
+  font-family: var(--font-archivo-black), sans-serif;
+  font-size: 14px; letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--border-strong); cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-dim); transform: translate(-2px,-2px);
+}
+
+/* Shared Section Anatomy */
+.s-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 48px;
+  position: relative; z-index: 1;
+}
+
+.s-label {
+  font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 3px;
+  color: var(--accent-red);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.s-label::after {
+  content: ""; display: block;
+  height: 1px; width: 40px; background: var(--accent-red);
+}
+
+h2.s-hl {
+  font-family: var(--font-archivo-black), sans-serif;
+  font-size: clamp(30px, 4vw, 54px);
+  line-height: 0.97; letter-spacing: -2px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.s-sub {
+  font-size: 17px; color: var(--text-dim); line-height: 1.65;
+  max-width: 540px; margin-bottom: 64px;
+}
+
+/* Revenue Kill Box */
+.rev-kill {
+  background: var(--text); color: var(--bg);
+  padding: 11px 22px;
+  font-family: var(--font-archivo-black), sans-serif;
+  display: inline-block;
+  transform: skew(-8deg);
+  font-size: clamp(14px, 1.4vw, 18px);
+  box-shadow: 10px 10px 0 var(--accent-red);
+  text-transform: uppercase;
+  letter-spacing: 0.5px; margin: 28px 0;
+}
+
+/* Fortress dashed box */
+.fortress {
+  background: rgba(10,25,47,0.45);
+  border: 2px dashed var(--border-strong);
+  padding: 52px 48px; text-align: center;
+}
+
+.fortress-txt {
+  font-family: var(--font-archivo-black), sans-serif;
+  font-size: clamp(20px, 3vw, 30px);
+  color: var(--text); text-transform: uppercase;
+  letter-spacing: -0.5px; line-height: 1.3;
+}
+
+.fortress-txt span { color: var(--accent-red); }
+
+/* Arena line */
+.arena {
+  display: inline-block;
+  background: var(--accent-red); color: #fff;
+  padding: 5px 20px;
+  font-family: var(--font-archivo-black), sans-serif;
+  font-size: clamp(18px, 2vw, 26px);
+  transform: rotate(-1deg);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* PR Mockup specific styles */
+.pr-mockup {
+  background: #0D1117;
+  border: 1px solid #30363D;
+  border-radius: 7px;
+  overflow: hidden;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 12.5px;
+}
+
+.pr-bar {
+  background: #161B22;
+  border-bottom: 1px solid #30363D;
+  padding: 10px 16px;
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11.5px; color: #8B949E;
+}
+
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-r { background: #FF5F57; }
+.dot-y { background: #FEBC2E; }
+.dot-g { background: #28C840; }
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .s-inner { padding: 80px 24px; }
 }
