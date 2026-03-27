@@ -1,0 +1,34 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="repoBg" x1="0" y1="0" x2="1600" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F141D" />
+      <stop offset="1" stop-color="#0A0E15" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="980" rx="28" fill="url(#repoBg)"/>
+  <rect x="0" y="0" width="1600" height="84" rx="28" fill="#141B27"/>
+  <text x="56" y="52" fill="#A8B8D0" font-size="24" font-family="Inter, Arial, sans-serif">apex-recipes / pull / 928</text>
+
+  <rect x="54" y="124" width="1492" height="806" rx="20" fill="#0E1521" stroke="rgba(255,255,255,0.1)"/>
+
+  <rect x="88" y="164" width="1424" height="96" rx="14" fill="#1A2434"/>
+  <text x="118" y="222" fill="#DCE7F9" font-size="30" font-family="SF Pro Display, Inter, Arial, sans-serif" font-weight="600">Jataka Runtime Report Card</text>
+
+  <rect x="88" y="286" width="1424" height="222" rx="14" fill="#251621" stroke="#FF647A"/>
+  <text x="118" y="348" fill="#FF8B9D" font-size="28" font-family="Inter, Arial, sans-serif" font-weight="600">Status: Blocked</text>
+  <text x="118" y="396" fill="#FFD7DE" font-size="25" font-family="Inter, Arial, sans-serif">SOQL Limit Utilization: 98 / 100</text>
+  <rect x="118" y="424" width="1280" height="24" rx="12" fill="#3C1D29"/>
+  <rect x="118" y="424" width="1254" height="24" rx="12" fill="#FF4B67"/>
+  <text x="1408" y="444" fill="#FFE3E8" font-size="20" font-family="Inter, Arial, sans-serif">98%</text>
+
+  <rect x="88" y="534" width="1424" height="170" rx="14" fill="#111A28" stroke="rgba(255,255,255,0.08)"/>
+  <text x="118" y="590" fill="#8FA6C9" font-size="23" font-family="Inter, Arial, sans-serif">AI Root Cause</text>
+  <text x="118" y="636" fill="#E2ECFD" font-size="24" font-family="Inter, Arial, sans-serif">QuotePricingController.queryLines() executed inside loop.</text>
+  <text x="118" y="674" fill="#A8BAD6" font-size="22" font-family="Inter, Arial, sans-serif">File: force-app/main/default/classes/QuotePricingController.cls:214</text>
+
+  <rect x="88" y="728" width="1424" height="170" rx="14" fill="#111A28" stroke="rgba(255,255,255,0.08)"/>
+  <text x="118" y="786" fill="#8FA6C9" font-size="23" font-family="Inter, Arial, sans-serif">Recommendation</text>
+  <text x="118" y="832" fill="#E2ECFD" font-size="24" font-family="Inter, Arial, sans-serif">Bulkify query path and cache line-items before DML execution.</text>
+  <text x="118" y="868" fill="#A8BAD6" font-size="22" font-family="Inter, Arial, sans-serif">Merge gate remains red until limit usage is below threshold.</text>
+</svg>

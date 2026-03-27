@@ -1,0 +1,41 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10141C" />
+      <stop offset="1" stop-color="#0B0F15" />
+    </linearGradient>
+    <linearGradient id="top" x1="0" y1="0" x2="1600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#161D28" />
+      <stop offset="1" stop-color="#121722" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="980" rx="28" fill="url(#bg)" />
+  <rect x="0" y="0" width="1600" height="76" rx="28" fill="url(#top)" />
+  <circle cx="44" cy="38" r="8" fill="#FF5F57" />
+  <circle cx="70" cy="38" r="8" fill="#FEBC2E" />
+  <circle cx="96" cy="38" r="8" fill="#28C840" />
+
+  <text x="132" y="45" fill="#9AA7BD" font-size="22" font-family="Inter, Arial, sans-serif">Salesforce Runtime Log Viewer</text>
+
+  <rect x="44" y="112" width="1512" height="124" rx="14" fill="#101723" stroke="rgba(255,255,255,0.12)" />
+  <text x="70" y="162" fill="#E6ECF8" font-size="28" font-family="SF Pro Display, Inter, Arial, sans-serif" font-weight="600">System.LimitException</text>
+  <text x="70" y="198" fill="#FF7676" font-size="26" font-family="JetBrains Mono, Menlo, monospace">Too many SOQL queries: 101</text>
+
+  <rect x="44" y="264" width="1512" height="672" rx="18" fill="#0E141F" stroke="rgba(255,255,255,0.08)" />
+
+  <text x="70" y="318" fill="#78D2FF" font-size="22" font-family="JetBrains Mono, Menlo, monospace">13:57:02.191 (219105771)|LIMIT_USAGE_FOR_NS|(default)</text>
+  <text x="70" y="356" fill="#93A6C2" font-size="20" font-family="JetBrains Mono, Menlo, monospace">Number of SOQL queries: 101 out of 100  * CLOSE TO LIMIT</text>
+  <text x="70" y="394" fill="#93A6C2" font-size="20" font-family="JetBrains Mono, Menlo, monospace">Number of DML statements: 52 out of 150</text>
+  <text x="70" y="432" fill="#93A6C2" font-size="20" font-family="JetBrains Mono, Menlo, monospace">CPU time: 8220 out of 10000</text>
+  <text x="70" y="470" fill="#FF7676" font-size="20" font-family="JetBrains Mono, Menlo, monospace">EXCEPTION_THROWN [209]|System.LimitException: Too many SOQL queries: 101</text>
+  <text x="70" y="508" fill="#B6C4DA" font-size="20" font-family="JetBrains Mono, Menlo, monospace">Class.CPQPricingEngine.calculate: line 412, column 1</text>
+  <text x="70" y="546" fill="#B6C4DA" font-size="20" font-family="JetBrains Mono, Menlo, monospace">Trigger.QuoteLineTrigger: line 88, column 1</text>
+  <text x="70" y="584" fill="#B6C4DA" font-size="20" font-family="JetBrains Mono, Menlo, monospace">Flow.Quote_AfterUpdate: line 1, column 1</text>
+
+  <rect x="70" y="640" width="1462" height="266" rx="14" fill="#0B1018" stroke="rgba(255,255,255,0.06)" />
+  <text x="98" y="690" fill="#7D8EA8" font-size="19" font-family="JetBrains Mono, Menlo, monospace">Root Cause Summary</text>
+  <text x="98" y="730" fill="#DDE6F6" font-size="22" font-family="Inter, Arial, sans-serif">Trigger -> Flow -> Managed Package recursion created non-bulkified SOQL loop.</text>
+  <text x="98" y="772" fill="#DDE6F6" font-size="22" font-family="Inter, Arial, sans-serif">Recommended fix: gate DML in before update, cache quote lines, move query outside loop.</text>
+  <text x="98" y="814" fill="#7D8EA8" font-size="20" font-family="Inter, Arial, sans-serif">Status: Deployment blocked before production impact.</text>
+</svg>
