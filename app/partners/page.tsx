@@ -165,6 +165,29 @@ export default function SalesDeckPage() {
         </button>
       </nav>
 
+      {/* ── HEADER SECTION ── */}
+      <section className="relative px-[40px] md:px-[80px] lg:px-[120px] xl:px-[160px] py-[80px] md:py-[120px] overflow-hidden">
+        <LightGridBg />
+        <FloatingBlob className="top-[20%] right-[10%]" />
+        <FloatingBlob className="bottom-[30%] left-[5%]" />
+        
+        <div className="relative z-10 max-w-[1000px] mx-auto text-center">
+          <Reveal>
+            <h1 className="font-archivo text-[clamp(60px,8vw,120px)] leading-[0.9] tracking-[-4px] uppercase mb-[24px]">
+              JATAKA
+            </h1>
+          </Reveal>
+          
+          <Reveal delay={200}>
+            <p className="font-archivo text-[clamp(20px,2.5vw,32px)] leading-[1.2] tracking-[-1px] text-[#444] max-w-[800px] mx-auto">
+              The Reliability Layer for the
+              <br />
+              <span className="text-[#FF2424]">Agentic Era</span>
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ── SECTION 1: THE BIG CHANGE ── */}
       <section className="relative min-h-screen flex flex-col justify-center px-[40px] md:px-[80px] lg:px-[120px] xl:px-[160px] pt-[120px] pb-[80px] overflow-hidden">
         <LightGridBg />
@@ -366,7 +389,7 @@ export default function SalesDeckPage() {
               {/* Salesforce Logo */}
               <div className="group flex flex-col items-center gap-[12px] opacity-60 hover:opacity-100 transition-opacity">
                 <svg className="w-[48px] h-[48px]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286Z" fill="#00A1E0"/>
+                  <path d="M10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286C10.764 34.286 10.764 34.286 10.764 34.286Z" fill="#00A1E0"/>
                   <path d="M36.336 14.976C33.84 12.48 30.336 11.232 26.832 11.952C25.584 7.248 21.36 3.744 16.272 3.744C10.224 3.744 5.136 7.968 3.888 13.728C1.68 14.256 0 16.32 0 18.72C0 21.504 2.256 23.76 5.04 23.76C5.328 23.76 5.616 23.76 5.904 23.664C7.536 28.464 12.048 31.968 17.328 31.968C20.544 31.968 23.472 30.72 25.584 28.608C27.216 30.24 29.52 31.2 32.016 31.2C37.728 31.2 42.336 26.592 42.336 20.88C42.336 18.384 41.376 15.984 39.744 14.208C38.496 14.592 37.248 14.784 36.336 14.976Z" fill="#00A1E0"/>
                   <circle cx="17.5" cy="19" r="2.5" fill="white"/>
                   <circle cx="25.5" cy="19" r="2.5" fill="white"/>
@@ -393,16 +416,30 @@ export default function SalesDeckPage() {
                 <span className="text-[10px] uppercase tracking-[1px] text-[#666]">Cursor</span>
               </div>
               
-              {/* Neo4j Logo */}
+              {/* Claude Code Logo */}
               <div className="group flex flex-col items-center gap-[12px] opacity-60 hover:opacity-100 transition-opacity">
                 <svg className="w-[48px] h-[48px]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="18" cy="18" r="8" fill="#008CC1"/>
-                  <circle cx="34" cy="30" r="8" fill="#008CC1"/>
-                  <path d="M24 24L28 26" stroke="#F7941D" strokeWidth="3" strokeLinecap="round"/>
-                  <circle cx="24" cy="24" r="3" fill="#F7941D"/>
-                  <circle cx="12" cy="36" r="5" fill="#66B245"/>
+                  <rect x="8" y="8" width="32" height="32" rx="6" fill="#D97706"/>
+                  <path d="M16 16L20 20L16 24" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M24 24L28 28L24 32" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M20 20L24 24" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M24 24L28 28" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                 </svg>
-                <span className="text-[10px] uppercase tracking-[1px] text-[#666]">Neo4j</span>
+                <span className="text-[10px] uppercase tracking-[1px] text-[#666]">Claude Code</span>
+              </div>
+              
+              {/* Slack Logo */}
+              <div className="group flex flex-col items-center gap-[12px] opacity-60 hover:opacity-100 transition-opacity">
+                <svg className="w-[48px] h-[48px]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="8" y="8" width="32" height="32" rx="6" fill="#4A154B"/>
+                  <path d="M16 16C16 14.8954 16.8954 14 18 14H20V16C20 17.1046 19.1046 18 18 18H16V16Z" fill="white"/>
+                  <path d="M28 16C28 14.8954 28.8954 14 30 14H32V16C32 17.1046 31.1046 18 30 18H28V16Z" fill="white"/>
+                  <path d="M16 28C16 26.8954 16.8954 26 18 26H20V28C20 29.1046 19.1046 30 18 30H16V28Z" fill="white"/>
+                  <path d="M28 28C28 26.8954 28.8954 26 30 26H32V28C32 29.1046 31.1046 30 30 30H28V28Z" fill="white"/>
+                  <path d="M22 22C22 20.8954 22.8954 20 24 20H26V22C26 23.1046 25.1046 24 24 24H22V22Z" fill="#E01E5A"/>
+                  <path d="M22 22H24V24H22V22Z" fill="#E01E5A"/>
+                </svg>
+                <span className="text-[10px] uppercase tracking-[1px] text-[#666]">Slack</span>
               </div>
             </div>
           </Reveal>

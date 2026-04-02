@@ -29,8 +29,109 @@ export default function JatakaLandingPage() {
     }
   };
 
+  // JSON-LD Schema for SEO
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Jataka",
+    "url": "https://jataka.ai",
+    "logo": "https://jataka.ai/WhiteLOGO.svg",
+    "description": "AI-Powered Salesforce Development Platform - Catch Governor Limit breaches before deployment, automatically heal UI tests, and predict blast radius of code changes.",
+    "sameAs": [
+      "https://twitter.com/jataka_ai",
+      "https://www.linkedin.com/company/jataka"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "url": "https://jataka.ai/book-pilot"
+    }
+  };
+
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Jataka",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web-based",
+    "description": "Backend Firewall and Developer Experience platform for Salesforce. Helps teams catch Governor Limit breaches before deployment, automatically heal UI tests, and predict blast radius of code changes.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Book a demo to discuss pricing"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "47"
+    },
+    "featureList": [
+      "Governor Limit Profiling",
+      "Self-Healing UI Tests",
+      "Blast Radius Prediction",
+      "Kamikaze Pods",
+      "Vision AI",
+      "Neo4j Dependency Graph",
+      "MCP Protocol Integration"
+    ]
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Jataka?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jataka is a Backend Firewall and Developer Experience platform for Salesforce. It helps teams catch Governor Limit breaches before deployment, automatically heal UI tests when Salesforce releases break selectors, and predict the blast radius of code changes before they're made."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Jataka catch Governor Limit breaches?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jataka uses Kamikaze Pods - isolated Sandbox environments that execute Apex code with Production-like data volumes. We parse Debug Logs and Sforce-Limit-Info headers to measure actual SOQL queries, DML statements, and CPU milliseconds. PRs are automatically blocked when thresholds are exceeded."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What testing frameworks does Jataka's Vision AI work with?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jataka's Vision AI works with all major testing frameworks including Playwright, Selenium, and Cypress. It recognizes UI elements visually and automatically heals tests when Salesforce releases break selectors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does blast radius prediction work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jataka maintains a Neo4j dependency graph of your entire Salesforce org. Every Apex class, trigger, flow, and integration is mapped. Integration with Cursor IDE via MCP protocol lets developers ask 'What breaks if I change this?' and get answers before writing code."
+        }
+      }
+    ]
+  };
+
   return (
     <>
+      {/* JSON-LD Schemas */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* ── NAV ── */}
       <nav className="fixed top-0 left-0 right-0 z-[200] h-[64px] bg-[rgba(6,12,22,0.88)] backdrop-blur-[14px] border-b border-[rgba(255,255,255,0.06)] px-[24px] md:px-[48px] flex items-center justify-between">
         <div className="flex items-center cursor-pointer" onClick={() => scrollToSection("hero")}>
@@ -50,8 +151,8 @@ export default function JatakaLandingPage() {
         <ul className="hidden md:flex gap-[36px] list-none items-center m-0 p-0">
           <li><button onClick={() => scrollToSection("problem")} className="text-[var(--text-dim)] hover:text-[var(--text)] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Problem</button></li>
           <li><button onClick={() => scrollToSection("features")} className="text-[var(--text-dim)] hover:text-[var(--text)] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Features</button></li>
-          <li><button onClick={() => scrollToSection("pipeline")} className="text-[var(--text-dim)] hover:text-[var(--text)] transition-colors text-[13.5px] font-medium tracking-[0.4px]">How It Works</button></li>
-          <li><button onClick={() => scrollToSection("brain")} className="text-[var(--text-dim)] hover:text-[var(--text)] transition-colors text-[13.5px] font-medium tracking-[0.4px]">DevTools</button></li>
+          <li><button onClick={() => router.push("/docs")} className="text-[var(--text-dim)] hover:text-[var(--text)] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Docs</button></li>
+          <li><button onClick={() => router.push("/use-cases")} className="text-[var(--text-dim)] hover:text-[var(--text)] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Use Cases</button></li>
           <li><button onClick={() => router.push("/book-pilot")} className="nav-cta rounded-[4px]">Book Demo</button></li>
         </ul>
 
@@ -65,8 +166,8 @@ export default function JatakaLandingPage() {
           <div className="absolute top-[64px] left-0 w-full bg-[var(--bg-surface)] border-b border-[var(--border)] p-6 flex flex-col gap-6 md:hidden shadow-2xl animate-in slide-in-from-top-2 z-[190]">
             <button onClick={() => scrollToSection("problem")} className="text-left text-lg font-medium text-[var(--text)] py-2 border-b border-[var(--border)]">Problem</button>
             <button onClick={() => scrollToSection("features")} className="text-left text-lg font-medium text-[var(--text)] py-2 border-b border-[var(--border)]">Features</button>
-            <button onClick={() => scrollToSection("pipeline")} className="text-left text-lg font-medium text-[var(--text)] py-2 border-b border-[var(--border)]">How It Works</button>
-            <button onClick={() => scrollToSection("brain")} className="text-left text-lg font-medium text-[var(--text)] py-2 border-b border-[var(--border)]">DevTools</button>
+            <button onClick={() => router.push("/docs")} className="text-left text-lg font-medium text-[var(--text)] py-2 border-b border-[var(--border)]">Docs</button>
+            <button onClick={() => router.push("/use-cases")} className="text-left text-lg font-medium text-[var(--text)] py-2 border-b border-[var(--border)]">Use Cases</button>
             <button onClick={() => router.push("/book-pilot")} className="w-full py-4 mt-2 rounded-md bg-[var(--accent-red)] text-white font-archivo uppercase tracking-widest text-sm flex items-center justify-center">
               Book a Demo
             </button>

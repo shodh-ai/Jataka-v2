@@ -1,0 +1,27 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Jataka — AI-Powered Salesforce Development Platform",
+  description: "Jataka helps Salesforce teams catch Governor Limit breaches before deployment, automatically heal UI tests, and predict blast radius of code changes. Zero Sev-1s. 90% less test maintenance. Deploy with confidence.",
+  keywords: [
+    "Salesforce Governor Limits",
+    "Salesforce testing",
+    "Apex testing",
+    "Salesforce CI/CD",
+    "Salesforce deployment",
+    "Salesforce code review",
+    "Salesforce automation",
+    "Salesforce QA",
+    "Salesforce development tools",
+    "Apex debugging"
+  ],
+  alternates: {
+    canonical: "https://jataka.ai",
+  },
+  openGraph: {
+    title: "Jataka — AI-Powered Salesforce Development Platform",
+    description: "Catch Governor Limit breaches before deployment. Automatically heal UI tests. Predict blast radius of code changes.",
+    url: "https://jataka.ai",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+  },
+};
