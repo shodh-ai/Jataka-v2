@@ -510,7 +510,119 @@ export default function JatakaLandingPage() {
         </div>
       </section>
 
-      {/* ── SECTION 6: FINAL CTA ── */}
+      {/* ── SECTION 6: AUTONOMOUS SDLC ── */}
+      <section id="sdlc" className="relative overflow-hidden bg-[var(--bg-surface)] border-y border-[var(--border)]">
+        <div className="grid-bg opacity-40"></div>
+        <div className="s-inner">
+          <div className="s-label">Highest-Value IP</div>
+          <h2 className="s-hl">The Autonomous SDLC.</h2>
+          <p className="s-sub">Jataka doesn't just wait for pull requests. It manages the entire lifecycle.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px] lg:gap-[32px] mt-[48px]">
+            {/* Intent */}
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] p-[32px] relative overflow-hidden rounded-[4px]">
+              <div className="absolute top-0 left-0 w-[4px] h-full bg-[#FF2424]"></div>
+              <div className="w-[48px] h-[48px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center mb-[20px]">
+                <span className="text-[20px]">📋</span>
+              </div>
+              <div className="inline-block bg-[#FF2424] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[12px] rounded-[2px]">Step 1</div>
+              <h3 className="font-archivo text-[17px] uppercase tracking-[-0.3px] text-[var(--text)] mb-[10px]">Intent (Jira)</h3>
+              <p className="text-[14px] leading-[1.7] text-[var(--text-dim)]">
+                Jataka reads the Jira ticket and updates the Neo4j graph with the business intent. Your feature requirements become structured context.
+              </p>
+            </div>
+
+            {/* Code */}
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] p-[32px] relative overflow-hidden rounded-[4px]">
+              <div className="absolute top-0 left-0 w-[4px] h-full bg-[#FF6B35]"></div>
+              <div className="w-[48px] h-[48px] rounded-[8px] bg-[#FF6B35]/10 flex items-center justify-center mb-[20px]">
+                <span className="text-[20px]">⌨️</span>
+              </div>
+              <div className="inline-block bg-[#FF6B35] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[12px] rounded-[2px]">Step 2</div>
+              <h3 className="font-archivo text-[17px] uppercase tracking-[-0.3px] text-[var(--text)] mb-[10px]">Code (Cursor)</h3>
+              <p className="text-[14px] leading-[1.7] text-[var(--text-dim)]">
+                Through our MCP, your developer asks Cursor how to build the feature. Jataka feeds Cursor the exact blast radius and safe code patterns.
+              </p>
+            </div>
+
+            {/* Verify */}
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] p-[32px] relative overflow-hidden rounded-[4px]">
+              <div className="absolute top-0 left-0 w-[4px] h-full bg-[#FFB800]"></div>
+              <div className="w-[48px] h-[48px] rounded-[8px] bg-[#FFB800]/10 flex items-center justify-center mb-[20px]">
+                <span className="text-[20px]">🔍</span>
+              </div>
+              <div className="inline-block bg-[#FFB800] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[12px] rounded-[2px]">Step 3</div>
+              <h3 className="font-archivo text-[17px] uppercase tracking-[-0.3px] text-[var(--text)] mb-[10px]">Verify (GitHub)</h3>
+              <p className="text-[14px] leading-[1.7] text-[var(--text-dim)]">
+                The developer opens a PR. Jataka's API Firewall and Kamikaze Pods test the limits and the UI automatically.
+              </p>
+            </div>
+
+            {/* Resolve */}
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] p-[32px] relative overflow-hidden rounded-[4px]">
+              <div className="absolute top-0 left-0 w-[4px] h-full bg-[#22c55e]"></div>
+              <div className="w-[48px] h-[48px] rounded-[8px] bg-[#22c55e]/10 flex items-center justify-center mb-[20px]">
+                <span className="text-[20px]">✅</span>
+              </div>
+              <div className="inline-block bg-[#22c55e] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[12px] rounded-[2px]">Step 4</div>
+              <h3 className="font-archivo text-[17px] uppercase tracking-[-0.3px] text-[var(--text)] mb-[10px]">Resolve (Jira)</h3>
+              <p className="text-[14px] leading-[1.7] text-[var(--text-dim)]">
+                If limits breach, Jataka sends feedback back to Cursor. If it passes, Jataka updates the Jira ticket to "Ready for Deployment" with attached video proof.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-[48px] p-[40px] md:p-[48px] bg-[var(--bg-card)] border border-[var(--border)] rounded-[4px]">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-[40px] items-center">
+              <div>
+                <h3 className="font-archivo text-[24px] uppercase tracking-[-0.5px] text-[var(--text)] mb-[16px]">The Result</h3>
+                <p className="text-[15.5px] leading-[1.7] text-[var(--text-dim)]">
+                  Your developers stay in their IDE. Jataka handles the <strong className="text-[var(--text)] font-bold">orchestration</strong>, 
+                  the <strong className="text-[var(--text)] font-bold">testing</strong>, and the <strong className="text-[var(--text)] font-bold">ticket management</strong>. 
+                  This closed loop — Jira to Cursor to GitHub to Jataka back to Jira — is your highest-value intellectual property. 
+                  You aren't just catching limits; you are automating the entire Software Development Life Cycle.
+                </p>
+                <button 
+                  onClick={() => router.push("/use-cases/autonomous-sdlc")} 
+                  className="mt-[24px] inline-flex items-center gap-[8px] text-[13px] font-archivo uppercase tracking-[1.5px] text-[#FF2424] hover:text-[#d91f1f] transition-colors"
+                >
+                  See Full Use Case →
+                </button>
+              </div>
+              <div className="bg-[var(--bg)] rounded-[4px] p-[24px] border border-[var(--border)]">
+                <div className="flex items-center justify-between text-[11px] uppercase tracking-[1px] text-[var(--text-muted)] mb-[16px]">
+                  <span>Closed Loop</span>
+                  <span className="text-[#22c55e]">● Active</span>
+                </div>
+                <div className="flex items-center justify-center gap-[12px] text-[var(--text)]">
+                  <div className="text-center">
+                    <div className="w-[40px] h-[40px] rounded-full bg-[#FF2424]/10 flex items-center justify-center mx-auto mb-[6px] text-[16px]">📋</div>
+                    <span className="text-[10px] uppercase tracking-[0.5px]">Jira</span>
+                  </div>
+                  <span className="text-[#FF2424]">→</span>
+                  <div className="text-center">
+                    <div className="w-[40px] h-[40px] rounded-full bg-[#FF6B35]/10 flex items-center justify-center mx-auto mb-[6px] text-[16px]">⌨️</div>
+                    <span className="text-[10px] uppercase tracking-[0.5px]">Cursor</span>
+                  </div>
+                  <span className="text-[#FF2424]">→</span>
+                  <div className="text-center">
+                    <div className="w-[40px] h-[40px] rounded-full bg-[#FFB800]/10 flex items-center justify-center mx-auto mb-[6px] text-[16px]">🔍</div>
+                    <span className="text-[10px] uppercase tracking-[0.5px]">GitHub</span>
+                  </div>
+                  <span className="text-[#FF2424]">→</span>
+                  <div className="text-center">
+                    <div className="w-[40px] h-[40px] rounded-full bg-[#FF2424]/20 flex items-center justify-center mx-auto mb-[6px] text-[16px] font-bold text-[#FF2424]">J</div>
+                    <span className="text-[10px] uppercase tracking-[0.5px]">Jataka</span>
+                  </div>
+                  <span className="text-[#22c55e]">↩</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 7: FINAL CTA ── */}
       <section id="final-cta" className="relative overflow-hidden bg-[var(--bg-surface)] border-t border-[var(--border)]">
         <div className="grid-bg"></div>
         <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] py-[130px] text-center relative z-10">
