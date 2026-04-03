@@ -285,7 +285,6 @@ export default function JatakaLandingPage() {
         <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] py-[80px] pb-0">
           <div className="text-[12px] font-bold uppercase tracking-[2.5px] text-[#FF2424] mb-[24px]">Core Capabilities</div>
           <h2 className="font-archivo text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-1px] uppercase mb-[16px] text-[#1a1a1a]">The First Autonomous Runtime<br/>Governance Engine for Salesforce.</h2>
-          <p className="text-[17px] text-[#666] max-w-[600px] mb-[48px]">We built the X-Ray machine your CI/CD pipeline never had.</p>
         </div>
 
         <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] py-[40px] pb-[80px]">
@@ -294,7 +293,6 @@ export default function JatakaLandingPage() {
             {/* The Wedge */}
             <div className="col-span-1 md:col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-[40px] lg:gap-[48px] bg-white p-[40px] md:p-[48px] rounded-[8px] border border-[#1a1a1a]/5">
               <div>
-                <div className="font-mono text-[11px] text-[#666] tracking-[2px] mb-[18px]">// 01</div>
                 <div className="inline-block bg-[#FF2424] text-white font-archivo text-[9.5px] tracking-[2px] uppercase px-[10px] py-[4px] mb-[18px] rounded-[2px]">The Wedge</div>
                 <h3 className="font-archivo text-[21px] uppercase tracking-[-0.4px] text-[#1a1a1a] mb-[16px] leading-[1.18]">Automated Governor<br/>Limit Profiling</h3>
                 <p className="text-[14.5px] leading-[1.75] text-[#444]">
@@ -341,7 +339,6 @@ export default function JatakaLandingPage() {
 
             {/* Feature 2 */}
             <div className="bg-white p-[40px] md:p-[48px] rounded-[8px] border border-[#1a1a1a]/5">
-              <div className="font-mono text-[11px] text-[#666] tracking-[2px] mb-[18px]">// 02</div>
               <h3 className="font-archivo text-[21px] uppercase tracking-[-0.4px] text-[#1a1a1a] mb-[16px] leading-[1.18]">AI-Powered Root<br/>Cause Analysis</h3>
               <p className="text-[14.5px] leading-[1.75] text-[#444]">
                 Reading a 20MB Apex Debug Log is a nightmare. Jataka's AI does it in milliseconds. 
@@ -352,7 +349,6 @@ export default function JatakaLandingPage() {
 
             {/* Feature 3 */}
             <div className="bg-white p-[40px] md:p-[48px] rounded-[8px] border border-[#1a1a1a]/5">
-              <div className="font-mono text-[11px] text-[#666] tracking-[2px] mb-[18px]">// 03</div>
               <h3 className="font-archivo text-[21px] uppercase tracking-[-0.4px] text-[#1a1a1a] mb-[16px] leading-[1.18]">Hybrid SOQL<br/>Assertions</h3>
               <p className="text-[14.5px] leading-[1.75] text-[#444]">
                 We don't trust the UI. After Jataka clicks "Convert Lead" on the screen, our engine 
@@ -365,7 +361,6 @@ export default function JatakaLandingPage() {
             {/* Feature 4 Bottom Wide */}
             <div className="col-span-1 md:col-span-2 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-[40px] items-center bg-white p-[40px] md:p-[48px] rounded-[8px] border border-[#1a1a1a]/5">
               <div>
-                <div className="font-mono text-[11px] text-[#666] tracking-[2px] mb-[18px]">// 04</div>
                 <h3 className="font-archivo text-[21px] uppercase tracking-[-0.4px] text-[#1a1a1a] mb-[16px] leading-[1.18]">Zero-Maintenance<br/>Contextual Testing</h3>
                 <p className="text-[14.5px] leading-[1.75] text-[#444]">
                   Stop writing brittle test scripts. Connect Jataka to your Org and we ingest your entire 
@@ -447,7 +442,7 @@ export default function JatakaLandingPage() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
-            <div className="bg-white border border-[#1a1a1a]/5 p-[40px] md:p-[48px] relative overflow-hidden rounded-[8px]">
+            <div className="bg-white border border-[#1a1a1a]/5 p-[40px] md:p-[48px] relative overflow-hidden rounded-[8px] h-full">
               <div className="absolute top-0 left-0 w-[4px] h-full bg-[#FF2424]"></div>
               <span className="text-[28px] block mb-[20px]">⬡</span>
               <h3 className="font-archivo text-[19px] uppercase text-[#1a1a1a] mb-[12px]">IDE Context (MCP)</h3>
@@ -458,7 +453,7 @@ export default function JatakaLandingPage() {
               </p>
             </div>
             
-            <div className="bg-white border border-[#1a1a1a]/5 p-[40px] md:p-[48px] relative overflow-hidden rounded-[8px]">
+            <div className="bg-white border border-[#1a1a1a]/5 p-[40px] md:p-[48px] relative overflow-hidden rounded-[8px] h-full">
               <div className="absolute top-0 left-0 w-[4px] h-full bg-[#FF2424]"></div>
               <span className="text-[28px] block mb-[20px]">◈</span>
               <h3 className="font-archivo text-[19px] uppercase text-[#1a1a1a] mb-[12px]">Senior Deflection in Slack</h3>
@@ -562,12 +557,14 @@ export default function JatakaLandingPage() {
                   This closed loop — Jira to Cursor to GitHub to Jataka back to Jira — is your highest-value intellectual property. 
                   You aren't just catching limits; you are automating the entire Software Development Life Cycle.
                 </p>
-                <button 
-                  onClick={() => router.push("/use-cases/autonomous-sdlc")} 
+                <a 
+                  href="/use-cases/autonomous-sdlc"
                   className="mt-[20px] inline-flex items-center gap-[8px] text-[12px] font-archivo uppercase tracking-[1.5px] text-[#FF2424] hover:text-[#ff6666] transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   See Full Use Case →
-                </button>
+                </a>
               </div>
               <div className="bg-[#2a2a2a] rounded-[8px] p-[24px]">
                 <div className="flex items-center justify-between text-[11px] uppercase tracking-[1px] text-white/40 mb-[16px]">

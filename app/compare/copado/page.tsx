@@ -121,14 +121,14 @@ const comparisonData = [
   {
     category: "SOQL 101 Prevention",
     jataka: "Catches before merge",
-    copado: "No runtime detection",
+    copado: "Relies entirely on developer-written Apex tests",
     jatakaHas: true,
     copadoHas: false
   },
   {
     category: "DML 151 Prevention",
     jataka: "Catches before merge",
-    copado: "No runtime detection",
+    copado: "Relies entirely on developer-written Apex tests",
     jatakaHas: true,
     copadoHas: false
   },

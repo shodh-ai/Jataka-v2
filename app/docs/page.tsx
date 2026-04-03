@@ -445,7 +445,7 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
           {/* Compliance Badges */}
           <Reveal delay={700}>
             <div className="mt-[60px] flex flex-wrap items-center gap-[16px] justify-center">
-              {["SOC 2 Type II", "GDPR Compliant", "HIPAA Ready", "AES-256 Encryption"].map((badge) => (
+              {["SOC 2 Type II", "AES-256 Encryption"].map((badge) => (
                 <div key={badge} className="px-[24px] py-[12px] border border-[#1a1a1a]/10 rounded-[6px] text-[11px] font-bold uppercase tracking-[1.5px] text-[#666] hover:border-[#FF2424]/30 hover:text-[#FF2424] transition-colors cursor-default">
                   {badge}
                 </div>

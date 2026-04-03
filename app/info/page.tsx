@@ -65,7 +65,7 @@ export default function JatakaInfoPage() {
           {defenseLayers.map((layer) => (
             <article
               key={layer.title}
-              className="group rounded-[8px] border border-[var(--border)] bg-[var(--bg-card)] p-6 transition-transform duration-200 hover:-translate-y-1 hover:border-[rgba(255,36,36,0.32)]"
+              className="group rounded-[8px] border border-[var(--border)] bg-[var(--bg-card)] p-6 h-full transition-transform duration-200 hover:-translate-y-1 hover:border-[rgba(255,36,36,0.32)]"
             >
               <p className="font-mono text-[11px] uppercase tracking-[1.8px] text-[var(--accent-red)]">
                 {layer.subtitle}

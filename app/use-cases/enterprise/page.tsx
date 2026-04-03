@@ -289,7 +289,7 @@ export default function EnterpriseUseCase() {
 
             <Reveal delay={100}>
               <h1 className="font-archivo text-[clamp(40px,6vw,72px)] leading-[1] tracking-[-2px] uppercase mb-[40px]">
-                The US Enterprise
+                Enterprise
               </h1>
             </Reveal>
 

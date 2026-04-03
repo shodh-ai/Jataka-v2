@@ -130,7 +130,7 @@ const plans = [
       { text: "Unlimited Developer Seats", included: true },
       { text: "Custom PR analysis volume", included: true },
       { text: "Dedicated K8s cluster", included: true },
-      { text: "On-premise deployment option", included: true },
+      { text: "Private Azure OpenAI / AWS Bedrock endpoint routing for Zero Data Exfiltration", included: true },
       { text: "Custom integrations", included: true },
       { text: "Dedicated success manager", included: true },
       { text: "24/7 support", included: true },
@@ -229,15 +229,12 @@ export default function PricingPage() {
           <div className="max-w-[1000px] mx-auto text-center">
             <Reveal>
               <h1 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1.1] tracking-[-1.5px] uppercase mb-[24px]">
-                Simple, Transparent<br />
                 <span className="text-[#FF2424]">Pricing</span>
               </h1>
             </Reveal>
 
             <Reveal delay={100}>
-              <p className="text-[18px] leading-[1.7] text-[#444] max-w-[600px] mx-auto mb-[20px]">
-                No hidden fees. No per-seat charges. No surprises on your invoice.
-              </p>
+              <div></div>
             </Reveal>
 
             <Reveal delay={200}>
@@ -323,11 +320,8 @@ export default function PricingPage() {
           <div className="max-w-[800px] mx-auto">
             <Reveal>
               <div className="bg-[#FF2424]/5 border border-[#FF2424]/20 rounded-[12px] p-[28px] text-center">
-                <h3 className="font-archivo text-[20px] tracking-[-0.5px] uppercase mb-[12px]">
-                  Save 2 Months with Annual Billing
-                </h3>
-                <p className="text-[15px] text-[#444] leading-[1.7]">
-                  Pay for 10 months, get 12. Team plan drops to <strong>$10,000/year</strong>. 
+                <p className="text-[13px] text-[#666] leading-[1.6]">
+                  Save 2 months with annual billing. Pay for 10 months, get 12. Team plan drops to <strong>$10,000/year</strong>. 
                   Enterprise drops to <strong>$30,000/year</strong>. No commitment required during the 14-day pilot.
                 </p>
               </div>
@@ -385,19 +379,23 @@ export default function PricingPage() {
 
             <Reveal delay={300}>
               <div className="flex flex-col md:flex-row gap-[16px] justify-center">
-                <button 
-                  onClick={() => router.push("/pilot")} 
+                <a 
+                  href="/pilot"
                   className="group bg-[#FF2424] text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-all duration-300 flex items-center justify-center gap-[12px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Start Your Pilot
                   <ArrowRight className="w-[14px] h-[14px] group-hover:translate-x-[4px] transition-transform" />
-                </button>
-                <button 
-                  onClick={() => router.push("/book-pilot")} 
+                </a>
+                <a 
+                  href="/book-pilot"
                   className="group bg-transparent text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] border border-[#333] hover:border-[#FF2424]/50 transition-all duration-300 flex items-center justify-center gap-[12px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Talk to Sales
-                </button>
+                </a>
               </div>
             </Reveal>
           </div>

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Menu, X, ArrowRight, Shield, Lock, Database, Zap, Key, Eye, Server, FileCheck, AlertTriangle } from "lucide-react";
+import { Menu, X, ArrowRight, Shield, Lock, Database, Zap, Key, Eye, Server, FileCheck, AlertTriangle, Download } from "lucide-react";
 
 // Scroll reveal hook
 function useScrollReveal(threshold = 0.1) {
@@ -133,7 +133,6 @@ const pillars = [
 
 const compliance = [
   { name: "SOC 2 Type II", status: "In Progress", icon: FileCheck },
-  { name: "GDPR Compliant", status: "Yes", icon: Shield },
   { name: "Data Processing Agreement", status: "Available", icon: FileCheck },
   { name: "Penetration Testing", status: "Annual", icon: AlertTriangle }
 ];
@@ -364,19 +363,24 @@ export default function SecurityPage() {
 
             <Reveal delay={200}>
               <div className="flex flex-col md:flex-row gap-[16px] justify-center">
-                <button 
-                  onClick={() => router.push("/book-pilot")} 
+                <a 
+                  href="/book-pilot"
                   className="group bg-[#1a1a1a] text-white px-[32px] py-[14px] font-archivo text-[13px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#333] transition-all duration-300 inline-flex items-center justify-center gap-[10px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Download className="w-[14px] h-[14px]" />
+                  Download Whitepaper
+                </a>
+                <a 
+                  href="/book-pilot"
+                  className="group bg-transparent text-[#1a1a1a] px-[32px] py-[14px] font-archivo text-[13px] uppercase tracking-[1.5px] rounded-[4px] border border-[#1a1a1a]/20 hover:border-[#FF2424]/50 transition-all duration-300 inline-flex items-center justify-center gap-[10px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FileCheck className="w-[14px] h-[14px]" />
                   Request Security Whitepaper
-                </button>
-                <button 
-                  onClick={() => router.push("/book-pilot")} 
-                  className="group bg-transparent text-[#1a1a1a] px-[32px] py-[14px] font-archivo text-[13px] uppercase tracking-[1.5px] rounded-[4px] border border-[#1a1a1a]/20 hover:border-[#FF2424]/50 transition-all duration-300 inline-flex items-center justify-center gap-[10px]"
-                >
-                  Schedule Security Review
-                </button>
+                </a>
               </div>
             </Reveal>
           </div>
@@ -394,26 +398,28 @@ export default function SecurityPage() {
             <Reveal delay={100}>
               <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[20px] text-white">
                 Start the pilot.<br />
-                <span className="text-[#FF2424]">Pass the CISO.</span>
+                <span className="text-[#FF2424]">Security Review Ready.</span>
               </h2>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="text-[17px] leading-[1.7] text-[#999] max-w-[600px] mx-auto mb-[40px]">
                 14-day zero-risk pilot. No production access. No data retention. 
-                Everything your CISO needs to approve.
+                Complete security documentation for your review.
               </p>
             </Reveal>
 
             <Reveal delay={300}>
               <div className="flex flex-col md:flex-row gap-[16px] justify-center">
-                <button 
-                  onClick={() => router.push("/pilot")} 
+                <a 
+                  href="/pilot"
                   className="group bg-[#FF2424] text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-all duration-300 flex items-center justify-center gap-[12px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Start Your Pilot
                   <ArrowRight className="w-[14px] h-[14px] group-hover:translate-x-[4px] transition-transform" />
-                </button>
+                </a>
                 <button 
                   onClick={() => router.push("/pricing")} 
                   className="group bg-transparent text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] border border-[#333] hover:border-[#FF2424]/50 transition-all duration-300 flex items-center justify-center gap-[12px]"

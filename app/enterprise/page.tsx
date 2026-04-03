@@ -632,7 +632,7 @@ export default function SalesDeckPage() {
                 </div>
                 <div>
                   <p className="text-[18px] leading-[1.6] text-[#444]">
-                    <strong className="text-[#1a1a1a] font-semibold">Enterprise Compliance.</strong> Pass SOC 2, HIPAA, and regulatory audits with automated runtime governance and complete deployment traceability.
+                    <strong className="text-[#1a1a1a] font-semibold">Enterprise Compliance.</strong> Pass SOC 2 and regulatory audits with automated runtime governance and complete deployment traceability.
                   </p>
                 </div>
               </div>

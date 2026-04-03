@@ -106,7 +106,7 @@ const breadcrumbSchema = {
 const comparisonData = [
   {
     category: "UI Test Creation",
-    jataka: "Uses standard Playwright/Selenium",
+    jataka: "Uses modern Playwright executing in isolated Kubernetes pods",
     provar: "Proprietary test builder",
     jatakaHas: true,
     provarHas: true

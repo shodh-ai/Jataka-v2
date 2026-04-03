@@ -138,10 +138,9 @@ export default function AgencyUseCase() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const problemMetrics = [
-    { label: "Review Time", value: "20 hrs/wk", description: "Senior architects spend on manual PR reviews" },
-    { label: "Architect Cost", value: "$150/hr", description: "Fully loaded cost of senior talent" },
-    { label: "Wasted Spend", value: "$3K/wk", description: "Direct cost of senior time on junior work" },
-    { label: "Velocity Loss", value: "40%", description: "Slower delivery due to review bottleneck" },
+    { label: "Unbillable Time", value: "20 hrs/wk", description: "Senior architects stuck reviewing PRs instead of billing clients" },
+    { label: "Lost Margin", value: "$1,600/wk", description: "Lost billing revenue per architect (at $80/hr offshore rate)" },
+    { label: "Velocity Loss", value: "40%", description: "Junior devs blocked waiting for US/India timezone overlap" },
   ];
 
   const solutionFeatures = [
