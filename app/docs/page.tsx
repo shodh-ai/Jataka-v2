@@ -204,19 +204,21 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
     {
       title: "Debug Log Analysis",
       description: "We execute your code in Sandbox and parse Debug Logs to extract actual runtime metrics. This is where we catch the real limit breaches.",
-      detailedDescription: "After executing the transaction in an isolated Sandbox, we retrieve the Debug Log and parse the APEX_PROFILING entries. This gives us exact counts: 97 SOQL queries, 48,000 query rows, 8,500 DML rows. Not estimates—measured facts.",
-      code: `APEX_PROFILING: Number of SOQL queries: 97 out of 100
-APEX_PROFILING: Number of query rows: 48000 out of 50000
-APEX_PROFILING: Number of DML statements: 45 out of 150`,
+      detailedDescription: "After executing the transaction in an isolated Sandbox, we analyze the execution trace to extract exact runtime metrics. This gives us precise measurements: 97 SOQL queries, 48,000 query rows, 8,500 DML rows. Not estimates—measured facts.",
+      code: `> Parsing execution trace...
+> SOQL queries detected: 97/100
+> Query rows: 48,000/50,000
+> DML statements: 45/150
+> CPU time: 8,500ms/10,000ms`,
     },
     {
       title: "Blast Radius Calculation",
       description: "Using Neo4j graph analysis, we map dependencies and predict impact of code changes before they're deployed.",
-      detailedDescription: "Every Apex class, trigger, flow, and integration is a node in our Neo4j graph. When you change a trigger, we traverse the CALLS and DEPENDS_ON relationships to identify every downstream component that could be affected.",
-      code: `MATCH (trigger:ApexTrigger)-[:CALLS]->(class:ApexClass)
-WHERE trigger.Name = 'AccountTrigger'
-RETURN class.Name, class.LineCount,
-       class.LastModifiedDate`,
+      detailedDescription: "Every Salesforce component is mapped in our dependency graph. When you change a trigger, we analyze the relationships to identify every downstream component that could be affected.",
+      code: `> Initiating Blast Radius Traversal...
+> Finding 12 downstream dependencies
+> Mapping impact across 3 layers
+> Risk assessment: CRITICAL`,
     },
   ];
 

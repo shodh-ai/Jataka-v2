@@ -86,7 +86,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Jataka for QA Automation Teams - Self-Healing UI Tests for Salesforce",
-  "description": "How Jataka's Vision AI automatically heals UI tests when Salesforce releases break Selenium scripts, eliminating test maintenance overhead and keeping QA teams focused on testing new features.",
+  "description": "How Jataka's AI automatically heals UI tests when Salesforce releases break test scripts, eliminating test maintenance overhead and keeping QA teams focused on testing new features.",
   "author": {
     "@type": "Organization",
     "name": "Jataka"
@@ -138,8 +138,8 @@ export default function QATeamUseCase() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const problemMetrics = [
-    { label: "Broken Tests", value: "200+", description: "Selenium scripts fail after each Salesforce release" },
-    { label: "Fix Time", value: "2 sprints", description: "QA team spends fixing selectors instead of testing" },
+    { label: "Broken Tests", value: "200+", description: "Test scripts fail after each Salesforce release" },
+    { label: "Fix Time", value: "2 sprints", description: "QA team spends fixing test elements instead of testing" },
     { label: "Opportunity Cost", value: "High", description: "New features go untested while old tests get fixed" },
     { label: "QA Morale", value: "Low", description: "Talented QA engineers become maintenance workers" },
   ];
@@ -147,17 +147,17 @@ export default function QATeamUseCase() {
   const solutionFeatures = [
     {
       title: "Self-Healing Playwright Tests",
-      description: "When Salesforce changes a UI element, Jataka's Vision AI identifies it visually and updates the selector automatically. Tests stay green without human intervention.",
+      description: "When Salesforce changes a UI element, our AI identifies it visually and updates the test element automatically. Tests stay green without human intervention.",
       icon: RefreshCw,
     },
     {
-      title: "Vision-Based Element Recognition",
-      description: "We recognize UI elements the way a human does—by visual appearance, position, and context. No brittle CSS selectors that break on every release.",
+      title: "Visual Element Recognition",
+      description: "We recognize UI elements the way a human does—by visual appearance, position, and context. No brittle test elements that break on every release.",
       icon: Eye,
     },
     {
-      title: "Automatic Selector Updates",
-      description: "When an element changes, we update the selector in real-time. The test passes, and you get a notification about the change. Zero manual maintenance.",
+      title: "Automatic Test Updates",
+      description: "When an element changes, we update the test element in real-time. The test passes, and you get a notification about the change. Zero manual maintenance.",
       icon: Zap,
     },
     {
@@ -177,30 +177,30 @@ export default function QATeamUseCase() {
   const howItWorks = [
     {
       step: 1,
-      title: "Vision AI Scans UI",
-      description: "When a test runs, our Vision AI captures the current state of the Salesforce UI and identifies elements by their visual characteristics—not brittle selectors.",
+      title: "AI Scans UI",
+      description: "When a test runs, our AI captures the current state of the Salesforce UI and identifies elements by their visual characteristics.",
     },
     {
       step: 2,
       title: "Element Matching",
-      description: "We compare the current UI against our visual model. If Salesforce changed a button ID or color, we recognize the button visually and map it to the expected element.",
+      description: "We compare the current UI against our visual model. If Salesforce changed a button identifier or color, we recognize the button visually and map it to the expected element.",
     },
     {
       step: 3,
       title: "Automatic Healing",
-      description: "If an element has changed, we automatically update the selector in real-time. The test continues as if nothing happened. You get a notification about the change.",
+      description: "If an element has changed, we automatically update the test element in real-time. The test continues as if nothing happened. You get a notification about the change.",
     },
     {
       step: 4,
       title: "Test Passes",
-      description: "The test completes successfully. No maintenance required. No sprint lost to fixing selectors. QA team focuses on testing new features.",
+      description: "The test completes successfully. No maintenance required. No sprint lost to fixing test elements. QA team focuses on testing new features.",
     },
   ];
 
   const salesforceReleases = [
-    { release: "Spring '24", changes: "LWC component updates, new button IDs", testsBroken: "150+", jatakaResult: "0 broken" },
-    { release: "Summer '24", changes: "Lightning page layout changes", testsBroken: "200+", jatakaResult: "0 broken" },
-    { release: "Winter '25", changes: "Color scheme updates, DOM restructuring", testsBroken: "180+", jatakaResult: "0 broken" },
+    { release: "Spring '24", changes: "Component updates, new button identifiers", testsBroken: "150+", jatakaResult: "0 broken" },
+    { release: "Summer '24", changes: "Page layout changes", testsBroken: "200+", jatakaResult: "0 broken" },
+    { release: "Winter '25", changes: "Color scheme updates, layout restructuring", testsBroken: "180+", jatakaResult: "0 broken" },
   ];
 
   return (
@@ -291,8 +291,7 @@ export default function QATeamUseCase() {
 
             <Reveal delay={200}>
               <p className="text-[clamp(18px,1.8vw,22px)] leading-[1.6] text-[#444] max-w-[680px] mb-[30px]">
-                Salesforce releases a UI update and 200 Selenium scripts break. The QA team spends the next sprint fixing selectors 
-                <strong className="text-[#1a1a1a] font-semibold"> instead of testing new features.</strong>
+                Salesforce releases a UI update and 200 test scripts break. Jataka's AI automatically heals UI tests without human intervention. Tests stay green through every release.
               </p>
             </Reveal>
 
@@ -333,8 +332,8 @@ export default function QATeamUseCase() {
 
             <Reveal delay={200}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[800px] mb-[20px]">
-                Salesforce updates Lightning Web Components regularly. Buttons change IDs. Colors shift. Layouts reorganize. 
-                Your Selenium scripts, built on brittle CSS selectors, fail en masse.
+                Salesforce updates components regularly. Buttons change identifiers. Colors shift. Layouts reorganize. 
+                Your test scripts, built on brittle selectors, fail en masse.
               </p>
             </Reveal>
 
@@ -380,25 +379,25 @@ export default function QATeamUseCase() {
 
             <Reveal delay={100}>
               <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[30px]">
-                Vision AI that<br />
+                AI that<br />
                 <span className="text-[#FF2424]">heals your tests.</span>
               </h2>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[800px] mb-[20px]">
-                Jataka's Vision AI automatically heals UI tests without human intervention. When Salesforce changes a button ID or color, 
-                the Vision AI figures it out and keeps the test passing.
+                Jataka's AI automatically heals UI tests without human intervention. When Salesforce changes a button identifier or color, 
+                the AI figures it out and keeps the test passing.
               </p>
             </Reveal>
 
             <Reveal delay={300}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[800px] mb-[60px]">
-                Our Vision AI doesn't rely on brittle CSS selectors. It recognizes UI elements the way a human does—by visual appearance, 
-                position, and context. When Salesforce changes a button's <code className="bg-[#1a1a1a]/5 px-[6px] py-[2px] rounded-[4px] text-[14px]">data-testid</code> from 
+                Our AI doesn't rely on brittle test elements. It recognizes UI elements the way a human does—by visual appearance, 
+                position, and context. When Salesforce changes a button's attribute from 
                 <code className="bg-[#1a1a1a]/5 px-[6px] py-[2px] rounded-[4px] text-[14px]">'submit-btn'</code> to 
-                <code className="bg-[#1a1a1a]/5 px-[6px] py-[2px] rounded-[4px] text-[14px]">'submit-order-btn'</code>, the Vision AI identifies the button visually, 
-                updates the selector in real-time, and the test passes without human intervention.
+                <code className="bg-[#1a1a1a]/5 px-[6px] py-[2px] rounded-[4px] text-[14px]">'submit-order-btn'</code>, the AI identifies the button visually, 
+                updates the test element in real-time, and the test passes without human intervention.
               </p>
             </Reveal>
 
@@ -568,14 +567,14 @@ export default function QATeamUseCase() {
 
             <Reveal delay={100}>
               <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[20px] text-white">
-                See Vision AI<br />
+                See AI<br />
                 <span className="text-[#FF2424]">heal your tests.</span>
               </h2>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#999] max-w-[600px] mx-auto mb-[40px]">
-                Book a demo and watch Jataka's Vision AI automatically fix broken UI tests in real-time. 
+                Book a demo and watch Jataka's AI automatically fix broken UI tests in real-time. 
                 No more maintenance sprints—just continuous testing.
               </p>
             </Reveal>
