@@ -187,12 +187,11 @@ export default function SOQL101Page() {
           </div>
 
           {/* Desktop Nav */}
-          <ul className="hidden md:flex gap-[36px] list-none items-center m-0 p-0">
-            <li><button onClick={() => router.push("/")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Home</button></li>
-            <li><button onClick={() => router.push("/blog")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Demos</button></li>
-            <li><button onClick={() => router.push("/use-cases")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Use Cases</button></li>
-            <li><button onClick={() => router.push("/anti-patterns")} className="text-[#1a1a1a] font-medium text-[13.5px] tracking-[0.4px]">Anti-Patterns</button></li>
-            <li><button onClick={() => router.push("/book-pilot")} className="bg-[#FF2424] text-white px-[20px] py-[8px] font-archivo text-[11px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-colors">Book Demo</button></li>
+          <ul className="hidden md:flex gap-[24px] list-none items-center m-0 p-0">
+            <li><button onClick={() => router.push("/pricing")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Pricing</button></li>
+            <li><button onClick={() => router.push("/security")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Security</button></li>
+            <li><button onClick={() => router.push("/customers")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Customers</button></li>
+            <li><button onClick={() => router.push("/pilot")} className="bg-[#FF2424] text-white px-[20px] py-[8px] font-archivo text-[11px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-colors">Start Pilot</button></li>
           </ul>
 
           {/* Mobile Menu Button */}
@@ -206,14 +205,13 @@ export default function SOQL101Page() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="fixed top-[64px] left-0 right-0 z-[150] bg-[#FAF8F3] border-b border-[#1a1a1a]/10 md:hidden">
-            <div className="px-[24px] py-[20px] flex flex-col gap-[16px]">
-              <button onClick={() => router.push("/")} className="text-[#666] text-[14px] font-medium">Home</button>
-              <button onClick={() => router.push("/blog")} className="text-[#666] text-[14px] font-medium">Demos</button>
-              <button onClick={() => router.push("/use-cases")} className="text-[#666] text-[14px] font-medium">Use Cases</button>
-              <button onClick={() => router.push("/anti-patterns")} className="text-[#1a1a1a] font-medium text-[14px]">Anti-Patterns</button>
-              <button onClick={() => router.push("/book-pilot")} className="bg-[#FF2424] text-white px-[20px] py-[12px] font-archivo text-[12px] uppercase tracking-[1.5px] rounded-[4px]">Book Demo</button>
-            </div>
+          <div className="absolute top-[64px] left-0 w-full bg-[#FAF8F3] border-b border-[#1a1a1a]/10 p-6 flex flex-col gap-4 md:hidden shadow-2xl z-[190]">
+            <button onClick={() => router.push("/pricing")} className="text-left text-[15px] font-medium text-[#1a1a1a] py-2">Pricing</button>
+            <button onClick={() => router.push("/security")} className="text-left text-[15px] font-medium text-[#1a1a1a] py-2">Security</button>
+            <button onClick={() => router.push("/customers")} className="text-left text-[15px] font-medium text-[#1a1a1a] py-2">Customers</button>
+            <button onClick={() => router.push("/pilot")} className="w-full py-3 mt-2 rounded-[4px] bg-[#FF2424] text-white font-archivo uppercase tracking-[1.5px] text-[12px] flex items-center justify-center">
+              Start Pilot
+            </button>
           </div>
         )}
 
