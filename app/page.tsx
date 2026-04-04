@@ -3,10 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function JatakaLandingPage() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
 
   useEffect(() => {
     const targetSection = sessionStorage.getItem("targetSection");
