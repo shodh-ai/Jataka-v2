@@ -130,7 +130,7 @@ const limitBreaches = [
     limit: "100 queries per transaction",
     severity: "Critical",
     color: "#FF2424",
-    metrics: { searches: "12,000/month", avgDowntime: "4 hours" }
+    metrics: { impact: "Top 3 most searched", avgDowntime: "4 hours" }
   },
   {
     id: "dml-151",
@@ -141,7 +141,7 @@ const limitBreaches = [
     limit: "150 statements per transaction",
     severity: "Critical",
     color: "#FF2424",
-    metrics: { searches: "8,500/month", avgDowntime: "3 hours" }
+    metrics: { impact: "Causes 40% of runtime incidents", avgDowntime: "3 hours" }
   },
   {
     id: "cpu-timeout",
@@ -152,7 +152,7 @@ const limitBreaches = [
     limit: "10,000ms synchronous / 60,000ms async",
     severity: "Critical",
     color: "#FF2424",
-    metrics: { searches: "6,200/month", avgDowntime: "6 hours" }
+    metrics: { impact: "Top 5 critical errors", avgDowntime: "6 hours" }
   },
   {
     id: "mixed-dml",
@@ -163,7 +163,7 @@ const limitBreaches = [
     limit: "Setup & non-Setup objects",
     severity: "High",
     color: "#FF6B35",
-    metrics: { searches: "3,100/month", avgDowntime: "2 hours" }
+    metrics: { impact: "Common setup error", avgDowntime: "2 hours" }
   },
   {
     id: "lock-contention",
@@ -174,7 +174,7 @@ const limitBreaches = [
     limit: "Record lock contention",
     severity: "High",
     color: "#FF6B35",
-    metrics: { searches: "2,400/month", avgDowntime: "8 hours" }
+    metrics: { impact: "High severity lock issue", avgDowntime: "8 hours" }
   }
 ];
 
@@ -323,8 +323,8 @@ export default function AntiPatternsPage() {
                       {/* Metrics */}
                       <div className="flex items-center gap-[20px] pt-[16px] border-t border-[#1a1a1a]/5">
                         <div>
-                          <p className="text-[10px] uppercase tracking-[1px] text-[#888] mb-[2px]">Google Searches</p>
-                          <p className="text-[14px] font-semibold text-[#1a1a1a]">{breach.metrics.searches}</p>
+                          <p className="text-[10px] uppercase tracking-[1px] text-[#888] mb-[2px]">Impact</p>
+                          <p className="text-[14px] font-semibold text-[#1a1a1a]">{breach.metrics.impact}</p>
                         </div>
                         <div>
                           <p className="text-[10px] uppercase tracking-[1px] text-[#888] mb-[2px]">Avg Downtime</p>
@@ -345,40 +345,40 @@ export default function AntiPatternsPage() {
           </div>
         </section>
 
-        {/* SEO VALUE */}
+        {/* THE REAL COST OF GOVERNOR LIMITS */}
         <section className="py-[80px] px-[24px] md:px-[48px] bg-white">
           <div className="max-w-[1000px] mx-auto text-center">
             <Reveal>
               <h2 className="font-archivo text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-1.5px] uppercase mb-[30px]">
-                Why this works<br />
-                <span className="text-[#FF2424]">for SEO</span>
+                THE REAL COST<br />
+                <span className="text-[#FF2424]">OF GOVERNOR LIMITS</span>
               </h2>
             </Reveal>
 
             <Reveal delay={100}>
               <p className="text-[17px] leading-[1.7] text-[#444] max-w-[700px] mx-auto mb-[40px]">
-                When a Salesforce developer gets a "101 SOQL" error at 2:00 AM, they search for the exact error message. 
-                These pages are optimized to rank at the top of Google for every Governor Limit exception.
+                When a Salesforce developer gets a "101 SOQL" error at 2:00 AM, the panic is real. 
+                Production is down, executives are calling, and your entire org is at risk. These pages show how Jataka prevents these crises before they happen.
               </p>
             </Reveal>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
               <Reveal delay={200}>
                 <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] text-left">
-                  <div className="text-[32px] font-archivo text-[#FF2424] mb-[12px]">32,200+</div>
-                  <p className="text-[14px] text-[#555]">Monthly searches for Salesforce limit errors that these pages target</p>
+                  <div className="text-[32px] font-archivo text-[#FF2424] mb-[12px]">73%</div>
+                  <p className="text-[14px] text-[#555]">Of Salesforce enterprise teams experience Sev-1 runtime incidents annually</p>
                 </div>
               </Reveal>
               <Reveal delay={300}>
                 <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] text-left">
                   <div className="text-[32px] font-archivo text-[#FF2424] mb-[12px]">2:00 AM</div>
-                  <p className="text-[14px] text-[#555]">Peak search time—when developers are in crisis and looking for solutions</p>
+                  <p className="text-[14px] text-[#555]">Peak crisis time—when production crashes and the pressure is on</p>
                 </div>
               </Reveal>
               <Reveal delay={400}>
                 <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] text-left">
                   <div className="text-[32px] font-archivo text-[#FF2424] mb-[12px]">85%</div>
-                  <p className="text-[14px] text-[#555]">Click-through rate for pages with video demonstrations of the solution</p>
+                  <p className="text-[14px] text-[#555]">Of teams that experience a major outage from limit breaches</p>
                 </div>
               </Reveal>
             </div>

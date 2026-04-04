@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Menu, X, Building2, AlertTriangle, CheckCircle, ArrowRight, Shield, Zap, Database, Lock } from "lucide-react";
+import { Menu, X, TestTube, AlertTriangle, CheckCircle, ArrowRight, Eye, RefreshCw, Zap, Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 // Scroll reveal hook
@@ -85,8 +85,8 @@ function Reveal({
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Jataka for US Enterprise - Protecting Margins from Salesforce Governor Limit Breaches",
-  "description": "How Jataka's Backend Firewall prevents runtime crashes from Governor Limit breaches, protecting revenue and ensuring sales portal uptime during peak hours.",
+  "headline": "Jataka for Testing & QA Infrastructure - Self-Healing UI Tests for Salesforce",
+  "description": "How Jataka's AI automatically heals UI tests when Salesforce releases break test scripts, eliminating test maintenance overhead and keeping QA teams focused on testing new features.",
   "author": {
     "@type": "Organization",
     "name": "Jataka"
@@ -103,7 +103,7 @@ const jsonLd = {
   "dateModified": "2024-01-15",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://jataka.io/use-cases/enterprise"
+    "@id": "https://jataka.io/use-cases/qa-team"
   }
 };
 
@@ -127,84 +127,80 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Enterprise",
-      "item": "https://jataka.io/use-cases/enterprise"
+      "name": "QA Team",
+      "item": "https://jataka.io/use-cases/qa-team"
     }
   ]
 };
 
-export default function EnterpriseUseCase() {
+export default function QATeamUseCase() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const problemMetrics = [
-    { label: "Revenue Loss", value: "$50K+/hr", description: "Direct revenue impact when sales portal is down" },
-    { label: "Recovery Time", value: "4-8 hrs", description: "Average time to identify, rollback, and restore service" },
-    { label: "Customer Impact", value: "Severe", description: "Customers cannot access accounts, support cases, or place orders" },
-    { label: "Trust Erosion", value: "High", description: "Each incident erodes customer and stakeholder confidence" },
+    { label: "Broken Tests", value: "200+", description: "Test scripts fail after each Salesforce release" },
+    { label: "Fix Time", value: "2 sprints", description: "QA team spends fixing test elements instead of testing" },
+    { label: "Opportunity Cost", value: "High", description: "New features go untested while old tests get fixed" },
+    { label: "QA Morale", value: "Low", description: "Talented QA engineers become maintenance workers" },
   ];
 
   const solutionFeatures = [
     {
-      title: "Pre-Merge Limit Profiling",
-      description: "Every PR is executed in an isolated Sandbox with Production-like data volumes before merge. We measure actual SOQL queries, DML statements, CPU milliseconds, and heap size—not estimates.",
-      icon: Database,
+      title: "Self-Healing Playwright Tests",
+      description: "When Salesforce changes a UI element, our AI identifies it visually and updates the test element automatically. Tests stay green without human intervention.",
+      icon: RefreshCw,
     },
     {
-      title: "Automatic PR Blocking",
-      description: "If any Governor Limit threshold is breached during Sandbox execution, the PR is automatically blocked with a detailed report. No manual intervention required.",
-      icon: Shield,
+      title: "Visual Element Recognition",
+      description: "We recognize UI elements the way a human does—by visual appearance, position, and context. No brittle test elements that break on every release.",
+      icon: Eye,
     },
     {
-      title: "Line-by-Line Attribution",
-      description: "When we catch a limit breach, we tell you exactly which line of code caused it. No more hunting through debug logs trying to find the culprit.",
+      title: "Automatic Test Updates",
+      description: "When an element changes, we update the test element in real-time. The test passes, and you get a notification about the change. Zero manual maintenance.",
       icon: Zap,
     },
     {
-      title: "Zero False Positives",
-      description: "We don't guess. We execute. If we say you're at 97/100 SOQL queries, that's a measured fact from actual execution, not a static analysis estimate.",
-      icon: Lock,
+      title: "Zero Maintenance for UI Changes",
+      description: "Salesforce releases 3 major updates per year. With Jataka, your UI tests stay green through all of them. No more sprint-killing maintenance cycles.",
+      icon: Clock,
     },
   ];
 
   const resultMetrics = [
-    { label: "Sev-1 Incidents", value: "0", trend: "from 2-3/year" },
-    { label: "Uptime During Peak", value: "100%", trend: "from 94%" },
-    { label: "Revenue Protected", value: "$2M+/yr", trend: "direct savings" },
-    { label: "Engineer Sleep", value: "Better", trend: "much better" },
+    { label: "Test Maintenance", value: "-90%", trend: "near zero" },
+    { label: "Tests Passing", value: "99.5%", trend: "through releases" },
+    { label: "QA Velocity", value: "+60%", trend: "more testing" },
+    { label: "QA Satisfaction", value: "High", trend: "real work" },
   ];
 
   const howItWorks = [
     {
       step: 1,
-      title: "GitHub Webhook Trigger",
-      description: "When a PR is opened or updated, GitHub fires a webhook to Jataka's One-Backend orchestration layer. The code is fetched and queued for analysis.",
+      title: "AI Scans UI",
+      description: "When a test runs, our AI captures the current state of the Salesforce UI and identifies elements by their visual characteristics.",
     },
     {
       step: 2,
-      title: "Sandbox Pod Spin-Up",
-      description: "Jataka spins up an isolated Kamikaze Pod—a fresh Sandbox environment with your Production data volumes. No contamination, no shared state.",
+      title: "Element Matching",
+      description: "We compare the current UI against our visual model. If Salesforce changed a button identifier or color, we recognize the button visually and map it to the expected element.",
     },
     {
       step: 3,
-      title: "Real Transaction Execution",
-      description: "We execute the actual Apex code from your PR against real-ish data. Triggers fire. Flows run. Integration calls happen. This is not a simulation.",
+      title: "Automatic Healing",
+      description: "If an element has changed, we automatically update the test element in real-time. The test continues as if nothing happened. You get a notification about the change.",
     },
     {
       step: 4,
-      title: "Debug Log Parsing",
-      description: "After execution, we retrieve and parse the Debug Logs. We extract exact metrics: SOQL queries, query rows, DML statements, CPU time, heap size.",
+      title: "Test Passes",
+      description: "The test completes successfully. No maintenance required. No sprint lost to fixing test elements. QA team focuses on testing new features.",
     },
-    {
-      step: 5,
-      title: "Threshold Comparison",
-      description: "We compare measured metrics against Salesforce Governor Limits. If any threshold is breached, the PR fails. If all clear, the PR passes.",
-    },
-    {
-      step: 6,
-      title: "PR Status & Report",
-      description: "Pass/Fail status is posted to GitHub PR checks. A detailed limit report is attached as a PR comment with line-by-line attribution for any breaches.",
-    },
+  ];
+
+  const salesforceReleases = [
+    { release: "Spring '24", changes: "Component updates, new button identifiers", testsBroken: "150+", jatakaResult: "0 broken" },
+    { release: "Summer '24", changes: "Page layout changes", testsBroken: "200+", jatakaResult: "0 broken" },
+    { release: "Winter '25", changes: "Color scheme updates, layout restructuring", testsBroken: "180+", jatakaResult: "0 broken" },
   ];
 
   return (
@@ -271,32 +267,31 @@ export default function EnterpriseUseCase() {
           
           {/* Large watermark */}
           <div className="absolute top-[50%] right-[-10%] transform -translate-y-1/2 font-archivo text-[200px] md:text-[300px] text-[#1a1a1a]/[0.02] uppercase tracking-[-12px] pointer-events-none select-none">
-            ENTERPRISE
+            QA
           </div>
           
           <div className="relative z-10 max-w-[1000px]">
             <Reveal>
               <div className="flex items-center gap-[16px] mb-[40px]">
                 <div className="w-[64px] h-[64px] rounded-[12px] bg-[#FF2424]/10 flex items-center justify-center">
-                  <Building2 className="w-[28px] h-[28px] text-[#FF2424]" />
+                  <TestTube className="w-[28px] h-[28px] text-[#FF2424]" />
                 </div>
                 <div>
-                  <p className="text-[12px] font-mono uppercase tracking-[2px] text-[#888]">Use Case 01</p>
-                  <p className="text-[14px] text-[#FF2424] font-medium">Protecting Margins</p>
+                  <p className="text-[12px] font-mono uppercase tracking-[2px] text-[#888]">Use Case 03</p>
+                  <p className="text-[14px] text-[#FF2424] font-medium">Killing Test Maintenance</p>
                 </div>
               </div>
             </Reveal>
 
             <Reveal delay={100}>
               <h1 className="font-archivo text-[clamp(40px,6vw,72px)] leading-[1] tracking-[-2px] uppercase mb-[40px]">
-                Enterprise
+                Self-Healing UI Tests
               </h1>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="text-[clamp(18px,1.8vw,22px)] leading-[1.6] text-[#444] max-w-[680px] mb-[30px]">
-                A bad deployment causes an Apex CPU timeout, crashing the sales portal during end-of-month closing. 
-                <strong className="text-[#1a1a1a] font-semibold"> Revenue stops. Executives panic. The rollback takes hours.</strong>
+                Salesforce releases a UI update and 200 test scripts break. Jataka's AI automatically heals UI tests without human intervention. Tests stay green through every release.
               </p>
             </Reveal>
 
@@ -330,23 +325,22 @@ export default function EnterpriseUseCase() {
 
             <Reveal delay={100}>
               <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[30px]">
-                When deployment<br />
-                <span className="text-[#FF2424]">means disaster.</span>
+                Every release breaks<br />
+                <span className="text-[#FF2424]">your tests.</span>
               </h2>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[800px] mb-[20px]">
-                A developer pushes code that worked perfectly in Dev. But Dev has 1,000 records. Production has 10 million. 
-                The code hits a Governor Limit at scale, and the sales portal crashes during end-of-month closing.
+                Salesforce updates components regularly. Buttons change identifiers. Colors shift. Layouts reorganize. 
+                Your test scripts, built on brittle selectors, fail en masse.
               </p>
             </Reveal>
 
             <Reveal delay={300}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[800px] mb-[60px]">
-                The sales team can't close deals. Customer support can't access cases. The VP of Sales is on the phone with the CEO. 
-                Meanwhile, your engineering team is frantically rolling back the deployment, but the damage is done. 
-                <strong className="text-[#1a1a1a] font-semibold">Trust is broken. Revenue is lost.</strong>
+                The QA team becomes a maintenance team, not a testing team. New features go untested while old tests get fixed. 
+                <strong className="text-[#1a1a1a] font-semibold"> Every quarterly release means two weeks of maintenance hell.</strong>
               </p>
             </Reveal>
 
@@ -385,25 +379,25 @@ export default function EnterpriseUseCase() {
 
             <Reveal delay={100}>
               <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[30px]">
-                Backend Firewall<br />
-                <span className="text-[#FF2424]">for Salesforce.</span>
+                AI that<br />
+                <span className="text-[#FF2424]">heals your tests.</span>
               </h2>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[800px] mb-[20px]">
-                Jataka's Backend Firewall guarantees zero runtime crashes from Governor Limit breaches. 
-                We execute your PRs in an isolated Sandbox with Production-like data volumes, profile the Apex Debug Logs, 
-                and automatically block deployments that would breach limits.
+                Jataka's AI automatically heals UI tests without human intervention. When Salesforce changes a button identifier or color, 
+                the AI figures it out and keeps the test passing.
               </p>
             </Reveal>
 
             <Reveal delay={300}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[800px] mb-[60px]">
-                Before any code reaches Production, Jataka spins up a <strong className="text-[#1a1a1a] font-semibold">Kamikaze Pod</strong>—an isolated 
-                Sandbox environment that mirrors your Production data volumes. It executes the actual transaction, parses the Debug Logs, 
-                and measures real SOQL queries, DML statements, and CPU milliseconds. If any threshold is breached, the PR is blocked 
-                with a detailed limit report showing exactly which line caused the problem.
+                Our AI doesn't rely on brittle test elements. It recognizes UI elements the way a human does—by visual appearance, 
+                position, and context. When Salesforce changes a button's attribute from 
+                <code className="bg-[#1a1a1a]/5 px-[6px] py-[2px] rounded-[4px] text-[14px]">'submit-btn'</code> to 
+                <code className="bg-[#1a1a1a]/5 px-[6px] py-[2px] rounded-[4px] text-[14px]">'submit-order-btn'</code>, the AI identifies the button visually, 
+                updates the test element in real-time, and the test passes without human intervention.
               </p>
             </Reveal>
 
@@ -446,8 +440,8 @@ export default function EnterpriseUseCase() {
 
             <Reveal delay={100}>
               <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[60px]">
-                Six steps to<br />
-                <span className="text-[#FF2424]">zero incidents.</span>
+                Four steps to<br />
+                <span className="text-[#FF2424]">zero maintenance.</span>
               </h2>
             </Reveal>
 
@@ -473,8 +467,49 @@ export default function EnterpriseUseCase() {
           </div>
         </section>
 
-        {/* ── RESULT SECTION ── */}
+        {/* ── SALESFORCE RELEASES SECTION ── */}
         <section className="relative border-t border-[#1a1a1a]/10 overflow-hidden">
+          <LightGridBg />
+          
+          <div className="relative z-10 max-w-[1200px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[80px] md:py-[120px]">
+            <Reveal>
+              <p className="text-[12px] font-medium uppercase tracking-[2px] text-[#666] mb-[30px]">Real Results</p>
+            </Reveal>
+
+            <Reveal delay={100}>
+              <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[60px]">
+                Tests stay green<br />
+                <span className="text-[#FF2424]">through every release.</span>
+              </h2>
+            </Reveal>
+
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[600px]">
+                <thead>
+                  <tr className="border-b border-[#1a1a1a]/10">
+                    <th className="text-left py-[16px] px-[16px] text-[12px] font-medium uppercase tracking-[2px] text-[#888]">Release</th>
+                    <th className="text-left py-[16px] px-[16px] text-[12px] font-medium uppercase tracking-[2px] text-[#888]">Changes</th>
+                    <th className="text-left py-[16px] px-[16px] text-[12px] font-medium uppercase tracking-[2px] text-[#FF2424]">Without Jataka</th>
+                    <th className="text-left py-[16px] px-[16px] text-[12px] font-medium uppercase tracking-[2px] text-[#1a1a1a]">With Jataka</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {salesforceReleases.map((row) => (
+                    <tr key={row.release} className="border-b border-[#1a1a1a]/5">
+                      <td className="py-[20px] px-[16px] text-[14px] font-medium text-[#1a1a1a]">{row.release}</td>
+                      <td className="py-[20px] px-[16px] text-[14px] text-[#666]">{row.changes}</td>
+                      <td className="py-[20px] px-[16px] text-[14px] text-[#FF2424]">{row.testsBroken}</td>
+                      <td className="py-[20px] px-[16px] text-[14px] text-[#1a1a1a] font-medium">{row.jatakaResult}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* ── RESULT SECTION ── */}
+        <section className="relative bg-[#F5F0E8] border-t border-[#1a1a1a]/10 overflow-hidden">
           <LightGridBg />
           
           <div className="relative z-10 max-w-[1200px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[80px] md:py-[120px]">
@@ -487,15 +522,15 @@ export default function EnterpriseUseCase() {
 
             <Reveal delay={100}>
               <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[30px]">
-                Zero Sev-1s.<br />
-                <span className="text-[#FF2424]">Revenue protected.</span>
+                QA becomes a<br />
+                <span className="text-[#FF2424]">value driver.</span>
               </h2>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[800px] mb-[60px]">
-                Zero Sev-1 incidents from limit breaches. Sales portal stays up during peak hours. Revenue protected. 
-                Trust maintained. Engineering team sleeps better. Your VP of Sales stops calling you at 2 AM.
+                QA team focuses on testing new features. UI tests stay green through Salesforce releases. Zero maintenance overhead. 
+                <strong className="text-[#1a1a1a] font-semibold">The team becomes a value driver, not a cost center.</strong>
               </p>
             </Reveal>
 
@@ -526,21 +561,21 @@ export default function EnterpriseUseCase() {
           <div className="relative z-10 max-w-[1000px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[100px] text-center">
             <Reveal>
               <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#FF2424] mb-[30px]">
-                Ready to Protect Your Margins?
+                Ready to Kill Test Maintenance?
               </p>
             </Reveal>
 
             <Reveal delay={100}>
               <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[20px] text-white">
-                See Jataka catch<br />
-                <span className="text-[#FF2424]">real issues in your codebase.</span>
+                See AI<br />
+                <span className="text-[#FF2424]">heal your tests.</span>
               </h2>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#999] max-w-[600px] mx-auto mb-[40px]">
-                Book a demo and watch Jataka identify actual Governor Limit risks in your Salesforce code. 
-                No generic pitches—just your code, your limits, your protection.
+                Book a demo and watch Jataka's AI automatically fix broken UI tests in real-time. 
+                No more maintenance sprints—just continuous testing.
               </p>
             </Reveal>
 

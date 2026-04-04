@@ -170,7 +170,7 @@ export default function CatchingSev1LimitsDemo() {
     {
       step: 3,
       title: "Real Transaction Execution",
-      description: "The Apex code is executed against real-ish data. Triggers fire. Flows run. The SOQL query inside the for loop is called 147 times."
+      description: "The Apex code is executed against actual Sandbox data volumes. Triggers fire. Flows run. The SOQL query inside the for loop is physically executed 147 times."
     },
     {
       step: 4,

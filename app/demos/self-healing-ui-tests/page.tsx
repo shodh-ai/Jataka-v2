@@ -164,8 +164,8 @@ export default function SelfHealingUITestsDemo() {
     },
     {
       step: 2,
-      title: "Vision AI Wakes Up",
-      description: "Jataka's Vision AI detects the test failure and captures the current state of the Salesforce UI. It analyzes the page visually."
+      title: "Vision Engine Intercepts",
+      description: "Jataka's Vision Engine detects Playwright test failure and instantly captures DOM state of Salesforce UI. It analyzes the page visually, not just at the code level."
     },
     {
       step: 3,
@@ -353,7 +353,7 @@ export default function SelfHealingUITestsDemo() {
                   <code className="bg-[#1a1a1a]/5 px-[6px] py-[2px] rounded-[4px] text-[14px]">'submit-order-btn'</code>.
                 </p>
                 <p className="text-[17px] leading-[1.7] text-[#444] mb-[24px]">
-                  The test starts to fail. Jataka's Vision AI wakes up, analyzes the page visually, identifies the button by its 
+                  The test starts to fail. Jataka's Vision Engine intercepts, analyzes the page visually, identifies the button by its 
                   position, label, and context, updates the selector in real-time, and the test passes—<strong className="text-[#FF2424]">without any human intervention.</strong>
                 </p>
               </div>

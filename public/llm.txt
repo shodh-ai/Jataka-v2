@@ -125,11 +125,12 @@ Key Takeaways:
    - Routes tasks to appropriate engines
    - Coordinates all Jataka services
 
-2. **Brum (LLM)** - AI reasoning engine
+2. **Static Analysis Engine** - Deterministic code analysis
    - Debug log analysis
    - Limit attribution
    - Code review suggestions
    - Test generation
+   - AST parsing for deterministic results
 
 3. **Kamikaze Pods** - Isolated execution environments
    - Fresh Sandbox instances
@@ -183,7 +184,7 @@ Model Context Protocol integration with Cursor IDE. Ask questions about your cod
 1. **GitHub Webhook Trigger** - PR opened/updated fires webhook
 2. **One-Backend Orchestration** - Code fetched and queued
 3. **Kamikaze Pod Spin-Up** - Isolated Sandbox provisioned
-4. **Real Transaction Execution** - Apex code runs against real-ish data
+4. **Real Transaction Execution** - Apex code runs against actual Sandbox data volumes
 5. **Debug Log Parsing** - SOQL, DML, CPU, heap metrics extracted
 6. **Threshold Comparison** - Measured vs Governor Limits
 7. **PR Status & Report** - Pass/Fail posted with detailed attribution

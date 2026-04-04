@@ -85,7 +85,7 @@ function Reveal({
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Jataka Runtime Limit Protection - Protecting Margins from Salesforce Governor Limit Breaches",
+  "headline": "Jataka for US Enterprise - Protecting Margins from Salesforce Governor Limit Breaches",
   "description": "How Jataka's Backend Firewall prevents runtime crashes from Governor Limit breaches, protecting revenue and ensuring sales portal uptime during peak hours.",
   "author": {
     "@type": "Organization",
@@ -127,13 +127,13 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Runtime Limit Protection",
+      "name": "Enterprise",
       "item": "https://jataka.io/use-cases/enterprise"
     }
   ]
 };
 
-export default function EnterpriseUseCase() {
+export default function RuntimeLimitProtectionUseCase() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -188,7 +188,7 @@ export default function EnterpriseUseCase() {
     {
       step: 3,
       title: "Real Transaction Execution",
-      description: "We execute the actual Apex code from your PR against actual Sandbox data volumes. Triggers fire. Flows run. Integration calls happen. This is not a simulation.",
+      description: "We execute actual Apex code from your PR against actual Sandbox data volumes. Triggers fire. Flows run. Integration calls happen. This is not a simulation.",
     },
     {
       step: 4,

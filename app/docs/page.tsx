@@ -145,9 +145,9 @@ export default function DocsPage() {
       detail: "The central brain that coordinates all Jataka services. It manages job queues, handles OAuth authentication, and routes tasks to the appropriate engines."
     },
     { 
-      label: "Brum (LLM)", 
-      description: "Analyzes code & generates tests",
-      detail: "Our proprietary LLM layer that understands Salesforce patterns. It analyzes Apex code, identifies potential limit breaches, and generates test cases for uncovered paths."
+      label: "Static Analysis Engine", 
+      description: "Analyzes code & generates test coverage",
+      detail: "Our proprietary LLM layer understands Salesforce Apex patterns natively. It analyzes AST (Abstract Syntax Tree), identifies potential limit breaches, and generates deterministic test cases for uncovered paths before execution."
     },
     { 
       label: "Kamikaze", 
