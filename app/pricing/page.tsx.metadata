@@ -1,0 +1,38 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Pricing - Jataka | AI-Powered Salesforce Development Platform",
+  description: "Transparent pricing for Jataka's AI-powered Salesforce development platform. Plans for teams of all sizes - from startups to enterprise. Start with a free 14-day pilot.",
+  keywords: [
+    "Jataka pricing",
+    "Salesforce development platform pricing",
+    "AI-powered Salesforce tools cost",
+    "Governor limit monitoring pricing",
+    "Salesforce automation pricing",
+    "Enterprise Salesforce tools",
+    "Salesforce CI/CD pricing",
+    "Apex testing platform cost"
+  ],
+  alternates: {
+    canonical: "https://jataka.io/pricing",
+  },
+  openGraph: {
+    title: "Pricing - Jataka | AI-Powered Salesforce Development Platform",
+    description: "Transparent pricing for Jataka's AI-powered Salesforce development platform. Plans for teams of all sizes.",
+    url: "https://jataka.io/pricing",
+    siteName: "Jataka",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Jataka Pricing Plans" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pricing - Jataka | AI-Powered Salesforce Development Platform",
+    description: "Transparent pricing for Jataka's AI-powered Salesforce development platform. Plans for teams of all sizes.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};

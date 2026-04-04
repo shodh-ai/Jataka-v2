@@ -87,7 +87,7 @@ const jsonLd = {
   "@type": "VideoObject",
   "name": "AI-Assisted Blast Radius Prediction - Jataka Demo",
   "description": "Watch Jataka's Neo4j dependency graph calculate the blast radius of code changes before they're made. Integration with Cursor IDE via MCP protocol.",
-  "thumbnailUrl": "https://jataka.ai/thumbnails/blast-radius-prediction.png",
+  "thumbnailUrl": "https://jataka.io/thumbnails/blast-radius-prediction.png",
   "uploadDate": "2024-01-15",
   "duration": "PT2M52S",
   "contentUrl": "https://www.youtube.com/watch?v=SdXRbVhZMzg",
@@ -97,7 +97,7 @@ const jsonLd = {
     "name": "Jataka",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://jataka.ai/logo.png"
+      "url": "https://jataka.io/logo.png"
     }
   },
   "about": {
@@ -116,19 +116,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Demos",
-      "item": "https://jataka.ai/blog"
+      "item": "https://jataka.io/blog"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Blast Radius Prediction",
-      "item": "https://jataka.ai/demos/blast-radius-prediction"
+      "item": "https://jataka.io/demos/blast-radius-prediction"
     }
   ]
 };

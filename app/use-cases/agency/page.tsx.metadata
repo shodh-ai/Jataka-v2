@@ -1,0 +1,40 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Offshore Agency Use Case - Jataka | Scale Your Salesforce Practice",
+  description: "How offshore development agencies use Jataka to reduce architect review time, improve code quality, and increase billing efficiency.",
+  keywords: [
+    "Offshore Salesforce agencies",
+    "Salesforce development outsourcing",
+    "India Salesforce development",
+    "Salesforce agency efficiency",
+    "Architect review automation",
+    "Salesforce billing optimization",
+    "Offshore development tools",
+    "Salesforce code quality"
+  ],
+  alternates: {
+    canonical: "https://jataka.io/use-cases/agency",
+  },
+  openGraph: {
+    title: "Offshore Agency Use Case - Jataka | Scale Your Salesforce Practice",
+    description: "How offshore development agencies use Jataka to reduce architect review time and increase billing efficiency.",
+    url: "https://jataka.io/use-cases/agency",
+    siteName: "Jataka",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Offshore Salesforce Agency" }],
+    locale: "en_US",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Offshore Agency Use Case - Jataka | Scale Your Salesforce Practice",
+    description: "How offshore development agencies use Jataka to reduce architect review time and increase billing efficiency.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  authors: [{ name: "Jataka Team" }],
+  publishedTime: "2026-03-20",
+};

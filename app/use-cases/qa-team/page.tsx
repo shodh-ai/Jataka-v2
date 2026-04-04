@@ -96,14 +96,14 @@ const jsonLd = {
     "name": "Jataka",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://jataka.ai/logo.png"
+      "url": "https://jataka.io/logo.png"
     }
   },
   "datePublished": "2024-01-15",
   "dateModified": "2024-01-15",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://jataka.ai/use-cases/qa-team"
+    "@id": "https://jataka.io/use-cases/qa-team"
   }
 };
 
@@ -116,19 +116,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Use Cases",
-      "item": "https://jataka.ai/use-cases"
+      "item": "https://jataka.io/use-cases"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "QA Team",
-      "item": "https://jataka.ai/use-cases/qa-team"
+      "item": "https://jataka.io/use-cases/qa-team"
     }
   ]
 };

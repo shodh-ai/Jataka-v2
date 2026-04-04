@@ -1,0 +1,37 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Customers - Jataka | Trusted by Leading Salesforce Teams",
+  description: "See how leading enterprises and agencies use Jataka's AI-powered Salesforce platform to eliminate Sev-1 incidents and accelerate development.",
+  keywords: [
+    "Jataka customers",
+    "Salesforce enterprise customers",
+    "Salesforce development case studies",
+    "Governor limit success stories",
+    "Salesforce automation testimonials",
+    "Enterprise Salesforce teams",
+    "Salesforce development ROI"
+  ],
+  alternates: {
+    canonical: "https://jataka.io/customers",
+  },
+  openGraph: {
+    title: "Customers - Jataka | Trusted by Leading Salesforce Teams",
+    description: "See how leading enterprises and agencies use Jataka's AI-powered Salesforce platform to eliminate Sev-1 incidents.",
+    url: "https://jataka.io/customers",
+    siteName: "Jataka",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Jataka Customer Success Stories" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Customers - Jataka | Trusted by Leading Salesforce Teams",
+    description: "See how leading enterprises and agencies use Jataka's AI-powered Salesforce platform to eliminate Sev-1 incidents.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};

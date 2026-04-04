@@ -62,7 +62,7 @@ const jsonLd = {
   "@type": "WebPage",
   "name": "Autonomous SDLC - Jataka's Closed Loop Automation",
   "description": "Jataka automates the entire Software Development Life Cycle: Jira to Cursor to GitHub to Jataka and back. Developers stay in their IDE while Jataka handles orchestration, testing, and ticket management.",
-  "url": "https://jataka.ai/use-cases/autonomous-sdlc"
+  "url": "https://jataka.io/use-cases/autonomous-sdlc"
 };
 
 const breadcrumbSchema = {
@@ -73,19 +73,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Use Cases",
-      "item": "https://jataka.ai/use-cases"
+      "item": "https://jataka.io/use-cases"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Autonomous SDLC",
-      "item": "https://jataka.ai/use-cases/autonomous-sdlc"
+      "item": "https://jataka.io/use-cases/autonomous-sdlc"
     }
   ]
 };

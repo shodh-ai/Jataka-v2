@@ -1,0 +1,40 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Jataka vs Copado - Salesforce Development Platform Comparison",
+  description: "Compare Jataka vs Copado for Salesforce development. See how Jataka's real-time profiling and AI-powered automation differs from Copado's static analysis approach.",
+  keywords: [
+    "Jataka vs Copado",
+    "Salesforce development tools comparison",
+    "Copado alternatives",
+    "Salesforce CI/CD comparison",
+    "Jataka Copado differences",
+    "Salesforce deployment tools",
+    "Apex testing comparison",
+    "Salesforce automation platforms"
+  ],
+  alternates: {
+    canonical: "https://jataka.io/compare/copado",
+  },
+  openGraph: {
+    title: "Jataka vs Copado - Salesforce Development Platform Comparison",
+    description: "Compare Jataka vs Copado for Salesforce development. Real-time profiling vs static analysis.",
+    url: "https://jataka.io/compare/copado",
+    siteName: "Jataka",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Jataka vs Copado Comparison" }],
+    locale: "en_US",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jataka vs Copado - Salesforce Development Platform Comparison",
+    description: "Compare Jataka vs Copado for Salesforce development. Real-time profiling vs static analysis.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  authors: [{ name: "Jataka Team" }],
+  publishedTime: "2026-03-25",
+};

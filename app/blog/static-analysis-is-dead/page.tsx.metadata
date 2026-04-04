@@ -1,0 +1,40 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Static Analysis is Dead - Jataka Blog",
+  description: "Why static analysis alone isn't enough for Salesforce development. Learn how runtime profiling catches the 70% of issues that static tools miss.",
+  keywords: [
+    "Salesforce static analysis limitations",
+    "Runtime profiling Salesforce",
+    "Static vs dynamic analysis",
+    "Salesforce code quality",
+    "Governor limit detection",
+    "Apex testing methods",
+    "Salesforce development best practices",
+    "Code analysis tools"
+  ],
+  alternates: {
+    canonical: "https://jataka.io/blog/static-analysis-is-dead",
+  },
+  openGraph: {
+    title: "Static Analysis is Dead - Jataka Blog",
+    description: "Why static analysis alone isn't enough for Salesforce development. Runtime profiling catches what static tools miss.",
+    url: "https://jataka.io/blog/static-analysis-is-dead",
+    siteName: "Jataka",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Static Analysis is Dead" }],
+    locale: "en_US",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Static Analysis is Dead - Jataka Blog",
+    description: "Why static analysis alone isn't enough for Salesforce development. Runtime profiling catches what static tools miss.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  authors: [{ name: "Jataka Team" }],
+  publishedTime: "2026-04-01",
+};

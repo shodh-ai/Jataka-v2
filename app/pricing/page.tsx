@@ -62,7 +62,7 @@ const jsonLd = {
   "@type": "WebPage",
   "name": "Jataka Pricing - Team & Enterprise Plans",
   "description": "Transparent pricing for Salesforce runtime security. Team plan at $1,000/month, Enterprise at $3,000/month. No hidden fees.",
-  "url": "https://jataka.ai/pricing"
+  "url": "https://jataka.io/pricing"
 };
 
 const breadcrumbSchema = {
@@ -73,13 +73,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Pricing",
-      "item": "https://jataka.ai/pricing"
+      "item": "https://jataka.io/pricing"
     }
   ]
 };

@@ -87,7 +87,7 @@ const jsonLd = {
   "@type": "VideoObject",
   "name": "Catching Sev-1 Limits Before the Merge - Jataka Demo",
   "description": "Watch Jataka catch a SOQL query inside a for loop before it causes a production incident. Real-time limit profiling during PR review with automatic merge blocking.",
-  "thumbnailUrl": "https://jataka.ai/thumbnails/catching-sev1-limits.png",
+  "thumbnailUrl": "https://jataka.io/thumbnails/catching-sev1-limits.png",
   "uploadDate": "2024-01-15",
   "duration": "PT2M45S",
   "contentUrl": "https://www.youtube.com/watch?v=SdXRbVhZMzg",
@@ -97,7 +97,7 @@ const jsonLd = {
     "name": "Jataka",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://jataka.ai/logo.png"
+      "url": "https://jataka.io/logo.png"
     }
   },
   "about": {
@@ -116,19 +116,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Demos",
-      "item": "https://jataka.ai/blog"
+      "item": "https://jataka.io/blog"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Catching Sev-1 Limits",
-      "item": "https://jataka.ai/demos/catching-sev1-limits"
+      "item": "https://jataka.io/demos/catching-sev1-limits"
     }
   ]
 };

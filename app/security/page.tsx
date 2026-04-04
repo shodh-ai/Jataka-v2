@@ -62,7 +62,7 @@ const jsonLd = {
   "@type": "WebPage",
   "name": "Jataka Security - Enterprise Data Protection",
   "description": "Jataka's security architecture: Zero Data Retention for AI, No Production Access, AES-256 encryption, and ephemeral execution. Built for enterprise CISO requirements.",
-  "url": "https://jataka.ai/security"
+  "url": "https://jataka.io/security"
 };
 
 const breadcrumbSchema = {
@@ -73,13 +73,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Security",
-      "item": "https://jataka.ai/security"
+      "item": "https://jataka.io/security"
     }
   ]
 };

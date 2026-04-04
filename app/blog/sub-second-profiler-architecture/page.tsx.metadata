@@ -1,0 +1,40 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sub-Second Profiler Architecture - Jataka Blog",
+  description: "Deep dive into Jataka's sub-second profiler architecture for Salesforce. Learn how we achieve real-time Governor limit monitoring with Tooling API and debug log parsing.",
+  keywords: [
+    "Salesforce profiler architecture",
+    "Tooling API profiling",
+    "Salesforce debug log parsing",
+    "Governor limit monitoring",
+    "Apex performance profiling",
+    "Salesforce telemetry",
+    "Real-time limit tracking",
+    "Salesforce performance optimization"
+  ],
+  alternates: {
+    canonical: "https://jataka.io/blog/sub-second-profiler-architecture",
+  },
+  openGraph: {
+    title: "Sub-Second Profiler Architecture - Jataka Blog",
+    description: "Deep dive into Jataka's sub-second profiler architecture for Salesforce. Real-time Governor limit monitoring.",
+    url: "https://jataka.io/blog/sub-second-profiler-architecture",
+    siteName: "Jataka",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Sub-Second Profiler Architecture" }],
+    locale: "en_US",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sub-Second Profiler Architecture - Jataka Blog",
+    description: "Deep dive into Jataka's sub-second profiler architecture for Salesforce. Real-time Governor limit monitoring.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  authors: [{ name: "Jataka Team" }],
+  publishedTime: "2026-04-03",
+};

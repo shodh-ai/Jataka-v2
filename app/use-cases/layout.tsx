@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: "https://jataka.ai/use-cases",
+    canonical: "https://jataka.io/use-cases",
   },
 };
 

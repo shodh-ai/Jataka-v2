@@ -62,7 +62,7 @@ const jsonLd = {
   "@type": "WebPage",
   "name": "14-Day Zero-Risk Pilot - Try Jataka in Shadow Mode",
   "description": "Start a 14-day pilot with zero risk. Jataka runs in Shadow Mode—observing your PRs and reporting limit breaches without blocking your developers.",
-  "url": "https://jataka.ai/pilot"
+  "url": "https://jataka.io/pilot"
 };
 
 const breadcrumbSchema = {
@@ -73,13 +73,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Pilot Program",
-      "item": "https://jataka.ai/pilot"
+      "item": "https://jataka.io/pilot"
     }
   ]
 };

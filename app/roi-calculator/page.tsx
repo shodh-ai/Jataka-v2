@@ -62,7 +62,7 @@ const jsonLd = {
   "@type": "WebPage",
   "name": "Jataka ROI Calculator - Calculate Your Savings",
   "description": "Calculate how much your enterprise will save with Jataka's Governor Limit prevention and self-healing tests. Recover engineering hours and prevent costly downtime.",
-  "url": "https://jataka.ai/roi-calculator"
+  "url": "https://jataka.io/roi-calculator"
 };
 
 const breadcrumbSchema = {
@@ -73,13 +73,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "ROI Calculator",
-      "item": "https://jataka.ai/roi-calculator"
+      "item": "https://jataka.io/roi-calculator"
     }
   ]
 };

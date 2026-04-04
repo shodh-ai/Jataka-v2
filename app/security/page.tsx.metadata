@@ -1,0 +1,38 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Security - Jataka | Enterprise-Grade Salesforce Development Platform",
+  description: "Jataka's security framework: SOC 2 Type II compliance, zero data retention, sandbox-only execution, and enterprise-grade security for Salesforce development.",
+  keywords: [
+    "Jataka security",
+    "Salesforce development security",
+    "SOC 2 Type II Salesforce",
+    "Enterprise Salesforce security",
+    "Secure Apex testing",
+    "Salesforce data protection",
+    "Zero data retention testing",
+    "Salesforce sandbox security"
+  ],
+  alternates: {
+    canonical: "https://jataka.io/security",
+  },
+  openGraph: {
+    title: "Security - Jataka | Enterprise-Grade Salesforce Development Platform",
+    description: "Jataka's security framework: SOC 2 Type II compliance, zero data retention, and enterprise-grade security.",
+    url: "https://jataka.io/security",
+    siteName: "Jataka",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Jataka Security Framework" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Security - Jataka | Enterprise-Grade Salesforce Development Platform",
+    description: "Jataka's security framework: SOC 2 Type II compliance, zero data retention, and enterprise-grade security.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};

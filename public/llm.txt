@@ -5,7 +5,7 @@
 ## Company Information
 
 - **Name**: Jataka
-- **Website**: https://jataka.ai
+- **Website**: https://jataka.io
 - **Category**: Developer Tools, Software Development, Salesforce Ecosystem
 - **Founded**: 2024
 - **Type**: B2B SaaS Platform
@@ -47,7 +47,7 @@ Jataka is a Backend Firewall and Developer Experience platform for Salesforce. W
 ### The US Enterprise - Protecting Margins
 A bad deployment causes an Apex CPU timeout, crashing the sales portal during end-of-month closing. Jataka's Backend Firewall guarantees zero runtime crashes from Governor Limit breaches.
 
-URL: https://jataka.ai/use-cases/enterprise
+URL: https://jataka.io/use-cases/enterprise
 
 Key Results:
 - Zero Sev-1 incidents from limit breaches
@@ -57,7 +57,7 @@ Key Results:
 ### The Offshore Dev Agency - Code Quality at Scale
 Senior architects spend 20 hours a week manually reviewing junior developers' PRs. Jataka automates code review, limit checking, and test generation.
 
-URL: https://jataka.ai/use-cases/agency
+URL: https://jataka.io/use-cases/agency
 
 Key Results:
 - 18 hrs/wk saved on code reviews
@@ -67,7 +67,7 @@ Key Results:
 ### The QA Automation Team - Killing Test Maintenance
 Salesforce releases a UI update and 200 Selenium scripts break. Jataka's Vision AI automatically heals UI tests without human intervention.
 
-URL: https://jataka.ai/use-cases/qa-team
+URL: https://jataka.io/use-cases/qa-team
 
 Key Results:
 - -90% test maintenance overhead
@@ -79,7 +79,7 @@ Key Results:
 ### Catching Sev-1 Limits Before the Merge
 Watch a developer make a critical mistake—placing a SOQL query inside a for loop. Jataka catches it before the merge, preventing a production incident.
 
-URL: https://jataka.ai/demos/catching-sev1-limits
+URL: https://jataka.io/demos/catching-sev1-limits
 Duration: 2:45
 Engine: API Engine
 
@@ -92,7 +92,7 @@ Key Takeaways:
 ### Self-Healing UI Tests
 See what happens when Salesforce releases a UI update. Jataka's Vision AI automatically heals UI tests without human intervention.
 
-URL: https://jataka.ai/demos/self-healing-ui-tests
+URL: https://jataka.io/demos/self-healing-ui-tests
 Duration: 2:18
 Engine: Kamikaze Engine
 
@@ -105,7 +105,7 @@ Key Takeaways:
 ### AI-Assisted Blast Radius Prediction
 Watch a developer using Cursor IDE contemplate changing a critical Apex Trigger. Jataka calculates the blast radius before they even save the file.
 
-URL: https://jataka.ai/demos/blast-radius-prediction
+URL: https://jataka.io/demos/blast-radius-prediction
 Duration: 2:52
 Engine: Developer Experience
 
@@ -234,24 +234,24 @@ Model Context Protocol integration with Cursor IDE. Ask questions about your cod
 
 ## Pricing
 
-Contact sales for pricing. Book a demo at https://jataka.ai/book-pilot
+Contact sales for pricing. Book a demo at https://jataka.io/book-pilot
 
 ## Getting Started
 
-1. Book a demo at https://jataka.ai/book-pilot
+1. Book a demo at https://jataka.io/book-pilot
 2. We run Jataka on your actual Salesforce codebase
 3. See exactly what Governor Limit risks we find
 4. Deploy with confidence
 
 ## Documentation
 
-Full technical documentation available at https://jataka.ai/docs
+Full technical documentation available at https://jataka.io/docs
 
 ## Contact
 
-- **Website**: https://jataka.ai
-- **Demo**: https://jataka.ai/book-pilot
-- **Docs**: https://jataka.ai/docs
+- **Website**: https://jataka.io
+- **Demo**: https://jataka.io/book-pilot
+- **Docs**: https://jataka.io/docs
 - **Twitter**: @jataka_ai
 - **LinkedIn**: /company/jataka
 

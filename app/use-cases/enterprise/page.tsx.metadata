@@ -1,0 +1,40 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Enterprise Use Case - Jataka | Salesforce Development at Scale",
+  description: "How enterprise Salesforce teams use Jataka to prevent Sev-1 incidents, ensure compliance, and accelerate development while maintaining security.",
+  keywords: [
+    "Enterprise Salesforce development",
+    "Salesforce Sev-1 prevention",
+    "Enterprise compliance Salesforce",
+    "Salesforce risk management",
+    "Large-scale Salesforce development",
+    "Enterprise DevOps Salesforce",
+    "Salesforce governance",
+    "Enterprise code review"
+  ],
+  alternates: {
+    canonical: "https://jataka.io/use-cases/enterprise",
+  },
+  openGraph: {
+    title: "Enterprise Use Case - Jataka | Salesforce Development at Scale",
+    description: "How enterprise Salesforce teams use Jataka to prevent Sev-1 incidents and accelerate development.",
+    url: "https://jataka.io/use-cases/enterprise",
+    siteName: "Jataka",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Enterprise Salesforce Development" }],
+    locale: "en_US",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Enterprise Use Case - Jataka | Salesforce Development at Scale",
+    description: "How enterprise Salesforce teams use Jataka to prevent Sev-1 incidents and accelerate development.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  authors: [{ name: "Jataka Team" }],
+  publishedTime: "2026-03-15",
+};

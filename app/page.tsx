@@ -34,8 +34,8 @@ export default function JatakaLandingPage() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Jataka",
-    "url": "https://jataka.ai",
-    "logo": "https://jataka.ai/WhiteLOGO.svg",
+    "url": "https://jataka.io",
+    "logo": "https://jataka.io/WhiteLOGO.svg",
     "description": "AI-Powered Salesforce Development Platform - Catch Governor Limit breaches before deployment, automatically heal UI tests, and predict blast radius of code changes.",
     "sameAs": [
       "https://twitter.com/jataka_ai",
@@ -44,7 +44,7 @@ export default function JatakaLandingPage() {
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "sales",
-      "url": "https://jataka.ai/book-pilot"
+      "url": "https://jataka.io/book-pilot"
     }
   };
 

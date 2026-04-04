@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://jataka.io/sitemap.xml</loc>
+    <lastmod>2026-04-03</lastmod>
+  </sitemap>
+  
+  <!-- Future: Add separate sitemaps for different content types -->
+  <!-- <sitemap>
+    <loc>https://jataka.io/blog-sitemap.xml</loc>
+    <lastmod>2026-04-03</lastmod>
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://jataka.io/use-cases-sitemap.xml</loc>
+    <lastmod>2026-04-03</lastmod>
+  </sitemap> -->
+</sitemapindex>

@@ -130,26 +130,26 @@ export default function BlogPage() {
     "@type": "CollectionPage",
     "name": "Jataka Product Demos - Salesforce Development Tools",
     "description": "Watch Jataka demos: catching Governor Limits before merge, self-healing UI tests, and AI-assisted blast radius prediction for Salesforce development.",
-    "url": "https://jataka.ai/blog",
+    "url": "https://jataka.io/blog",
     "mainEntity": {
       "@type": "ItemList",
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
-          "url": "https://jataka.ai/demos/catching-sev1-limits",
+          "url": "https://jataka.io/demos/catching-sev1-limits",
           "name": "Catching Sev-1 Limits Before the Merge"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "url": "https://jataka.ai/demos/self-healing-ui-tests",
+          "url": "https://jataka.io/demos/self-healing-ui-tests",
           "name": "Self-Healing UI Tests"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "url": "https://jataka.ai/demos/blast-radius-prediction",
+          "url": "https://jataka.io/demos/blast-radius-prediction",
           "name": "AI-Assisted Blast Radius Prediction"
         }
       ]

@@ -62,7 +62,7 @@ const jsonLd = {
   "@type": "WebPage",
   "name": "Jataka Customer Stories - Design Partner Results",
   "description": "See how Salesforce teams use Jataka to prevent Governor Limit breaches and save engineering hours. Real results from design partners.",
-  "url": "https://jataka.ai/customers"
+  "url": "https://jataka.io/customers"
 };
 
 const breadcrumbSchema = {
@@ -73,13 +73,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Customers",
-      "item": "https://jataka.ai/customers"
+      "item": "https://jataka.io/customers"
     }
   ]
 };

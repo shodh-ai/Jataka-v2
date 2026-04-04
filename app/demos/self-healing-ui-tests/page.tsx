@@ -87,7 +87,7 @@ const jsonLd = {
   "@type": "VideoObject",
   "name": "Self-Healing UI Tests - Jataka Demo",
   "description": "Watch Jataka's Vision AI automatically heal UI tests when Salesforce releases break Selenium scripts. Zero maintenance for UI changes.",
-  "thumbnailUrl": "https://jataka.ai/thumbnails/self-healing-ui-tests.png",
+  "thumbnailUrl": "https://jataka.io/thumbnails/self-healing-ui-tests.png",
   "uploadDate": "2024-01-15",
   "duration": "PT2M18S",
   "contentUrl": "https://www.youtube.com/watch?v=SdXRbVhZMzg",
@@ -97,7 +97,7 @@ const jsonLd = {
     "name": "Jataka",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://jataka.ai/logo.png"
+      "url": "https://jataka.io/logo.png"
     }
   },
   "about": {
@@ -116,19 +116,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Demos",
-      "item": "https://jataka.ai/blog"
+      "item": "https://jataka.io/blog"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Self-Healing UI Tests",
-      "item": "https://jataka.ai/demos/self-healing-ui-tests"
+      "item": "https://jataka.io/demos/self-healing-ui-tests"
     }
   ]
 };

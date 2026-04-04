@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jataka.ai"),
+  metadataBase: new URL("https://jataka.io"),
   title: {
     default: "Jataka — AI-Powered Salesforce Development Platform | Stop Rollbacks Before They Happen",
     template: "%s | Jataka"
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://jataka.ai",
+    url: "https://jataka.io",
     siteName: "Jataka",
     title: "Jataka — AI-Powered Salesforce Development Platform",
     description: "Catch Governor Limit breaches before deployment. Automatically heal UI tests. Predict blast radius of code changes. Zero Sev-1s. Deploy with confidence.",
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   alternates: {
-    canonical: "https://jataka.ai",
+    canonical: "https://jataka.io",
   },
   category: "Software Development Tools",
 };

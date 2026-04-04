@@ -1,0 +1,38 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Use Cases - Jataka | AI-Powered Salesforce Development Platform",
+  description: "Real-world use cases for Jataka's AI-powered Salesforce platform: Enterprise teams, offshore agencies, QA teams, and autonomous SDLC workflows.",
+  keywords: [
+    "Jataka use cases",
+    "Salesforce enterprise development",
+    "Offshore Salesforce agencies",
+    "Salesforce QA automation",
+    "Autonomous SDLC Salesforce",
+    "Salesforce DevOps use cases",
+    "Governor limit prevention",
+    "Salesforce testing automation"
+  ],
+  alternates: {
+    canonical: "https://jataka.io/use-cases",
+  },
+  openGraph: {
+    title: "Use Cases - Jataka | AI-Powered Salesforce Development Platform",
+    description: "Real-world use cases for Jataka's AI-powered Salesforce platform across enterprise, agencies, and QA teams.",
+    url: "https://jataka.io/use-cases",
+    siteName: "Jataka",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Jataka Use Cases" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Use Cases - Jataka | AI-Powered Salesforce Development Platform",
+    description: "Real-world use cases for Jataka's AI-powered Salesforce platform across enterprise, agencies, and QA teams.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};

@@ -71,7 +71,7 @@ const jsonLd = {
     "name": "Jataka",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://jataka.ai/logo.png"
+      "url": "https://jataka.io/logo.png"
     }
   },
   "datePublished": "2024-01-15",
@@ -86,19 +86,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Compare",
-      "item": "https://jataka.ai/compare"
+      "item": "https://jataka.io/compare"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Jataka vs Provar",
-      "item": "https://jataka.ai/compare/provar"
+      "item": "https://jataka.io/compare/provar"
     }
   ]
 };

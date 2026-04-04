@@ -62,38 +62,38 @@ const jsonLd = {
   "@type": "CollectionPage",
   "name": "Salesforce Governor Limit Anti-Patterns Library - Jataka",
   "description": "Learn how Jataka catches and prevents Salesforce Governor Limit exceptions before they hit production. Real code examples of SOQL 101, DML 151, CPU timeout, and more.",
-  "url": "https://jataka.ai/anti-patterns",
+  "url": "https://jataka.io/anti-patterns",
   "mainEntity": {
     "@type": "ItemList",
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
-        "url": "https://jataka.ai/anti-patterns/soql-101",
+        "url": "https://jataka.io/anti-patterns/soql-101",
         "name": "Too many SOQL queries: 101"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "url": "https://jataka.ai/anti-patterns/dml-151",
+        "url": "https://jataka.io/anti-patterns/dml-151",
         "name": "Too many DML statements: 151"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "url": "https://jataka.ai/anti-patterns/cpu-timeout",
+        "url": "https://jataka.io/anti-patterns/cpu-timeout",
         "name": "Apex CPU time limit exceeded"
       },
       {
         "@type": "ListItem",
         "position": 4,
-        "url": "https://jataka.ai/anti-patterns/mixed-dml",
+        "url": "https://jataka.io/anti-patterns/mixed-dml",
         "name": "UNCOMMITTED_WORK_PENDING"
       },
       {
         "@type": "ListItem",
         "position": 5,
-        "url": "https://jataka.ai/anti-patterns/lock-contention",
+        "url": "https://jataka.io/anti-patterns/lock-contention",
         "name": "UNABLE_TO_LOCK_ROW"
       }
     ]
@@ -109,13 +109,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Anti-Patterns Library",
-      "item": "https://jataka.ai/anti-patterns"
+      "item": "https://jataka.io/anti-patterns"
     }
   ]
 };

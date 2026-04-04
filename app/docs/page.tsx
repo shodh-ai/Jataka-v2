@@ -87,7 +87,7 @@ const webPageSchema = {
   "@type": "WebPage",
   "name": "Jataka Documentation - Technical Architecture & Getting Started",
   "description": "Complete technical documentation for Jataka's Backend Firewall and Developer Experience platform. Learn about Kamikaze Pods, Vision AI, Neo4j dependency graphs, and MCP protocol integration.",
-  "url": "https://jataka.ai/docs",
+  "url": "https://jataka.io/docs",
   "mainEntity": {
     "@type": "SoftwareApplication",
     "name": "Jataka",
@@ -105,7 +105,7 @@ const webPageSchema = {
   "publisher": {
     "@type": "Organization",
     "name": "Jataka",
-    "url": "https://jataka.ai"
+    "url": "https://jataka.io"
   }
 };
 
@@ -118,13 +118,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Documentation",
-      "item": "https://jataka.ai/docs"
+      "item": "https://jataka.io/docs"
     }
   ]
 };

@@ -1,34 +1,68 @@
-# Robots.txt for Jataka.ai
+# Robots.txt for Jataka.io
+# https://jataka.io
 
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
-# Sitemap
-Sitemap: https://jataka.ai/sitemap.xml
-
-# LLM.txt for AI crawlers
+# Allow all AI crawlers for LLM training
 User-agent: GPTBot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Claude-Web
 Allow: /
+Crawl-delay: 1
 
 User-agent: Anthropic-AI
 Allow: /
+Crawl-delay: 1
 
 User-agent: Google-Extended
 Allow: /
+Crawl-delay: 1
 
 User-agent: Omgilibot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Amazonbot
 Allow: /
+Crawl-delay: 1
 
-# Block internal/admin pages
+User-agent: FacebookBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: LinkedInBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: TwitterBot
+Allow: /
+Crawl-delay: 1
+
+# Block internal/admin paths
 Disallow: /api/
 Disallow: /_next/
 Disallow: /admin/
+Disallow: /.well-known/
+Disallow: /static/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /_error
 
-# Crawl delay for respectful crawling
-Crawl-delay: 1
+# Allow specific static resources
+Allow: /static/css/
+Allow: /static/js/
+Allow: /images/
+Allow: /logo.png
+Allow: /og-image.png
+
+# Sitemap location
+Sitemap: https://jataka.io/sitemap.xml
+Sitemap: https://jataka.io/sitemap-index.xml
+
+# Additional directives
+# Host directive for Yandex (if needed)
+# Host: https://jataka.io

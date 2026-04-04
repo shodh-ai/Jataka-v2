@@ -71,14 +71,14 @@ const jsonLd = {
     "name": "Jataka",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://jataka.ai/logo.png"
+      "url": "https://jataka.io/logo.png"
     }
   },
   "datePublished": "2024-01-15",
   "dateModified": "2024-01-15",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://jataka.ai/blog/sub-second-profiler-architecture"
+    "@id": "https://jataka.io/blog/sub-second-profiler-architecture"
   }
 };
 
@@ -90,19 +90,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Blog",
-      "item": "https://jataka.ai/blog"
+      "item": "https://jataka.io/blog"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Sub-Second Profiler Architecture",
-      "item": "https://jataka.ai/blog/sub-second-profiler-architecture"
+      "item": "https://jataka.io/blog/sub-second-profiler-architecture"
     }
   ]
 };

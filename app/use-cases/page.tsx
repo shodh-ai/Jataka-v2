@@ -87,26 +87,26 @@ const jsonLd = {
   "@type": "CollectionPage",
   "name": "Jataka Use Cases - Salesforce Development Solutions",
   "description": "Explore how Jataka helps enterprises, agencies, and QA teams eliminate Salesforce rollbacks, reduce code review time, and kill test maintenance overhead.",
-  "url": "https://jataka.ai/use-cases",
+  "url": "https://jataka.io/use-cases",
   "mainEntity": {
     "@type": "ItemList",
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
-        "url": "https://jataka.ai/use-cases/enterprise",
+        "url": "https://jataka.io/use-cases/enterprise",
         "name": "Enterprise - Protecting Margins from Sev-1 Incidents"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "url": "https://jataka.ai/use-cases/agency",
+        "url": "https://jataka.io/use-cases/agency",
         "name": "Offshore Dev Agency - Code Quality at Scale"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "url": "https://jataka.ai/use-cases/qa-team",
+        "url": "https://jataka.io/use-cases/qa-team",
         "name": "QA Automation Team - Killing Test Maintenance"
       }
     ]
@@ -122,13 +122,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Use Cases",
-      "item": "https://jataka.ai/use-cases"
+      "item": "https://jataka.io/use-cases"
     }
   ]
 };

@@ -71,14 +71,14 @@ const jsonLd = {
     "name": "Jataka",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://jataka.ai/logo.png"
+      "url": "https://jataka.io/logo.png"
     }
   },
   "datePublished": "2024-01-15",
   "dateModified": "2024-01-15",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://jataka.ai/anti-patterns/lock-contention"
+    "@id": "https://jataka.io/anti-patterns/lock-contention"
   }
 };
 
@@ -90,19 +90,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://jataka.ai"
+      "item": "https://jataka.io"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Anti-Patterns",
-      "item": "https://jataka.ai/anti-patterns"
+      "item": "https://jataka.io/anti-patterns"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "UNABLE_TO_LOCK_ROW",
-      "item": "https://jataka.ai/anti-patterns/lock-contention"
+      "item": "https://jataka.io/anti-patterns/lock-contention"
     }
   ]
 };

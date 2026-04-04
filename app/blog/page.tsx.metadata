@@ -1,0 +1,38 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog - Jataka | AI-Powered Salesforce Development Platform",
+  description: "Technical insights and best practices for Salesforce development. Learn about Governor limits, Apex testing, CI/CD, and AI-powered development.",
+  keywords: [
+    "Jataka blog",
+    "Salesforce development blog",
+    "Apex testing best practices",
+    "Salesforce Governor limits",
+    "Salesforce CI/CD tutorials",
+    "Salesforce performance optimization",
+    "Apex debugging techniques",
+    "Salesforce automation insights"
+  ],
+  alternates: {
+    canonical: "https://jataka.io/blog",
+  },
+  openGraph: {
+    title: "Blog - Jataka | AI-Powered Salesforce Development Platform",
+    description: "Technical insights and best practices for Salesforce development, Governor limits, and AI-powered development.",
+    url: "https://jataka.io/blog",
+    siteName: "Jataka",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Jataka Blog" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog - Jataka | AI-Powered Salesforce Development Platform",
+    description: "Technical insights and best practices for Salesforce development, Governor limits, and AI-powered development.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
