@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export default function JatakaLandingPage() {
   const router = useRouter();
@@ -151,12 +150,55 @@ export default function JatakaLandingPage() {
         
         {/* Desktop Nav Links */}
         <ul className="hidden md:flex gap-[24px] list-none items-center m-0 p-0">
-          <li><button onClick={() => scrollToSection("problem")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Problem</button></li>
-          <li><button onClick={() => scrollToSection("features")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Features</button></li>
-          <li><button onClick={() => router.push("/pricing")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Pricing</button></li>
-          <li><button onClick={() => router.push("/security")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Security</button></li>
-          <li><button onClick={() => router.push("/customers")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Customers</button></li>
-          <li><button onClick={() => router.push("/pilot")} className="bg-[#FF2424] text-white px-[20px] py-[8px] font-archivo text-[11px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-colors">Start Pilot</button></li>
+          <li className="relative group">
+            <button onClick={() => setDropdownOpen('product')} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px] flex items-center gap-[6px]">
+              Product
+              <svg className="w-[12px] h-[12px] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 9l6 6m0 0l6 6m-6-6v6m0 0l-6-6v6"/>
+              </svg>
+            </button>
+            {/* Product Dropdown */}
+            {dropdownOpen === 'product' && (
+              <div className="absolute top-full left-0 mt-[8px] w-[200px] bg-white rounded-[8px] shadow-lg border border-[#1a1a1a]/10 py-[8px] z-[150]">
+                <button onClick={() => router.push('/use-cases/limit-firewall')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Limit Firewall</button>
+                <button onClick={() => router.push('/use-cases/automated-pr-reviews')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Automated PR Reviews</button>
+                <button onClick={() => router.push('/use-cases/self-healing-ui-tests')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Self-Healing UI Tests</button>
+              </div>
+            )}
+          </li>
+          <li className="relative group">
+            <button onClick={() => setDropdownOpen('compare')} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px] flex items-center gap-[6px]">
+              Compare
+              <svg className="w-[12px] h-[12px] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 9l6 6m0 0l6 6m-6-6v6m0 0l-6-6v6"/>
+              </svg>
+            </button>
+            {/* Compare Dropdown */}
+            {dropdownOpen === 'compare' && (
+              <div className="absolute top-full left-0 mt-[8px] w-[200px] bg-white rounded-[8px] shadow-lg border border-[#1a1a1a]/10 py-[8px] z-[150]">
+                <button onClick={() => router.push('/compare/copado')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">vs. Copado</button>
+                <button onClick={() => router.push('/compare/provar')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">vs. Provar</button>
+                <button onClick={() => router.push('/compare/clayton')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">vs. Clayton</button>
+              </div>
+            )}
+          </li>
+          <li className="relative group">
+            <button onClick={() => setDropdownOpen('resources')} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px] flex items-center gap-[6px]">
+              Resources
+              <svg className="w-[12px] h-[12px] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 9l6 6m0 0l6 6m-6-6v6m0 0l-6-6v6"/>
+              </svg>
+            </button>
+            {/* Resources Dropdown */}
+            {dropdownOpen === 'resources' && (
+              <div className="absolute top-full left-0 mt-[8px] w-[200px] bg-white rounded-[8px] shadow-lg border border-[#1a1a1a]/10 py-[8px] z-[150]">
+                <button onClick={() => window.open('https://docs.jataka.io', '_blank')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Docs</button>
+                <button onClick={() => router.push('/anti-patterns')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Anti-Patterns Library</button>
+              </div>
+            )}
+          </li>
+          <li><button onClick={() => window.open('https://app.jataka.io', '_blank')} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Log In</button></li>
+          <li><button onClick={() => router.push("/book-pilot")} className="bg-[#FF2424] text-white px-[20px] py-[8px] font-archivo text-[11px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-colors">Book a Demo</button></li>
         </ul>
 
         {/* Mobile Hamburger */}
@@ -632,7 +674,7 @@ export default function JatakaLandingPage() {
             <path d="M2199.4 686.032H2264.2V821.68L2385.16 686.032H2463.79L2352.76 810.448L2471.13 988H2393.37L2306.97 860.56L2264.2 908.512V988H2199.4V686.032Z" fill="#1a1a1a"/>
             <path d="M2496.82 988L2607.41 685.6H2685.17L2794.9 988H2725.35L2702.02 921.904H2587.11L2563.78 988H2496.82ZM2604.39 869.632H2684.31L2644.13 754.72L2604.39 869.632Z" fill="#1a1a1a"/>
           </svg>
-          <div className="font-archivo text-[11px] uppercase tracking-[2px] text-[#666]">jataka.shodh.ai</div>
+          <div className="font-archivo text-[11px] uppercase tracking-[2px] text-[#666]">jataka.io</div>
         </div>
         <div className="text-[13px] text-[#666] text-center md:text-right">
           &copy; 2025 Jataka · Runtime Governance for Salesforce · All rights reserved.
