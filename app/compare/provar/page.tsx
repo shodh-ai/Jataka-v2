@@ -177,7 +177,7 @@ const comparisonData = [
 ];
 
 const maintenanceComparison = [
-  { metric: "Tests after Salesforce release", jataka: "95% pass rate", provar: "40-60% pass rate" },
+  { metric: "Tests after Salesforce release", jataka: "Self-healing (adapts to DOM changes)", provar: "High failure rate during DOM changes" },
   { metric: "Weekly maintenance hours", jataka: "0-2 hours", provar: "10-20 hours" },
   { metric: "Flaky test rate", jataka: "<5%", provar: "15-30%" },
   { metric: "Test creation speed", jataka: "Fast (standard tools)", provar: "Fast (visual builder)" }

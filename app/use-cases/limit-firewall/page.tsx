@@ -133,7 +133,7 @@ const breadcrumbSchema = {
   ]
 };
 
-export default function EnterpriseUseCase() {
+export default function RuntimeLimitProtectionUseCase() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -188,7 +188,7 @@ export default function EnterpriseUseCase() {
     {
       step: 3,
       title: "Real Transaction Execution",
-      description: "We execute the actual Apex code from your PR against real-ish data. Triggers fire. Flows run. Integration calls happen. This is not a simulation.",
+      description: "We execute actual Apex code from your PR against actual Sandbox data volumes. Triggers fire. Flows run. Integration calls happen. This is not a simulation.",
     },
     {
       step: 4,
@@ -271,7 +271,7 @@ export default function EnterpriseUseCase() {
           
           {/* Large watermark */}
           <div className="absolute top-[50%] right-[-10%] transform -translate-y-1/2 font-archivo text-[200px] md:text-[300px] text-[#1a1a1a]/[0.02] uppercase tracking-[-12px] pointer-events-none select-none">
-            ENTERPRISE
+            RUNTIME LIMIT PROTECTION
           </div>
           
           <div className="relative z-10 max-w-[1000px]">
@@ -289,7 +289,7 @@ export default function EnterpriseUseCase() {
 
             <Reveal delay={100}>
               <h1 className="font-archivo text-[clamp(40px,6vw,72px)] leading-[1] tracking-[-2px] uppercase mb-[40px]">
-                Enterprise
+                Runtime Limit Protection
               </h1>
             </Reveal>
 

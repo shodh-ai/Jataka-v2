@@ -138,9 +138,9 @@ export default function AgencyUseCase() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const problemMetrics = [
-    { label: "Unbillable Time", value: "20 hrs/wk", description: "Senior architects stuck reviewing PRs instead of billing clients" },
-    { label: "Lost Margin", value: "$1,600/wk", description: "Lost billing revenue per architect (at $80/hr offshore rate)" },
-    { label: "Velocity Loss", value: "40%", description: "Junior devs blocked waiting for US/India timezone overlap" },
+    { label: "Wasted Engineering Time", value: "20+ hrs/wk", description: "Senior architects stuck reviewing PRs instead of high-value architecture work" },
+    { label: "Review Bottleneck", value: "2-4 hrs", description: "Average wait time for junior devs to get PR feedback" },
+    { label: "Velocity Loss", value: "40%", description: "Junior devs blocked waiting for senior engineer availability" },
   ];
 
   const solutionFeatures = [
@@ -246,7 +246,7 @@ export default function AgencyUseCase() {
           
           {/* Large watermark */}
           <div className="absolute top-[50%] right-[-10%] transform -translate-y-1/2 font-archivo text-[200px] md:text-[300px] text-[#1a1a1a]/[0.02] uppercase tracking-[-12px] pointer-events-none select-none">
-            AGENCY
+            AUTOMATED REVIEWS
           </div>
           
           <div className="relative z-10 max-w-[1000px]">
@@ -264,7 +264,7 @@ export default function AgencyUseCase() {
 
             <Reveal delay={100}>
               <h1 className="font-archivo text-[clamp(40px,6vw,72px)] leading-[1] tracking-[-2px] uppercase mb-[40px]">
-                The Offshore Dev Agency
+                Automate PR Reviews
               </h1>
             </Reveal>
 

@@ -184,8 +184,8 @@ export default function BlastRadiusPredictionDemo() {
     },
     {
       step: 6,
-      title: "Developer Decides",
-      description: "Armed with full context, the developer can proceed safely, fix the bug first, or choose a different approach."
+      title: "Disaster Averted",
+      description: "Armed with exact blast radius, developer safely refactors code to avoid triggering downstream ClassB bug. A 4-hour Sev-2 rollback is prevented before a single line of code is merged."
     }
   ];
 

@@ -95,19 +95,19 @@ const jsonLd = {
         "@type": "ListItem",
         "position": 1,
         "url": "https://jataka.io/use-cases/enterprise",
-        "name": "Enterprise - Protecting Margins from Sev-1 Incidents"
+        "name": "Prevent Governor Limits - Runtime Protection for Salesforce"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "url": "https://jataka.io/use-cases/agency",
-        "name": "Offshore Dev Agency - Code Quality at Scale"
+        "name": "Automate PR Reviews - Code Quality at Scale"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "url": "https://jataka.io/use-cases/qa-team",
-        "name": "QA Automation Team - Killing Test Maintenance"
+        "name": "Self-Healing UI Tests - Killing Test Maintenance"
       }
     ]
   }
@@ -141,7 +141,7 @@ export default function UseCasesPage() {
     {
       id: 1,
       slug: "enterprise",
-      title: "The US Enterprise",
+      title: "Prevent Governor Limits",
       subtitle: "Protecting Margins",
       icon: Building2,
       summary: "A bad deployment causes an Apex CPU timeout, crashing the sales portal during end-of-month closing. Jataka's Backend Firewall guarantees zero runtime crashes from Governor Limit breaches.",
@@ -155,7 +155,7 @@ export default function UseCasesPage() {
     {
       id: 2,
       slug: "agency",
-      title: "The Offshore Dev Agency",
+      title: "Automate PR Reviews",
       subtitle: "Code Quality at Scale",
       icon: Users,
       summary: "Senior architects spend 20 hours a week manually reviewing junior developers' PRs. Jataka automates code review, limit checking, and test generation—freeing architects for high-value work.",
@@ -169,7 +169,7 @@ export default function UseCasesPage() {
     {
       id: 3,
       slug: "qa-team",
-      title: "The QA Automation Team",
+      title: "Self-Healing UI Tests",
       subtitle: "Killing Test Maintenance",
       icon: TestTube,
       summary: "Salesforce releases a UI update and 200 Selenium scripts break. Jataka's Vision AI automatically heals UI tests without human intervention. Tests stay green through every release.",
@@ -240,9 +240,9 @@ export default function UseCasesPage() {
 
           <Reveal delay={100}>
             <h1 className="font-archivo text-[clamp(40px,6vw,72px)] leading-[1] tracking-[-2px] uppercase mb-[40px]">
-              See yourself
+              HOW ENGINEERING TEAMS
               <br />
-              <span className="text-[#FF2424]">in the product.</span>
+              <span className="text-[#FF2424]">USE JATAKA.</span>
             </h1>
           </Reveal>
 

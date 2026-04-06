@@ -85,7 +85,7 @@ function Reveal({
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Jataka for QA Automation Teams - Self-Healing UI Tests for Salesforce",
+  "headline": "Jataka for Testing & QA Infrastructure - Self-Healing UI Tests for Salesforce",
   "description": "How Jataka's AI automatically heals UI tests when Salesforce releases break test scripts, eliminating test maintenance overhead and keeping QA teams focused on testing new features.",
   "author": {
     "@type": "Organization",
@@ -285,7 +285,7 @@ export default function QATeamUseCase() {
 
             <Reveal delay={100}>
               <h1 className="font-archivo text-[clamp(40px,6vw,72px)] leading-[1] tracking-[-2px] uppercase mb-[40px]">
-                The QA Automation Team
+                Self-Healing UI Tests
               </h1>
             </Reveal>
 
