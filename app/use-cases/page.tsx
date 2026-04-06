@@ -94,19 +94,19 @@ const jsonLd = {
       {
         "@type": "ListItem",
         "position": 1,
-        "url": "https://jataka.io/use-cases/enterprise",
+        "url": "https://jataka.io/use-cases/limit-firewall",
         "name": "Prevent Governor Limits - Runtime Protection for Salesforce"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "url": "https://jataka.io/use-cases/agency",
+        "url": "https://jataka.io/use-cases/automated-pr-reviews",
         "name": "Automate PR Reviews - Code Quality at Scale"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "url": "https://jataka.io/use-cases/qa-team",
+        "url": "https://jataka.io/use-cases/self-healing-ui-tests",
         "name": "Self-Healing UI Tests - Killing Test Maintenance"
       }
     ]
@@ -140,7 +140,7 @@ export default function UseCasesPage() {
   const useCases = [
     {
       id: 1,
-      slug: "enterprise",
+      slug: "limit-firewall",
       title: "Prevent Governor Limits",
       subtitle: "Protecting Margins",
       icon: Building2,
@@ -154,7 +154,7 @@ export default function UseCasesPage() {
     },
     {
       id: 2,
-      slug: "agency",
+      slug: "automated-pr-reviews",
       title: "Automate PR Reviews",
       subtitle: "Code Quality at Scale",
       icon: Users,
@@ -168,7 +168,7 @@ export default function UseCasesPage() {
     },
     {
       id: 3,
-      slug: "qa-team",
+      slug: "self-healing-ui-tests",
       title: "Self-Healing UI Tests",
       subtitle: "Killing Test Maintenance",
       icon: TestTube,
@@ -265,18 +265,18 @@ export default function UseCasesPage() {
         <LightGridBg />
         
         <div className="relative z-10 max-w-[1200px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[80px] md:py-[120px]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
-            {useCases.map((useCase, index) => {
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] items-stretch">
+            {useCases.map((useCase) => {
               const IconComponent = useCase.icon;
               
               return (
-                <Reveal key={useCase.id} delay={index * 100}>
+                <Reveal key={useCase.id} delay={200} className="h-full min-h-0">
                   <button
                     onClick={() => router.push(`/use-cases/${useCase.slug}`)}
-                    className="group w-full text-left bg-white rounded-[16px] p-[32px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_12px_40px_rgba(255,36,36,0.1)] hover:border-[#FF2424]/20 transition-all duration-300"
+                    className="group w-full h-full min-h-0 text-left bg-white rounded-[16px] p-[32px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_12px_40px_rgba(255,36,36,0.1)] hover:border-[#FF2424]/20 transition-all duration-300 flex flex-col"
                   >
                     {/* Icon & Number */}
-                    <div className="flex items-center justify-between mb-[24px]">
+                    <div className="flex items-center justify-between mb-[24px] shrink-0">
                       <div className="w-[56px] h-[56px] rounded-[12px] bg-[#FF2424]/10 flex items-center justify-center group-hover:bg-[#FF2424]/20 transition-colors">
                         <IconComponent className="w-[24px] h-[24px] text-[#FF2424]" />
                       </div>
@@ -286,24 +286,24 @@ export default function UseCasesPage() {
                     </div>
 
                     {/* Title */}
-                    <h2 className="font-archivo text-[24px] leading-[1.1] tracking-[-0.5px] uppercase mb-[8px] group-hover:text-[#FF2424] transition-colors">
+                    <h2 className="font-archivo text-[24px] leading-[1.1] tracking-[-0.5px] uppercase mb-[8px] group-hover:text-[#FF2424] transition-colors shrink-0">
                       {useCase.title}
                     </h2>
                     
                     {/* Subtitle */}
-                    <p className="text-[14px] text-[#FF2424] font-medium mb-[16px]">
+                    <p className="text-[14px] text-[#FF2424] font-medium mb-[16px] shrink-0">
                       {useCase.subtitle}
                     </p>
 
                     {/* Summary */}
-                    <p className="text-[15px] leading-[1.7] text-[#555] mb-[24px]">
+                    <p className="text-[15px] leading-[1.7] text-[#555] mb-[24px] flex-1 min-h-0">
                       {useCase.summary}
                     </p>
 
                     {/* Metrics */}
-                    <div className="grid grid-cols-3 gap-[8px] mb-[24px]">
+                    <div className="grid grid-cols-3 gap-[8px] mb-[24px] shrink-0 items-stretch">
                       {useCase.metrics.map((metric) => (
-                        <div key={metric.label} className="bg-[#FAF8F3] rounded-[8px] p-[12px] text-center">
+                        <div key={metric.label} className="bg-[#FAF8F3] rounded-[8px] p-[12px] text-center flex flex-col justify-center min-h-[64px]">
                           <div className="font-archivo text-[16px] leading-[1] tracking-[-0.3px] text-[#1a1a1a] mb-[4px]">
                             {metric.value}
                           </div>
@@ -315,14 +315,14 @@ export default function UseCasesPage() {
                     </div>
 
                     {/* Key Result */}
-                    <div className="bg-[#FF2424]/5 rounded-[8px] p-[16px] mb-[20px]">
+                    <div className="bg-[#FF2424]/5 rounded-[8px] p-[16px] mb-[20px] shrink-0 min-h-[5rem] flex items-start">
                       <p className="text-[13px] leading-[1.5] text-[#444]">
                         <strong className="text-[#FF2424]">Result:</strong> {useCase.keyResult}
                       </p>
                     </div>
 
                     {/* CTA */}
-                    <div className="flex items-center gap-[8px] text-[#FF2424] font-medium text-[14px] group-hover:gap-[12px] transition-all">
+                    <div className="flex items-center gap-[8px] text-[#FF2424] font-medium text-[14px] group-hover:gap-[12px] transition-all mt-auto shrink-0">
                       Read Full Story
                       <ChevronRight className="w-[16px] h-[16px]" />
                     </div>

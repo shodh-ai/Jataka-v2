@@ -460,9 +460,9 @@ Sforce-Limit-Info: api-usage=5250/15000; per-app-api-usage=42/500
             </Reveal>
 
             <Reveal delay={100}>
-              <div className="grid grid-cols-2 gap-[16px] mb-[40px]">
+              <div className="grid grid-cols-2 gap-[16px] mb-[40px] items-stretch">
                 {performanceMetrics.map((metric) => (
-                  <div key={metric.metric} className="bg-white rounded-[10px] p-[20px] border border-[#1a1a1a]/5">
+                  <div key={metric.metric} className="bg-white rounded-[10px] p-[20px] border border-[#1a1a1a]/5 h-full flex flex-col justify-center">
                     <p className="text-[11px] uppercase tracking-[1px] text-[#888] mb-[6px]">{metric.metric}</p>
                     <p className="text-[24px] font-archivo text-[#FF2424]">{metric.value}</p>
                   </div>

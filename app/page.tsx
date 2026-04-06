@@ -308,7 +308,7 @@ export default function JatakaLandingPage() {
             src="https://www.youtube.com/embed/SdXRbVhZMzg?rel=0"
             title="Jataka Demo"
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
         </div>
@@ -486,43 +486,43 @@ export default function JatakaLandingPage() {
           <h2 className="font-archivo text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-1px] uppercase mb-[16px] text-[#1a1a1a]">Plugs Directly Into<br/>Your Existing Pipeline.</h2>
           <p className="text-[17px] text-[#666] max-w-[600px] mb-[48px]">No rip-and-replace. Works natively with Copado, Gearset, and GitHub Actions as a Quality Gate.</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[40px] lg:gap-[24px] relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[40px] lg:gap-[24px] relative items-stretch">
             <div className="hidden lg:block absolute top-[35px] left-[64px] right-[64px] h-[1px] bg-gradient-to-r from-transparent via-[#FF2424] to-transparent z-0"></div>
             
-            <div className="relative z-10">
+            <div className="relative z-10 h-full flex flex-col">
               <div className="w-[60px] h-[60px] border-2 border-[#FF2424] flex items-center justify-center mb-[20px] bg-white rounded-[8px]">
                 <span className="font-archivo text-[20px] text-[#FF2424]">01</span>
               </div>
               <div className="inline-block bg-[#FF2424] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Trigger</div>
               <h3 className="font-archivo text-[15px] uppercase tracking-[-0.2px] text-[#1a1a1a] mb-[10px]">Code is Pushed</h3>
-              <p className="text-[13.5px] leading-[1.65] text-[#444]">Developer opens a PR in GitHub or initiates a deployment in Copado.</p>
+              <p className="text-[13.5px] leading-[1.65] text-[#444] flex-1">Developer opens a PR in GitHub or initiates a deployment in Copado.</p>
             </div>
 
-            <div className="relative z-10">
+            <div className="relative z-10 h-full flex flex-col">
               <div className="w-[60px] h-[60px] border-2 border-[#FF2424] flex items-center justify-center mb-[20px] bg-white rounded-[8px]">
                 <span className="font-archivo text-[20px] text-[#FF2424]">02</span>
               </div>
               <div className="inline-block bg-[#FF2424] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Intercept</div>
               <h3 className="font-archivo text-[15px] uppercase tracking-[-0.2px] text-[#1a1a1a] mb-[10px]">Jataka Intercepts</h3>
-              <p className="text-[13.5px] leading-[1.65] text-[#444]">As a native Quality Gate, Jataka triggers an isolated "Kamikaze" Kubernetes Pod to run the test in a Sandbox.</p>
+              <p className="text-[13.5px] leading-[1.65] text-[#444] flex-1">As a native Quality Gate, Jataka triggers an isolated "Kamikaze" Kubernetes Pod to run the test in a Sandbox.</p>
             </div>
 
-            <div className="relative z-10">
+            <div className="relative z-10 h-full flex flex-col">
               <div className="w-[60px] h-[60px] border-2 border-[#FF2424] flex items-center justify-center mb-[20px] bg-white rounded-[8px]">
                 <span className="font-archivo text-[20px] text-[#FF2424]">03</span>
               </div>
               <div className="inline-block bg-[#FF2424] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Profile</div>
               <h3 className="font-archivo text-[15px] uppercase tracking-[-0.2px] text-[#1a1a1a] mb-[10px]">Runtime Profiling</h3>
-              <p className="text-[13.5px] leading-[1.65] text-[#444]">Jataka correlates UI actions with the Salesforce Tooling API to count limits and measure latency.</p>
+              <p className="text-[13.5px] leading-[1.65] text-[#444] flex-1">Jataka correlates UI actions with the Salesforce Tooling API to count limits and measure latency.</p>
             </div>
 
-            <div className="relative z-10">
+            <div className="relative z-10 h-full flex flex-col">
               <div className="w-[60px] h-[60px] border-2 border-[#FF2424] flex items-center justify-center mb-[20px] bg-white rounded-[8px]">
                 <span className="font-archivo text-[20px] text-[#FF2424]">04</span>
               </div>
               <div className="inline-block bg-[#FF2424] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Verdict</div>
               <h3 className="font-archivo text-[15px] uppercase tracking-[-0.2px] text-[#1a1a1a] mb-[10px]">Pass or Block</h3>
-              <p className="text-[13.5px] leading-[1.65] text-[#444]">Safe code gets merged. Limit-breaching code gets blocked with an AI-generated fix sent back to the developer.</p>
+              <p className="text-[13.5px] leading-[1.65] text-[#444] flex-1">Safe code gets merged. Limit-breaching code gets blocked with an AI-generated fix sent back to the developer.</p>
             </div>
 
           </div>
@@ -593,55 +593,55 @@ export default function JatakaLandingPage() {
           <h2 className="font-archivo text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-1px] uppercase mb-[16px] text-[#1a1a1a]">The Autonomous SDLC.</h2>
           <p className="text-[17px] text-[#666] max-w-[600px] mb-[48px]">Jataka doesn't just wait for pull requests. It manages the entire lifecycle.</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px] items-stretch">
             {/* Intent */}
-            <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px]">
+            <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px] h-full flex flex-col">
               <div className="absolute top-0 left-0 w-[4px] h-full bg-[#FF2424]"></div>
               <div className="w-[44px] h-[44px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center mb-[16px]">
                 <span className="font-archivo text-[14px] text-[#FF2424] font-bold">01</span>
               </div>
               <div className="inline-block bg-[#FF2424] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Step 1</div>
               <h3 className="font-archivo text-[16px] uppercase tracking-[-0.3px] text-[#1a1a1a] mb-[8px]">Intent (Jira)</h3>
-              <p className="text-[13px] leading-[1.65] text-[#555]">
+              <p className="text-[13px] leading-[1.65] text-[#555] flex-1">
                 Jataka reads the Jira ticket and updates the Knowledge graph with the business intent. Your feature requirements become structured context.
               </p>
             </div>
 
             {/* Code */}
-            <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px]">
+            <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px] h-full flex flex-col">
               <div className="absolute top-0 left-0 w-[4px] h-full bg-[#FF6B35]"></div>
               <div className="w-[44px] h-[44px] rounded-[8px] bg-[#FF6B35]/10 flex items-center justify-center mb-[16px]">
                 <span className="font-archivo text-[14px] text-[#FF6B35] font-bold">02</span>
               </div>
               <div className="inline-block bg-[#FF6B35] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Step 2</div>
               <h3 className="font-archivo text-[16px] uppercase tracking-[-0.3px] text-[#1a1a1a] mb-[8px]">Code (Cursor)</h3>
-              <p className="text-[13px] leading-[1.65] text-[#555]">
+              <p className="text-[13px] leading-[1.65] text-[#555] flex-1">
                 Through our MCP, your developer asks Cursor how to build the feature. Jataka feeds Cursor the exact blast radius and safe code patterns.
               </p>
             </div>
 
             {/* Verify */}
-            <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px]">
+            <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px] h-full flex flex-col">
               <div className="absolute top-0 left-0 w-[4px] h-full bg-[#FFB800]"></div>
               <div className="w-[44px] h-[44px] rounded-[8px] bg-[#FFB800]/10 flex items-center justify-center mb-[16px]">
                 <span className="font-archivo text-[14px] text-[#FFB800] font-bold">03</span>
               </div>
               <div className="inline-block bg-[#FFB800] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Step 3</div>
               <h3 className="font-archivo text-[16px] uppercase tracking-[-0.3px] text-[#1a1a1a] mb-[8px]">Verify (GitHub)</h3>
-              <p className="text-[13px] leading-[1.65] text-[#555]">
+              <p className="text-[13px] leading-[1.65] text-[#555] flex-1">
                 The developer opens a PR. Jataka's API Firewall and Kamikaze Pods test the limits and the UI automatically.
               </p>
             </div>
 
             {/* Resolve */}
-            <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px]">
+            <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px] h-full flex flex-col">
               <div className="absolute top-0 left-0 w-[4px] h-full bg-[#22c55e]"></div>
               <div className="w-[44px] h-[44px] rounded-[8px] bg-[#22c55e]/10 flex items-center justify-center mb-[16px]">
                 <span className="font-archivo text-[14px] text-[#22c55e] font-bold">04</span>
               </div>
               <div className="inline-block bg-[#22c55e] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Step 4</div>
               <h3 className="font-archivo text-[16px] uppercase tracking-[-0.3px] text-[#1a1a1a] mb-[8px]">Resolve (Jira)</h3>
-              <p className="text-[13px] leading-[1.65] text-[#555]">
+              <p className="text-[13px] leading-[1.65] text-[#555] flex-1">
                 If limits breach, Jataka sends feedback back to Cursor. If it passes, Jataka updates the Jira ticket to "Ready for Deployment" with attached video proof.
               </p>
             </div>

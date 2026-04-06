@@ -245,18 +245,18 @@ export default function BlogPage() {
         <LightGridBg />
         
         <div className="relative z-10 max-w-[1200px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[80px] md:py-[120px]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
-            {videoDemos.map((demo, index) => {
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] items-stretch">
+            {videoDemos.map((demo) => {
               const IconComponent = demo.icon;
               
               return (
-                <Reveal key={demo.id} delay={index * 100}>
+                <Reveal key={demo.id} delay={200} className="h-full min-h-0">
                   <button
                     onClick={() => router.push(`/demos/${demo.slug}`)}
-                    className="group w-full text-left bg-white rounded-[16px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_12px_40px_rgba(255,36,36,0.1)] hover:border-[#FF2424]/20 transition-all duration-300"
+                    className="group w-full h-full min-h-0 text-left bg-white rounded-[16px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_12px_40px_rgba(255,36,36,0.1)] hover:border-[#FF2424]/20 transition-all duration-300 flex flex-col"
                   >
                     {/* Video Preview Area */}
-                    <div className="relative aspect-video bg-[#1a1a1a]">
+                    <div className="relative aspect-video shrink-0 bg-[#1a1a1a]">
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-[56px] h-[56px] rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#FF2424]/80 transition-colors">
                           <Play className="w-[24px] h-[24px] text-white ml-[4px]" />
@@ -276,9 +276,9 @@ export default function BlogPage() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-[24px]">
+                    <div className="p-[24px] flex flex-col flex-1 min-h-0">
                       {/* Icon & Number */}
-                      <div className="flex items-center justify-between mb-[16px]">
+                      <div className="flex items-center justify-between mb-[16px] shrink-0">
                         <div className="w-[40px] h-[40px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center group-hover:bg-[#FF2424]/20 transition-colors">
                           <IconComponent className="w-[18px] h-[18px] text-[#FF2424]" />
                         </div>
@@ -288,38 +288,40 @@ export default function BlogPage() {
                       </div>
 
                       {/* Title */}
-                      <h2 className="font-archivo text-[18px] leading-[1.15] tracking-[-0.3px] uppercase mb-[6px] group-hover:text-[#FF2424] transition-colors">
+                      <h2 className="font-archivo text-[18px] leading-[1.15] tracking-[-0.3px] uppercase mb-[6px] group-hover:text-[#FF2424] transition-colors shrink-0">
                         {demo.title}
                       </h2>
                       
                       {/* Subtitle */}
-                      <p className="text-[13px] text-[#FF2424] font-medium mb-[12px]">
+                      <p className="text-[13px] text-[#FF2424] font-medium mb-[12px] shrink-0">
                         {demo.subtitle}
                       </p>
 
                       {/* Summary */}
-                      <p className="text-[14px] leading-[1.6] text-[#555] mb-[16px]">
+                      <p className="text-[14px] leading-[1.6] text-[#555] mb-[16px] shrink-0">
                         {demo.summary}
                       </p>
 
-                      {/* Key Result */}
-                      <div className="bg-[#FF2424]/5 rounded-[6px] p-[12px] mb-[16px]">
-                        <p className="text-[12px] leading-[1.5] text-[#444]">
-                          <strong className="text-[#FF2424]">Result:</strong> {demo.keyResult}
-                        </p>
-                      </div>
+                      <div className="flex-1 flex flex-col min-h-0 gap-[16px]">
+                        {/* Key Result */}
+                        <div className="bg-[#FF2424]/5 rounded-[6px] p-[12px] flex-1 min-h-[4.5rem] flex items-start">
+                          <p className="text-[12px] leading-[1.5] text-[#444]">
+                            <strong className="text-[#FF2424]">Result:</strong> {demo.keyResult}
+                          </p>
+                        </div>
 
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-[6px] mb-[16px]">
-                        {demo.tags.slice(0, 3).map((tag) => (
-                          <span key={tag} className="text-[9px] font-medium uppercase tracking-[0.5px] text-[#666] px-[8px] py-[4px] border border-[#1a1a1a]/10 rounded-[3px]">
-                            {tag}
-                          </span>
-                        ))}
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-[6px] content-start min-h-[3rem]">
+                          {demo.tags.slice(0, 3).map((tag) => (
+                            <span key={tag} className="text-[9px] font-medium uppercase tracking-[0.5px] text-[#666] px-[8px] py-[4px] border border-[#1a1a1a]/10 rounded-[3px]">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
 
                       {/* CTA */}
-                      <div className="flex items-center gap-[8px] text-[#FF2424] font-medium text-[13px] group-hover:gap-[12px] transition-all">
+                      <div className="flex items-center gap-[8px] text-[#FF2424] font-medium text-[13px] group-hover:gap-[12px] transition-all mt-auto pt-[16px] shrink-0">
                         Watch Demo
                         <ChevronRight className="w-[14px] h-[14px]" />
                       </div>

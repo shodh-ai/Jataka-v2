@@ -295,16 +295,16 @@ export default function ServerError({ error, reset }: { error?: Error; reset?: (
           </div>
 
           {/* Recovery Options */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px] mb-[40px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px] mb-[40px] items-stretch">
             {recoveryOptions.map((option, index) => {
               return (
                 <button
                   key={index}
                   onClick={() => handleAction(option.action)}
-                  className="bg-white p-[20px] rounded-[8px] border border-[#1a1a1a]/10 hover:border-[#FF2424]/30 hover:shadow-[0_4px_20px_rgba(255,36,36,0.12)] transition-all text-left group"
+                  className="bg-white p-[20px] rounded-[8px] border border-[#1a1a1a]/10 hover:border-[#FF2424]/30 hover:shadow-[0_4px_20px_rgba(255,36,36,0.12)] transition-all text-left group h-full min-h-0 flex flex-col"
                 >
-                  <div className="flex items-center gap-[12px] mb-[8px]">
-                    <div className="w-[40px] h-[40px] bg-[#FAF8F3] rounded-[8px] flex items-center justify-center group-hover:bg-[#FF2424]/10 transition-colors">
+                  <div className="flex items-start gap-[12px] flex-1">
+                    <div className="w-[40px] h-[40px] bg-[#FAF8F3] rounded-[8px] flex items-center justify-center group-hover:bg-[#FF2424]/10 transition-colors flex-shrink-0">
                       {option.action === "refresh" && <RefreshCw className={`w-[20px] h-[20px] text-[#1a1a1a] ${isRetrying ? "animate-spin" : ""}`} />}
                       {option.action === "cache" && <Wrench className="w-[20px] h-[20px] text-[#1a1a1a]" />}
                       {option.action === "status" && <Activity className="w-[20px] h-[20px] text-[#1a1a1a]" />}
@@ -312,7 +312,7 @@ export default function ServerError({ error, reset }: { error?: Error; reset?: (
                       {option.action === "support" && <AlertTriangle className="w-[20px] h-[20px] text-[#FF2424]" />}
                       {option.action === "auth" && <Shield className="w-[20px] h-[20px] text-[#1a1a1a]" />}
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <h3 className="font-archivo text-[14px] uppercase tracking-[1px] text-[#1a1a1a] mb-[8px] group-hover:text-[#FF2424] transition-colors">
                         {option.title}
                       </h3>

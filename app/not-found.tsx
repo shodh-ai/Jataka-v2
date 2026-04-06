@@ -167,14 +167,14 @@ export default function NotFound() {
           </div>
 
           {/* Quick Actions */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-[16px] mb-[60px]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-[16px] mb-[60px] items-stretch">
             {errorSuggestions.map((suggestion, index) => {
               const IconComponent = suggestion.icon;
               return (
                 <button
                   key={index}
                   onClick={() => handleAction(suggestion.action)}
-                  className="bg-white p-[20px] rounded-[12px] border border-[#1a1a1a]/5 hover:border-[#FF2424]/30 hover:shadow-[0_8px_30px_rgba(255,36,36,0.12)] transition-all text-left group"
+                  className="bg-white p-[20px] rounded-[12px] border border-[#1a1a1a]/5 hover:border-[#FF2424]/30 hover:shadow-[0_8px_30px_rgba(255,36,36,0.12)] transition-all text-left group h-full min-h-0 flex flex-col"
                 >
                   <div className="w-[40px] h-[40px] bg-[#FAF8F3] rounded-[8px] flex items-center justify-center mb-[12px] group-hover:bg-[#FF2424]/10 transition-colors">
                     <IconComponent className="w-[20px] h-[20px] text-[#1a1a1a]" />
@@ -182,7 +182,7 @@ export default function NotFound() {
                   <h3 className="font-archivo text-[14px] uppercase tracking-[0.5px] text-[#1a1a1a] mb-[6px] group-hover:text-[#FF2424] transition-colors">
                     {suggestion.title}
                   </h3>
-                  <p className="text-[13px] text-[#666] leading-[1.5]">
+                  <p className="text-[13px] text-[#666] leading-[1.5] flex-1">
                     {suggestion.description}
                   </p>
                 </button>
@@ -220,7 +220,7 @@ export default function NotFound() {
             <h2 className="font-archivo text-[20px] leading-[1.2] tracking-[-1px] uppercase text-[#1a1a1a] mb-[24px] text-center">
               Popular Destinations
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[16px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[16px] items-stretch">
               {popularDestinations.map((destination, index) => (
                 <button
                   key={index}
@@ -228,15 +228,15 @@ export default function NotFound() {
                     ? window.open(destination.href, '_blank') 
                     : router.push(destination.href)
                   }
-                  className="bg-white p-[20px] rounded-[12px] border border-[#1a1a1a]/5 hover:border-[#FF2424]/30 hover:shadow-[0_8px_30px_rgba(255,36,36,0.12)] transition-all text-left group"
+                  className="bg-white p-[20px] rounded-[12px] border border-[#1a1a1a]/5 hover:border-[#FF2424]/30 hover:shadow-[0_8px_30px_rgba(255,36,36,0.12)] transition-all text-left group h-full min-h-0 flex flex-col"
                 >
                   <h3 className="font-archivo text-[16px] uppercase tracking-[0.5px] text-[#1a1a1a] mb-[8px] group-hover:text-[#FF2424] transition-colors">
                     {destination.title}
                   </h3>
-                  <p className="text-[14px] text-[#666] leading-[1.5]">
+                  <p className="text-[14px] text-[#666] leading-[1.5] flex-1">
                     {destination.description}
                   </p>
-                  <div className="flex items-center gap-[6px] mt-[12px] text-[#FF2424] opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="flex items-center gap-[6px] mt-auto pt-[12px] text-[#FF2424] opacity-0 group-hover:opacity-100 transition-opacity">
                     <span className="text-[12px] font-medium">Visit</span>
                     <ArrowRight className="w-[16px] h-[16px]" />
                   </div>

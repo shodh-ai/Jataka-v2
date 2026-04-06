@@ -233,10 +233,10 @@ export default function SecurityPage() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
-              {pillars.map((pillar, index) => (
-                <Reveal key={pillar.title} delay={100 + index * 100}>
-                  <div className="bg-white rounded-[12px] p-[28px] border border-[#1a1a1a]/5 h-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] items-stretch">
+              {pillars.map((pillar) => (
+                <Reveal key={pillar.title} delay={100} className="h-full min-h-0">
+                  <div className="bg-white rounded-[12px] p-[28px] border border-[#1a1a1a]/5 h-full flex flex-col">
                     <div className="flex items-center gap-[16px] mb-[20px]">
                       <div className="w-[48px] h-[48px] rounded-[10px] bg-[#FF2424]/10 flex items-center justify-center flex-shrink-0">
                         <pillar.icon className="w-[22px] h-[22px] text-[#FF2424]" />
@@ -246,11 +246,11 @@ export default function SecurityPage() {
                       </h3>
                     </div>
                     
-                    <p className="text-[15px] text-[#444] leading-[1.7] mb-[20px]">
+                    <p className="text-[15px] text-[#444] leading-[1.7] mb-[20px] flex-1">
                       {pillar.description}
                     </p>
 
-                    <ul className="space-y-[10px]">
+                    <ul className="space-y-[10px] shrink-0">
                       {pillar.details.map((detail) => (
                         <li key={detail} className="flex items-start gap-[10px]">
                           <div className="w-[6px] h-[6px] rounded-full bg-[#22c55e] flex-shrink-0 mt-[6px]" />
@@ -275,9 +275,9 @@ export default function SecurityPage() {
             </Reveal>
 
             <Reveal delay={100}>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-[16px]">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-[16px] items-stretch">
                 {compliance.map((item) => (
-                  <div key={item.name} className="bg-[#FAF8F3] rounded-[10px] p-[20px] text-center">
+                  <div key={item.name} className="bg-[#FAF8F3] rounded-[10px] p-[20px] text-center h-full flex flex-col justify-center">
                     <item.icon className="w-[20px] h-[20px] text-[#FF2424] mx-auto mb-[12px]" />
                     <p className="font-archivo text-[14px] tracking-[-0.3px] mb-[4px]">{item.name}</p>
                     <p className="text-[12px] text-[#666]">{item.status}</p>
@@ -305,29 +305,29 @@ export default function SecurityPage() {
 
             <Reveal delay={100}>
               <div className="bg-[#1a1a1a] rounded-[12px] p-[32px] text-white">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] text-center">
-                  <div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] text-center items-stretch">
+                  <div className="h-full flex flex-col items-center">
                     <div className="w-[48px] h-[48px] rounded-[10px] bg-[#FF2424]/20 flex items-center justify-center mx-auto mb-[16px]">
                       <Database className="w-[22px] h-[22px] text-[#FF2424]" />
                     </div>
                     <h3 className="font-archivo text-[16px] tracking-[-0.3px] uppercase mb-[8px]">Your Sandbox</h3>
-                    <p className="text-[13px] text-white/60">Test data only. No production records. Jataka profiles limits here.</p>
+                    <p className="text-[13px] text-white/60 flex-1">Test data only. No production records. Jataka profiles limits here.</p>
                   </div>
                   
-                  <div>
+                  <div className="h-full flex flex-col items-center">
                     <div className="w-[48px] h-[48px] rounded-[10px] bg-[#22c55e]/20 flex items-center justify-center mx-auto mb-[16px]">
                       <Shield className="w-[22px] h-[22px] text-[#22c55e]" />
                     </div>
                     <h3 className="font-archivo text-[16px] tracking-[-0.3px] uppercase mb-[8px]">Jataka K8s Pod</h3>
-                    <p className="text-[13px] text-white/60">Ephemeral. Spins up, runs tests, generates report, destroys itself.</p>
+                    <p className="text-[13px] text-white/60 flex-1">Ephemeral. Spins up, runs tests, generates report, destroys itself.</p>
                   </div>
                   
-                  <div>
+                  <div className="h-full flex flex-col items-center">
                     <div className="w-[48px] h-[48px] rounded-[10px] bg-white/10 flex items-center justify-center mx-auto mb-[16px]">
                       <Lock className="w-[22px] h-[22px] text-white" />
                     </div>
                     <h3 className="font-archivo text-[16px] tracking-[-0.3px] uppercase mb-[8px]">Your GitHub</h3>
-                    <p className="text-[13px] text-white/60">PR comment with limit report. No code stored by Jataka.</p>
+                    <p className="text-[13px] text-white/60 flex-1">PR comment with limit report. No code stored by Jataka.</p>
                   </div>
                 </div>
 

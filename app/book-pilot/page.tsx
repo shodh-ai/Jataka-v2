@@ -41,6 +41,13 @@ export default function BookPilotPage() {
     setIsSubmitting(true);
 
     try {
+      if (!supabase) {
+        alert(
+          "Demo booking is not available in this environment (database not configured). Please email hello@jataka.io or use the contact options on the main site."
+        );
+        return;
+      }
+
       const { error } = await supabase
         .from('pilot_bookings')
         .insert([

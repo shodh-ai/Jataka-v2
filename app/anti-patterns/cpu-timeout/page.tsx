@@ -309,23 +309,23 @@ export default function CPUTimeoutPage() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] mb-[40px]">
-              <Reveal delay={100}>
-                <div className="bg-[#FAF8F3] rounded-[12px] p-[24px]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] mb-[40px] items-stretch">
+              <Reveal delay={100} className="h-full min-h-0">
+                <div className="bg-[#FAF8F3] rounded-[12px] p-[24px] h-full flex flex-col">
                   <div className="text-[36px] font-archivo text-[#FF2424] mb-[8px]">10s</div>
-                  <p className="text-[14px] text-[#555]">Maximum CPU time for synchronous Apex (triggers, controllers)</p>
+                  <p className="text-[14px] text-[#555] flex-1">Maximum CPU time for synchronous Apex (triggers, controllers)</p>
                 </div>
               </Reveal>
-              <Reveal delay={200}>
-                <div className="bg-[#FAF8F3] rounded-[12px] p-[24px]">
+              <Reveal delay={100} className="h-full min-h-0">
+                <div className="bg-[#FAF8F3] rounded-[12px] p-[24px] h-full flex flex-col">
                   <div className="text-[36px] font-archivo text-[#FF2424] mb-[8px]">60s</div>
-                  <p className="text-[14px] text-[#555]">Maximum CPU time for async Apex (Batch, Future, Queueable)</p>
+                  <p className="text-[14px] text-[#555] flex-1">Maximum CPU time for async Apex (Batch, Future, Queueable)</p>
                 </div>
               </Reveal>
-              <Reveal delay={300}>
-                <div className="bg-[#FAF8F3] rounded-[12px] p-[24px]">
+              <Reveal delay={100} className="h-full min-h-0">
+                <div className="bg-[#FAF8F3] rounded-[12px] p-[24px] h-full flex flex-col">
                   <div className="text-[36px] font-archivo text-[#FF2424] mb-[8px]">6 hrs</div>
-                  <p className="text-[14px] text-[#555]">Average downtime from CPU timeout in production</p>
+                  <p className="text-[14px] text-[#555] flex-1">Average downtime from CPU timeout in production</p>
                 </div>
               </Reveal>
             </div>
@@ -415,22 +415,22 @@ export default function CPUTimeoutPage() {
                 </div>
 
                 <div className="p-[24px]">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px] mb-[24px]">
-                    <div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px] mb-[24px] items-stretch">
+                    <div className="h-full flex flex-col">
                       <p className="text-[11px] uppercase tracking-[1px] text-[#888] mb-[4px]">CPU Time</p>
-                      <p className="text-[24px] font-archivo text-[#FF2424]">12,847ms<span className="text-[14px] text-[#888]">/10,000ms</span></p>
+                      <p className="text-[24px] font-archivo text-[#FF2424] flex-1">12,847ms<span className="text-[14px] text-[#888]">/10,000ms</span></p>
                     </div>
-                    <div>
+                    <div className="h-full flex flex-col">
                       <p className="text-[11px] uppercase tracking-[1px] text-[#888] mb-[4px]">SOQL Queries</p>
-                      <p className="text-[24px] font-archivo text-[#1a1a1a]">3<span className="text-[14px] text-[#888]">/100</span></p>
+                      <p className="text-[24px] font-archivo text-[#1a1a1a] flex-1">3<span className="text-[14px] text-[#888]">/100</span></p>
                     </div>
-                    <div>
+                    <div className="h-full flex flex-col">
                       <p className="text-[11px] uppercase tracking-[1px] text-[#888] mb-[4px]">DML Statements</p>
-                      <p className="text-[24px] font-archivo text-[#1a1a1a]">1<span className="text-[14px] text-[#888]">/150</span></p>
+                      <p className="text-[24px] font-archivo text-[#1a1a1a] flex-1">1<span className="text-[14px] text-[#888]">/150</span></p>
                     </div>
-                    <div>
+                    <div className="h-full flex flex-col">
                       <p className="text-[11px] uppercase tracking-[1px] text-[#888] mb-[4px]">Records Tested</p>
-                      <p className="text-[24px] font-archivo text-[#1a1a1a]">10,000</p>
+                      <p className="text-[24px] font-archivo text-[#1a1a1a] flex-1">10,000</p>
                     </div>
                   </div>
 
@@ -504,15 +504,15 @@ export default function CPUTimeoutPage() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px]">
-              {relatedAntiPatterns.map((pattern, index) => (
-                <Reveal key={pattern.id} delay={100 + index * 50}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px] items-stretch">
+              {relatedAntiPatterns.map((pattern) => (
+                <Reveal key={pattern.id} delay={100} className="h-full min-h-0">
                   <button
                     onClick={() => router.push(`/anti-patterns/${pattern.id}`)}
-                    className="w-full text-left bg-[#FAF8F3] rounded-[12px] p-[24px] border border-[#1a1a1a]/5 hover:border-[#FF2424]/30 transition-all group"
+                    className="w-full h-full min-h-0 text-left bg-[#FAF8F3] rounded-[12px] p-[24px] border border-[#1a1a1a]/5 hover:border-[#FF2424]/30 transition-all group flex flex-col"
                   >
                     <span 
-                      className="text-[10px] font-bold uppercase tracking-[1.5px] px-[10px] py-[4px] rounded-[4px] mb-[12px] inline-block"
+                      className="text-[10px] font-bold uppercase tracking-[1.5px] px-[10px] py-[4px] rounded-[4px] mb-[12px] inline-block shrink-0"
                       style={{ 
                         backgroundColor: pattern.severity === "Critical" ? "#FF242415" : "#FF6B3515",
                         color: pattern.severity === "Critical" ? "#FF2424" : "#FF6B35"
@@ -520,7 +520,7 @@ export default function CPUTimeoutPage() {
                     >
                       {pattern.severity}
                     </span>
-                    <p className="text-[15px] font-medium group-hover:text-[#FF2424] transition-colors">
+                    <p className="text-[15px] font-medium group-hover:text-[#FF2424] transition-colors flex-1">
                       {pattern.title}
                     </p>
                   </button>

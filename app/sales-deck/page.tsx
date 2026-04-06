@@ -393,44 +393,44 @@ export default function SalesDeckPage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
-            <Reveal delay={300}>
-              <div className="group bg-white rounded-[12px] p-[28px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 cursor-default">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] items-stretch">
+            <Reveal delay={300} className="h-full min-h-0">
+              <div className="group bg-white rounded-[12px] p-[28px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 cursor-default h-full flex flex-col">
                 <div className="w-[48px] h-[48px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center mb-[20px] group-hover:bg-[#FF2424]/20 transition-colors">
                   <svg className="w-[24px] h-[24px] text-[#FF2424]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
                 <p className="text-[12px] font-mono uppercase tracking-[2px] text-[#888] mb-[12px]">Kamikaze Pod</p>
-                <p className="text-[15px] leading-[1.7] text-[#444]">
+                <p className="text-[15px] leading-[1.7] text-[#444] flex-1">
                   When a PR is opened, Jataka spawns an isolated pod, executes the transaction, and blocks the merge if limits hit 90%.
                 </p>
               </div>
             </Reveal>
 
-            <Reveal delay={400}>
-              <div className="group bg-white rounded-[12px] p-[28px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 cursor-default">
+            <Reveal delay={300} className="h-full min-h-0">
+              <div className="group bg-white rounded-[12px] p-[28px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 cursor-default h-full flex flex-col">
                 <div className="w-[48px] h-[48px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center mb-[20px] group-hover:bg-[#FF2424]/20 transition-colors">
                   <svg className="w-[24px] h-[24px] text-[#FF2424]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                 </div>
                 <p className="text-[12px] font-mono uppercase tracking-[2px] text-[#888] mb-[12px]">Tooling API</p>
-                <p className="text-[15px] leading-[1.7] text-[#444]">
+                <p className="text-[15px] leading-[1.7] text-[#444] flex-1">
                   Correlates every UI click with the Salesforce Tooling API to profile async Governor Limits in real-time.
                 </p>
               </div>
             </Reveal>
 
-            <Reveal delay={500}>
-              <div className="group bg-white rounded-[12px] p-[28px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 cursor-default">
+            <Reveal delay={300} className="h-full min-h-0">
+              <div className="group bg-white rounded-[12px] p-[28px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 cursor-default h-full flex flex-col">
                 <div className="w-[48px] h-[48px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center mb-[20px] group-hover:bg-[#FF2424]/20 transition-colors">
                   <svg className="w-[24px] h-[24px] text-[#FF2424]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                   </svg>
                 </div>
                 <p className="text-[12px] font-mono uppercase tracking-[2px] text-[#888] mb-[12px]">Knowledge + MCP</p>
-                <p className="text-[15px] leading-[1.7] text-[#444]">
+                <p className="text-[15px] leading-[1.7] text-[#444] flex-1">
                   Dependency Graph feeds your architecture into Cursor via MCP, stopping conflicting logic before it's saved.
                 </p>
               </div>

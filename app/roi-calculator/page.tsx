@@ -391,10 +391,10 @@ export default function ROICalculatorPage() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px]">
-              {industryBenchmarks.map((benchmark, index) => (
-                <Reveal key={benchmark.metric} delay={100 + index * 50}>
-                  <div className="bg-[#FAF8F3] rounded-[12px] p-[20px] text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px] items-stretch">
+              {industryBenchmarks.map((benchmark) => (
+                <Reveal key={benchmark.metric} delay={100} className="h-full min-h-0">
+                  <div className="bg-[#FAF8F3] rounded-[12px] p-[20px] text-center h-full flex flex-col justify-center">
                     <p className="text-[11px] uppercase tracking-[1px] text-[#888] mb-[8px]">{benchmark.metric}</p>
                     <p className="text-[24px] font-archivo text-[#FF2424]">{benchmark.value}</p>
                   </div>
