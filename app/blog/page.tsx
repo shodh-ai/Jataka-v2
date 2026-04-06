@@ -93,7 +93,7 @@ export default function BlogPage() {
       subtitle: "The Governor Limit Savior",
       engine: "API Engine",
       duration: "2:45",
-      summary: "Watch a developer make a critical mistake—placing a SOQL query inside a for loop. Jataka catches it before the merge, preventing a production incident.",
+      summary: "Watch a developer make a critical mistake, placing a SOQL query inside a for loop. Jataka catches it before the merge, preventing a production incident.",
       keyResult: "147 SOQL queries detected. PR blocked automatically. Zero production impact.",
       icon: Zap,
       tags: ["Governor Limits", "API Engine", "PR Blocking", "SOQL Analysis"],
@@ -114,13 +114,13 @@ export default function BlogPage() {
       id: 3,
       slug: "blast-radius-prediction",
       title: "AI-Assisted Blast Radius Prediction",
-      subtitle: "The Cursor/Neo4j Magic",
+      subtitle: "The Cursor/Knowledge Magic",
       engine: "Developer Experience",
       duration: "2:52",
       summary: "Watch a developer using Cursor IDE contemplate changing a critical Apex Trigger. Jataka calculates the blast radius before they even save the file.",
       keyResult: "3 classes, 12 flows, 2 integrations, 1 critical bug identified before coding.",
       icon: BrainCircuit,
-      tags: ["Neo4j", "MCP", "Cursor IDE", "Dependency Graph"],
+      tags: ["Knowledge", "MCP", "Cursor IDE", "Dependency Graph"],
     }
   ];
 
@@ -208,7 +208,7 @@ export default function BlogPage() {
         <div className="relative z-10 max-w-[1000px]">
           <Reveal>
             <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[40px]">
-              01 — Product Demos
+              01 ,  Product Demos
             </p>
           </Reveal>
 
@@ -222,7 +222,7 @@ export default function BlogPage() {
 
           <Reveal delay={200}>
             <p className="text-[clamp(18px,1.8vw,22px)] leading-[1.6] text-[#444] max-w-[680px] mb-[30px]">
-              We don't do walkthroughs. Each demo shows a <strong className="text-[#1a1a1a] font-semibold">specific, painful scenario</strong>—and exactly how Jataka solves it in real-time.
+              We don't do walkthroughs. Each demo shows a <strong className="text-[#1a1a1a] font-semibold">specific, painful scenario</strong>, and exactly how Jataka solves it in real-time.
             </p>
           </Reveal>
 

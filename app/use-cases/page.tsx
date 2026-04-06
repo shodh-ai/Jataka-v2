@@ -158,7 +158,7 @@ export default function UseCasesPage() {
       title: "Automate PR Reviews",
       subtitle: "Code Quality at Scale",
       icon: Users,
-      summary: "Senior architects spend 20 hours a week manually reviewing junior developers' PRs. Jataka automates code review, limit checking, and test generation—freeing architects for high-value work.",
+      summary: "Senior architects spend 20 hours a week manually reviewing junior developers' PRs. Jataka automates code review, limit checking, and test generation, freeing architects for high-value work.",
       keyResult: "18 hrs/wk saved. +40% junior dev velocity. +300% architecture time.",
       metrics: [
         { label: "Review Time", value: "20 hrs/wk" },
@@ -234,7 +234,7 @@ export default function UseCasesPage() {
         <div className="relative z-10 max-w-[1000px]">
           <Reveal>
             <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[40px]">
-              01 — Core Use Cases
+              01 ,  Core Use Cases
             </p>
           </Reveal>
 
@@ -354,7 +354,7 @@ export default function UseCasesPage() {
 
           <Reveal delay={200}>
             <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#999] max-w-[600px] mx-auto mb-[40px]">
-              Book a demo and see Jataka catch real issues in your Salesforce codebase. No generic pitches—just your code, your limits, your results.
+              Book a demo and see Jataka catch real issues in your Salesforce codebase. No generic pitches, just your code, your limits, your results.
             </p>
           </Reveal>
 

@@ -273,7 +273,7 @@ export default function LockContentionPage() {
             <Reveal delay={400}>
               <p className="text-[15px] leading-[1.6] text-[#666] max-w-[700px]">
                 <strong className="text-[#1a1a1a]">2,400 developers</strong> search for this error every month. 
-                It's the silent killer of enterprise Salesforce orgs—data skew accumulates over years until 
+                It's the silent killer of enterprise Salesforce orgs, data skew accumulates over years until 
                 one day, everything locks up.
               </p>
             </Reveal>

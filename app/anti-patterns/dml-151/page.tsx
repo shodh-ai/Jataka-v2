@@ -249,7 +249,7 @@ export default function DML151Page() {
             <Reveal delay={400}>
               <p className="text-[15px] leading-[1.6] text-[#666] max-w-[700px]">
                 <strong className="text-[#1a1a1a]">8,500 developers</strong> search for this error every month. 
-                The fix is simple—bulkify your DML—but the consequences of not doing it are catastrophic.
+                The fix is simple, bulkify your DML, but the consequences of not doing it are catastrophic.
               </p>
             </Reveal>
           </div>

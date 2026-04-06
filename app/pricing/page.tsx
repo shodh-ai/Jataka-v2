@@ -114,7 +114,7 @@ const plans = [
       { text: "1 K8s Pod (sequential tests)", included: true },
       { text: "$0.10 per additional PR check", included: true },
       { text: "Day 0 Retroactive Audit", included: false },
-      { text: "Neo4j Blast Radius Graph", included: false },
+      { text: "Knowledge Blast Radius Graph", included: false },
     ],
     cta: "Start Pilot",
     highlight: false
@@ -131,7 +131,7 @@ const plans = [
       { text: "2,000 Kamikaze UI Tests/month", included: true },
       { text: "3 K8s Pods (parallel tests)", included: true },
       { text: "Day 0 Retroactive Risk Audit", included: true },
-      { text: "Neo4j Blast Radius Graph", included: true },
+      { text: "Knowledge Blast Radius Graph", included: true },
       { text: "Priority support & SLA", included: true },
     ],
     cta: "Start Pilot",
@@ -160,7 +160,7 @@ const plans = [
 const faqs = [
   {
     question: "What happens if I exceed my PR analysis limit?",
-    answer: "You're charged $0.10 per additional PR check. This ensures you never lose money—you only pay for what you use. We'll notify you at 80% capacity so there are no surprises."
+    answer: "You're charged $0.10 per additional PR check. This ensures you never lose money, you only pay for what you use. We'll notify you at 80% capacity so there are no surprises."
   },
   {
     question: "Can I switch plans mid-contract?",
@@ -168,7 +168,7 @@ const faqs = [
   },
   {
     question: "What's the difference between 1 Pod and 3 Pods?",
-    answer: "With 1 Pod, tests run sequentially (one at a time). With 3 Pods, tests run in parallel—meaning your CI/CD pipeline is faster. Enterprise teams typically need parallel execution to maintain velocity."
+    answer: "With 1 Pod, tests run sequentially (one at a time). With 3 Pods, tests run in parallel, meaning your CI/CD pipeline is faster. Enterprise teams typically need parallel execution to maintain velocity."
   },
   {
     question: "Do you offer annual discounts?",

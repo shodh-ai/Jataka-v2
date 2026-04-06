@@ -372,7 +372,7 @@ export default function AntiPatternsPage() {
               <Reveal delay={300}>
                 <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] text-left">
                   <div className="text-[32px] font-archivo text-[#FF2424] mb-[12px]">2:00 AM</div>
-                  <p className="text-[14px] text-[#555]">Peak crisis time—when production crashes and the pressure is on</p>
+                  <p className="text-[14px] text-[#555]">Peak crisis time, when production crashes and the pressure is on</p>
                 </div>
               </Reveal>
               <Reveal delay={400}>

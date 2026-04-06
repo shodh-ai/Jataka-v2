@@ -89,7 +89,7 @@ export default function JatakaLandingPage() {
       "Blast Radius Prediction",
       "Kamikaze Pods",
       "Vision AI",
-      "Neo4j Dependency Graph",
+      "Knowledge Dependency Graph",
       "MCP Protocol Integration"
     ]
   };
@@ -127,7 +127,7 @@ export default function JatakaLandingPage() {
         "name": "How does blast radius prediction work?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Jataka maintains a Neo4j dependency graph of your entire Salesforce org. Every Apex class, trigger, flow, and integration is mapped. Integration with Cursor IDE via MCP protocol lets developers ask 'What breaks if I change this?' and get answers before writing code."
+          "text": "Jataka maintains a Knowledge dependency graph of your entire Salesforce org. Every Apex class, trigger, flow, and integration is mapped. Integration with Cursor IDE via MCP protocol lets developers ask 'What breaks if I change this?' and get answers before writing code."
         }
       }
     ]
@@ -339,17 +339,17 @@ export default function JatakaLandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 border border-[#1a1a1a]/10 rounded-[8px] overflow-hidden">
             <div className="p-[40px] md:p-[48px] md:border-r border-[#1a1a1a]/10 border-b md:border-b-0">
-              <div className="text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#666] mb-[22px]">01 — Scanner</div>
+              <div className="text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#666] mb-[22px]">01 ,  Scanner</div>
               <h3 className="font-archivo text-[19px] uppercase tracking-[-0.3px] text-[#1a1a1a] mb-[14px] leading-[1.2]">Static Scanners<br/>Only Guess</h3>
               <p className="text-[14.5px] leading-[1.72] text-[#444]">Tools like SonarQube and PMD read text. They cannot calculate runtime execution paths, hidden loops, or trigger-chains hidden inside managed packages.</p>
             </div>
             <div className="p-[40px] md:p-[48px] md:border-r border-[#1a1a1a]/10 border-b md:border-b-0">
-              <div className="text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#666] mb-[22px]">02 — UI Testing</div>
+              <div className="text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#666] mb-[22px]">02 ,  UI Testing</div>
               <h3 className="font-archivo text-[19px] uppercase tracking-[-0.3px] text-[#1a1a1a] mb-[14px] leading-[1.2]">UI Testing<br/>is Blind</h3>
               <p className="text-[14.5px] leading-[1.72] text-[#444]">Selenium and standard QA bots only test the screen. If a user clicks a button and your code consumes 99 out of 100 SOQL queries, the UI test passes. But your architecture is bleeding.</p>
             </div>
             <div className="p-[40px] md:p-[48px] bg-[#FF2424]/5 border-l-[3px] border-[#FF2424]">
-              <div className="text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#666] mb-[22px]">03 — The Result</div>
+              <div className="text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#666] mb-[22px]">03 ,  The Result</div>
               <h3 className="font-archivo text-[19px] uppercase tracking-[-0.3px] text-[#FF2424] mb-[14px] leading-[1.2]">101 SOQL<br/>Errors</h3>
               <p className="text-[14.5px] leading-[1.72] text-[#444]">Your tests pass, Copado deploys the code, a real user clicks the button with slightly heavier data, the Governor Limit breaks, and your entire Org crashes.</p>
             </div>
@@ -408,13 +408,13 @@ export default function JatakaLandingPage() {
                     <span className="w-[10px] h-[10px] rounded-full bg-[#FF5F56]"></span>
                     <span className="w-[10px] h-[10px] rounded-full bg-[#FFBD2E]"></span>
                     <span className="w-[10px] h-[10px] rounded-full bg-[#27C93F]"></span>
-                    <span className="ml-[8px] text-[11px] text-white/60">jataka-bot / PR #247 — feature/convert-lead-flow</span>
+                    <span className="ml-[8px] text-[11px] text-white/60">jataka-bot / PR #247 ,  feature/convert-lead-flow</span>
                   </div>
                   <div className="p-[16px]">
                     <div className="flex items-start gap-[10px] p-[12px] bg-[rgba(255,36,36,0.1)] border border-[rgba(255,36,36,0.3)] rounded-[5px] mb-[12px]">
                       <div className="text-[#FF2424] text-[17px] shrink-0">❌</div>
                       <div className="flex-1">
-                        <div className="text-white font-bold mb-[5px] text-[12.5px]">Jataka Quality Gate — BLOCKED</div>
+                        <div className="text-white font-bold mb-[5px] text-[12.5px]">Jataka Quality Gate ,  BLOCKED</div>
                         <div className="text-white/60 text-[11.5px] leading-[1.5]">UI Test: ✅ PASSED | Runtime Governance: ❌ FAILED</div>
                         <div className="mt-[9px]">
                           <div className="flex justify-between text-white/60 text-[10.5px] mb-[4px]"><span>SOQL Query Limit</span><span className="text-[#FF2424] font-bold">96 / 100 (96%)</span></div>
@@ -461,7 +461,7 @@ export default function JatakaLandingPage() {
                 <h3 className="font-archivo text-[21px] uppercase tracking-[-0.4px] text-[#1a1a1a] mb-[16px] leading-[1.18]">Zero-Maintenance<br/>Contextual Testing</h3>
                 <p className="text-[14.5px] leading-[1.75] text-[#444]">
                   Stop writing brittle test scripts. Connect Jataka to your Org and we ingest your entire 
-                  schema into our <strong className="text-[#1a1a1a] font-bold">Neo4j Graph Database</strong>. When a Jira ticket is opened, Jataka 
+                  schema into our <strong className="text-[#1a1a1a] font-bold">Knowledge Graph Database</strong>. When a Jira ticket is opened, Jataka 
                   understands the blast radius and autonomously generates robust JSON test suites that 
                   <strong className="text-[#1a1a1a] font-bold"> self-heal when admins change page layouts.</strong>
                 </p>
@@ -547,7 +547,7 @@ export default function JatakaLandingPage() {
               <h3 className="font-archivo text-[19px] uppercase text-[#1a1a1a] mb-[12px]">IDE Context (MCP)</h3>
               <p className="text-[14.5px] leading-[1.72] text-[#444]">
                 Pipe your proprietary Salesforce data model directly into Cursor. Write Apex that 
-                actually understands your custom objects, field relationships, and validation rules — 
+                actually understands your custom objects, field relationships, and validation rules ,  
                 not generic boilerplate.
               </p>
             </div>
@@ -569,8 +569,8 @@ export default function JatakaLandingPage() {
               <div className="text-[11px] uppercase tracking-[2px] text-[#FF2424] font-bold mb-[12px]">JATAKA IS THE OPERATING SYSTEM</div>
               <p className="text-[15.5px] text-white/60 max-w-[480px] leading-[1.65]">
                 Making enterprises autonomous. The chaos is over. When your entire Salesforce 
-                architecture lives in a Knowledge Graph, every tool — your IDE, your CI/CD, your 
-                Slack — gets smarter with every deployment.
+                architecture lives in a Knowledge Graph, every tool ,  your IDE, your CI/CD, your 
+                Slack ,  gets smarter with every deployment.
               </p>
             </div>
             <div className="text-left lg:text-right border-t border-white/10 lg:border-t-0 pt-[20px] lg:pt-0">
@@ -603,7 +603,7 @@ export default function JatakaLandingPage() {
               <div className="inline-block bg-[#FF2424] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Step 1</div>
               <h3 className="font-archivo text-[16px] uppercase tracking-[-0.3px] text-[#1a1a1a] mb-[8px]">Intent (Jira)</h3>
               <p className="text-[13px] leading-[1.65] text-[#555]">
-                Jataka reads the Jira ticket and updates the Neo4j graph with the business intent. Your feature requirements become structured context.
+                Jataka reads the Jira ticket and updates the Knowledge graph with the business intent. Your feature requirements become structured context.
               </p>
             </div>
 
@@ -654,7 +654,7 @@ export default function JatakaLandingPage() {
                 <p className="text-[14px] leading-[1.7] text-white/60">
                   Your developers stay in their IDE. Jataka handles the <strong className="text-white font-bold">orchestration</strong>, 
                   the <strong className="text-white font-bold">testing</strong>, and the <strong className="text-white font-bold">ticket management</strong>. 
-                  This closed loop — Jira to Cursor to GitHub to Jataka back to Jira — is your highest-value intellectual property. 
+                  This closed loop ,  Jira to Cursor to GitHub to Jataka back to Jira ,  is your highest-value intellectual property. 
                   You aren't just catching limits; you are automating the entire Software Development Life Cycle.
                 </p>
                 <a 

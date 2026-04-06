@@ -115,7 +115,7 @@ const architectureLayers = [
   },
   {
     layer: "2. Sandbox Connection",
-    description: "Instant OAuth connection to your existing Integration/Staging Sandbox. No slow provisioning—uses your existing data volumes.",
+    description: "Instant OAuth connection to your existing Integration/Staging Sandbox. No slow provisioning, uses your existing data volumes.",
     icon: Database
   },
   {
@@ -125,7 +125,7 @@ const architectureLayers = [
   },
   {
     layer: "4. Real-Time Telemetry",
-    description: "Sforce-Limit-Info HTTP headers + Debug Log parsing. No injected Apex—pure external observation.",
+    description: "Sforce-Limit-Info HTTP headers + Debug Log parsing. No injected Apex, pure external observation.",
     icon: Shield
   },
   {
@@ -273,7 +273,7 @@ export default function SubSecondProfilerPage() {
             <Reveal delay={600}>
               <p className="text-[16px] leading-[1.8] text-[#444] mb-[40px]">
                 To catch limit breaches before production, we need to execute code in an environment that 
-                mimics production data volumes—without ever touching actual production data.
+                mimics production data volumes, without ever touching actual production data.
               </p>
             </Reveal>
 
@@ -326,19 +326,19 @@ export default function SubSecondProfilerPage() {
               <ul className="space-y-[12px] mb-[30px]">
                 <li className="flex items-start gap-[10px]">
                   <CheckCircle className="w-[16px] h-[16px] text-[#22c55e] flex-shrink-0 mt-[4px]" />
-                  <span className="text-[15px] text-[#444]"><strong>Real data volumes</strong> — Profile against actual record counts in your sandbox</span>
+                  <span className="text-[15px] text-[#444]"><strong>Real data volumes</strong> ,  Profile against actual record counts in your sandbox</span>
                 </li>
                 <li className="flex items-start gap-[10px]">
                   <CheckCircle className="w-[16px] h-[16px] text-[#22c55e] flex-shrink-0 mt-[4px]" />
-                  <span className="text-[15px] text-[#444]"><strong>No data copying</strong> — We never read or store your actual records</span>
+                  <span className="text-[15px] text-[#444]"><strong>No data copying</strong> ,  We never read or store your actual records</span>
                 </li>
                 <li className="flex items-start gap-[10px]">
                   <CheckCircle className="w-[16px] h-[16px] text-[#22c55e] flex-shrink-0 mt-[4px]" />
-                  <span className="text-[15px] text-[#444]"><strong>Instant setup</strong> — OAuth connection in milliseconds, not minutes</span>
+                  <span className="text-[15px] text-[#444]"><strong>Instant setup</strong> ,  OAuth connection in milliseconds, not minutes</span>
                 </li>
                 <li className="flex items-start gap-[10px]">
                   <CheckCircle className="w-[16px] h-[16px] text-[#22c55e] flex-shrink-0 mt-[4px]" />
-                  <span className="text-[15px] text-[#444]"><strong>Existing metadata</strong> — No redeployment needed, your sandbox is ready</span>
+                  <span className="text-[15px] text-[#444]"><strong>Existing metadata</strong> ,  No redeployment needed, your sandbox is ready</span>
                 </li>
               </ul>
             </Reveal>
@@ -347,7 +347,7 @@ export default function SubSecondProfilerPage() {
               <div className="bg-[#22c55e]/5 border border-[#22c55e]/20 rounded-[8px] p-[20px] mb-[40px]">
                 <p className="text-[14px] text-[#444]">
                   <strong className="text-[#22c55e]">Security guarantee:</strong> Jataka only reads limit headers and debug logs. 
-                  We never query your actual records. Your data stays in your Salesforce org—we only observe 
+                  We never query your actual records. Your data stays in your Salesforce org, we only observe 
                   the telemetry that Salesforce already exposes.
                 </p>
               </div>
@@ -363,7 +363,7 @@ export default function SubSecondProfilerPage() {
             <Reveal delay={100}>
               <p className="text-[16px] leading-[1.8] text-[#444] mb-[20px]">
                 Your Integration/Staging sandbox already has realistic data volumes. We profile your 
-                transactions against those actual record counts—no synthetic data needed:
+                transactions against those actual record counts, no synthetic data needed:
               </p>
             </Reveal>
 
@@ -371,19 +371,19 @@ export default function SubSecondProfilerPage() {
               <ul className="space-y-[12px] mb-[30px]">
                 <li className="flex items-start gap-[10px]">
                   <Database className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[4px]" />
-                  <span className="text-[15px] text-[#444]"><strong>Actual record counts</strong> — If your sandbox has 10,000 Accounts, we test against 10,000 Accounts</span>
+                  <span className="text-[15px] text-[#444]"><strong>Actual record counts</strong> ,  If your sandbox has 10,000 Accounts, we test against 10,000 Accounts</span>
                 </li>
                 <li className="flex items-start gap-[10px]">
                   <Database className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[4px]" />
-                  <span className="text-[15px] text-[#444]"><strong>Real relationships</strong> — Parent-child ratios match your actual org structure</span>
+                  <span className="text-[15px] text-[#444]"><strong>Real relationships</strong> ,  Parent-child ratios match your actual org structure</span>
                 </li>
                 <li className="flex items-start gap-[10px]">
                   <Database className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[4px]" />
-                  <span className="text-[15px] text-[#444]"><strong>Data skew detection</strong> — We identify skewed parent records from your actual data model</span>
+                  <span className="text-[15px] text-[#444]"><strong>Data skew detection</strong> ,  We identify skewed parent records from your actual data model</span>
                 </li>
                 <li className="flex items-start gap-[10px]">
                   <Database className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[4px]" />
-                  <span className="text-[15px] text-[#444]"><strong>No seeding delay</strong> — Your data is already there, profiling starts instantly</span>
+                  <span className="text-[15px] text-[#444]"><strong>No seeding delay</strong> ,  Your data is already there, profiling starts instantly</span>
                 </li>
               </ul>
             </Reveal>
@@ -391,7 +391,7 @@ export default function SubSecondProfilerPage() {
             <Reveal delay={300}>
               <p className="text-[15px] text-[#555] mb-[40px]">
                 This is why Jataka can profile in milliseconds instead of minutes. We don't provision 
-                environments—we connect to yours.
+                environments, we connect to yours.
               </p>
             </Reveal>
 
@@ -419,7 +419,7 @@ export default function SubSecondProfilerPage() {
 Sforce-Limit-Info: api-usage=5250/15000; per-app-api-usage=42/500
 
 // We parse this instantly after each transaction
-// No code injection needed—pure external observation`}
+// No code injection needed, pure external observation`}
                 </pre>
               </div>
             </Reveal>
@@ -446,7 +446,7 @@ Sforce-Limit-Info: api-usage=5250/15000; per-app-api-usage=42/500
 
             <Reveal delay={300}>
               <p className="text-[15px] text-[#555] mb-[40px]">
-                This approach gives us line-level attribution—we can tell you exactly which line of code 
+                This approach gives us line-level attribution, we can tell you exactly which line of code 
                 triggered the 142nd DML statement. No sampling, no approximation, just the actual limit 
                 consumption captured from Salesforce's own telemetry.
               </p>
@@ -472,7 +472,7 @@ Sforce-Limit-Info: api-usage=5250/15000; per-app-api-usage=42/500
 
             <Reveal delay={200}>
               <p className="text-[15px] text-[#555] mb-[40px]">
-                The entire profiling pipeline—from PR webhook to breach report—completes in under 2 minutes 
+                The entire profiling pipeline, from PR webhook to breach report, completes in under 2 minutes 
                 for most transactions. Your developers get feedback before they context-switch.
               </p>
             </Reveal>
@@ -486,7 +486,7 @@ Sforce-Limit-Info: api-usage=5250/15000; per-app-api-usage=42/500
 
             <Reveal delay={100}>
               <p className="text-[16px] leading-[1.8] text-[#444] mb-[20px]">
-                Jataka's profiler gives you the confidence that your code will survive production data volumes—
+                Jataka's profiler gives you the confidence that your code will survive production data volumes, 
                 without ever exposing production data. It's the missing piece between static analysis 
                 (which catches syntax errors) and production incidents (which catch limit breaches too late).
               </p>
@@ -496,7 +496,7 @@ Sforce-Limit-Info: api-usage=5250/15000; per-app-api-usage=42/500
               <div className="bg-[#FF2424]/5 border border-[#FF2424]/20 rounded-[12px] p-[24px] mb-[40px]">
                 <p className="text-[15px] text-[#444] leading-[1.7]">
                   <strong className="text-[#FF2424]">The bottom line:</strong> If you're only running static analysis, 
-                  you're catching 30% of the problems. Runtime profiling catches the other 70%—the ones that 
+                  you're catching 30% of the problems. Runtime profiling catches the other 70%, the ones that 
                   cause 2:00 AM production incidents.
                 </p>
               </div>

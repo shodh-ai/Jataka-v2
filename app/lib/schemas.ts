@@ -63,7 +63,7 @@ export const softwareApplicationSchema = {
     "Blast Radius Prediction",
     "Kamikaze Pods",
     "Vision AI",
-    "Neo4j Dependency Graph",
+    "Knowledge Dependency Graph",
     "Automated Code Review",
     "Runtime Testing"
   ],

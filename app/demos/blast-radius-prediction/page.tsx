@@ -86,7 +86,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "VideoObject",
   "name": "AI-Assisted Blast Radius Prediction - Jataka Demo",
-  "description": "Watch Jataka's Neo4j dependency graph calculate the blast radius of code changes before they're made. Integration with Cursor IDE via MCP protocol.",
+  "description": "Watch Jataka's Knowledge dependency graph calculate the blast radius of code changes before they're made. Integration with Cursor IDE via MCP protocol.",
   "thumbnailUrl": "https://jataka.io/thumbnails/blast-radius-prediction.png",
   "uploadDate": "2024-01-15",
   "duration": "PT2M52S",
@@ -140,7 +140,7 @@ export default function BlastRadiusPredictionDemo() {
   const keyTakeaways = [
     {
       title: "Real-Time Dependency Graph",
-      description: "Jataka maintains a Neo4j graph of your entire Salesforce org's dependencies. Every class, trigger, flow, and integration is mapped and queryable."
+      description: "Jataka maintains a Knowledge graph of your entire Salesforce org's dependencies. Every class, trigger, flow, and integration is mapped and queryable."
     },
     {
       title: "Cursor IDE Integration",
@@ -165,7 +165,7 @@ export default function BlastRadiusPredictionDemo() {
     {
       step: 2,
       title: "Developer Asks Question",
-      description: "The developer asks via MCP: 'If I add an after update handler, what breaks?' The query is sent to Jataka's Neo4j graph."
+      description: "The developer asks via MCP: 'If I add an after update handler, what breaks?' The query is sent to Jataka's Knowledge graph."
     },
     {
       step: 3,
@@ -309,7 +309,7 @@ export default function BlastRadiusPredictionDemo() {
                   <span>2:52</span>
                 </div>
                 <span className="text-[#1a1a1a]/20">|</span>
-                <span>Neo4j • MCP • Cursor IDE • Dependency Graph</span>
+                <span>Knowledge • MCP • Cursor IDE • Dependency Graph</span>
               </div>
             </Reveal>
           </div>
@@ -358,7 +358,7 @@ export default function BlastRadiusPredictionDemo() {
                   They ask via MCP: <em>"If I add an after update handler, what breaks?"</em>
                 </p>
                 <p className="text-[17px] leading-[1.7] text-[#444] mb-[24px]">
-                  Jataka queries the Neo4j graph, which contains the entire org's dependency map. It returns: 
+                  Jataka queries the Knowledge graph, which contains the entire org's dependency map. It returns: 
                   <strong className="text-[#FF2424"> 3 Apex classes that call this trigger, 12 Flows that depend on the output, 
                   2 integrations that sync on update, and 1 critical bug in ClassB that will cascade.</strong>
                 </p>

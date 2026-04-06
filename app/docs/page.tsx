@@ -204,7 +204,7 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
     {
       title: "Debug Log Analysis",
       description: "We execute your code in Sandbox and parse Debug Logs to extract actual runtime metrics. This is where we catch the real limit breaches.",
-      detailedDescription: "After executing the transaction in an isolated Sandbox, we analyze the execution trace to extract exact runtime metrics. This gives us precise measurements: 97 SOQL queries, 48,000 query rows, 8,500 DML rows. Not estimates—measured facts.",
+      detailedDescription: "After executing the transaction in an isolated Sandbox, we analyze the execution trace to extract exact runtime metrics. This gives us precise measurements: 97 SOQL queries, 48,000 query rows, 8,500 DML rows. Not estimates, measured facts.",
       code: `> Parsing execution trace...
 > SOQL queries detected: 97/100
 > Query rows: 48,000/50,000
@@ -285,7 +285,7 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
         <div className="relative z-10 max-w-[1000px]">
           <Reveal>
             <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[40px]">
-              01 — Technical Documentation
+              01 ,  Technical Documentation
             </p>
           </Reveal>
 
@@ -317,7 +317,7 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
         <div className="relative z-10 max-w-[1200px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[80px] md:py-[120px]">
           <Reveal>
             <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[30px]">
-              02 — Architecture
+              02 ,  Architecture
             </p>
           </Reveal>
 
@@ -393,7 +393,7 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
         <div className="relative z-10 max-w-[1200px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[80px] md:py-[120px]">
           <Reveal>
             <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[30px]">
-              03 — Security & Data Privacy
+              03 ,  Security & Data Privacy
             </p>
           </Reveal>
 
@@ -407,7 +407,7 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
 
           <Reveal delay={200}>
             <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[700px] mb-[60px]">
-              Built for US Enterprise sales. Your code is your IP. Here's <strong className="text-[#1a1a1a] font-semibold">exactly</strong> how we protect it—no vague promises, just specifics.
+              Built for US Enterprise sales. Your code is your IP. Here's <strong className="text-[#1a1a1a] font-semibold">exactly</strong> how we protect it, no vague promises, just specifics.
             </p>
           </Reveal>
 
@@ -467,7 +467,7 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
         <div className="relative z-10 max-w-[1200px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[80px] md:py-[120px]">
           <Reveal>
             <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[30px]">
-              04 — How We Parse Limits
+              04 ,  How We Parse Limits
             </p>
           </Reveal>
 
@@ -527,7 +527,7 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
                   </h4>
                   <p className="text-[15px] leading-[1.7] text-[#444]">
                     We don't guess. We execute your code in a Sandbox and measure real metrics. If we say you're at 97/100 SOQL queries, 
-                    that's not an estimate—it's a <strong className="text-[#1a1a1a] font-semibold">measured fact</strong> from the actual execution. Zero false positives.
+                    that's not an estimate, it's a <strong className="text-[#1a1a1a] font-semibold">measured fact</strong> from the actual execution. Zero false positives.
                   </p>
                 </div>
               </div>

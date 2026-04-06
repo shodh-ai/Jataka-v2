@@ -97,11 +97,11 @@ const steps = [
     subtitle: "Jira Integration",
     icon: Ticket,
     color: "#FF2424",
-    description: "Jataka reads the Jira ticket and updates the Neo4j graph with the business intent.",
+    description: "Jataka reads the Jira ticket and updates the Knowledge graph with the business intent.",
     details: [
       "Parse Jira ticket description and acceptance criteria",
       "Map requirements to existing Salesforce metadata",
-      "Update Neo4j graph with feature context",
+      "Update Knowledge graph with feature context",
       "Identify affected objects, classes, and flows"
     ],
     outcome: "Your feature requirements become structured context that every tool in your pipeline can access."
@@ -134,7 +134,7 @@ const steps = [
       "Vision AI tests the UI in real browser",
       "Hybrid SOQL assertions verify database state"
     ],
-    outcome: "Every PR is tested against real Salesforce limits—not just static analysis guesses."
+    outcome: "Every PR is tested against real Salesforce limits, not just static analysis guesses."
   },
   {
     number: "04",
@@ -256,7 +256,7 @@ export default function AutonomousSDLCPage() {
             <Reveal delay={200}>
               <p className="text-[18px] leading-[1.7] text-[#444] max-w-[700px] mx-auto mb-[30px]">
                 Jataka doesn't just wait for pull requests. It manages the entire lifecycle. 
-                This closed loop — <strong className="text-[#1a1a1a]">Jira to Cursor to GitHub to Jataka back to Jira</strong> — 
+                This closed loop ,  <strong className="text-[#1a1a1a]">Jira to Cursor to GitHub to Jataka back to Jira</strong> ,  
                 is your highest-value intellectual property.
               </p>
             </Reveal>
@@ -281,9 +281,9 @@ export default function AutonomousSDLCPage() {
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-[20px] md:gap-[16px]">
                   {[
-                    { name: "Jira", icon: "📋", color: "#FF2424" },
-                    { name: "Cursor", icon: "⌨️", color: "#FF6B35" },
-                    { name: "GitHub", icon: "🔍", color: "#FFB800" },
+                    { name: "Jira", number: "01", color: "#FF2424" },
+                    { name: "Cursor", number: "02", color: "#FF6B35" },
+                    { name: "GitHub", number: "03", color: "#FFB800" },
                     { name: "Jataka", icon: "J", color: "#FF2424", isJataka: true },
                   ].map((item, index) => (
                     <React.Fragment key={item.name}>
@@ -292,7 +292,7 @@ export default function AutonomousSDLCPage() {
                           className={`w-[60px] h-[60px] rounded-full flex items-center justify-center mx-auto mb-[8px] ${item.isJataka ? 'bg-[#FF2424] text-white font-bold text-[24px]' : ''}`}
                           style={!item.isJataka ? { backgroundColor: `${item.color}15` } : {}}
                         >
-                          {item.isJataka ? item.icon : <span className="text-[24px]">{item.icon}</span>}
+                          {item.isJataka ? item.icon : <span className="font-archivo text-[16px] font-bold" style={{ color: item.color }}>{item.number}</span>}
                         </div>
                         <span className="text-[11px] uppercase tracking-[1px] text-white/70">{item.name}</span>
                       </div>
@@ -415,7 +415,7 @@ export default function AutonomousSDLCPage() {
           </div>
         </section>
 
-        {/* NEO4J CONTEXT */}
+        {/* Knowledge CONTEXT */}
         <section className="py-[60px] px-[24px] md:px-[48px] bg-white">
           <div className="max-w-[800px] mx-auto text-center">
             <Reveal>
@@ -426,14 +426,14 @@ export default function AutonomousSDLCPage() {
 
             <Reveal delay={100}>
               <h2 className="font-archivo text-[clamp(28px,4vw,40px)] leading-[1.1] tracking-[-1px] uppercase mb-[20px]">
-                Powered by Neo4j
+                Powered by Knowledge
               </h2>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="text-[17px] leading-[1.7] text-[#444] mb-[30px]">
-                Every tool in the closed loop — Jira, Cursor, GitHub — accesses the same 
-                <strong className="text-[#1a1a1a]"> Neo4j Knowledge Graph</strong>. Your entire Salesforce org's 
+                Every tool in the closed loop ,  Jira, Cursor, GitHub ,  accesses the same 
+                <strong className="text-[#1a1a1a]"> Knowledge Knowledge Graph</strong>. Your entire Salesforce org's 
                 metadata, relationships, and blast radius live in one place. When a Jira ticket is created, 
                 Jataka already knows what it affects.
               </p>
@@ -443,7 +443,7 @@ export default function AutonomousSDLCPage() {
               <div className="bg-[#FAF8F3] rounded-[12px] p-[24px] border border-[#1a1a1a]/5">
                 <p className="text-[14px] text-[#555] leading-[1.7]">
                   <strong className="text-[#FF2424]">Example:</strong> A Jira ticket says "Add validation to Account.Name". 
-                  Jataka's Neo4j graph instantly shows: 3 triggers, 7 flows, 12 Apex classes, and 2 integrations 
+                  Jataka's Knowledge graph instantly shows: 3 triggers, 7 flows, 12 Apex classes, and 2 integrations 
                   that reference Account.Name. Cursor gets this context before your developer writes a single line.
                 </p>
               </div>

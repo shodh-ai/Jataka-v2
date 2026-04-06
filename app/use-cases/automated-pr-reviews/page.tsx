@@ -156,7 +156,7 @@ export default function AgencyUseCase() {
     },
     {
       title: "Blast Radius Prediction",
-      description: "Before merging, know exactly which components will be affected. Our Neo4j graph analysis maps all dependencies and predicts impact.",
+      description: "Before merging, know exactly which components will be affected. Our Knowledge graph analysis maps all dependencies and predicts impact.",
       icon: GitBranch,
     },
     {
@@ -312,7 +312,7 @@ export default function AgencyUseCase() {
 
             <Reveal delay={200}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[800px] mb-[20px]">
-                Your best architects—the ones who should be designing scalable systems—are stuck reading SOQL queries in for loops. 
+                Your best architects, the ones who should be designing scalable systems, are stuck reading SOQL queries in for loops. 
                 Every PR needs manual limit checking. Every deployment requires a senior engineer to approve.
               </p>
             </Reveal>
@@ -514,7 +514,7 @@ export default function AgencyUseCase() {
             <Reveal delay={200}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#999] max-w-[600px] mx-auto mb-[40px]">
                 Book a demo and see Jataka automate code review for your Salesforce team. 
-                No more bottlenecks—just scalable, high-quality delivery.
+                No more bottlenecks, just scalable, high-quality delivery.
               </p>
             </Reveal>
 

@@ -93,7 +93,7 @@ const pillars = [
       "Enterprise agreements with OpenAI and Anthropic",
       "Zero Data Retention (ZDR) mode enabled for all API calls",
       "Your code is processed, not stored or learned from",
-      "No model training on customer data—ever"
+      "No model training on customer data, ever"
     ]
   },
   {
@@ -104,7 +104,7 @@ const pillars = [
       "OAuth scoped to Staging/Integration sandboxes only",
       "Production org access never requested",
       "Your customer data stays in your production org",
-      "Sandbox data is test data—not real customer records"
+      "Sandbox data is test data, not real customer records"
     ]
   },
   {
@@ -333,11 +333,11 @@ export default function SecurityPage() {
 
                 <div className="mt-[32px] pt-[24px] border-t border-white/10 text-center">
                   <p className="text-[14px] text-white/70">
-                    <span className="text-[#FF2424]">✗</span> Production Org — <span className="text-white/50">Never accessed</span>
+                    <span className="text-[#FF2424]">✗</span> Production Org ,  <span className="text-white/50">Never accessed</span>
                     <span className="mx-[16px]">|</span>
-                    <span className="text-[#FF2424]">✗</span> Customer Data — <span className="text-white/50">Never read</span>
+                    <span className="text-[#FF2424]">✗</span> Customer Data ,  <span className="text-white/50">Never read</span>
                     <span className="mx-[16px]">|</span>
-                    <span className="text-[#FF2424]">✗</span> Model Training — <span className="text-white/50">Never used</span>
+                    <span className="text-[#FF2424]">✗</span> Model Training ,  <span className="text-white/50">Never used</span>
                   </p>
                 </div>
               </div>

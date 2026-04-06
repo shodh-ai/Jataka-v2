@@ -408,7 +408,7 @@ export default function StaticAnalysisIsDeadPage() {
                     <span className="text-[12px] font-bold text-[#FF2424]">1</span>
                   </div>
                   <div>
-                    <strong className="text-[#1a1a1a]">Actual SOQL count</strong> — Not "potential SOQL in loop" but "127 queries executed"
+                    <strong className="text-[#1a1a1a]">Actual SOQL count</strong> ,  Not "potential SOQL in loop" but "127 queries executed"
                   </div>
                 </li>
                 <li className="flex items-start gap-[12px]">
@@ -416,7 +416,7 @@ export default function StaticAnalysisIsDeadPage() {
                     <span className="text-[12px] font-bold text-[#FF2424]">2</span>
                   </div>
                   <div>
-                    <strong className="text-[#1a1a1a]">Actual CPU time</strong> — Not "nested loops detected" but "12,847ms consumed"
+                    <strong className="text-[#1a1a1a]">Actual CPU time</strong> ,  Not "nested loops detected" but "12,847ms consumed"
                   </div>
                 </li>
                 <li className="flex items-start gap-[12px]">
@@ -424,7 +424,7 @@ export default function StaticAnalysisIsDeadPage() {
                     <span className="text-[12px] font-bold text-[#FF2424]">3</span>
                   </div>
                   <div>
-                    <strong className="text-[#1a1a1a]">Actual DML operations</strong> — Not "DML in loop" but "187 statements vs 150 limit"
+                    <strong className="text-[#1a1a1a]">Actual DML operations</strong> ,  Not "DML in loop" but "187 statements vs 150 limit"
                   </div>
                 </li>
                 <li className="flex items-start gap-[12px]">
@@ -432,7 +432,7 @@ export default function StaticAnalysisIsDeadPage() {
                     <span className="text-[12px] font-bold text-[#FF2424]">4</span>
                   </div>
                   <div>
-                    <strong className="text-[#1a1a1a]">Actual data model impact</strong> — Not "possible contention" but "52,847 child records on parent"
+                    <strong className="text-[#1a1a1a]">Actual data model impact</strong> ,  Not "possible contention" but "52,847 child records on parent"
                   </div>
                 </li>
               </ul>
@@ -447,7 +447,7 @@ export default function StaticAnalysisIsDeadPage() {
 
             <Reveal delay={100}>
               <p className="text-[16px] leading-[1.8] text-[#444] mb-[20px]">
-                Static analysis isn't dead—it's just incomplete. You still need it for code quality, security 
+                Static analysis isn't dead, it's just incomplete. You still need it for code quality, security 
                 scanning, and style enforcement. But you also need runtime profiling for the things static 
                 analysis can't see.
               </p>

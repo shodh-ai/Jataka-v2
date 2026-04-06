@@ -4,7 +4,7 @@ const defenseLayers = [
   {
     title: "The Context Engine",
     subtitle: "Mapping the Blast Radius",
-    body: "Jataka connects to your Salesforce Org via OAuth and ingests metadata, Flow dependencies, and Apex Triggers through the Tooling API into a Neo4j graph. Your team gets a live map of how a decade of architecture is actually wired.",
+    body: "Jataka connects to your Salesforce Org via OAuth and ingests metadata, Flow dependencies, and Apex Triggers through the Tooling API into a Knowledge graph. Your team gets a live map of how a decade of architecture is actually wired.",
   },
   {
     title: "Shift-Left Guardrails",

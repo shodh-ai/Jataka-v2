@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://jataka.io"),
   title: {
-    default: "Jataka — AI-Powered Salesforce Development Platform | Stop Rollbacks Before They Happen",
+    default: "Jataka ,  AI-Powered Salesforce Development Platform | Stop Rollbacks Before They Happen",
     template: "%s | Jataka"
   },
   description: "Jataka helps Salesforce teams catch Governor Limit breaches before deployment, automatically heal UI tests, and predict blast radius of code changes. Zero Sev-1s. 90% less test maintenance. Deploy with confidence.",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "Vision AI testing",
     "Self-healing tests",
     "Salesforce dependency graph",
-    "Neo4j Salesforce",
+    "Knowledge Salesforce",
     "Cursor IDE Salesforce",
     "MCP Salesforce"
   ],
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://jataka.io",
     siteName: "Jataka",
-    title: "Jataka — AI-Powered Salesforce Development Platform",
+    title: "Jataka ,  AI-Powered Salesforce Development Platform",
     description: "Catch Governor Limit breaches before deployment. Automatically heal UI tests. Predict blast radius of code changes. Zero Sev-1s. Deploy with confidence.",
     images: [
       {
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jataka — AI-Powered Salesforce Development Platform",
+    title: "Jataka ,  AI-Powered Salesforce Development Platform",
     description: "Catch Governor Limit breaches before deployment. Automatically heal UI tests. Predict blast radius of code changes.",
     images: ["/og-image.png"],
     creator: "@jataka_ai",

@@ -152,7 +152,7 @@ export default function QATeamUseCase() {
     },
     {
       title: "Visual Element Recognition",
-      description: "We recognize UI elements the way a human does—by visual appearance, position, and context. No brittle test elements that break on every release.",
+      description: "We recognize UI elements the way a human does, by visual appearance, position, and context. No brittle test elements that break on every release.",
       icon: Eye,
     },
     {
@@ -393,7 +393,7 @@ export default function QATeamUseCase() {
 
             <Reveal delay={300}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[800px] mb-[60px]">
-                Our AI doesn't rely on brittle test elements. It recognizes UI elements the way a human does—by visual appearance, 
+                Our AI doesn't rely on brittle test elements. It recognizes UI elements the way a human does, by visual appearance, 
                 position, and context. When Salesforce changes a button's attribute from 
                 <code className="bg-[#1a1a1a]/5 px-[6px] py-[2px] rounded-[4px] text-[14px]">'submit-btn'</code> to 
                 <code className="bg-[#1a1a1a]/5 px-[6px] py-[2px] rounded-[4px] text-[14px]">'submit-order-btn'</code>, the AI identifies the button visually, 
@@ -575,7 +575,7 @@ export default function QATeamUseCase() {
             <Reveal delay={200}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#999] max-w-[600px] mx-auto mb-[40px]">
                 Book a demo and watch Jataka's AI automatically fix broken UI tests in real-time. 
-                No more maintenance sprints—just continuous testing.
+                No more maintenance sprints, just continuous testing.
               </p>
             </Reveal>
 

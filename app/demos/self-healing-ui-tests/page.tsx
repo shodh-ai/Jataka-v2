@@ -140,7 +140,7 @@ export default function SelfHealingUITestsDemo() {
   const keyTakeaways = [
     {
       title: "Visual Element Recognition",
-      description: "Jataka recognizes UI elements the way a human does—by visual appearance, position, and context. No brittle CSS selectors that break on every release."
+      description: "Jataka recognizes UI elements the way a human does, by visual appearance, position, and context. No brittle CSS selectors that break on every release."
     },
     {
       title: "Automatic Test Healing",
@@ -148,7 +148,7 @@ export default function SelfHealingUITestsDemo() {
     },
     {
       title: "Works with Any Framework",
-      description: "Playwright, Selenium, Cypress—Jataka's Vision AI works with all major testing frameworks. No rewrite required."
+      description: "Playwright, Selenium, Cypress, Jataka's Vision AI works with all major testing frameworks. No rewrite required."
     },
     {
       title: "90% Maintenance Reduction",
@@ -170,7 +170,7 @@ export default function SelfHealingUITestsDemo() {
     {
       step: 3,
       title: "Element Matching",
-      description: "The Vision AI compares the current UI against its visual model. It recognizes the button by its position, label, color, and context—not by the changed selector."
+      description: "The Vision AI compares the current UI against its visual model. It recognizes the button by its position, label, color, and context, not by the changed selector."
     },
     {
       step: 4,
@@ -354,7 +354,7 @@ export default function SelfHealingUITestsDemo() {
                 </p>
                 <p className="text-[17px] leading-[1.7] text-[#444] mb-[24px]">
                   The test starts to fail. Jataka's Vision Engine intercepts, analyzes the page visually, identifies the button by its 
-                  position, label, and context, updates the selector in real-time, and the test passes—<strong className="text-[#FF2424]">without any human intervention.</strong>
+                  position, label, and context, updates the selector in real-time, and the test passes, <strong className="text-[#FF2424]">without any human intervention.</strong>
                 </p>
               </div>
             </Reveal>

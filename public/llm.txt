@@ -18,7 +18,7 @@ Jataka is a Backend Firewall and Developer Experience platform for Salesforce. W
 
 2. **Self-Healing UI Tests** - Vision AI that automatically heals Playwright/Selenium/Cypress tests when Salesforce UI changes break selectors.
 
-3. **Blast Radius Prediction** - Neo4j dependency graph integration with Cursor IDE via MCP protocol. Know what breaks before you change.
+3. **Blast Radius Prediction** - Knowledge dependency graph integration with Cursor IDE via MCP protocol. Know what breaks before you change.
 
 ## Target Customers
 
@@ -144,7 +144,7 @@ Key Takeaways:
    - Position and context awareness
    - Automatic selector healing
 
-5. **Neo4j Dependency Graph** - Code relationship mapping
+5. **Knowledge Dependency Graph** - Code relationship mapping
    - Every Apex class, trigger, flow mapped
    - Integration dependencies tracked
    - Real-time queryable
@@ -156,7 +156,7 @@ Isolated Sandbox environments that execute Apex code with Production-like data v
 ### Vision AI
 Computer vision models trained on Salesforce Lightning UI. Recognizes elements by visual appearance, position, and context—not brittle CSS selectors.
 
-### Neo4j Dependency Graph
+### Knowledge Dependency Graph
 Complete dependency map of your Salesforce org. Every Apex class, trigger, flow, and integration is mapped and queryable in real-time.
 
 ### MCP Protocol Integration
@@ -201,7 +201,7 @@ Model Context Protocol integration with Cursor IDE. Ask questions about your cod
 ### Blast Radius Prediction Flow
 
 1. **Code Change Identification** - Developer opens file in Cursor
-2. **Graph Query** - Neo4j queried for dependencies
+2. **Graph Query** - Knowledge queried for dependencies
 3. **Impact Analysis** - Downstream effects calculated
 4. **Risk Assessment** - Critical paths highlighted
 5. **Developer Notification** - Results shown in IDE
@@ -315,4 +315,4 @@ Full technical documentation available at https://jataka.io/docs
 
 ## Keywords for Search
 
-Salesforce Governor Limits, Salesforce testing, Apex testing, Salesforce CI/CD, Salesforce deployment, Salesforce code review, Salesforce automation, Playwright Salesforce, Selenium Salesforce, Salesforce QA, Salesforce development tools, Apex debugging, Salesforce runtime governance, Salesforce backend firewall, Vision AI testing, Self-healing tests, Salesforce dependency graph, Neo4j Salesforce, Cursor IDE Salesforce, MCP Salesforce
+Salesforce Governor Limits, Salesforce testing, Apex testing, Salesforce CI/CD, Salesforce deployment, Salesforce code review, Salesforce automation, Playwright Salesforce, Selenium Salesforce, Salesforce QA, Salesforce development tools, Apex debugging, Salesforce runtime governance, Salesforce backend firewall, Vision AI testing, Self-healing tests, Salesforce dependency graph, Knowledge Salesforce, Cursor IDE Salesforce, MCP Salesforce

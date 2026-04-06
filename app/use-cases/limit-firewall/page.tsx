@@ -147,7 +147,7 @@ export default function RuntimeLimitProtectionUseCase() {
   const solutionFeatures = [
     {
       title: "Pre-Merge Limit Profiling",
-      description: "Every PR is executed in an isolated Sandbox with Production-like data volumes before merge. We measure actual SOQL queries, DML statements, CPU milliseconds, and heap size—not estimates.",
+      description: "Every PR is executed in an isolated Sandbox with Production-like data volumes before merge. We measure actual SOQL queries, DML statements, CPU milliseconds, and heap size, not estimates.",
       icon: Database,
     },
     {
@@ -183,7 +183,7 @@ export default function RuntimeLimitProtectionUseCase() {
     {
       step: 2,
       title: "Sandbox Pod Spin-Up",
-      description: "Jataka spins up an isolated Kamikaze Pod—a fresh Sandbox environment with your Production data volumes. No contamination, no shared state.",
+      description: "Jataka spins up an isolated Kamikaze Pod, a fresh Sandbox environment with your Production data volumes. No contamination, no shared state.",
     },
     {
       step: 3,
@@ -400,7 +400,7 @@ export default function RuntimeLimitProtectionUseCase() {
 
             <Reveal delay={300}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[800px] mb-[60px]">
-                Before any code reaches Production, Jataka spins up a <strong className="text-[#1a1a1a] font-semibold">Kamikaze Pod</strong>—an isolated 
+                Before any code reaches Production, Jataka spins up a <strong className="text-[#1a1a1a] font-semibold">Kamikaze Pod</strong>, an isolated 
                 Sandbox environment that mirrors your Production data volumes. It executes the actual transaction, parses the Debug Logs, 
                 and measures real SOQL queries, DML statements, and CPU milliseconds. If any threshold is breached, the PR is blocked 
                 with a detailed limit report showing exactly which line caused the problem.
@@ -540,7 +540,7 @@ export default function RuntimeLimitProtectionUseCase() {
             <Reveal delay={200}>
               <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#999] max-w-[600px] mx-auto mb-[40px]">
                 Book a demo and watch Jataka identify actual Governor Limit risks in your Salesforce code. 
-                No generic pitches—just your code, your limits, your protection.
+                No generic pitches, just your code, your limits, your protection.
               </p>
             </Reveal>
 

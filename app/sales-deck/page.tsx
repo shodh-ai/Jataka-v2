@@ -177,7 +177,7 @@ export default function SalesDeckPage() {
         <div className="relative z-10 max-w-[1000px]">
           <Reveal>
             <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[40px]">
-              01 — The Big Change
+              01 ,  The Big Change
             </p>
           </Reveal>
 
@@ -223,7 +223,7 @@ export default function SalesDeckPage() {
         <div className="relative z-10 max-w-[1000px]">
           <Reveal>
             <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[40px]">
-              02 — The Unaddressed Risk
+              02 ,  The Unaddressed Risk
             </p>
           </Reveal>
 
@@ -288,7 +288,7 @@ export default function SalesDeckPage() {
             <div>
               <Reveal>
                 <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[40px]">
-                  03 — The Promised Land
+                  03 ,  The Promised Land
                 </p>
               </Reveal>
 
@@ -375,7 +375,7 @@ export default function SalesDeckPage() {
         <div className="relative z-10 max-w-[1000px]">
           <Reveal>
             <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[40px]">
-              04 — Introducing Jataka
+              04 ,  Introducing Jataka
             </p>
           </Reveal>
 
@@ -429,7 +429,7 @@ export default function SalesDeckPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                   </svg>
                 </div>
-                <p className="text-[12px] font-mono uppercase tracking-[2px] text-[#888] mb-[12px]">Neo4j + MCP</p>
+                <p className="text-[12px] font-mono uppercase tracking-[2px] text-[#888] mb-[12px]">Knowledge + MCP</p>
                 <p className="text-[15px] leading-[1.7] text-[#444]">
                   Dependency Graph feeds your architecture into Cursor via MCP, stopping conflicting logic before it's saved.
                 </p>
@@ -519,7 +519,7 @@ export default function SalesDeckPage() {
         <div className="relative z-10 max-w-[1000px]">
           <Reveal>
             <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[40px]">
-              05 — The Outcome
+              05 ,  The Outcome
             </p>
           </Reveal>
 

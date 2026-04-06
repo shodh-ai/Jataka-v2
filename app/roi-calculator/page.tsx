@@ -418,7 +418,7 @@ export default function ROICalculatorPage() {
                 <div className="flex items-start gap-[12px]">
                   <TrendingUp className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[2px]" />
                   <p className="text-[14px] text-[#444]">
-                    <strong className="text-[#1a1a1a]">40% reduction in PR review time</strong> — Jataka catches 
+                    <strong className="text-[#1a1a1a]">40% reduction in PR review time</strong> ,  Jataka catches 
                     Governor Limit breaches before the PR reaches the reviewer, eliminating the most time-consuming reviews.
                   </p>
                 </div>
@@ -426,7 +426,7 @@ export default function ROICalculatorPage() {
                 <div className="flex items-start gap-[12px]">
                   <TrendingUp className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[2px]" />
                   <p className="text-[14px] text-[#444]">
-                    <strong className="text-[#1a1a1a]">90% reduction in test maintenance</strong> — Self-healing tests 
+                    <strong className="text-[#1a1a1a]">90% reduction in test maintenance</strong> ,  Self-healing tests 
                     automatically adapt to Salesforce UI changes, eliminating manual test fixes.
                   </p>
                 </div>
@@ -434,7 +434,7 @@ export default function ROICalculatorPage() {
                 <div className="flex items-start gap-[12px]">
                   <TrendingUp className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[2px]" />
                   <p className="text-[14px] text-[#444]">
-                    <strong className="text-[#1a1a1a]">80% of Sev-1 incidents prevented</strong> — Jataka catches 
+                    <strong className="text-[#1a1a1a]">80% of Sev-1 incidents prevented</strong> ,  Jataka catches 
                     the majority of limit breaches and data corruption issues before they reach production.
                   </p>
                 </div>
@@ -442,7 +442,7 @@ export default function ROICalculatorPage() {
                 <div className="flex items-start gap-[12px]">
                   <TrendingUp className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[2px]" />
                   <p className="text-[14px] text-[#444]">
-                    <strong className="text-[#1a1a1a]">Your Sev-1 cost estimate</strong> — You provided this value above. 
+                    <strong className="text-[#1a1a1a]">Your Sev-1 cost estimate</strong> ,  You provided this value above. 
                     Industry average is $150,000, but your actual cost may vary based on company size and customer impact.
                   </p>
                 </div>

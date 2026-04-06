@@ -289,7 +289,7 @@ export default function CatchingSev1LimitsDemo() {
 
             <Reveal delay={150}>
               <p className="text-[clamp(18px,1.8vw,22px)] leading-[1.6] text-[#444] max-w-[680px] mb-[20px]">
-                Watch a developer make a critical mistake—placing a SOQL query inside a for loop. 
+                Watch a developer make a critical mistake, placing a SOQL query inside a for loop. 
                 <strong className="text-[#1a1a1a] font-semibold"> Jataka catches it before the merge, preventing a production incident.</strong>
               </p>
             </Reveal>
