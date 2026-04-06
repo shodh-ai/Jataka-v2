@@ -260,20 +260,58 @@ Full technical documentation available at https://jataka.io/docs
 
 ### Main Pages
 - / (Home)
-- /use-cases (Use Cases Hub)
-- /blog (Demos Hub)
-- /docs (Documentation)
+- /pricing (Pricing)
+- /security (Security)
+- /customers (Customers)
+- /pilot (Pilot)
 - /book-pilot (Book a Demo)
+- /docs (Documentation)
+- /info (Info)
 
-### Use Case Pages
+### Use Cases Hub
+- /use-cases (Use Cases Hub)
+
+### Individual Use Case Pages
 - /use-cases/enterprise (Enterprise Use Case)
 - /use-cases/agency (Agency Use Case)
 - /use-cases/qa-team (QA Team Use Case)
+- /use-cases/automated-pr-reviews (Automated PR Reviews)
+- /use-cases/limit-firewall (Limit Firewall)
+- /use-cases/self-healing-ui-tests (Self-Healing UI Tests Use Case)
+- /use-cases/autonomous-sdlc (Autonomous SDLC)
 
-### Demo Pages
-- /demos/catching-sev1-limits (Governor Limits Demo)
-- /demos/self-healing-ui-tests (Self-Healing Tests Demo)
-- /demos/blast-radius-prediction (Blast Radius Demo)
+### Blog/Demos Hub
+- /blog (Blog Hub)
+- /demos (Demos Hub)
+
+### Individual Blog Pages
+- /blog/sub-second-profiler-architecture (Sub-Second Profiler Architecture)
+- /blog/static-analysis-is-dead (Static Analysis is Dead)
+
+### Individual Demo Pages
+- /demos/catching-sev1-limits (Catching Sev-1 Limits Demo)
+- /demos/self-healing-ui-tests (Self-Healing UI Tests Demo)
+- /demos/blast-radius-prediction (Blast Radius Prediction Demo)
+
+### Anti-Patterns Hub
+- /anti-patterns (Anti-Patterns Hub)
+
+### Individual Anti-Pattern Pages
+- /anti-patterns/soql-101 (SOQL 101 Anti-Pattern)
+- /anti-patterns/dml-151 (DML 151 Anti-Pattern)
+- /anti-patterns/mixed-dml (Mixed DML Anti-Pattern)
+- /anti-patterns/cpu-timeout (CPU Timeout Anti-Pattern)
+- /anti-patterns/lock-contention (Lock Contention Anti-Pattern)
+
+### Compare Pages
+- /compare/copado (Compare vs Copado)
+- /compare/provar (Compare vs Provar)
+- /compare/clayton (Compare vs Clayton)
+
+### Additional Pages
+- /roi-calculator (ROI Calculator)
+- /firewall-slides (Firewall Slides)
+- /sales-deck (Sales Deck)
 
 ## Keywords for Search
 

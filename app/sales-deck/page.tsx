@@ -620,7 +620,7 @@ export default function SalesDeckPage() {
           <span className="text-[11px] font-medium uppercase tracking-[2px] text-[#888]">Runtime Governance Engine</span>
         </div>
         <div className="text-[12px] text-[#888]">
-          © 2025 Jataka
+          © 2026 Jataka
         </div>
       </footer>
     </div>

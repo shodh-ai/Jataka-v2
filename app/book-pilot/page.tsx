@@ -255,7 +255,7 @@ export default function BookPilotPage() {
           <div className="font-archivo text-[11px] uppercase tracking-[2px] text-[var(--text-muted)]">jataka.shodh.ai</div>
         </div>
         <div className="text-[13px] text-[var(--text-muted)] text-center md:text-right">
-          2025 Jataka · Runtime Governance for Salesforce · All rights reserved.
+          2026 Jataka · Runtime Governance for Salesforce · All rights reserved.
         </div>
       </footer>
     </>

@@ -166,53 +166,87 @@ export default function JatakaLandingPage() {
         
         {/* Desktop Nav Links */}
         <ul className="hidden md:flex gap-[24px] list-none items-center m-0 p-0">
+          {/* Product Dropdown */}
           <li className="relative group">
-            <button onClick={() => setDropdownOpen('product')} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px] flex items-center gap-[6px]">
+            <button 
+              onMouseEnter={() => setDropdownOpen('product')} 
+              onClick={() => setDropdownOpen(dropdownOpen === 'product' ? null : 'product')}
+              className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px] flex items-center gap-[6px]"
+            >
               Product
-              <svg className="w-[12px] h-[12px] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg className={`w-[12px] h-[12px] transition-transform ${dropdownOpen === 'product' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 9l6 6m0 0l6 6m-6-6v6m0 0l-6-6v6"/>
               </svg>
             </button>
             {/* Product Dropdown */}
             {dropdownOpen === 'product' && (
-              <div className="absolute top-full left-0 mt-[8px] w-[200px] bg-white rounded-[8px] shadow-lg border border-[#1a1a1a]/10 py-[8px] z-[150]">
-                <button onClick={() => router.push('/use-cases/limit-firewall')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Limit Firewall</button>
-                <button onClick={() => router.push('/use-cases/automated-pr-reviews')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Automated PR Reviews</button>
-                <button onClick={() => router.push('/use-cases/self-healing-ui-tests')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Self-Healing UI Tests</button>
+              <div 
+                className="absolute top-full left-0 mt-[8px] w-[220px] bg-white rounded-[8px] shadow-lg border border-[#1a1a1a]/10 py-[8px] z-[150]"
+                onMouseLeave={() => setDropdownOpen(null)}
+              >
+                <button onClick={() => { router.push('/use-cases/limit-firewall'); setDropdownOpen(null); }} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Limit Firewall</button>
+                <button onClick={() => { router.push('/use-cases/automated-pr-reviews'); setDropdownOpen(null); }} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Automated PR Reviews</button>
+                <button onClick={() => { router.push('/use-cases/self-healing-ui-tests'); setDropdownOpen(null); }} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Self-Healing UI Tests</button>
+                <button onClick={() => { router.push('/use-cases/blast-radius-prediction'); setDropdownOpen(null); }} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Blast Radius Prediction</button>
               </div>
             )}
           </li>
+
+          {/* Compare Dropdown */}
           <li className="relative group">
-            <button onClick={() => setDropdownOpen('compare')} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px] flex items-center gap-[6px]">
+            <button 
+              onMouseEnter={() => setDropdownOpen('compare')} 
+              onClick={() => setDropdownOpen(dropdownOpen === 'compare' ? null : 'compare')}
+              className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px] flex items-center gap-[6px]"
+            >
               Compare
-              <svg className="w-[12px] h-[12px] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg className={`w-[12px] h-[12px] transition-transform ${dropdownOpen === 'compare' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 9l6 6m0 0l6 6m-6-6v6m0 0l-6-6v6"/>
               </svg>
             </button>
             {/* Compare Dropdown */}
             {dropdownOpen === 'compare' && (
-              <div className="absolute top-full left-0 mt-[8px] w-[200px] bg-white rounded-[8px] shadow-lg border border-[#1a1a1a]/10 py-[8px] z-[150]">
-                <button onClick={() => router.push('/compare/copado')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">vs. Copado</button>
-                <button onClick={() => router.push('/compare/provar')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">vs. Provar</button>
-                <button onClick={() => router.push('/compare/clayton')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">vs. Clayton</button>
+              <div 
+                className="absolute top-full left-0 mt-[8px] w-[180px] bg-white rounded-[8px] shadow-lg border border-[#1a1a1a]/10 py-[8px] z-[150]"
+                onMouseLeave={() => setDropdownOpen(null)}
+              >
+                <button onClick={() => { router.push('/compare/copado'); setDropdownOpen(null); }} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">vs. Copado</button>
+                <button onClick={() => { router.push('/compare/clayton'); setDropdownOpen(null); }} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">vs. Clayton</button>
+                <button onClick={() => { router.push('/compare/provar'); setDropdownOpen(null); }} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">vs. Provar</button>
               </div>
             )}
           </li>
+
+          {/* Direct Links */}
+          <li><button onClick={() => router.push('/customers')} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Customers</button></li>
+          <li><button onClick={() => router.push('/pricing')} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Pricing</button></li>
+
+          {/* Resources Dropdown */}
           <li className="relative group">
-            <button onClick={() => setDropdownOpen('resources')} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px] flex items-center gap-[6px]">
+            <button 
+              onMouseEnter={() => setDropdownOpen('resources')} 
+              onClick={() => setDropdownOpen(dropdownOpen === 'resources' ? null : 'resources')}
+              className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px] flex items-center gap-[6px]"
+            >
               Resources
-              <svg className="w-[12px] h-[12px] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg className={`w-[12px] h-[12px] transition-transform ${dropdownOpen === 'resources' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 9l6 6m0 0l6 6m-6-6v6m0 0l-6-6v6"/>
               </svg>
             </button>
             {/* Resources Dropdown */}
             {dropdownOpen === 'resources' && (
-              <div className="absolute top-full left-0 mt-[8px] w-[200px] bg-white rounded-[8px] shadow-lg border border-[#1a1a1a]/10 py-[8px] z-[150]">
-                <button onClick={() => window.open('https://docs.jataka.io', '_blank')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Docs</button>
-                <button onClick={() => router.push('/anti-patterns')} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Anti-Patterns Library</button>
+              <div 
+                className="absolute top-full left-0 mt-[8px] w-[200px] bg-white rounded-[8px] shadow-lg border border-[#1a1a1a]/10 py-[8px] z-[150]"
+                onMouseLeave={() => setDropdownOpen(null)}
+              >
+                <button onClick={() => { window.open('https://docs.jataka.io', '_blank'); setDropdownOpen(null); }} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Documentation</button>
+                <button onClick={() => { router.push('/anti-patterns'); setDropdownOpen(null); }} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Anti-Patterns Library</button>
+                <button onClick={() => { router.push('/blog'); setDropdownOpen(null); }} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Engineering Blog</button>
+                <button onClick={() => { router.push('/roi-calculator'); setDropdownOpen(null); }} className="w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">ROI Calculator</button>
               </div>
             )}
           </li>
+
           <li><button onClick={() => window.open('https://app.jataka.io', '_blank')} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Log In</button></li>
           <li><button onClick={() => router.push("/book-pilot")} className="bg-[#FF2424] text-white px-[20px] py-[8px] font-archivo text-[11px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-colors">Book a Demo</button></li>
         </ul>
@@ -564,7 +598,7 @@ export default function JatakaLandingPage() {
             <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px]">
               <div className="absolute top-0 left-0 w-[4px] h-full bg-[#FF2424]"></div>
               <div className="w-[44px] h-[44px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center mb-[16px]">
-                <span className="text-[18px]">📋</span>
+                <span className="font-archivo text-[14px] text-[#FF2424] font-bold">01</span>
               </div>
               <div className="inline-block bg-[#FF2424] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Step 1</div>
               <h3 className="font-archivo text-[16px] uppercase tracking-[-0.3px] text-[#1a1a1a] mb-[8px]">Intent (Jira)</h3>
@@ -577,7 +611,7 @@ export default function JatakaLandingPage() {
             <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px]">
               <div className="absolute top-0 left-0 w-[4px] h-full bg-[#FF6B35]"></div>
               <div className="w-[44px] h-[44px] rounded-[8px] bg-[#FF6B35]/10 flex items-center justify-center mb-[16px]">
-                <span className="text-[18px]">⌨️</span>
+                <span className="font-archivo text-[14px] text-[#FF6B35] font-bold">02</span>
               </div>
               <div className="inline-block bg-[#FF6B35] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Step 2</div>
               <h3 className="font-archivo text-[16px] uppercase tracking-[-0.3px] text-[#1a1a1a] mb-[8px]">Code (Cursor)</h3>
@@ -590,7 +624,7 @@ export default function JatakaLandingPage() {
             <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px]">
               <div className="absolute top-0 left-0 w-[4px] h-full bg-[#FFB800]"></div>
               <div className="w-[44px] h-[44px] rounded-[8px] bg-[#FFB800]/10 flex items-center justify-center mb-[16px]">
-                <span className="text-[18px]">🔍</span>
+                <span className="font-archivo text-[14px] text-[#FFB800] font-bold">03</span>
               </div>
               <div className="inline-block bg-[#FFB800] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Step 3</div>
               <h3 className="font-archivo text-[16px] uppercase tracking-[-0.3px] text-[#1a1a1a] mb-[8px]">Verify (GitHub)</h3>
@@ -603,7 +637,7 @@ export default function JatakaLandingPage() {
             <div className="bg-[#FAF8F3] border border-[#1a1a1a]/5 p-[28px] relative overflow-hidden rounded-[8px]">
               <div className="absolute top-0 left-0 w-[4px] h-full bg-[#22c55e]"></div>
               <div className="w-[44px] h-[44px] rounded-[8px] bg-[#22c55e]/10 flex items-center justify-center mb-[16px]">
-                <span className="text-[18px]">✅</span>
+                <span className="font-archivo text-[14px] text-[#22c55e] font-bold">04</span>
               </div>
               <div className="inline-block bg-[#22c55e] text-white font-archivo text-[9px] tracking-[2px] uppercase px-[8px] py-[2px] mb-[10px] rounded-[2px]">Step 4</div>
               <h3 className="font-archivo text-[16px] uppercase tracking-[-0.3px] text-[#1a1a1a] mb-[8px]">Resolve (Jira)</h3>
@@ -639,22 +673,30 @@ export default function JatakaLandingPage() {
                 </div>
                 <div className="flex items-center justify-center gap-[12px] text-white">
                   <div className="text-center">
-                    <div className="w-[36px] h-[36px] rounded-full bg-[#FF2424]/10 flex items-center justify-center mx-auto mb-[6px] text-[14px]">📋</div>
+                    <div className="w-[36px] h-[36px] rounded-full bg-[#FF2424]/10 flex items-center justify-center mx-auto mb-[6px]">
+                      <span className="font-archivo text-[10px] text-[#FF2424] font-bold">01</span>
+                    </div>
                     <span className="text-[9px] uppercase tracking-[0.5px]">Jira</span>
                   </div>
                   <span className="text-[#FF2424]">→</span>
                   <div className="text-center">
-                    <div className="w-[36px] h-[36px] rounded-full bg-[#FF6B35]/10 flex items-center justify-center mx-auto mb-[6px] text-[14px]">⌨️</div>
+                    <div className="w-[36px] h-[36px] rounded-full bg-[#FF6B35]/10 flex items-center justify-center mx-auto mb-[6px]">
+                      <span className="font-archivo text-[10px] text-[#FF6B35] font-bold">02</span>
+                    </div>
                     <span className="text-[9px] uppercase tracking-[0.5px]">Cursor</span>
                   </div>
                   <span className="text-[#FF2424]">→</span>
                   <div className="text-center">
-                    <div className="w-[36px] h-[36px] rounded-full bg-[#FFB800]/10 flex items-center justify-center mx-auto mb-[6px] text-[14px]">🔍</div>
+                    <div className="w-[36px] h-[36px] rounded-full bg-[#FFB800]/10 flex items-center justify-center mx-auto mb-[6px]">
+                      <span className="font-archivo text-[10px] text-[#FFB800] font-bold">03</span>
+                    </div>
                     <span className="text-[9px] uppercase tracking-[0.5px]">GitHub</span>
                   </div>
                   <span className="text-[#FF2424]">→</span>
                   <div className="text-center">
-                    <div className="w-[36px] h-[36px] rounded-full bg-[#FF2424]/20 flex items-center justify-center mx-auto mb-[6px] text-[14px] font-bold text-[#FF2424]">J</div>
+                    <div className="w-[36px] h-[36px] rounded-full bg-[#FF2424]/20 flex items-center justify-center mx-auto mb-[6px]">
+                      <span className="font-archivo text-[14px] font-bold text-[#FF2424]">J</span>
+                    </div>
                     <span className="text-[9px] uppercase tracking-[0.5px]">Jataka</span>
                   </div>
                   <span className="text-[#22c55e]">↩</span>
@@ -684,22 +726,75 @@ export default function JatakaLandingPage() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="bg-[#FAF8F3] border-t border-[#1a1a1a]/10 px-[24px] md:px-[48px] py-[40px] flex flex-col md:flex-row items-center justify-between gap-[20px]">
-        <div className="flex items-center gap-[14px]">
-          <svg className="h-[19px] w-auto" viewBox="489.5 574 2305.4 484.92" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M877.432 574C930.994 574 974.419 617.425 974.419 670.987C974.418 697.813 963.525 722.093 945.923 739.648C924.44 761.073 901.681 786.114 901.681 816.454C901.681 846.795 924.441 871.837 945.923 893.264C963.526 910.822 974.418 935.105 974.419 961.932C974.419 1015.49 930.994 1058.92 877.432 1058.92C850.604 1058.92 826.319 1048.02 808.76 1030.42C787.337 1008.94 762.298 986.181 731.959 986.181C701.621 986.181 676.582 1008.94 655.159 1030.42C637.6 1048.02 613.315 1058.92 586.487 1058.92C532.925 1058.92 489.5 1015.49 489.5 961.932C489.502 908.371 532.926 864.953 586.487 864.953C613.316 864.954 637.601 875.848 655.159 893.453C676.582 914.934 701.622 937.691 731.959 937.691C762.297 937.691 787.402 914.81 808.854 893.357C830.307 871.902 853.191 846.795 853.191 816.454C853.191 786.114 830.432 761.074 808.949 739.649C791.346 722.093 780.454 697.813 780.453 670.987C780.453 617.426 823.871 574.002 877.432 574Z" fill="#1a1a1a"/>
-            <path d="M877.508 908.275C878.976 937.203 902.175 960.398 931.103 961.862L934.013 961.933C902.769 961.933 877.44 987.265 877.437 1018.51C877.435 987.266 852.105 961.933 820.862 961.933C852.106 961.931 877.437 936.601 877.437 905.358L877.508 908.275Z" fill="#FF2424"/>
-            <path d="M1292.08 685.6V907.648C1292.08 932.992 1285.03 952.72 1270.92 966.832C1257.09 980.944 1237.36 988 1211.73 988H1156V931.84H1191.86C1204.53 931.84 1213.6 928.96 1219.08 923.2C1224.55 917.152 1227.28 907.792 1227.28 895.12V685.6H1292.08Z" fill="#1a1a1a"/>
-            <path d="M1332.31 988L1442.9 685.6H1520.66L1630.39 988H1560.83L1537.51 921.904H1422.59L1399.27 988H1332.31ZM1439.87 869.632H1519.79L1479.62 754.72L1439.87 869.632Z" fill="#1a1a1a"/>
-            <path d="M1621.19 685.6H1860.52V741.328H1773.26V988H1708.46V741.328H1621.19V685.6Z" fill="#1a1a1a"/>
-            <path d="M1851.07 988L1961.66 685.6H2039.42L2149.15 988H2079.6L2056.27 921.904H1941.36L1918.03 988H1851.07ZM1958.64 869.632H2038.56L1998.38 754.72L1958.64 869.632Z" fill="#1a1a1a"/>
-            <path d="M2199.4 686.032H2264.2V821.68L2385.16 686.032H2463.79L2352.76 810.448L2471.13 988H2393.37L2306.97 860.56L2264.2 908.512V988H2199.4V686.032Z" fill="#1a1a1a"/>
-            <path d="M2496.82 988L2607.41 685.6H2685.17L2794.9 988H2725.35L2702.02 921.904H2587.11L2563.78 988H2496.82ZM2604.39 869.632H2684.31L2644.13 754.72L2604.39 869.632Z" fill="#1a1a1a"/>
-          </svg>
-          <div className="font-archivo text-[11px] uppercase tracking-[2px] text-[#666]">jataka.io</div>
-        </div>
-        <div className="text-[13px] text-[#666] text-center md:text-right">
-          &copy; 2025 Jataka · Runtime Governance for Salesforce · All rights reserved.
+      <footer className="bg-[#1a1a1a] px-[24px] md:px-[48px] lg:px-[80px] py-[60px] md:py-[80px]">
+        <div className="max-w-[1200px] mx-auto">
+          {/* 4-Column Footer Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-[40px] md:gap-[60px] mb-[60px]">
+            
+            {/* Product Column */}
+            <div>
+              <h4 className="font-archivo text-[12px] uppercase tracking-[2px] text-[#FF2424] mb-[24px]">Product</h4>
+              <ul className="space-y-[12px]">
+                <li><button onClick={() => router.push('/use-cases/limit-firewall')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Limit Firewall</button></li>
+                <li><button onClick={() => router.push('/use-cases/automated-pr-reviews')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Automated PR Reviews</button></li>
+                <li><button onClick={() => router.push('/use-cases/self-healing-ui-tests')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Self-Healing UI Tests</button></li>
+                <li><button onClick={() => router.push('/use-cases/blast-radius-prediction')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Blast Radius Prediction</button></li>
+              </ul>
+            </div>
+
+            {/* Compare Column */}
+            <div>
+              <h4 className="font-archivo text-[12px] uppercase tracking-[2px] text-[#FF2424] mb-[24px]">Compare</h4>
+              <ul className="space-y-[12px]">
+                <li><button onClick={() => router.push('/compare/copado')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Jataka vs. Copado</button></li>
+                <li><button onClick={() => router.push('/compare/clayton')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Jataka vs. Clayton</button></li>
+                <li><button onClick={() => router.push('/compare/provar')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Jataka vs. Provar</button></li>
+              </ul>
+            </div>
+
+            {/* Resources Column */}
+            <div>
+              <h4 className="font-archivo text-[12px] uppercase tracking-[2px] text-[#FF2424] mb-[24px]">Resources</h4>
+              <ul className="space-y-[12px]">
+                <li><button onClick={() => window.open('https://docs.jataka.io', '_blank')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Documentation</button></li>
+                <li><button onClick={() => router.push('/anti-patterns')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Anti-Patterns Library</button></li>
+                <li><button onClick={() => router.push('/blog')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Engineering Blog</button></li>
+                <li><button onClick={() => router.push('/roi-calculator')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">ROI Calculator</button></li>
+                <li><button onClick={() => router.push('/demos')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Product Demos</button></li>
+              </ul>
+            </div>
+
+            {/* Company Column */}
+            <div>
+              <h4 className="font-archivo text-[12px] uppercase tracking-[2px] text-[#FF2424] mb-[24px]">Company</h4>
+              <ul className="space-y-[12px]">
+                <li><button onClick={() => router.push('/customers')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Customers & Design Partners</button></li>
+                <li><button onClick={() => router.push('/pricing')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Pricing</button></li>
+                <li><button onClick={() => router.push('/security')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Security & Trust</button></li>
+                <li><button onClick={() => router.push('/book-pilot')} className="text-[14px] text-[#999] hover:text-white transition-colors text-left">Start a Pilot</button></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-white/10 pt-[40px] flex flex-col md:flex-row items-center justify-between gap-[20px]">
+            <div className="flex items-center gap-[14px]">
+              <svg className="h-[22px] w-auto" viewBox="489.5 574 2305.4 484.92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M877.432 574C930.994 574 974.419 617.425 974.419 670.987C974.418 697.813 963.525 722.093 945.923 739.648C924.44 761.073 901.681 786.114 901.681 816.454C901.681 846.795 924.441 871.837 945.923 893.264C963.526 910.822 974.418 935.105 974.419 961.932C974.419 1015.49 930.994 1058.92 877.432 1058.92C850.604 1058.92 826.319 1048.02 808.76 1030.42C787.337 1008.94 762.298 986.181 731.959 986.181C701.621 986.181 676.582 1008.94 655.159 1030.42C637.6 1048.02 613.315 1058.92 586.487 1058.92C532.925 1058.92 489.5 1015.49 489.5 961.932C489.502 908.371 532.926 864.953 586.487 864.953C613.316 864.954 637.601 875.848 655.159 893.453C676.582 914.934 701.622 937.691 731.959 937.691C762.297 937.691 787.402 914.81 808.854 893.357C830.307 871.902 853.191 846.795 853.191 816.454C853.191 786.114 830.432 761.074 808.949 739.649C791.346 722.093 780.454 697.813 780.453 670.987C780.453 617.426 823.871 574.002 877.432 574Z" fill="white"/>
+                <path d="M877.508 908.275C878.976 937.203 902.175 960.398 931.103 961.862L934.013 961.933C902.769 961.933 877.44 987.265 877.437 1018.51C877.435 987.266 852.105 961.933 820.862 961.933C852.106 961.931 877.437 936.601 877.437 905.358L877.508 908.275Z" fill="#FF2424"/>
+                <path d="M1292.08 685.6V907.648C1292.08 932.992 1285.03 952.72 1270.92 966.832C1257.09 980.944 1237.36 988 1211.73 988H1156V931.84H1191.86C1204.53 931.84 1213.6 928.96 1219.08 923.2C1224.55 917.152 1227.28 907.792 1227.28 895.12V685.6H1292.08Z" fill="white"/>
+                <path d="M1332.31 988L1442.9 685.6H1520.66L1630.39 988H1560.83L1537.51 921.904H1422.59L1399.27 988H1332.31ZM1439.87 869.632H1519.79L1479.62 754.72L1439.87 869.632Z" fill="white"/>
+                <path d="M1621.19 685.6H1860.52V741.328H1773.26V988H1708.46V741.328H1621.19V685.6Z" fill="white"/>
+                <path d="M1851.07 988L1961.66 685.6H2039.42L2149.15 988H2079.6L2056.27 921.904H1941.36L1918.03 988H1851.07ZM1958.64 869.632H2038.56L1998.38 754.72L1958.64 869.632Z" fill="white"/>
+                <path d="M2199.4 686.032H2264.2V821.68L2385.16 686.032H2463.79L2352.76 810.448L2471.13 988H2393.37L2306.97 860.56L2264.2 908.512V988H2199.4V686.032Z" fill="white"/>
+                <path d="M2496.82 988L2607.41 685.6H2685.17L2794.9 988H2725.35L2702.02 921.904H2587.11L2563.78 988H2496.82ZM2604.39 869.632H2684.31L2644.13 754.72L2604.39 869.632Z" fill="white"/>
+              </svg>
+              <span className="font-archivo text-[12px] uppercase tracking-[2px] text-[#666]">jataka.io</span>
+            </div>
+            <div className="text-[13px] text-[#666] text-center">
+              &copy; 2026 Jataka · Runtime Governance for Salesforce · All rights reserved.
+            </div>
+          </div>
         </div>
       </footer>
     </>
