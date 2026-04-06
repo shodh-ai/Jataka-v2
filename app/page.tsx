@@ -30,6 +30,22 @@ export default function JatakaLandingPage() {
     }
   };
 
+  // Light grid background component
+  function LightGridBg() {
+    return (
+      <div 
+        className="absolute inset-0 pointer-events-none z-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(26,26,26,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(26,26,26,0.04) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px'
+        }}
+      />
+    );
+  }
+
   // JSON-LD Schema for SEO
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -223,6 +239,7 @@ export default function JatakaLandingPage() {
 
       {/* ── SECTION 1: HERO ── */}
       <section id="hero" className="min-h-screen flex flex-col items-center justify-center text-center px-[40px] pt-[128px] pb-[100px] relative overflow-hidden bg-[#FAF8F3]">
+        <LightGridBg />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-[radial-gradient(circle,rgba(255,36,36,0.055)_0%,transparent_68%)] pointer-events-none z-0"></div>
         
         <div className="relative z-10 inline-flex items-center gap-[9px] bg-[#FF2424]/10 border border-[#FF2424]/20 px-[18px] py-[6px] mb-[36px] text-[11.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424]">
@@ -276,6 +293,7 @@ export default function JatakaLandingPage() {
 
       {/* ── SECTION 2: PROBLEM ── */}
       <section id="problem" className="relative overflow-hidden bg-white border-y border-[#1a1a1a]/10">
+        <LightGridBg />
         <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] py-[80px]">
           <div className="text-[12px] font-bold uppercase tracking-[2.5px] text-[#FF2424] mb-[24px]">The Status Quo is Broken</div>
           
@@ -326,6 +344,7 @@ export default function JatakaLandingPage() {
 
       {/* ── SECTION 3: FEATURES ── */}
       <section id="features" className="relative overflow-hidden bg-[#FAF8F3]">
+        <LightGridBg />
         <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] py-[80px] pb-0">
           <div className="text-[12px] font-bold uppercase tracking-[2.5px] text-[#FF2424] mb-[24px]">Core Capabilities</div>
           <h2 className="font-archivo text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-1px] uppercase mb-[16px] text-[#1a1a1a]">The First Autonomous Runtime<br/>Governance Engine for Salesforce.</h2>
@@ -427,6 +446,7 @@ export default function JatakaLandingPage() {
 
       {/* ── SECTION 4: PIPELINE ── */}
       <section id="pipeline" className="relative overflow-hidden bg-white border-y border-[#1a1a1a]/10">
+        <LightGridBg />
         <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] py-[80px]">
           <div className="text-[12px] font-bold uppercase tracking-[2.5px] text-[#FF2424] mb-[24px]">Integration</div>
           <h2 className="font-archivo text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-1px] uppercase mb-[16px] text-[#1a1a1a]">Plugs Directly Into<br/>Your Existing Pipeline.</h2>
@@ -477,6 +497,7 @@ export default function JatakaLandingPage() {
 
       {/* ── SECTION 5: DEVELOPER BRAIN ── */}
       <section id="brain" className="relative overflow-hidden bg-[#FAF8F3]">
+        <LightGridBg />
         <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] py-[80px]">
           <div className="text-[12px] font-bold uppercase tracking-[2.5px] text-[#FF2424] mb-[24px]">Developer Tools</div>
           <h2 className="font-archivo text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-1px] uppercase mb-[16px] text-[#1a1a1a]">The Ultimate Salesforce Co-Pilot<br/>for Your IDE and Slack.</h2>
@@ -532,6 +553,7 @@ export default function JatakaLandingPage() {
 
       {/* ── SECTION 6: AUTONOMOUS SDLC ── */}
       <section id="sdlc" className="relative overflow-hidden bg-white border-y border-[#1a1a1a]/10">
+        <LightGridBg />
         <div className="max-w-[1200px] mx-auto px-[24px] md:px-[48px] py-[80px]">
           <div className="text-[12px] font-bold uppercase tracking-[2.5px] text-[#FF2424] mb-[24px]">Highest-Value IP</div>
           <h2 className="font-archivo text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-1px] uppercase mb-[16px] text-[#1a1a1a]">The Autonomous SDLC.</h2>

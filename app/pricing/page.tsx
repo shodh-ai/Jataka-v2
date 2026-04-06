@@ -56,6 +56,22 @@ function Reveal({
   );
 }
 
+// Light grid background component
+function LightGridBg() {
+  return (
+    <div 
+      className="absolute inset-0 pointer-events-none z-0"
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(26,26,26,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(26,26,26,0.04) 1px, transparent 1px)
+        `,
+        backgroundSize: '48px 48px'
+      }}
+    />
+  );
+}
+
 // JSON-LD Schema
 const jsonLd = {
   "@context": "https://schema.org",
@@ -225,8 +241,9 @@ export default function PricingPage() {
         )}
 
         {/* HERO */}
-        <section className="pt-[120px] pb-[40px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1000px] mx-auto text-center">
+        <section className="pt-[120px] pb-[40px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto text-center relative z-10">
             <Reveal>
               <h1 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1.1] tracking-[-1.5px] uppercase mb-[24px]">
                 <span className="text-[#FF2424]">Pricing</span>
@@ -247,8 +264,9 @@ export default function PricingPage() {
         </section>
 
         {/* PRICING CARDS */}
-        <section className="py-[40px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1200px] mx-auto">
+        <section className="py-[40px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1200px] mx-auto relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
               {plans.map((plan, index) => (
                 <Reveal key={plan.name} delay={100 + index * 100}>
@@ -316,8 +334,9 @@ export default function PricingPage() {
         </section>
 
         {/* ANNUAL DISCOUNT */}
-        <section className="py-[40px] px-[24px] md:px-[48px]">
-          <div className="max-w-[800px] mx-auto">
+        <section className="py-[40px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[800px] mx-auto relative z-10">
             <Reveal>
               <div className="bg-[#FF2424]/5 border border-[#FF2424]/20 rounded-[12px] p-[28px] text-center">
                 <p className="text-[13px] text-[#666] leading-[1.6]">
@@ -330,8 +349,9 @@ export default function PricingPage() {
         </section>
 
         {/* FAQ */}
-        <section className="py-[60px] px-[24px] md:px-[48px] bg-white">
-          <div className="max-w-[800px] mx-auto">
+        <section className="py-[60px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[800px] mx-auto relative z-10">
             <Reveal>
               <h2 className="font-archivo text-[clamp(28px,4vw,40px)] leading-[1.1] tracking-[-1px] uppercase mb-[40px] text-center">
                 Frequently Asked
@@ -356,8 +376,9 @@ export default function PricingPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-[100px] px-[24px] md:px-[48px] bg-[#1a1a1a]">
-          <div className="max-w-[1000px] mx-auto text-center">
+        <section className="py-[100px] px-[24px] md:px-[48px] bg-[#1a1a1a] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto text-center relative z-10">
             <Reveal>
               <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#FF2424] mb-[30px]">
                 Still have questions?

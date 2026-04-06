@@ -56,6 +56,22 @@ function Reveal({
   );
 }
 
+// Light grid background component
+function LightGridBg() {
+  return (
+    <div 
+      className="absolute inset-0 pointer-events-none z-0"
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(26,26,26,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(26,26,26,0.04) 1px, transparent 1px)
+        `,
+        backgroundSize: '48px 48px'
+      }}
+    />
+  );
+}
+
 // JSON-LD Schema
 const jsonLd = {
   "@context": "https://schema.org",
@@ -277,8 +293,9 @@ export default function CompareClaytonPage() {
         )}
 
         {/* HERO */}
-        <section className="pt-[120px] pb-[60px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1200px] mx-auto">
+        <section className="pt-[120px] pb-[60px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1200px] mx-auto relative z-10">
             <Reveal>
               <div className="inline-flex items-center gap-[9px] bg-[#FF2424]/10 border border-[#FF2424]/20 px-[18px] py-[6px] mb-[24px] text-[11.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424]">
                 <Code className="w-[14px] h-[14px]" />
@@ -303,8 +320,9 @@ export default function CompareClaytonPage() {
         </section>
 
         {/* COMPARISON TABLE */}
-        <section className="pb-[60px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1000px] mx-auto">
+        <section className="pb-[60px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto relative z-10">
             <Reveal>
               <div className="bg-white rounded-[12px] border border-[#1a1a1a]/5 overflow-hidden">
                 {/* Header */}
@@ -357,8 +375,9 @@ export default function CompareClaytonPage() {
         </section>
 
         {/* STATIC VS RUNTIME */}
-        <section className="py-[60px] px-[24px] md:px-[48px] bg-white">
-          <div className="max-w-[1000px] mx-auto">
+        <section className="py-[60px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto relative z-10">
             <Reveal>
               <h2 className="font-archivo text-[clamp(28px,4vw,40px)] leading-[1.1] tracking-[-1px] uppercase mb-[40px] text-center">
                 Static vs Runtime: What Each Catches
@@ -403,8 +422,9 @@ export default function CompareClaytonPage() {
         </section>
 
         {/* THE PROBLEM */}
-        <section className="py-[60px] px-[24px] md:px-[48px]">
-          <div className="max-w-[900px] mx-auto">
+        <section className="py-[60px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[900px] mx-auto relative z-10">
             <Reveal>
               <h2 className="font-archivo text-[clamp(28px,4vw,40px)] leading-[1.1] tracking-[-1px] uppercase mb-[30px] text-center">
                 The Problem with Static Analysis
@@ -454,8 +474,9 @@ export default function CompareClaytonPage() {
         </section>
 
         {/* POSITIONING */}
-        <section className="py-[60px] px-[24px] md:px-[48px] bg-white">
-          <div className="max-w-[900px] mx-auto text-center">
+        <section className="py-[60px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[900px] mx-auto text-center relative z-10">
             <Reveal>
               <h2 className="font-archivo text-[clamp(28px,4vw,40px)] leading-[1.1] tracking-[-1px] uppercase mb-[30px]">
                 The Positioning
@@ -488,8 +509,9 @@ export default function CompareClaytonPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-[100px] px-[24px] md:px-[48px] bg-[#1a1a1a]">
-          <div className="max-w-[1000px] mx-auto text-center">
+        <section className="py-[100px] px-[24px] md:px-[48px] bg-[#1a1a1a] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto text-center relative z-10">
             <Reveal>
               <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#FF2424] mb-[30px]">
                 Complete your safety stack
