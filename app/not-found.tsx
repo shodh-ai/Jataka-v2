@@ -156,9 +156,13 @@ export default function NotFound() {
             <div 
               data-url-bar
               className="bg-[#FAF8F3] px-[12px] py-[8px] rounded-[4px] text-[14px] font-mono text-[#1a1a1a] break-all"
-              onClick={() => navigator.clipboard.writeText(window.location.href)}
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  navigator.clipboard.writeText(window.location.href)
+                }
+              }}
             >
-              {window.location.href}
+              {typeof window !== 'undefined' ? window.location.href : ''}
             </div>
           </div>
 
