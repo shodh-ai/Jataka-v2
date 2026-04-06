@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Archivo_Black, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -95,6 +95,12 @@ export const metadata: Metadata = {
     canonical: "https://jataka.io",
   },
   category: "Software Development Tools",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
