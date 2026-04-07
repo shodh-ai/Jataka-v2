@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Menu, X, AlertTriangle, Play, Code, Shield, ArrowRight, Zap, Clock, Database, Lock, Cpu } from "lucide-react";
 
 // Scroll reveal hook
@@ -53,6 +53,22 @@ function Reveal({
     >
       {children}
     </div>
+  );
+}
+
+// Light grid background component
+function LightGridBg() {
+  return (
+    <div 
+      className="absolute inset-0 pointer-events-none z-0"
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(26,26,26,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(26,26,26,0.04) 1px, transparent 1px)
+        `,
+        backgroundSize: '48px 48px'
+      }}
+    />
   );
 }
 
@@ -179,7 +195,6 @@ const limitBreaches = [
 ];
 
 export default function AntiPatternsPage() {
-  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -197,7 +212,7 @@ export default function AntiPatternsPage() {
       <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
         {/* NAV */}
         <nav className="fixed top-0 left-0 right-0 z-[200] h-[64px] bg-[#FAF8F3]/90 backdrop-blur-[14px] border-b border-[#1a1a1a]/10 px-[24px] md:px-[48px] flex items-center justify-between">
-          <div className="flex items-center cursor-pointer" onClick={() => router.push("/")}>
+          <Link href="/" className="flex items-center">
             <svg className="h-[22px] w-auto block" viewBox="489.5 574 2305.4 484.92" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M877.432 574C930.994 574 974.419 617.425 974.419 670.987C974.418 697.813 963.525 722.093 945.923 739.648C924.44 761.073 901.681 786.114 901.681 816.454C901.681 846.795 924.441 871.837 945.923 893.264C963.526 910.822 974.418 935.105 974.419 961.932C974.419 1015.49 930.994 1058.92 877.432 1058.92C850.604 1058.92 826.319 1048.02 808.76 1030.42C787.337 1008.94 762.298 986.181 731.959 986.181C701.621 986.181 676.582 1008.94 655.159 1030.42C637.6 1048.02 613.315 1058.92 586.487 1058.92C532.925 1058.92 489.5 1015.49 489.5 961.932C489.502 908.371 532.926 864.953 586.487 864.953C613.316 864.954 637.601 875.848 655.159 893.453C676.582 914.934 701.622 937.691 731.959 937.691C762.297 937.691 787.402 914.81 808.854 893.357C830.307 871.902 853.191 846.795 853.191 816.454C853.191 786.114 830.432 761.074 808.949 739.649C791.346 722.093 780.454 697.813 780.453 670.987C780.453 617.426 823.871 574.002 877.432 574Z" fill="#1a1a1a"/>
               <path d="M877.508 908.275C878.976 937.203 902.175 960.398 931.103 961.862L934.013 961.933C902.769 961.933 877.44 987.265 877.437 1018.51C877.435 987.266 852.105 961.933 820.862 961.933C852.106 961.931 877.437 936.601 877.437 905.358L877.508 908.275Z" fill="#FF2424"/>
@@ -208,15 +223,15 @@ export default function AntiPatternsPage() {
               <path d="M2199.4 686.032H2264.2V821.68L2385.16 686.032H2463.79L2352.76 810.448L2471.13 988H2393.37L2306.97 860.56L2264.2 908.512V988H2199.4V686.032Z" fill="#1a1a1a"/>
               <path d="M2496.82 988L2607.41 685.6H2685.17L2794.9 988H2725.35L2702.02 921.904H2587.11L2563.78 988H2496.82ZM2604.39 869.632H2684.31L2644.13 754.72L2604.39 869.632Z" fill="#1a1a1a"/>
             </svg>
-          </div>
+          </Link>
 
           {/* Desktop Nav */}
           <ul className="hidden md:flex gap-[36px] list-none items-center m-0 p-0">
-            <li><button onClick={() => router.push("/")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Home</button></li>
-            <li><button onClick={() => router.push("/blog")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Demos</button></li>
-            <li><button onClick={() => router.push("/use-cases")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Use Cases</button></li>
-            <li><button onClick={() => router.push("/anti-patterns")} className="text-[#1a1a1a] font-medium text-[13.5px] tracking-[0.4px]">Anti-Patterns</button></li>
-            <li><button onClick={() => router.push("/book-pilot")} className="bg-[#FF2424] text-white px-[20px] py-[8px] font-archivo text-[11px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-colors">Book Demo</button></li>
+            <li><Link href="/" className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Home</Link></li>
+            <li><Link href="/blog" className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Demos</Link></li>
+            <li><Link href="/use-cases" className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Use Cases</Link></li>
+            <li><Link href="/anti-patterns" className="text-[#1a1a1a] font-medium text-[13.5px] tracking-[0.4px]">Anti-Patterns</Link></li>
+            <li><Link href="/book-pilot" className="bg-[#FF2424] text-white px-[20px] py-[8px] font-archivo text-[11px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-colors">Book Demo</Link></li>
           </ul>
 
           {/* Mobile Menu Button */}
@@ -232,18 +247,19 @@ export default function AntiPatternsPage() {
         {isMobileMenuOpen && (
           <div className="fixed top-[64px] left-0 right-0 z-[150] bg-[#FAF8F3] border-b border-[#1a1a1a]/10 md:hidden">
             <div className="px-[24px] py-[20px] flex flex-col gap-[16px]">
-              <button onClick={() => router.push("/")} className="text-[#666] text-[14px] font-medium">Home</button>
-              <button onClick={() => router.push("/blog")} className="text-[#666] text-[14px] font-medium">Demos</button>
-              <button onClick={() => router.push("/use-cases")} className="text-[#666] text-[14px] font-medium">Use Cases</button>
-              <button onClick={() => router.push("/anti-patterns")} className="text-[#1a1a1a] font-medium text-[14px]">Anti-Patterns</button>
-              <button onClick={() => router.push("/book-pilot")} className="bg-[#FF2424] text-white px-[20px] py-[12px] font-archivo text-[12px] uppercase tracking-[1.5px] rounded-[4px]">Book Demo</button>
+              <Link href="/" className="text-[#666] text-[14px] font-medium">Home</Link>
+              <Link href="/blog" className="text-[#666] text-[14px] font-medium">Demos</Link>
+              <Link href="/use-cases" className="text-[#666] text-[14px] font-medium">Use Cases</Link>
+              <Link href="/anti-patterns" className="text-[#1a1a1a] font-medium text-[14px]">Anti-Patterns</Link>
+              <Link href="/book-pilot" className="bg-[#FF2424] text-white px-[20px] py-[12px] font-archivo text-[12px] uppercase tracking-[1.5px] rounded-[4px]">Book Demo</Link>
             </div>
           </div>
         )}
 
         {/* HERO */}
-        <section className="pt-[140px] pb-[80px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1200px] mx-auto">
+        <section className="pt-[140px] pb-[80px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1200px] mx-auto relative z-10">
             <Reveal>
               <div className="inline-flex items-center gap-[9px] bg-[#FF2424]/10 border border-[#FF2424]/20 px-[18px] py-[6px] mb-[24px] text-[11.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424]">
                 <AlertTriangle className="w-[14px] h-[14px]" />
@@ -275,15 +291,16 @@ export default function AntiPatternsPage() {
         </section>
 
         {/* LIMIT BREACH CARDS */}
-        <section className="pb-[100px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1200px] mx-auto">
+        <section className="pb-[100px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1200px] mx-auto relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px] items-stretch">
               {limitBreaches.map((breach) => {
                 const IconComponent = breach.icon;
                 return (
                   <Reveal key={breach.id} delay={100} className="h-full min-h-0">
-                    <button
-                      onClick={() => router.push(`/anti-patterns/${breach.id}`)}
+                    <Link
+                      href={`/anti-patterns/${breach.id}`}
                       className="group w-full h-full min-h-0 text-left bg-white rounded-[12px] p-[32px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.12)] hover:border-[#FF2424]/30 transition-all duration-300 flex flex-col"
                     >
                       {/* Header */}
@@ -337,7 +354,7 @@ export default function AntiPatternsPage() {
                         <span>Watch Jataka catch it</span>
                         <ArrowRight className="w-[14px] h-[14px]" />
                       </div>
-                    </button>
+                    </Link>
                   </Reveal>
                 );
               })}
@@ -346,8 +363,9 @@ export default function AntiPatternsPage() {
         </section>
 
         {/* THE REAL COST OF GOVERNOR LIMITS */}
-        <section className="py-[80px] px-[24px] md:px-[48px] bg-white">
-          <div className="max-w-[1000px] mx-auto text-center">
+        <section className="py-[80px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto text-center relative z-10">
             <Reveal>
               <h2 className="font-archivo text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-1.5px] uppercase mb-[30px]">
                 THE REAL COST<br />
@@ -386,8 +404,9 @@ export default function AntiPatternsPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-[100px] px-[24px] md:px-[48px] bg-[#1a1a1a]">
-          <div className="max-w-[1000px] mx-auto text-center">
+        <section className="py-[100px] px-[24px] md:px-[48px] bg-[#1a1a1a] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto text-center relative z-10">
             <Reveal>
               <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#FF2424] mb-[30px]">
                 Stop firefighting at 2 AM
@@ -410,19 +429,19 @@ export default function AntiPatternsPage() {
 
             <Reveal delay={300}>
               <div className="flex flex-col md:flex-row gap-[16px] justify-center">
-                <button 
-                  onClick={() => router.push("/book-pilot")} 
+                <Link 
+                  href="/book-pilot"
                   className="group bg-[#FF2424] text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-all duration-300 flex items-center justify-center gap-[12px]"
                 >
                   Book a Demo
                   <ArrowRight className="w-[14px] h-[14px] group-hover:translate-x-[4px] transition-transform" />
-                </button>
-                <button 
-                  onClick={() => router.push("/use-cases")} 
+                </Link>
+                <Link 
+                  href="/use-cases"
                   className="group bg-transparent text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] border border-[#333] hover:border-[#FF2424]/50 transition-all duration-300 flex items-center justify-center gap-[12px]"
                 >
                   View Use Cases
-                </button>
+                </Link>
               </div>
             </Reveal>
           </div>

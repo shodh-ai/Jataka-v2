@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Menu, X, ArrowRight, Quote, AlertTriangle, Clock, Users, TrendingUp, CheckCircle } from "lucide-react";
 
@@ -54,6 +53,22 @@ function Reveal({
     >
       {children}
     </div>
+  );
+}
+
+// Light grid background component
+function LightGridBg() {
+  return (
+    <div 
+      className="absolute inset-0 pointer-events-none z-0"
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(26,26,26,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(26,26,26,0.04) 1px, transparent 1px)
+        `,
+        backgroundSize: '48px 48px'
+      }}
+    />
   );
 }
 
@@ -136,7 +151,6 @@ const stats = [
 ];
 
 export default function CustomersPage() {
-  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -196,8 +210,9 @@ export default function CustomersPage() {
         )}
 
         {/* HERO */}
-        <section className="pt-[120px] pb-[40px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1000px] mx-auto text-center">
+        <section className="pt-[120px] pb-[40px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto text-center relative z-10">
             <Reveal>
               <h1 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1.1] tracking-[-1.5px] uppercase mb-[24px]">
                 Design Partner<br />
@@ -215,8 +230,9 @@ export default function CustomersPage() {
         </section>
 
         {/* STATS */}
-        <section className="py-[40px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1000px] mx-auto">
+        <section className="py-[40px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px] items-stretch">
               {stats.map((stat) => (
                 <Reveal key={stat.label} delay={100} className="h-full min-h-0">
@@ -231,8 +247,9 @@ export default function CustomersPage() {
         </section>
 
         {/* TESTIMONIALS */}
-        <section className="py-[60px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1000px] mx-auto">
+        <section className="py-[60px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto relative z-10">
             <Reveal>
               <h2 className="font-archivo text-[clamp(24px,3vw,32px)] leading-[1.1] tracking-[-1px] uppercase mb-[50px] text-center">
                 Customer Stories
@@ -293,8 +310,9 @@ export default function CustomersPage() {
         </section>
 
         {/* JOIN PILOT */}
-        <section className="py-[60px] px-[24px] md:px-[48px] bg-white">
-          <div className="max-w-[800px] mx-auto text-center">
+        <section className="py-[60px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[800px] mx-auto text-center relative z-10">
             <Reveal>
               <h2 className="font-archivo text-[clamp(28px,4vw,40px)] leading-[1.1] tracking-[-1px] uppercase mb-[20px]">
                 Join the Next Cohort
@@ -316,13 +334,13 @@ export default function CustomersPage() {
             </Reveal>
 
             <Reveal delay={300}>
-              <button 
-                onClick={() => router.push("/pilot")} 
+              <Link 
+                href="/pilot"
                 className="group bg-[#FF2424] text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-all duration-300 inline-flex items-center gap-[12px]"
               >
                 Start Your Pilot
                 <ArrowRight className="w-[14px] h-[14px] group-hover:translate-x-[4px] transition-transform" />
-              </button>
+              </Link>
             </Reveal>
           </div>
         </section>
@@ -351,19 +369,19 @@ export default function CustomersPage() {
 
             <Reveal delay={300}>
               <div className="flex flex-col md:flex-row gap-[16px] justify-center">
-                <button 
-                  onClick={() => router.push("/pilot")} 
+                <Link 
+                  href="/pilot"
                   className="group bg-[#FF2424] text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-all duration-300 flex items-center justify-center gap-[12px]"
                 >
                   Start Your Pilot
                   <ArrowRight className="w-[14px] h-[14px] group-hover:translate-x-[4px] transition-transform" />
-                </button>
-                <button 
-                  onClick={() => router.push("/roi-calculator")} 
+                </Link>
+                <Link 
+                  href="/roi-calculator"
                   className="group bg-transparent text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] border border-[#333] hover:border-[#FF2424]/50 transition-all duration-300 flex items-center justify-center gap-[12px]"
                 >
                   Calculate Your ROI
-                </button>
+                </Link>
               </div>
             </Reveal>
           </div>

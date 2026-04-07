@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Menu, X, Database, Play, Code, AlertTriangle, CheckCircle, ArrowRight, Clock, Users, Zap, Shield } from "lucide-react";
 
 // Scroll reveal hook
@@ -53,6 +53,22 @@ function Reveal({
     >
       {children}
     </div>
+  );
+}
+
+// Light grid background component
+function LightGridBg() {
+  return (
+    <div 
+      className="absolute inset-0 pointer-events-none z-0"
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(26,26,26,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(26,26,26,0.04) 1px, transparent 1px)
+        `,
+        backgroundSize: '48px 48px'
+      }}
+    />
   );
 }
 
@@ -155,7 +171,6 @@ const relatedAntiPatterns = [
 ];
 
 export default function SOQL101Page() {
-  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -173,7 +188,7 @@ export default function SOQL101Page() {
       <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
         {/* NAV */}
         <nav className="fixed top-0 left-0 right-0 z-[200] h-[64px] bg-[#FAF8F3]/90 backdrop-blur-[14px] border-b border-[#1a1a1a]/10 px-[24px] md:px-[48px] flex items-center justify-between">
-          <div className="flex items-center cursor-pointer" onClick={() => router.push("/")}>
+          <Link href="/" className="flex items-center">
             <svg className="h-[22px] w-auto block" viewBox="489.5 574 2305.4 484.92" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M877.432 574C930.994 574 974.419 617.425 974.419 670.987C974.418 697.813 963.525 722.093 945.923 739.648C924.44 761.073 901.681 786.114 901.681 816.454C901.681 846.795 924.441 871.837 945.923 893.264C963.526 910.822 974.418 935.105 974.419 961.932C974.419 1015.49 930.994 1058.92 877.432 1058.92C850.604 1058.92 826.319 1048.02 808.76 1030.42C787.337 1008.94 762.298 986.181 731.959 986.181C701.621 986.181 676.582 1008.94 655.159 1030.42C637.6 1048.02 613.315 1058.92 586.487 1058.92C532.925 1058.92 489.5 1015.49 489.5 961.932C489.502 908.371 532.926 864.953 586.487 864.953C613.316 864.954 637.601 875.848 655.159 893.453C676.582 914.934 701.622 937.691 731.959 937.691C762.297 937.691 787.402 914.81 808.854 893.357C830.307 871.902 853.191 846.795 853.191 816.454C853.191 786.114 830.432 761.074 808.949 739.649C791.346 722.093 780.454 697.813 780.453 670.987C780.453 617.426 823.871 574.002 877.432 574Z" fill="#1a1a1a"/>
               <path d="M877.508 908.275C878.976 937.203 902.175 960.398 931.103 961.862L934.013 961.933C902.769 961.933 877.44 987.265 877.437 1018.51C877.435 987.266 852.105 961.933 820.862 961.933C852.106 961.931 877.437 936.601 877.437 905.358L877.508 908.275Z" fill="#FF2424"/>
@@ -184,14 +199,14 @@ export default function SOQL101Page() {
               <path d="M2199.4 686.032H2264.2V821.68L2385.16 686.032H2463.79L2352.76 810.448L2471.13 988H2393.37L2306.97 860.56L2264.2 908.512V988H2199.4V686.032Z" fill="#1a1a1a"/>
               <path d="M2496.82 988L2607.41 685.6H2685.17L2794.9 988H2725.35L2702.02 921.904H2587.11L2563.78 988H2496.82ZM2604.39 869.632H2684.31L2644.13 754.72L2604.39 869.632Z" fill="#1a1a1a"/>
             </svg>
-          </div>
+          </Link>
 
           {/* Desktop Nav */}
           <ul className="hidden md:flex gap-[24px] list-none items-center m-0 p-0">
-            <li><button onClick={() => router.push("/pricing")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Pricing</button></li>
-            <li><button onClick={() => router.push("/security")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Security</button></li>
-            <li><button onClick={() => router.push("/customers")} className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Customers</button></li>
-            <li><button onClick={() => router.push("/pilot")} className="bg-[#FF2424] text-white px-[20px] py-[8px] font-archivo text-[11px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-colors">Start Pilot</button></li>
+            <li><Link href="/pricing" className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Pricing</Link></li>
+            <li><Link href="/security" className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Security</Link></li>
+            <li><Link href="/customers" className="text-[#666] hover:text-[#1a1a1a] transition-colors text-[13.5px] font-medium tracking-[0.4px]">Customers</Link></li>
+            <li><Link href="/pilot" className="bg-[#FF2424] text-white px-[20px] py-[8px] font-archivo text-[11px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-colors">Start Pilot</Link></li>
           </ul>
 
           {/* Mobile Menu Button */}
@@ -206,22 +221,22 @@ export default function SOQL101Page() {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="absolute top-[64px] left-0 w-full bg-[#FAF8F3] border-b border-[#1a1a1a]/10 p-6 flex flex-col gap-4 md:hidden shadow-2xl z-[190]">
-            <button onClick={() => router.push("/pricing")} className="text-left text-[15px] font-medium text-[#1a1a1a] py-2">Pricing</button>
-            <button onClick={() => router.push("/security")} className="text-left text-[15px] font-medium text-[#1a1a1a] py-2">Security</button>
-            <button onClick={() => router.push("/customers")} className="text-left text-[15px] font-medium text-[#1a1a1a] py-2">Customers</button>
-            <button onClick={() => router.push("/pilot")} className="w-full py-3 mt-2 rounded-[4px] bg-[#FF2424] text-white font-archivo uppercase tracking-[1.5px] text-[12px] flex items-center justify-center">
+            <Link href="/pricing" className="text-left text-[15px] font-medium text-[#1a1a1a] py-2">Pricing</Link>
+            <Link href="/security" className="text-left text-[15px] font-medium text-[#1a1a1a] py-2">Security</Link>
+            <Link href="/customers" className="text-left text-[15px] font-medium text-[#1a1a1a] py-2">Customers</Link>
+            <Link href="/pilot" className="w-full py-3 mt-2 rounded-[4px] bg-[#FF2424] text-white font-archivo uppercase tracking-[1.5px] text-[12px] flex items-center justify-center">
               Start Pilot
-            </button>
+            </Link>
           </div>
         )}
 
         {/* BREADCRUMB */}
-        <div className="pt-[80px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1200px] mx-auto">
+        <div className="pt-[80px] px-[24px] md:px-[48px] relative">
+          <div className="max-w-[1200px] mx-auto relative z-10">
             <div className="flex items-center gap-[8px] text-[13px] text-[#666]">
-              <button onClick={() => router.push("/")} className="hover:text-[#1a1a1a]">Home</button>
+              <Link href="/" className="hover:text-[#1a1a1a]">Home</Link>
               <span>/</span>
-              <button onClick={() => router.push("/anti-patterns")} className="hover:text-[#1a1a1a]">Anti-Patterns</button>
+              <Link href="/anti-patterns" className="hover:text-[#1a1a1a]">Anti-Patterns</Link>
               <span>/</span>
               <span className="text-[#1a1a1a]">SOQL 101</span>
             </div>
@@ -229,8 +244,9 @@ export default function SOQL101Page() {
         </div>
 
         {/* HERO */}
-        <section className="pt-[40px] pb-[60px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1200px] mx-auto">
+        <section className="pt-[40px] pb-[60px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1200px] mx-auto relative z-10">
             <Reveal>
               <div className="inline-flex items-center gap-[9px] bg-[#FF2424]/10 border border-[#FF2424]/20 px-[18px] py-[6px] mb-[24px] text-[11.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424]">
                 <Database className="w-[14px] h-[14px]" />
@@ -270,8 +286,9 @@ export default function SOQL101Page() {
         </section>
 
         {/* VIDEO DEMO */}
-        <section className="pb-[60px] px-[24px] md:px-[48px]">
-          <div className="max-w-[900px] mx-auto">
+        <section className="pb-[60px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[900px] mx-auto relative z-10">
             <Reveal>
               <div className="bg-[#1a1a1a] rounded-[12px] overflow-hidden">
                 {/* Video Header */}
@@ -303,8 +320,9 @@ export default function SOQL101Page() {
         </section>
 
         {/* THE LIMIT */}
-        <section className="py-[60px] px-[24px] md:px-[48px] bg-white">
-          <div className="max-w-[1000px] mx-auto">
+        <section className="py-[60px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto relative z-10">
             <Reveal>
               <h2 className="font-archivo text-[clamp(28px,4vw,40px)] leading-[1.1] tracking-[-1px] uppercase mb-[30px]">
                 The Limit: <span className="text-[#FF2424]">100 SOQL queries</span> per transaction
@@ -344,8 +362,9 @@ export default function SOQL101Page() {
         </section>
 
         {/* BAD CODE */}
-        <section className="py-[60px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1000px] mx-auto">
+        <section className="py-[60px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto relative z-10">
             <Reveal>
               <div className="flex items-center gap-[12px] mb-[24px]">
                 <div className="w-[40px] h-[40px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center">
@@ -389,8 +408,9 @@ export default function SOQL101Page() {
         </section>
 
         {/* JATAKA REPORT CARD */}
-        <section className="py-[60px] px-[24px] md:px-[48px] bg-white">
-          <div className="max-w-[1000px] mx-auto">
+        <section className="py-[60px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto relative z-10">
             <Reveal>
               <div className="flex items-center gap-[12px] mb-[24px]">
                 <div className="w-[40px] h-[40px] rounded-[8px] bg-[#22c55e]/10 flex items-center justify-center">
@@ -460,8 +480,9 @@ export default function SOQL101Page() {
         </section>
 
         {/* THE FIX */}
-        <section className="py-[60px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1000px] mx-auto">
+        <section className="py-[60px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto relative z-10">
             <Reveal>
               <div className="flex items-center gap-[12px] mb-[24px]">
                 <div className="w-[40px] h-[40px] rounded-[8px] bg-[#22c55e]/10 flex items-center justify-center">
@@ -503,8 +524,9 @@ export default function SOQL101Page() {
         </section>
 
         {/* RELATED ANTI-PATTERNS */}
-        <section className="py-[60px] px-[24px] md:px-[48px] bg-white">
-          <div className="max-w-[1000px] mx-auto">
+        <section className="py-[60px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto relative z-10">
             <Reveal>
               <h2 className="font-archivo text-[clamp(24px,3vw,32px)] leading-[1.1] tracking-[-1px] uppercase mb-[30px]">
                 Related Anti-Patterns
@@ -514,8 +536,8 @@ export default function SOQL101Page() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px] items-stretch">
               {relatedAntiPatterns.map((pattern) => (
                 <Reveal key={pattern.id} delay={100} className="h-full min-h-0">
-                  <button
-                    onClick={() => router.push(`/anti-patterns/${pattern.id}`)}
+                  <Link
+                    href={`/anti-patterns/${pattern.id}`}
                     className="w-full h-full min-h-0 text-left bg-[#FAF8F3] rounded-[12px] p-[24px] border border-[#1a1a1a]/5 hover:border-[#FF2424]/30 transition-all group flex flex-col"
                   >
                     <span 
@@ -530,7 +552,7 @@ export default function SOQL101Page() {
                     <p className="text-[15px] font-medium group-hover:text-[#FF2424] transition-colors flex-1">
                       {pattern.title}
                     </p>
-                  </button>
+                  </Link>
                 </Reveal>
               ))}
             </div>
@@ -538,8 +560,9 @@ export default function SOQL101Page() {
         </section>
 
         {/* CTA */}
-        <section className="py-[100px] px-[24px] md:px-[48px] bg-[#1a1a1a]">
-          <div className="max-w-[1000px] mx-auto text-center">
+        <section className="py-[100px] px-[24px] md:px-[48px] bg-[#1a1a1a] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[1000px] mx-auto text-center relative z-10">
             <Reveal>
               <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#FF2424] mb-[30px]">
                 Stop 2 AM firefighting
@@ -562,19 +585,19 @@ export default function SOQL101Page() {
 
             <Reveal delay={300}>
               <div className="flex flex-col md:flex-row gap-[16px] justify-center">
-                <button 
-                  onClick={() => router.push("/book-pilot")} 
+                <Link 
+                  href="/book-pilot"
                   className="group bg-[#FF2424] text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-all duration-300 flex items-center justify-center gap-[12px]"
                 >
                   Book a Demo
                   <ArrowRight className="w-[14px] h-[14px] group-hover:translate-x-[4px] transition-transform" />
-                </button>
-                <button 
-                  onClick={() => router.push("/anti-patterns")} 
+                </Link>
+                <Link 
+                  href="/anti-patterns"
                   className="group bg-transparent text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] border border-[#333] hover:border-[#FF2424]/50 transition-all duration-300 flex items-center justify-center gap-[12px]"
                 >
                   All Anti-Patterns
-                </button>
+                </Link>
               </div>
             </Reveal>
           </div>

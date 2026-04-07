@@ -56,6 +56,22 @@ function Reveal({
   );
 }
 
+// Light grid background component
+function LightGridBg() {
+  return (
+    <div 
+      className="absolute inset-0 pointer-events-none z-0"
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(26,26,26,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(26,26,26,0.04) 1px, transparent 1px)
+        `,
+        backgroundSize: '48px 48px'
+      }}
+    />
+  );
+}
+
 // JSON-LD Schema
 const jsonLd = {
   "@context": "https://schema.org",
@@ -201,8 +217,9 @@ export default function SubSecondProfilerPage() {
         )}
 
         {/* ARTICLE */}
-        <article className="pt-[100px] pb-[80px] px-[24px] md:px-[48px]">
-          <div className="max-w-[800px] mx-auto">
+        <article className="pt-[100px] pb-[80px] px-[24px] md:px-[48px] relative overflow-hidden">
+          <LightGridBg />
+          <div className="max-w-[800px] mx-auto relative z-10">
             {/* META */}
             <Reveal>
               <div className="flex items-center gap-[16px] mb-[30px] text-[13px] text-[#666]">
