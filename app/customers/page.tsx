@@ -217,10 +217,10 @@ export default function CustomersPage() {
         {/* STATS */}
         <section className="py-[40px] px-[24px] md:px-[48px]">
           <div className="max-w-[1000px] mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px]">
-              {stats.map((stat, index) => (
-                <Reveal key={stat.label} delay={100 + index * 50}>
-                  <div className="bg-white rounded-[12px] p-[24px] text-center border border-[#1a1a1a]/5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px] items-stretch">
+              {stats.map((stat) => (
+                <Reveal key={stat.label} delay={100} className="h-full min-h-0">
+                  <div className="bg-white rounded-[12px] p-[24px] text-center border border-[#1a1a1a]/5 h-full flex flex-col justify-center">
                     <p className="text-[36px] font-archivo text-[#FF2424] mb-[8px]">{stat.value}</p>
                     <p className="text-[12px] uppercase tracking-[1px] text-[#666]">{stat.label}</p>
                   </div>
@@ -263,18 +263,18 @@ export default function CustomersPage() {
                     </div>
 
                     {/* Situation → Impact → Result */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px] mb-[20px]">
-                      <div className="bg-[#FAF8F3] rounded-[8px] p-[16px]">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px] mb-[20px] items-stretch">
+                      <div className="bg-[#FAF8F3] rounded-[8px] p-[16px] h-full flex flex-col">
                         <p className="text-[10px] uppercase tracking-[1.5px] text-[#FF6B35] mb-[8px]">Situation</p>
-                        <p className="text-[14px] text-[#444]">{testimonial.situation}</p>
+                        <p className="text-[14px] text-[#444] flex-1">{testimonial.situation}</p>
                       </div>
-                      <div className="bg-[#FAF8F3] rounded-[8px] p-[16px]">
+                      <div className="bg-[#FAF8F3] rounded-[8px] p-[16px] h-full flex flex-col">
                         <p className="text-[10px] uppercase tracking-[1.5px] text-[#FF2424] mb-[8px]">Impact</p>
-                        <p className="text-[14px] text-[#444]">{testimonial.impact}</p>
+                        <p className="text-[14px] text-[#444] flex-1">{testimonial.impact}</p>
                       </div>
-                      <div className="bg-[#22c55e]/5 rounded-[8px] p-[16px]">
+                      <div className="bg-[#22c55e]/5 rounded-[8px] p-[16px] h-full flex flex-col">
                         <p className="text-[10px] uppercase tracking-[1.5px] text-[#22c55e] mb-[8px]">Result</p>
-                        <p className="text-[14px] text-[#444]">{testimonial.result}</p>
+                        <p className="text-[14px] text-[#444] flex-1">{testimonial.result}</p>
                       </div>
                     </div>
 

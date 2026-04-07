@@ -441,30 +441,30 @@ export default function CompareClaytonPage() {
               </div>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
-              <Reveal delay={200}>
-                <div className="bg-white rounded-[12px] p-[24px] border border-[#1a1a1a]/5">
-                  <p className="text-[14px] text-[#666] mb-[12px]">Clayton sees:</p>
-                  <code className="block text-[13px] font-mono bg-[#f5f5f5] p-[12px] rounded-[6px] text-[#1a1a1a]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] items-stretch">
+              <Reveal delay={200} className="h-full min-h-0">
+                <div className="bg-white rounded-[12px] p-[24px] border border-[#1a1a1a]/5 h-full flex flex-col">
+                  <p className="text-[14px] text-[#666] mb-[12px] shrink-0">Clayton sees:</p>
+                  <code className="block text-[13px] font-mono bg-[#f5f5f5] p-[12px] rounded-[6px] text-[#1a1a1a] shrink-0">
                     for (Id accId : accountIds) {"{"}<br />
                     &nbsp;&nbsp;List&gt;Contact&lt; contacts = [SELECT...];<br />
                     {"}"}
                   </code>
-                  <p className="text-[14px] text-[#666] mt-[12px]">
+                  <p className="text-[14px] text-[#666] mt-[12px] flex-1">
                     And thinks: "SOQL in a loop. Might be bad."
                   </p>
                 </div>
               </Reveal>
 
-              <Reveal delay={300}>
-                <div className="bg-white rounded-[12px] p-[24px] border border-[#22c55e]/30">
-                  <p className="text-[14px] text-[#666] mb-[12px]">Jataka executes:</p>
-                  <code className="block text-[13px] font-mono bg-[#f5f5f5] p-[12px] rounded-[6px] text-[#1a1a1a]">
+              <Reveal delay={200} className="h-full min-h-0">
+                <div className="bg-white rounded-[12px] p-[24px] border border-[#22c55e]/30 h-full flex flex-col">
+                  <p className="text-[14px] text-[#666] mb-[12px] shrink-0">Jataka executes:</p>
+                  <code className="block text-[13px] font-mono bg-[#f5f5f5] p-[12px] rounded-[6px] text-[#1a1a1a] shrink-0">
                     &gt; Executing with 1,247 accounts...<br />
                     &gt; SOQL queries: 127/100<br />
                     &gt; LIMIT BREACH DETECTED
                   </code>
-                  <p className="text-[14px] text-[#666] mt-[12px]">
+                  <p className="text-[14px] text-[#666] mt-[12px] flex-1">
                     And knows: "This will crash in production."
                   </p>
                 </div>

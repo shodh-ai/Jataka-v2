@@ -351,12 +351,12 @@ export default function CompareProvarPage() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
-              {maintenanceComparison.map((row, index) => (
-                <Reveal key={row.metric} delay={100 + index * 50}>
-                  <div className="bg-[#FAF8F3] rounded-[12px] p-[24px]">
-                    <p className="text-[14px] text-[#666] mb-[16px]">{row.metric}</p>
-                    <div className="flex items-center justify-between">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] items-stretch">
+              {maintenanceComparison.map((row) => (
+                <Reveal key={row.metric} delay={100} className="h-full min-h-0">
+                  <div className="bg-[#FAF8F3] rounded-[12px] p-[24px] h-full flex flex-col">
+                    <p className="text-[14px] text-[#666] mb-[16px] shrink-0">{row.metric}</p>
+                    <div className="flex items-center justify-between mt-auto">
                       <div>
                         <p className="text-[11px] uppercase tracking-[1px] text-[#888] mb-[4px]">Jataka</p>
                         <p className="text-[20px] font-archivo text-[#22c55e]">{row.jataka}</p>
@@ -383,16 +383,16 @@ export default function CompareProvarPage() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
-              <Reveal delay={100}>
-                <div className="bg-white rounded-[12px] p-[28px] border border-[#1a1a1a]/5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] items-stretch">
+              <Reveal delay={100} className="h-full min-h-0">
+                <div className="bg-white rounded-[12px] p-[28px] border border-[#1a1a1a]/5 h-full flex flex-col">
                   <div className="flex items-center gap-[12px] mb-[20px]">
                     <div className="w-[40px] h-[40px] rounded-[8px] bg-[#FF6B35]/10 flex items-center justify-center">
                       <TestTube className="w-[20px] h-[20px] text-[#FF6B35]" />
                     </div>
                     <h3 className="font-archivo text-[18px] tracking-[-0.5px] uppercase">Provar</h3>
                   </div>
-                  <p className="text-[15px] text-[#444] leading-[1.7]">
+                  <p className="text-[15px] text-[#444] leading-[1.7] flex-1">
                     Provar is a <strong>UI testing tool</strong>. It clicks buttons, fills forms, and validates 
                     that the UI works. But when Salesforce changes a button's attributes, the test breaks. 
                     Your QA team spends the next sprint fixing tests instead of testing new features.
@@ -400,15 +400,15 @@ export default function CompareProvarPage() {
                 </div>
               </Reveal>
 
-              <Reveal delay={200}>
-                <div className="bg-white rounded-[12px] p-[28px] border border-[#22c55e]/30">
+              <Reveal delay={100} className="h-full min-h-0">
+                <div className="bg-white rounded-[12px] p-[28px] border border-[#22c55e]/30 h-full flex flex-col">
                   <div className="flex items-center gap-[12px] mb-[20px]">
                     <div className="w-[40px] h-[40px] rounded-[8px] bg-[#22c55e]/10 flex items-center justify-center">
                       <RefreshCw className="w-[20px] h-[20px] text-[#22c55e]" />
                     </div>
                     <h3 className="font-archivo text-[18px] tracking-[-0.5px] uppercase">Jataka</h3>
                   </div>
-                  <p className="text-[15px] text-[#444] leading-[1.7]">
+                  <p className="text-[15px] text-[#444] leading-[1.7] flex-1">
                     Jataka is a <strong>self-healing test platform</strong>. When Salesforce changes a button, 
                     our AI recognizes it visually and updates the test element automatically. Tests stay green. 
                     Your QA team focuses on testing, not maintenance.

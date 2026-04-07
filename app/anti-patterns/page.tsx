@@ -277,14 +277,14 @@ export default function AntiPatternsPage() {
         {/* LIMIT BREACH CARDS */}
         <section className="pb-[100px] px-[24px] md:px-[48px]">
           <div className="max-w-[1200px] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
-              {limitBreaches.map((breach, index) => {
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px] items-stretch">
+              {limitBreaches.map((breach) => {
                 const IconComponent = breach.icon;
                 return (
-                  <Reveal key={breach.id} delay={100 + index * 50}>
+                  <Reveal key={breach.id} delay={100} className="h-full min-h-0">
                     <button
                       onClick={() => router.push(`/anti-patterns/${breach.id}`)}
-                      className="group w-full text-left bg-white rounded-[12px] p-[32px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.12)] hover:border-[#FF2424]/30 transition-all duration-300"
+                      className="group w-full h-full min-h-0 text-left bg-white rounded-[12px] p-[32px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.12)] hover:border-[#FF2424]/30 transition-all duration-300 flex flex-col"
                     >
                       {/* Header */}
                       <div className="flex items-start justify-between mb-[20px]">
@@ -316,12 +316,12 @@ export default function AntiPatternsPage() {
                       </code>
 
                       {/* Description */}
-                      <p className="text-[14px] leading-[1.6] text-[#555] mb-[20px]">
+                      <p className="text-[14px] leading-[1.6] text-[#555] mb-[20px] flex-1">
                         {breach.description}
                       </p>
 
                       {/* Metrics */}
-                      <div className="flex items-center gap-[20px] pt-[16px] border-t border-[#1a1a1a]/5">
+                      <div className="flex items-center gap-[20px] pt-[16px] border-t border-[#1a1a1a]/5 mt-auto shrink-0">
                         <div>
                           <p className="text-[10px] uppercase tracking-[1px] text-[#888] mb-[2px]">Impact</p>
                           <p className="text-[14px] font-semibold text-[#1a1a1a]">{breach.metrics.impact}</p>
@@ -362,23 +362,23 @@ export default function AntiPatternsPage() {
               </p>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
-              <Reveal delay={200}>
-                <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] text-left">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] items-stretch">
+              <Reveal delay={200} className="h-full min-h-0">
+                <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] text-left h-full flex flex-col">
                   <div className="text-[32px] font-archivo text-[#FF2424] mb-[12px]">73%</div>
-                  <p className="text-[14px] text-[#555]">Of Salesforce enterprise teams experience Sev-1 runtime incidents annually</p>
+                  <p className="text-[14px] text-[#555] flex-1">Of Salesforce enterprise teams experience Sev-1 runtime incidents annually</p>
                 </div>
               </Reveal>
-              <Reveal delay={300}>
-                <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] text-left">
+              <Reveal delay={200} className="h-full min-h-0">
+                <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] text-left h-full flex flex-col">
                   <div className="text-[32px] font-archivo text-[#FF2424] mb-[12px]">2:00 AM</div>
-                  <p className="text-[14px] text-[#555]">Peak crisis time, when production crashes and the pressure is on</p>
+                  <p className="text-[14px] text-[#555] flex-1">Peak crisis time, when production crashes and the pressure is on</p>
                 </div>
               </Reveal>
-              <Reveal delay={400}>
-                <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] text-left">
+              <Reveal delay={200} className="h-full min-h-0">
+                <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] text-left h-full flex flex-col">
                   <div className="text-[32px] font-archivo text-[#FF2424] mb-[12px]">85%</div>
-                  <p className="text-[14px] text-[#555]">Of teams that experience a major outage from limit breaches</p>
+                  <p className="text-[14px] text-[#555] flex-1">Of teams that experience a major outage from limit breaches</p>
                 </div>
               </Reveal>
             </div>

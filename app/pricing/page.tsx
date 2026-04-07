@@ -267,10 +267,10 @@ export default function PricingPage() {
         <section className="py-[40px] px-[24px] md:px-[48px] relative overflow-hidden">
           <LightGridBg />
           <div className="max-w-[1200px] mx-auto relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
-              {plans.map((plan, index) => (
-                <Reveal key={plan.name} delay={100 + index * 100}>
-                  <div className={`rounded-[12px] p-[32px] h-full flex flex-col ${
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] items-stretch">
+              {plans.map((plan) => (
+                <Reveal key={plan.name} delay={100} className="h-full min-h-0">
+                  <div className={`rounded-[12px] p-[32px] h-full min-h-0 flex flex-col ${
                     plan.highlight 
                       ? 'bg-[#1a1a1a] text-white border-2 border-[#FF2424]' 
                       : 'bg-white border border-[#1a1a1a]/10'
@@ -299,7 +299,7 @@ export default function PricingPage() {
                       {plan.description}
                     </p>
                     
-                    <div className="flex-grow">
+                    <div className="flex-1 min-h-0">
                       <ul className="space-y-[12px]">
                         {plan.features.map((feature) => (
                           <li key={feature.text} className="flex items-start gap-[10px]">
@@ -318,7 +318,7 @@ export default function PricingPage() {
                     
                     <button 
                       onClick={() => router.push("/pilot")} 
-                      className={`mt-[24px] w-full py-[14px] font-archivo text-[13px] uppercase tracking-[1.5px] rounded-[4px] transition-all duration-300 ${
+                      className={`mt-auto pt-[24px] w-full py-[14px] font-archivo text-[13px] uppercase tracking-[1.5px] rounded-[4px] transition-all duration-300 ${
                         plan.highlight 
                           ? 'bg-[#FF2424] text-white hover:bg-[#d91f1f]' 
                           : 'bg-[#1a1a1a] text-white hover:bg-[#333]'

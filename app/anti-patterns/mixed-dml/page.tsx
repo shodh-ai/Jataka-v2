@@ -331,9 +331,9 @@ export default function MixedDMLPage() {
               </p>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] mb-[40px]">
-              <Reveal delay={200}>
-                <div className="bg-[#FAF8F3] rounded-[12px] p-[24px] border-l-4 border-[#FF6B35]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] mb-[40px] items-stretch">
+              <Reveal delay={200} className="h-full min-h-0">
+                <div className="h-full flex flex-col bg-[#FAF8F3] rounded-[12px] p-[24px] border-l-4 border-[#FF6B35]">
                   <p className="text-[12px] font-bold uppercase tracking-[1.5px] text-[#FF6B35] mb-[16px]">Setup Objects</p>
                   <p className="text-[14px] text-[#555] mb-[12px]">Cannot mix with non-Setup DML in same transaction:</p>
                   <ul className="space-y-[8px]">
@@ -343,8 +343,8 @@ export default function MixedDMLPage() {
                   </ul>
                 </div>
               </Reveal>
-              <Reveal delay={300}>
-                <div className="bg-[#FAF8F3] rounded-[12px] p-[24px] border-l-4 border-[#1a1a1a]">
+              <Reveal delay={200} className="h-full min-h-0">
+                <div className="h-full flex flex-col bg-[#FAF8F3] rounded-[12px] p-[24px] border-l-4 border-[#1a1a1a]">
                   <p className="text-[12px] font-bold uppercase tracking-[1.5px] text-[#1a1a1a] mb-[16px]">Non-Setup Objects</p>
                   <p className="text-[14px] text-[#555] mb-[12px]">Business data that conflicts with Setup DML:</p>
                   <ul className="space-y-[8px]">
@@ -357,18 +357,18 @@ export default function MixedDMLPage() {
             </div>
 
             <Reveal delay={400}>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
-                <div className="bg-[#FAF8F3] rounded-[12px] p-[24px]">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] items-stretch">
+                <div className="h-full flex flex-col bg-[#FAF8F3] rounded-[12px] p-[24px]">
                   <div className="text-[36px] font-archivo text-[#FF6B35] mb-[8px]">2 hrs</div>
-                  <p className="text-[14px] text-[#555]">Average time to debug this confusing error message</p>
+                  <p className="text-[14px] text-[#555] flex-1">Average time to debug this confusing error message</p>
                 </div>
-                <div className="bg-[#FAF8F3] rounded-[12px] p-[24px]">
+                <div className="h-full flex flex-col bg-[#FAF8F3] rounded-[12px] p-[24px]">
                   <div className="text-[36px] font-archivo text-[#FF6B35] mb-[8px]">0</div>
-                  <p className="text-[14px] text-[#555]">Static analysis tools that catch this pattern</p>
+                  <p className="text-[14px] text-[#555] flex-1">Static analysis tools that catch this pattern</p>
                 </div>
-                <div className="bg-[#FAF8F3] rounded-[12px] p-[24px]">
+                <div className="h-full flex flex-col bg-[#FAF8F3] rounded-[12px] p-[24px]">
                   <div className="text-[36px] font-archivo text-[#FF6B35] mb-[8px]">100%</div>
-                  <p className="text-[14px] text-[#555]">Prevented when detected before deployment</p>
+                  <p className="text-[14px] text-[#555] flex-1">Prevented when detected before deployment</p>
                 </div>
               </div>
             </Reveal>
@@ -515,15 +515,15 @@ export default function MixedDMLPage() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px]">
-              {relatedAntiPatterns.map((pattern, index) => (
-                <Reveal key={pattern.id} delay={100 + index * 50}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px] items-stretch">
+              {relatedAntiPatterns.map((pattern) => (
+                <Reveal key={pattern.id} delay={100} className="h-full min-h-0">
                   <button
                     onClick={() => router.push(`/anti-patterns/${pattern.id}`)}
-                    className="w-full text-left bg-[#FAF8F3] rounded-[12px] p-[24px] border border-[#1a1a1a]/5 hover:border-[#FF2424]/30 transition-all group"
+                    className="w-full h-full min-h-0 text-left bg-[#FAF8F3] rounded-[12px] p-[24px] border border-[#1a1a1a]/5 hover:border-[#FF2424]/30 transition-all group flex flex-col"
                   >
                     <span 
-                      className="text-[10px] font-bold uppercase tracking-[1.5px] px-[10px] py-[4px] rounded-[4px] mb-[12px] inline-block"
+                      className="text-[10px] font-bold uppercase tracking-[1.5px] px-[10px] py-[4px] rounded-[4px] mb-[12px] inline-block shrink-0"
                       style={{ 
                         backgroundColor: pattern.severity === "Critical" ? "#FF242415" : "#FF6B3515",
                         color: pattern.severity === "Critical" ? "#FF2424" : "#FF6B35"
@@ -531,7 +531,7 @@ export default function MixedDMLPage() {
                     >
                       {pattern.severity}
                     </span>
-                    <p className="text-[15px] font-medium group-hover:text-[#FF2424] transition-colors">
+                    <p className="text-[15px] font-medium group-hover:text-[#FF2424] transition-colors flex-1">
                       {pattern.title}
                     </p>
                   </button>

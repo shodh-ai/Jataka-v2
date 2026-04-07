@@ -363,14 +363,14 @@ export default function CompareCopadoPage() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
-              {useCases.map((useCase, index) => (
-                <Reveal key={useCase.title} delay={100 + index * 100}>
-                  <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] h-full">
-                    <h3 className="font-archivo text-[18px] tracking-[-0.5px] uppercase mb-[20px] text-[#FF2424]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] items-stretch">
+              {useCases.map((useCase) => (
+                <Reveal key={useCase.title} delay={100} className="h-full min-h-0">
+                  <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] h-full flex flex-col">
+                    <h3 className="font-archivo text-[18px] tracking-[-0.5px] uppercase mb-[20px] text-[#FF2424] shrink-0">
                       {useCase.title}
                     </h3>
-                    <ul className="space-y-[12px]">
+                    <ul className="space-y-[12px] flex-1">
                       {useCase.items.map((item) => (
                         <li key={item} className="flex items-start gap-[10px]">
                           <Check className="w-[16px] h-[16px] text-[#22c55e] flex-shrink-0 mt-[2px]" />

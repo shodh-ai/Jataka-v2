@@ -401,13 +401,13 @@ export default function AutonomousSDLCPage() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px]">
-              {benefits.map((benefit, index) => (
-                <Reveal key={benefit.label} delay={100 + index * 50}>
-                  <div className="bg-white rounded-[12px] p-[24px] text-center border border-[#1a1a1a]/5 h-full">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px] items-stretch">
+              {benefits.map((benefit) => (
+                <Reveal key={benefit.label} delay={100} className="h-full min-h-0">
+                  <div className="bg-white rounded-[12px] p-[24px] text-center border border-[#1a1a1a]/5 h-full flex flex-col">
                     <p className="text-[42px] font-archivo text-[#FF2424] mb-[8px]">{benefit.metric}</p>
                     <p className="text-[12px] uppercase tracking-[1px] text-[#666] mb-[12px]">{benefit.label}</p>
-                    <p className="text-[13px] text-[#555] leading-[1.6]">{benefit.description}</p>
+                    <p className="text-[13px] text-[#555] leading-[1.6] flex-1">{benefit.description}</p>
                   </div>
                 </Reveal>
               ))}

@@ -319,7 +319,7 @@ export default function CatchingSev1LimitsDemo() {
                   src="https://www.youtube.com/embed/SdXRbVhZMzg"
                   title="Catching Sev-1 Limits Before the Merge"
                   frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               </div>
@@ -433,14 +433,14 @@ export default function CatchingSev1LimitsDemo() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
-              {keyTakeaways.map((takeaway, index) => (
-                <Reveal key={takeaway.title} delay={200 + index * 50}>
-                  <div className="group bg-white rounded-[12px] p-[28px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] items-stretch">
+              {keyTakeaways.map((takeaway) => (
+                <Reveal key={takeaway.title} delay={200} className="h-full min-h-0">
+                  <div className="group bg-white rounded-[12px] p-[28px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 h-full flex flex-col">
                     <h3 className="font-archivo text-[16px] uppercase tracking-[0.5px] mb-[12px]">
                       {takeaway.title}
                     </h3>
-                    <p className="text-[15px] leading-[1.7] text-[#555]">
+                    <p className="text-[15px] leading-[1.7] text-[#555] flex-1">
                       {takeaway.description}
                     </p>
                   </div>
@@ -465,14 +465,14 @@ export default function CatchingSev1LimitsDemo() {
               </h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] items-stretch">
               {relatedDemos.map((demo) => (
-                <Reveal key={demo.slug} delay={200}>
+                <Reveal key={demo.slug} delay={200} className="h-full min-h-0">
                   <button
                     onClick={() => router.push(`/demos/${demo.slug}`)}
-                    className="group w-full text-left bg-white rounded-[12px] p-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300"
+                    className="group w-full h-full min-h-0 text-left bg-white rounded-[12px] p-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 flex flex-col justify-between gap-[16px]"
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-[16px]">
                       <div>
                         <h3 className="font-archivo text-[18px] uppercase tracking-[0.5px] mb-[8px] group-hover:text-[#FF2424] transition-colors">
                           {demo.title}

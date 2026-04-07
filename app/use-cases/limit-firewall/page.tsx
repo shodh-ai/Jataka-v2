@@ -351,17 +351,17 @@ export default function RuntimeLimitProtectionUseCase() {
             </Reveal>
 
             {/* Metrics Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-[16px]">
-              {problemMetrics.map((metric, index) => (
-                <Reveal key={metric.label} delay={400 + index * 50}>
-                  <div className="bg-white rounded-[12px] p-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-[16px] items-stretch">
+              {problemMetrics.map((metric) => (
+                <Reveal key={metric.label} delay={400} className="h-full min-h-0">
+                  <div className="bg-white rounded-[12px] p-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 h-full flex flex-col">
                     <div className="font-archivo text-[28px] md:text-[32px] leading-[1] tracking-[-0.5px] text-[#FF2424] mb-[12px]">
                       {metric.value}
                     </div>
                     <div className="text-[12px] font-medium uppercase tracking-[1px] text-[#888] mb-[8px]">
                       {metric.label}
                     </div>
-                    <div className="text-[13px] leading-[1.5] text-[#666]">
+                    <div className="text-[13px] leading-[1.5] text-[#666] flex-1">
                       {metric.description}
                     </div>
                   </div>
@@ -408,17 +408,17 @@ export default function RuntimeLimitProtectionUseCase() {
             </Reveal>
 
             {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
-              {solutionFeatures.map((feature, index) => {
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] items-stretch">
+              {solutionFeatures.map((feature) => {
                 const IconComponent = feature.icon;
                 return (
-                  <Reveal key={feature.title} delay={400 + index * 50}>
-                    <div className="group bg-white rounded-[12px] p-[32px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300">
-                      <div className="flex items-start gap-[20px]">
+                  <Reveal key={feature.title} delay={400} className="h-full min-h-0">
+                    <div className="group bg-white rounded-[12px] p-[32px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 h-full flex flex-col">
+                      <div className="flex items-start gap-[20px] flex-1">
                         <div className="w-[48px] h-[48px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#FF2424]/20 transition-colors">
                           <IconComponent className="w-[22px] h-[22px] text-[#FF2424]" />
                         </div>
-                        <div>
+                        <div className="min-w-0 flex-1">
                           <h3 className="font-archivo text-[18px] uppercase tracking-[0.5px] mb-[12px]">
                             {feature.title}
                           </h3>
@@ -500,17 +500,17 @@ export default function RuntimeLimitProtectionUseCase() {
             </Reveal>
 
             {/* Result Metrics */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-[16px]">
-              {resultMetrics.map((metric, index) => (
-                <Reveal key={metric.label} delay={300 + index * 50}>
-                  <div className="bg-white rounded-[12px] p-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-[16px] items-stretch">
+              {resultMetrics.map((metric) => (
+                <Reveal key={metric.label} delay={300} className="h-full min-h-0">
+                  <div className="bg-white rounded-[12px] p-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 h-full flex flex-col">
                     <div className="font-archivo text-[28px] md:text-[32px] leading-[1] tracking-[-0.5px] text-[#1a1a1a] mb-[8px]">
                       {metric.value}
                     </div>
                     <div className="text-[12px] font-medium uppercase tracking-[1px] text-[#888] mb-[4px]">
                       {metric.label}
                     </div>
-                    <div className="text-[12px] text-[#FF2424]">
+                    <div className="text-[12px] text-[#FF2424] mt-auto pt-[4px]">
                       {metric.trend}
                     </div>
                   </div>

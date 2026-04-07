@@ -334,11 +334,11 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
           </Reveal>
 
           {/* Architecture Diagram */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px] mb-[60px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px] mb-[60px] items-stretch">
             {architectureSteps.map((step, index) => {
               return (
-                <Reveal key={step.label} delay={300 + index * 100}>
-                  <div className="group bg-white rounded-[12px] p-[28px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 cursor-default h-full">
+                <Reveal key={step.label} delay={300} className="h-full min-h-0">
+                  <div className="group bg-white rounded-[12px] p-[28px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 cursor-default h-full flex flex-col">
                     <div className="w-[48px] h-[48px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center mb-[20px] group-hover:bg-[#FF2424]/20 transition-colors">
                       {index === 0 && <GitBranch className="w-[24px] h-[24px] text-[#FF2424]" />}
                       {index === 1 && <Zap className="w-[24px] h-[24px] text-[#FF2424]" />}
@@ -347,8 +347,8 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
                     </div>
                     <p className="text-[12px] font-mono uppercase tracking-[2px] text-[#888] mb-[12px]">Step {index + 1}</p>
                     <h3 className="font-archivo text-[18px] uppercase tracking-[0.5px] mb-[8px]">{step.label}</h3>
-                    <p className="text-[14px] leading-[1.6] text-[#555] mb-[16px]">{step.description}</p>
-                    <p className="text-[13px] leading-[1.6] text-[#777]">{step.detail}</p>
+                    <p className="text-[14px] leading-[1.6] text-[#555] mb-[16px] flex-1">{step.description}</p>
+                    <p className="text-[13px] leading-[1.6] text-[#777] mt-auto">{step.detail}</p>
                   </div>
                 </Reveal>
               );
@@ -358,20 +358,20 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
           {/* Flow Description */}
           <Reveal delay={700}>
             <div className="bg-[#F5F0E8] rounded-[12px] p-[32px] md:p-[40px]">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
-                <div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] items-stretch">
+                <div className="h-full flex flex-col">
                   <p className="text-[12px] font-medium uppercase tracking-[2px] text-[#888] mb-[16px]">
                     Input
                   </p>
-                  <p className="text-[15px] leading-[1.7] text-[#444]">
+                  <p className="text-[15px] leading-[1.7] text-[#444] flex-1">
                     GitHub webhook fires on PR creation/update. Jataka receives the payload, authenticates with your Salesforce org via OAuth, and queues the analysis job in our distributed task queue.
                   </p>
                 </div>
-                <div>
+                <div className="h-full flex flex-col">
                   <p className="text-[12px] font-medium uppercase tracking-[2px] text-[#888] mb-[16px]">
                     Output
                   </p>
-                  <p className="text-[15px] leading-[1.7] text-[#444]">
+                  <p className="text-[15px] leading-[1.7] text-[#444] flex-1">
                     Pass/Fail status posted to GitHub PR checks. Detailed limit report attached as PR comment with line-by-line attribution. Deployment blocked if thresholds exceeded.
                   </p>
                 </div>
@@ -490,8 +490,8 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
             {limitParsingFeatures.map((feature, index) => (
               <Reveal key={feature.title} delay={300 + index * 100}>
                 <div className="group bg-white rounded-[12px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300">
-                  <div className="grid grid-cols-1 lg:grid-cols-2">
-                    <div className="p-[32px] md:p-[40px]">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch">
+                    <div className="p-[32px] md:p-[40px] flex flex-col h-full min-h-0">
                       <p className="text-[12px] font-mono uppercase tracking-[2px] text-[#888] mb-[16px]">
                         0{index + 1}
                       </p>
@@ -505,8 +505,8 @@ Sforce-Limit-Info: per-app-api-usage=42/100`,
                         {feature.detailedDescription}
                       </p>
                     </div>
-                    <div className="bg-[#1a1a1a] p-[24px] md:p-[32px] font-mono text-[12px] md:text-[13px] text-[#8B949E] overflow-x-auto">
-                      <pre className="whitespace-pre-wrap break-all">{feature.code}</pre>
+                    <div className="bg-[#1a1a1a] p-[24px] md:p-[32px] font-mono text-[12px] md:text-[13px] text-[#8B949E] overflow-x-auto min-h-[200px] lg:min-h-full flex">
+                      <pre className="whitespace-pre-wrap break-all flex-1">{feature.code}</pre>
                     </div>
                   </div>
                 </div>
