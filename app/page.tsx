@@ -190,6 +190,11 @@ export default function JatakaLandingPage() {
                 <Link href="/use-cases/self-healing-ui-tests" onClick={() => setDropdownOpen(null)} className="block w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Self-Healing UI Tests</Link>
                 <Link href="/use-cases/blast-radius-prediction" onClick={() => setDropdownOpen(null)} className="block w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Blast Radius Prediction</Link>
                 <Link href="/architecture-agent" onClick={() => setDropdownOpen(null)} className="block w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Architecture Agent</Link>
+                <div className="h-[1px] bg-[#1a1a1a]/10 my-[4px] mx-[8px]"></div>
+                <Link href="/compliance-security-xray" onClick={() => setDropdownOpen(null)} className="block w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Compliance & Security Audit</Link>
+                <Link href="/api-contract-guardian" onClick={() => setDropdownOpen(null)} className="block w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">API Contract Guardian</Link>
+                <Link href="/ma-org-merge-intelligence" onClick={() => setDropdownOpen(null)} className="block w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">M&A Org Merge Analysis</Link>
+                <Link href="/synthetic-production-monitoring" onClick={() => setDropdownOpen(null)} className="block w-full text-left px-[16px] py-[8px] hover:bg-[#FAF8F3] text-[13px] text-[#1a1a1a] transition-colors">Synthetic Production Monitoring</Link>
               </div>
             )}
           </li>

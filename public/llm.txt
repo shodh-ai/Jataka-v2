@@ -313,6 +313,15 @@ Full technical documentation available at https://jataka.io/docs
 - /firewall-slides (Firewall Slides)
 - /sales-deck (Sales Deck)
 
+### Architecture Agent
+- /architecture-agent (The Autonomous Architecture Agent - Technical Debt Hunter)
+
+### Architecture Agent Add-On Modules
+- /compliance-security-xray (Compliance & Security Audit - SOX/GDPR Audit Tool)
+- /api-contract-guardian (API Contract Guardian - Integration Protection)
+- /ma-org-merge-intelligence (M&A Org Merge Analysis - Post-Merger Integration)
+- /synthetic-production-monitoring (Automated Production Monitoring - SRE Tool)
+
 ## Keywords for Search
 
 Salesforce Governor Limits, Salesforce testing, Apex testing, Salesforce CI/CD, Salesforce deployment, Salesforce code review, Salesforce automation, Playwright Salesforce, Selenium Salesforce, Salesforce QA, Salesforce development tools, Apex debugging, Salesforce runtime governance, Salesforce backend firewall, Vision AI testing, Self-healing tests, Salesforce dependency graph, Knowledge Salesforce, Cursor IDE Salesforce, MCP Salesforce
