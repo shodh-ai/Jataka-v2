@@ -126,6 +126,7 @@ const plans = [
     description: "For large Salesforce orgs with complex deployments.",
     features: [
       { text: "Up to 30 Developer Seats", included: true },
+      { text: "Up to 3 Connected Salesforce Environments (e.g., Dev, Staging, UAT)", included: true },
       { text: "Slack Bot & VS Code MCP access", included: true },
       { text: "4,000 PR limit analyses/month", included: true },
       { text: "2,000 Kamikaze UI Tests/month", included: true },

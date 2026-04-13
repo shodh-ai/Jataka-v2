@@ -755,6 +755,21 @@ export default function JatakaLandingPage() {
       {/* ── FOOTER ── */}
       <footer className="bg-[#1a1a1a] px-[24px] md:px-[48px] lg:px-[80px] py-[60px] md:py-[80px]">
         <div className="max-w-[1200px] mx-auto">
+          {/* Legal Links Bar */}
+          <div className="flex flex-wrap items-center justify-center gap-[8px] md:gap-[16px] mb-[40px]">
+            <Link href="/privacy" className="text-[13px] text-[#999] hover:text-white transition-colors">Privacy Notice</Link>
+            <span className="text-[#666]">|</span>
+            <Link href="/terms-of-use" className="text-[13px] text-[#999] hover:text-white transition-colors">Terms & Conditions</Link>
+            <span className="text-[#666]">|</span>
+            <Link href="/security" className="text-[13px] text-[#999] hover:text-white transition-colors">Security</Link>
+            <span className="text-[#666]">|</span>
+            <Link href="/sub-processor-registry" className="text-[13px] text-[#999] hover:text-white transition-colors">Sub-processors</Link>
+            <span className="text-[#666]">|</span>
+            <Link href="/dpa" className="text-[13px] text-[#999] hover:text-white transition-colors">DPA</Link>
+            <span className="text-[#666]">|</span>
+            <Link href="/msa" className="text-[13px] text-[#999] hover:text-white transition-colors">MSA</Link>
+          </div>
+
           {/* 4-Column Footer Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-[40px] md:gap-[60px] mb-[60px]">
             
@@ -798,6 +813,7 @@ export default function JatakaLandingPage() {
                 <li><Link href="/customers" className="text-[14px] text-[#999] hover:text-white transition-colors text-left block">Customers & Design Partners</Link></li>
                 <li><Link href="/pricing" className="text-[14px] text-[#999] hover:text-white transition-colors text-left block">Pricing</Link></li>
                 <li><Link href="/security" className="text-[14px] text-[#999] hover:text-white transition-colors text-left block">Security & Trust</Link></li>
+                <li><Link href="/msa" className="text-[14px] text-[#999] hover:text-white transition-colors text-left block">Master Subscription Agreement</Link></li>
                 <li><Link href="/book-pilot" className="text-[14px] text-[#999] hover:text-white transition-colors text-left block">Start a Pilot</Link></li>
               </ul>
             </div>

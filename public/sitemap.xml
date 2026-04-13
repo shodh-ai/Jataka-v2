@@ -24,6 +24,13 @@
   </url>
 
   <url>
+    <loc>https://jataka.io/msa/</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
     <loc>https://jataka.io/customers/</loc>
     <lastmod>2026-04-06</lastmod>
     <changefreq>monthly</changefreq>
