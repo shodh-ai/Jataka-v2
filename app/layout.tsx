@@ -87,7 +87,10 @@ export const metadata: Metadata = {
     creator: "@jataka_ai",
   },
   icons: {
-    icon: "/WhiteLOGO.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+    ],
     apple: "/apple-touch-icon.png",
   },
   manifest: "/manifest.json",
