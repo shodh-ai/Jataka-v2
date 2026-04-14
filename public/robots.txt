@@ -1,5 +1,6 @@
 # Robots.txt for Jataka.io
 # https://jataka.io
+# Last Updated: April 14, 2026
 
 User-agent: *
 Allow: /
@@ -63,6 +64,6 @@ Allow: /og-image.png
 Sitemap: https://jataka.io/sitemap.xml
 Sitemap: https://jataka.io/sitemap-index.xml
 
-# Additional directives
-# Host directive for Yandex (if needed)
-# Host: https://jataka.io
+# Geo-targeting hints for search engines
+# Primary market: United States
+# Secondary markets: India, Canada, United Kingdom, Australia

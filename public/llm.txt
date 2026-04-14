@@ -9,6 +9,9 @@
 - **Category**: Developer Tools, Software Development, Salesforce Ecosystem
 - **Founded**: 2024
 - **Type**: B2B SaaS Platform
+- **Headquarters**: Delaware, United States
+- **Operations**: United States, India
+- **Target Markets**: United States (primary), India, Canada, United Kingdom, Australia
 
 ## What is Jataka?
 
@@ -227,15 +230,35 @@ Model Context Protocol integration with Cursor IDE. Ask questions about your cod
 ## Security & Compliance
 
 - SOC 2 Type II (in progress)
+- GDPR compliance (EU data protection)
+- DPDP Act 2023 compliance (India data protection)
+- CCPA compliance (California privacy)
 - Data encrypted at rest and in transit
 - No Production data stored
 - Sandbox-only execution
 - OAuth 2.0 authentication
 - Role-based access control
+- Sub-processor registry available at https://jataka.io/sub-processor-registry
+- Privacy Notice available at https://jataka.io/privacy
 
 ## Pricing
 
-Contact sales for pricing. Book a demo at https://jataka.io/book-pilot
+### Enterprise Velocity Tier
+- **Price**: $30,000 per year (billed annually)
+- **Includes**: Up to 30 Developer Seats, Up to 3 Connected Salesforce Environments (Dev, Staging, UAT), Slack Bot & VS Code MCP access, Priority enterprise support with 99.9% uptime SLA
+- **Target**: Enterprise Salesforce teams with 50+ developers
+
+### Team/Agency Tier
+- **Price**: Custom pricing based on team size
+- **Includes**: Core features, limited environments, standard support
+- **Target**: Small to mid-sized agencies and teams
+
+### Proof of Concept
+- **Price**: Free 14-day pilot
+- **Includes**: Full Enterprise features, success criteria evaluation
+- **Transition**: Option to convert to paid subscription after pilot
+
+Book a demo at https://jataka.io/book-pilot
 
 ## Getting Started
 
@@ -255,6 +278,32 @@ Full technical documentation available at https://jataka.io/docs
 - **Docs**: https://jataka.io/docs
 - **Twitter**: @jataka_ai
 - **LinkedIn**: /company/jataka
+- **Legal**: legal@jataka.io
+- **Support**: support@jataka.io
+- **Billing**: billing@jataka.io
+
+## Geographic Targeting
+
+### Primary Market: United States
+- Target: Enterprise Salesforce teams, DevOps teams, QA teams
+- Regions: San Francisco Bay Area, New York, Chicago, Austin, Seattle
+- Focus: Large enterprises with 50+ Salesforce developers
+
+### Secondary Market: India
+- Target: Offshore development agencies, Salesforce consultancies
+- Regions: Bangalore, Hyderabad, Mumbai, Pune, Delhi NCR
+- Focus: Agencies serving US/UK enterprise clients
+
+### Tertiary Markets
+- **Canada**: Toronto, Vancouver (enterprise Salesforce teams)
+- **United Kingdom**: London, Manchester (financial services Salesforce)
+- **Australia**: Sydney, Melbourne (enterprise Salesforce teams)
+
+## Time Zones
+- Headquarters: Eastern Time (ET), United States
+- Operations: Eastern Time (ET) and India Standard Time (IST)
+- Support: Business hours (Mon-Fri 9 AM - 6 PM ET)
+- SLA Response Times: Measured in Eastern Time (ET)
 
 ## Sitemap
 
@@ -267,6 +316,18 @@ Full technical documentation available at https://jataka.io/docs
 - /book-pilot (Book a Demo)
 - /docs (Documentation)
 - /info (Info)
+
+### Legal & Compliance Pages
+- /privacy (Privacy Notice)
+- /terms-of-use (Terms of Use)
+- /dpa (Data Processing Agreement)
+- /msa (Master Subscription Agreement)
+- /sla (Service Level Agreement)
+- /poc-agreement (Proof of Concept Agreement)
+- /design-partner-agreement (Design Partner Agreement)
+- /sub-processor-registry (Sub-processor Registry)
+- /mutual-action-plan (Mutual Action Plan)
+- /order-form (Order Form)
 
 ### Use Cases Hub
 - /use-cases (Use Cases Hub)
@@ -324,4 +385,4 @@ Full technical documentation available at https://jataka.io/docs
 
 ## Keywords for Search
 
-Salesforce Governor Limits, Salesforce testing, Apex testing, Salesforce CI/CD, Salesforce deployment, Salesforce code review, Salesforce automation, Playwright Salesforce, Selenium Salesforce, Salesforce QA, Salesforce development tools, Apex debugging, Salesforce runtime governance, Salesforce backend firewall, Vision AI testing, Self-healing tests, Salesforce dependency graph, Knowledge Salesforce, Cursor IDE Salesforce, MCP Salesforce
+Salesforce Governor Limits, Salesforce testing, Apex testing, Salesforce CI/CD, Salesforce deployment, Salesforce code review, Salesforce automation, Playwright Salesforce, Selenium Salesforce, Salesforce QA, Salesforce development tools, Apex debugging, Salesforce runtime governance, Salesforce backend firewall, Vision AI testing, Self-healing tests, Salesforce dependency graph, Knowledge Salesforce, Cursor IDE Salesforce, MCP Salesforce, Salesforce compliance, Salesforce security, SOC 2, GDPR compliance, DPDP Act 2023, Salesforce DevSecOps, Enterprise Salesforce, Salesforce Governor Limit monitoring, Salesforce technical debt, Salesforce architecture review, Salesforce code quality, Salesforce test automation, Salesforce UI testing, Salesforce API testing, Salesforce integration testing, Salesforce performance testing, Salesforce scalability, Salesforce reliability, Salesforce observability

@@ -768,6 +768,10 @@ export default function JatakaLandingPage() {
             <Link href="/dpa" className="text-[13px] text-[#999] hover:text-white transition-colors">DPA</Link>
             <span className="text-[#666]">|</span>
             <Link href="/msa" className="text-[13px] text-[#999] hover:text-white transition-colors">MSA</Link>
+            <span className="text-[#666]">|</span>
+            <Link href="/sla" className="text-[13px] text-[#999] hover:text-white transition-colors">SLA</Link>
+            <span className="text-[#666]">|</span>
+            <Link href="/design-partner-agreement" className="text-[13px] text-[#999] hover:text-white transition-colors">Design Partner</Link>
           </div>
 
           {/* 4-Column Footer Grid */}

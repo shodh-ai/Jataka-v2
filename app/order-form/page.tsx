@@ -5,14 +5,14 @@ import { FileText, DollarSign, Calendar, CheckCircle } from "lucide-react";
 export const metadata: Metadata = {
   title: "Order Form",
   description:
-    "Jataka Order Form for Enterprise License purchase - $30,000/year with Net 30 billing terms.",
+    "Jataka Order Form for Enterprise License purchase - $30,000/year with Net 30 billing terms and 99.9% uptime SLA.",
   alternates: {
     canonical: "https://jataka.io/order-form",
   },
   openGraph: {
     title: "Order Form | Jataka",
     description:
-      "Jataka Order Form for Enterprise License purchase - $30,000/year with Net 30 billing terms.",
+      "Jataka Order Form for Enterprise License purchase - $30,000/year with Net 30 billing terms and 99.9% uptime SLA.",
     url: "https://jataka.io/order-form",
     siteName: "Jataka",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Jataka" }],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Order Form | Jataka",
     description:
-      "Jataka Order Form for Enterprise License purchase - $30,000/year with Net 30 billing terms.",
+      "Jataka Order Form for Enterprise License purchase - $30,000/year with Net 30 billing terms and 99.9% uptime SLA.",
     images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },
@@ -207,6 +207,13 @@ export default function OrderFormPage() {
               >
                 <FileText className="w-[16px] h-[16px]" />
                 Sub-processor Registry
+              </Link>
+              <Link
+                href="/sla"
+                className="flex items-center gap-[12px] text-[14px] font-medium text-[#1a1a1a] hover:text-[#FF2424] transition-colors"
+              >
+                <FileText className="w-[16px] h-[16px]" />
+                Service Level Agreement (SLA)
               </Link>
             </div>
           </div>
