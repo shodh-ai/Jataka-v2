@@ -79,20 +79,7 @@ export default function POCAgreementPage() {
 
   return (
     <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
-      <header className="fixed top-0 left-0 right-0 z-[200] h-[64px] bg-[#FAF8F3]/90 backdrop-blur-[14px] border-b border-[#1a1a1a]/10 px-[24px] md:px-[48px] flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-[13px] font-semibold uppercase tracking-[1.6px] text-[#666] hover:text-[#1a1a1a] transition-colors"
-        >
-          ← Back to Home
-        </Link>
-        <Link
-          href="/book-pilot"
-          className="bg-[#FF2424] text-white px-[16px] py-[8px] text-[11px] font-semibold uppercase tracking-[1.4px] rounded-[4px] hover:bg-[#d91f1f] transition-colors"
-        >
-          Book Demo
-        </Link>
-      </header>
+      
 
       <main className="mx-auto max-w-[980px] px-[24px] md:px-[40px] pt-[112px] pb-[80px]">
         <section className="mb-[24px] rounded-[12px] border border-[#1a1a1a]/10 bg-white p-[24px] md:p-[36px]">
