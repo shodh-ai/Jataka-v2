@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Archivo_Black, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import SiteHeader from "./components/SiteHeader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -116,7 +117,8 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${archivoBlack.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        {children}
+        <SiteHeader />
+        <div className="pt-[64px]">{children}</div>
       </body>
     </html>
   );
