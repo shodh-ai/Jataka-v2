@@ -64,9 +64,9 @@ function Reveal({
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Shodh AI - Complete Platform Audit",
+  name: "Jataka - Complete Platform Audit",
   description:
-    "The autonomous Salesforce governance engine. From code review to compliance, Shodh AI guards your org at every stage of the development lifecycle.",
+    "The autonomous Salesforce governance engine. From code review to compliance, Jataka guards your org at every stage of the development lifecycle.",
   url: "https://jataka.io/platform-audit",
 };
 
@@ -163,7 +163,7 @@ function PRComment({
         <span className="dot dot-r"></span>
         <span className="dot dot-y"></span>
         <span className="dot dot-g"></span>
-        <span className="ml-[8px]">PR review - Shodh AI</span>
+        <span className="ml-[8px]">PR review - Jataka</span>
       </div>
       <div className="p-[18px_20px] text-[13.5px] leading-[1.7] text-[#c9d1d9]">
         <span
@@ -242,7 +242,7 @@ const SUB_NAV: { href: string; label: string }[] = [
 // Mermaid chart strings (verbatim from source)
 // ------------------------------------------------------------------
 const CHART_INTEGRATION = `flowchart LR
-    subgraph CONNECT["Shodh AI Connects To"]
+    subgraph CONNECT["Jataka Connects To"]
         G["GitHub\\nRepositories"]
         S["Salesforce\\nOrgs"]
         J["Jira\\nBoards"]
@@ -250,7 +250,7 @@ const CHART_INTEGRATION = `flowchart LR
         IDE["IDE\\nCursor / VS Code"]
     end
 
-    subgraph ENGINE["Shodh AI Engine"]
+    subgraph ENGINE["Jataka Engine"]
         E["Metadata Graph\\n+ AI Analysis\\n+ Governance Rules"]
     end
 
@@ -279,7 +279,7 @@ const CHART_LIFECYCLE = `flowchart TD
     A["DEVELOPER WRITES CODE\\nApex, LWC, Flows, Metadata\\nin IDE"]
     B["IDE ANALYSIS\\nBlast radius preview\\nField dependency map\\nLimit estimation"]
     C["PR CREATED ON GITHUB\\nCode pushed, PR opened"]
-    D["SHODH AI PR REVIEW\\nFull automated analysis\\nacross all 5 modules"]
+    D["Jataka PR REVIEW\\nFull automated analysis\\nacross all 5 modules"]
     E{"VIOLATIONS\\nFOUND?"}
     F["PR AUTO-APPROVED\\nAll checks pass"]
     G["PR BLOCKED\\nLine-level violation report\\nwith remediation steps"]
@@ -333,25 +333,31 @@ const CHART_PR_REVIEW = `flowchart TD
     A4 --> O2`;
 
 const CHART_LIMIT_FIREWALL = `flowchart TD
-    PR["PR Submitted\\nDeveloper pushes Apex/Flow changes"]
-    PARSE["STEP 1: AST PARSING\\nParse Apex into Abstract Syntax Tree\\nMap every method, loop, DML, SOQL"]
-    LOOP["STEP 2: LOOP DETECTION\\nFind SOQL/DML inside loops\\nIncluding indirect method calls"]
-    CPU["STEP 3: CPU PROFILING\\nEstimate CPU time for complex paths\\nSync: 10,000ms / Async: 60,000ms"]
-    SKEW["STEP 4: DATA SKEW\\nAnalyze DML against org data\\nFlag row-locking patterns"]
-    API["STEP 5: API LIMITS\\nCount callouts per transaction\\nLimit: 100 sync / 200 async"]
-    REPORT["VIOLATION REPORT\\nFile + line number\\nSeverity + fix suggestion"]
-    DECIDE{"CRITICAL\\nVIOLATIONS?"}
+    PR["PR Submitted\nDeveloper pushes Apex/Flow changes"]
+    PARSE["STEP 1: AST PARSING\nParse Apex into Abstract Syntax Tree\nMap every method, loop, DML, SOQL"]
+    LOOP["STEP 2: LOOP DETECTION\nFind SOQL/DML inside loops\nIncluding indirect method calls"]
+    CPU["STEP 3: CPU PROFILING\nEstimate CPU time for complex paths\nSync: 10,000ms / Async: 60,000ms"]
+    SKEW["STEP 4: DATA SKEW\nAnalyze DML against org data\nFlag row-locking patterns"]
+    API["STEP 5: API LIMITS\nCount callouts per transaction\nLimit: 100 sync / 200 async"]
+    REPORT["VIOLATION REPORT\nFile + line number\nSeverity + fix suggestion"]
+    DECIDE{"CRITICAL\nVIOLATIONS?"}
     BLOCK["PR BLOCKED"]
     APPROVE["PR APPROVED"]
+    CTX{{"JATAKA CONTEXT GRAPH\nLive Production Data Map\ne.g., 80,000 Contacts\n+ Runtime physics"}}
 
     PR --> PARSE --> LOOP --> CPU --> SKEW --> API --> REPORT --> DECIDE
     DECIDE -->|Yes| BLOCK
-    DECIDE -->|No| APPROVE`;
+    DECIDE -->|No| APPROVE
+    CTX -. "Production volumes\ndrive the simulation" .-> CPU
+    CTX -. "Org data distribution\npowers skew detection" .-> SKEW
+
+    style CTX fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff`;
 
 const CHART_TECH_DEBT = `flowchart TD
-    CHANGE["CHANGE DETECTED\\nNew PR with metadata changes"]
-    DUP["DUPLICATE SCAN\\nCompare new fields vs all\\nexisting org fields"]
-    ORPHAN["ORPHAN DISCOVERY\\nDependency graph analysis\\nFind zero-reference metadata"]
+    CHANGE["CHANGE DETECTED\nNew PR with metadata changes"]
+    CTX{{"JATAKA CONTEXT GRAPH\nEntire org history\n+ 360-degree\ndependency map"}}
+    DUP["DUPLICATE SCAN\nCompare new fields vs all\nexisting org fields"]
+    ORPHAN["ORPHAN DISCOVERY\nDependency graph analysis\nFind zero-reference metadata"]
     ARCH["ARCHITECTURE CHECK\\nEnforce Flows over Triggers\\nHandler patterns, naming"]
     LOGIC["BUSINESS LOGIC\\nVerify org-specific rules"]
     BEST["BEST PRACTICES\\nCRUD/FLS, sharing,\\ncoverage, patterns"]
@@ -363,8 +369,9 @@ const CHART_TECH_DEBT = `flowchart TD
     BLOCK["BLOCKED"]
     PASS["APPROVED"]
 
-    CHANGE --> DUP
-    CHANGE --> ORPHAN
+    CHANGE --> CTX
+    CTX --> DUP
+    CTX --> ORPHAN
     CHANGE --> ARCH
     CHANGE --> LOGIC
     CHANGE --> BEST
@@ -381,23 +388,28 @@ const CHART_TECH_DEBT = `flowchart TD
     DECIDE -->|Clean| PASS`;
 
 const CHART_QA = `flowchart TD
-    TRIGGER["TEST TRIGGERED\\nPR merge, schedule, or on-demand"]
-    SEED["SMART DATA SEEDING\\nGenerate minimal test records\\nrespecting all field constraints"]
-    EXEC["UI TEST EXECUTION\\nHeadless browser runs E2E tests\\nagainst Salesforce UI"]
-    HEAL{"SELECTOR\\nBROKEN?"}
-    VISION["VISION AI HEALING\\nScreenshot page, find element\\nvisually, update selector"]
-    RECORD["VIDEO RECORDING\\nRecord every step for\\naudit evidence"]
-    VERIFY["LOGIC VERIFICATION\\nMathematically prove\\nrefactored code equivalence"]
-    REPORT["QA REPORT\\nPass/fail, videos,\\ncoverage, proof status"]
+    TRIGGER["TEST TRIGGERED\nPR merge, schedule, or on-demand"]
+    CTX{{"JATAKA CONTEXT GRAPH\nJira Acceptance Criteria\n+ Business intent\n+ Org schema"}}
+    SEED["SMART DATA SEEDING\nGenerate minimal test records\nrespecting all field constraints"]
+    EXEC["UI TEST EXECUTION\nHeadless browser runs E2E tests\nagainst Salesforce UI"]
+    HEAL{"SELECTOR\nBROKEN?"}
+    VISION["VISION AI HEALING\nScreenshot page, find element\nvisually, update selector"]
+    RECORD["VIDEO RECORDING\nRecord every step for\naudit evidence"]
+    VERIFY["LOGIC VERIFICATION\nMathematically prove\nrefactored code equivalence"]
+    REPORT["QA REPORT\nPass/fail, videos,\ncoverage, proof status"]
 
-    TRIGGER --> SEED --> EXEC --> HEAL
+    TRIGGER --> CTX
+    CTX --> SEED --> EXEC --> HEAL
     HEAL -->|Yes| VISION --> EXEC
-    HEAL -->|No| RECORD --> VERIFY --> REPORT`;
+    HEAL -->|No| RECORD --> VERIFY --> REPORT
+    CTX -. "Business intent\npowers visual healing" .-> VISION
+
+    style CTX fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff`;
 
 const CHART_DEVXP = `flowchart TD
     subgraph IDE_FLOW["IDE INTEGRATION"]
         DEV["Developer edits\\na field in Cursor"]
-        BLAST["Shodh AI shows blast radius:\\n3 Flows, 2 Apex classes,\\n5 Reports, 1 Validation Rule"]
+        BLAST["Jataka shows blast radius:\\n3 Flows, 2 Apex classes,\\n5 Reports, 1 Validation Rule"]
         WARN["Changing this field\\nbreaks Flow 'Lead Assignment'"]
         DEV --> BLAST --> WARN
     end
@@ -416,7 +428,9 @@ const CHART_DEVXP = `flowchart TD
 
 const CHART_ENTERPRISE = `flowchart TD
     subgraph MA["M&A ORG MERGE"]
-        MA1["Connect to Org A + Org B"] --> MA2["Extract full metadata"] --> MA3["Compare & map overlap"] --> MA4["Generate Merge Report\\nwith migration plan"]
+        MA1A{{"ORG A\nCONTEXT GRAPH"}} --> MA3
+        MA1B{{"ORG B\nCONTEXT GRAPH"}} --> MA3
+        MA3["MASTER JATAKA\nOVERLAP GRAPH\nmathematical comparison"] --> MA4["Generate Merge Report\nwith migration plan"]
     end
 
     subgraph SEC["SECURITY AUDIT"]
@@ -424,7 +438,7 @@ const CHART_ENTERPRISE = `flowchart TD
     end
 
     subgraph API["API CONTRACT"]
-        AP1["Register external consumers\\nERP, DW, Marketing"] --> AP2["PR modifies contracted field"] --> AP3["Auto-block PR\\nNotify integration owner"]
+        APCTX{{"JATAKA CONTEXT GRAPH\nAuto-discovered\ninbound + outbound\ndependencies"}} --> AP2["PR modifies contracted field"] --> AP3["Auto-block PR\nNotify integration owner\n(SAP / MuleSoft / Workday)"]
     end
 
     subgraph MON["SYNTHETIC MONITORING"]
@@ -432,8 +446,13 @@ const CHART_ENTERPRISE = `flowchart TD
     end
 
     subgraph MIG["LEGACY MIGRATION"]
-        MI1["Scan for Workflow Rules"] --> MI2["Parse conditions + actions"] --> MI3["Generate equivalent Flow"] --> MI4["Create PR with\\nFlow + tests + proof"]
-    end`;
+        MI1["Scan for Workflow Rules"] --> MI2["Parse conditions + actions"] --> MI3["Generate equivalent Flow"] --> MI4["Create PR with\nFlow + tests + proof"]
+    end
+
+    style APCTX fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff
+    style MA1A fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff
+    style MA1B fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff
+    style MA3 fill:#1a1a1a,stroke:#FF2424,stroke-width:2px,color:#ffffff`;
 
 // ------------------------------------------------------------------
 // Capability matrix rows
@@ -611,7 +630,7 @@ export default function PlatformAuditPage() {
 
             <Reveal delay={100}>
               <h1 className="font-archivo text-[clamp(36px,5.6vw,64px)] leading-[1.02] tracking-[-2px] uppercase mb-[20px]">
-                Shodh AI - <br />
+                Jataka - <br />
                 <span className="text-[#FF2424]">Complete Platform Audit</span>
               </h1>
             </Reveal>
@@ -633,7 +652,7 @@ export default function PlatformAuditPage() {
             <Reveal delay={260}>
               <p className="text-[17px] leading-[1.7] text-[#444] max-w-[720px] mx-auto">
                 The autonomous Salesforce governance engine. From code review to compliance,
-                Shodh AI guards your org at every stage of the development lifecycle.
+                Jataka guards your org at every stage of the development lifecycle.
               </p>
             </Reveal>
           </div>
@@ -679,7 +698,7 @@ export default function PlatformAuditPage() {
               <SectionLabel>Section 01</SectionLabel>
               <H2>Executive Summary</H2>
               <P>
-                Shodh AI is an <strong>autonomous Salesforce governance platform</strong> that
+                Jataka is an <strong>autonomous Salesforce governance platform</strong> that
                 acts as an intelligent layer across the entire Salesforce development lifecycle.
                 It connects to your GitHub repositories, Salesforce orgs, Jira boards, and
                 developer tools - analyzing every code change, metadata modification, and
@@ -697,7 +716,7 @@ export default function PlatformAuditPage() {
                 head={
                   <>
                     <Th>Problem</Th>
-                    <Th>Shodh AI Solution</Th>
+                    <Th>Jataka Solution</Th>
                     <Th>Impact</Th>
                   </>
                 }
@@ -743,11 +762,11 @@ export default function PlatformAuditPage() {
           <section id="arch" className="py-[48px] border-t border-[#1a1a1a]/8">
             <Reveal>
               <SectionLabel>Section 02</SectionLabel>
-              <H2>Platform Architecture - How Shodh AI Works</H2>
+              <H2>Platform Architecture - How Jataka Works</H2>
 
               <H3>2.1 End-to-End Lifecycle Flow</H3>
               <P>
-                Shodh AI operates across the <strong>entire development lifecycle</strong> -
+                Jataka operates across the <strong>entire development lifecycle</strong> -
                 from the moment a developer opens their IDE to production monitoring after
                 deployment.
               </P>
@@ -755,7 +774,7 @@ export default function PlatformAuditPage() {
 
               <H3>2.2 What Happens During PR Review - Detailed Breakdown</H3>
               <P>
-                When a PR is created, Shodh AI performs a comprehensive analysis. Here is
+                When a PR is created, Jataka performs a comprehensive analysis. Here is
                 exactly what gets analyzed, in what order, and what outputs are produced.
               </P>
               <MermaidBlock chart={CHART_PR_REVIEW} />
@@ -892,7 +911,7 @@ export default function PlatformAuditPage() {
 
               <Callout title="Why This Matters">
                 Governor limit violations are the most common cause of Salesforce production
-                outages. Traditional code reviews catch ~30%. Shodh AI provides{" "}
+                outages. Traditional code reviews catch ~30%. Jataka provides{" "}
                 <strong>100% automated coverage</strong> across every PR - eliminating 95%+
                 governor limit incidents.
               </Callout>
@@ -917,7 +936,7 @@ export default function PlatformAuditPage() {
 
               <H4>4.3.1 - Duplicate Field Prevention</H4>
               <P>
-                When a developer creates a new custom field, Shodh AI searches the{" "}
+                When a developer creates a new custom field, Jataka searches the{" "}
                 <strong>entire org metadata</strong> for existing fields that serve the same
                 purpose. Checks name similarity, data type, picklist values, and usage patterns.
                 If &gt;85% match, PR blocked.
@@ -1037,7 +1056,7 @@ export default function PlatformAuditPage() {
               </P>
 
               <Callout title="Why This Matters">
-                A typical enterprise org has <strong>30-40% redundant metadata</strong>. Shodh AI
+                A typical enterprise org has <strong>30-40% redundant metadata</strong>. Jataka
                 prevents new debt, remediates existing debt, and saves 10+ hours per developer per
                 month through automated refactoring.
               </Callout>
@@ -1066,7 +1085,7 @@ export default function PlatformAuditPage() {
                 app works fine. QA teams spend 2-4 weeks per release fixing selectors.
               </P>
               <P>
-                <strong>The solution:</strong> When a selector fails, Shodh AI takes a{" "}
+                <strong>The solution:</strong> When a selector fails, Jataka takes a{" "}
                 <strong>screenshot</strong> and uses Vision AI to locate the element visually (by
                 button text, position, appearance). The selector is auto-updated and the test
                 continues.
@@ -1105,7 +1124,7 @@ export default function PlatformAuditPage() {
 
               <H4>5.3.4 - Verification Protocol</H4>
               <P>
-                When Shodh AI refactors code, the protocol{" "}
+                When Jataka refactors code, the protocol{" "}
                 <strong>mathematically proves</strong> the refactored version produces identical
                 output for all possible inputs. Zero tolerance - even one divergence rejects the
                 refactoring.
@@ -1163,7 +1182,7 @@ export default function PlatformAuditPage() {
 
               <H4>6.3.2 - Slack Bot</H4>
               <P>
-                Ask plain-English questions in Slack. Shodh AI responds with graph-backed answers:
+                Ask plain-English questions in Slack. Jataka responds with graph-backed answers:
               </P>
               <Table
                 head={
@@ -1389,8 +1408,8 @@ export default function PlatformAuditPage() {
                 head={
                   <>
                     <Th>Activity</Th>
-                    <Th>Without Shodh AI</Th>
-                    <Th>With Shodh AI</Th>
+                    <Th>Without Jataka</Th>
+                    <Th>With Jataka</Th>
                     <Th>Savings</Th>
                   </>
                 }
@@ -1450,8 +1469,8 @@ export default function PlatformAuditPage() {
                 head={
                   <>
                     <Th>Risk</Th>
-                    <Th>Without Shodh AI</Th>
-                    <Th>With Shodh AI</Th>
+                    <Th>Without Jataka</Th>
+                    <Th>With Jataka</Th>
                   </>
                 }
               >
@@ -1531,11 +1550,11 @@ export default function PlatformAuditPage() {
           {/* INLINE FOOTER */}
           <div className="py-[40px] border-t border-[#1a1a1a]/8 text-center text-[13px] text-[#666]">
             <p>
-              <strong className="text-[#1a1a1a]">Shodh AI</strong> - The Autonomous Salesforce
+              <strong className="text-[#1a1a1a]">Jataka</strong> - The Autonomous Salesforce
               Governance Platform
             </p>
             <p className="mt-[6px]">
-              Confidential - For Internal & Client Presentation Use &nbsp;|&nbsp; (c) 2026 Shodh AI
+              Confidential - For Internal & Client Presentation Use &nbsp;|&nbsp; (c) 2026 Jataka
             </p>
           </div>
         </div>
@@ -1553,7 +1572,7 @@ export default function PlatformAuditPage() {
               <h2 className="font-archivo text-[clamp(32px,5vw,56px)] leading-[1.02] tracking-[-1.5px] uppercase mb-[20px] text-white">
                 Start the pilot.
                 <br />
-                <span className="text-[#FF2424]">See Shodh AI in action.</span>
+                <span className="text-[#FF2424]">See Jataka in action.</span>
               </h2>
             </Reveal>
 

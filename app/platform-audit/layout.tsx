@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Platform Audit - Shodh AI / Jataka | Complete Capability Report",
+  title: "Platform Audit - Jataka / Jataka | Complete Capability Report",
   description:
-    "Shodh AI Complete Platform Audit: the autonomous Salesforce governance engine. From Limit Firewall to Tech Debt, QA, Developer Experience, and Enterprise use cases.",
+    "Jataka Complete Platform Audit: the autonomous Salesforce governance engine. From Limit Firewall to Tech Debt, QA, Developer Experience, and Enterprise use cases.",
   keywords: [
-    "Shodh AI platform audit",
+    "Jataka platform audit",
     "Jataka platform audit",
     "Salesforce governance platform",
     "Salesforce Limit Firewall",
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     canonical: "https://jataka.io/platform-audit",
   },
   openGraph: {
-    title: "Platform Audit - Shodh AI / Jataka",
+    title: "Platform Audit - Jataka / Jataka",
     description:
-      "The autonomous Salesforce governance engine. From code review to compliance, Shodh AI guards your org at every stage of the development lifecycle.",
+      "The autonomous Salesforce governance engine. From code review to compliance, Jataka guards your org at every stage of the development lifecycle.",
     url: "https://jataka.io/platform-audit",
     siteName: "Jataka",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Shodh AI Complete Platform Audit",
+        alt: "Jataka Complete Platform Audit",
       },
     ],
     locale: "en_US",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Platform Audit - Shodh AI / Jataka",
+    title: "Platform Audit - Jataka / Jataka",
     description:
-      "Shodh AI: the autonomous Salesforce governance engine. Complete capability audit across 5 modules.",
+      "Jataka: the autonomous Salesforce governance engine. Complete capability audit across 5 modules.",
     images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },
