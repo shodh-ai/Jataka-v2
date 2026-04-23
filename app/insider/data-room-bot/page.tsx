@@ -214,9 +214,9 @@ const APP_CARDS: {
     icon: Shield,
     appTag: "App 01",
     title: "The Limit Firewall",
-    superpower: "Zero production crashes from Governor Limits.",
+    superpower: "Zero production crashes from Salesforce System Limits (which cause hard crashes).",
     context:
-      "Traditional scanners just read code syntax. Jataka's Limit Firewall queries the Context Engine for your exact Production Data Map, then injects targeted synthetic data into a sandbox to run a Sequential Big-O Mathematical Simulation. It mathematically proves whether your code will survive Black Friday volumes before it ever merges.",
+      "Traditional scanners just read code syntax. Jataka's Limit Firewall queries the Context Engine for your exact Production Data Map, then injects targeted synthetic data into a sandbox to run an automated stress-test simulating Black Friday traffic levels. It mathematically proves whether your code will survive Black Friday volumes before it ever merges.",
     auditAnchor: "/platform-audit#m1",
     auditLabel: "See flowchart in Module 01",
   },
@@ -388,7 +388,7 @@ export default function DataRoomBotPage() {
                 </strong>{" "}
                 Jataka builds a real-time Knowledge Graph of your entire enterprise,
                 ensuring no line of code ever breaks your Process Logic, APIs, or
-                Governor Limits.
+                Salesforce System Limits (which cause hard crashes).
               </p>
             </Reveal>
 
@@ -743,7 +743,7 @@ export default function DataRoomBotPage() {
                     &amp; Deployment Rollbacks
                   </h4>
                   <p className="text-[13.5px] leading-[1.65] text-[#aaa]">
-                    Eliminate SLA penalties and revenue leakage. We mathematically guarantee your team will never break API contracts or hit Governor Limits.
+                    Eliminate SLA penalties and revenue leakage. We mathematically guarantee your team will never break API contracts or hit Salesforce System Limits (which cause hard crashes).
                   </p>
                 </div>
               </Reveal>
@@ -760,7 +760,7 @@ export default function DataRoomBotPage() {
                     QA &amp; Maintenance Overhead
                   </h4>
                   <p className="text-[13.5px] leading-[1.65] text-[#aaa]">
-                    Retire your Selenium/Provar test armies. Vision AI heals itself, cutting delivery cost while raising coverage.
+                    Retire your armies of manual software testers. Vision AI heals itself, cutting delivery cost while raising coverage.
                   </p>
                 </div>
               </Reveal>
