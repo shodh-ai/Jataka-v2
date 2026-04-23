@@ -140,6 +140,7 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isDarkRoute = pathname.startsWith("/book-pilot");
+  const isDataRoomRoute = pathname.startsWith("/insider/dataroom-botcon");
   const textColor = isDarkRoute ? "#E8E4DC" : "#1a1a1a";
   const headerBg = isDarkRoute ? "bg-[rgba(6,12,22,0.88)] border-[rgba(255,255,255,0.06)]" : "bg-[#FAF8F3]/90 border-[#1a1a1a]/10";
   const mobileBg = isDarkRoute ? "bg-[#0C1320] border-[rgba(255,255,255,0.08)]" : "bg-[#FAF8F3] border-[#1a1a1a]/10";
@@ -150,45 +151,59 @@ export default function SiteHeader() {
         <LogoWordmark textColor={textColor} />
       </Link>
 
-      <nav className="hidden md:flex gap-[24px] list-none items-center m-0 p-0">
-        <ul className="hidden md:flex gap-[24px] list-none items-center m-0 p-0">
-          <DropdownMenu dropdown={PRODUCT_DROPDOWN} pathname={pathname} dark={isDarkRoute} />
-          <DropdownMenu dropdown={COMPARE_DROPDOWN} pathname={pathname} dark={isDarkRoute} />
-          {DESKTOP_LINKS.map((item) => (
-            <li key={item.label}>
-              <NavLink item={item} pathname={pathname} dark={isDarkRoute} />
-            </li>
-          ))}
-          <DropdownMenu dropdown={RESOURCES_DROPDOWN} pathname={pathname} dark={isDarkRoute} />
-          <li>
-            <NavLink item={{ label: "Docs", href: "https://docs.jataka.io", external: true }} pathname={pathname} dark={isDarkRoute} />
-          </li>
-          <li>
-            <NavLink item={LOGIN_ITEM} pathname={pathname} dark={isDarkRoute} />
-          </li>
-        </ul>
-        <Link
-          href={PRIMARY_CTA.href}
-          className="bg-[#FF2424] text-white px-[20px] py-[8px] font-archivo text-[11px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-colors"
-        >
-          {PRIMARY_CTA.label}
-        </Link>
-      </nav>
+      {!isDataRoomRoute && (
+        <>
+          <nav className="hidden md:flex gap-[24px] list-none items-center m-0 p-0">
+            <ul className="hidden md:flex gap-[24px] list-none items-center m-0 p-0">
+              <DropdownMenu dropdown={PRODUCT_DROPDOWN} pathname={pathname} dark={isDarkRoute} />
+              <DropdownMenu dropdown={COMPARE_DROPDOWN} pathname={pathname} dark={isDarkRoute} />
+              {DESKTOP_LINKS.map((item) => (
+                <li key={item.label}>
+                  <NavLink item={item} pathname={pathname} dark={isDarkRoute} />
+                </li>
+              ))}
+              <DropdownMenu dropdown={RESOURCES_DROPDOWN} pathname={pathname} dark={isDarkRoute} />
+              <li>
+                <NavLink item={{ label: "Docs", href: "https://docs.jataka.io", external: true }} pathname={pathname} dark={isDarkRoute} />
+              </li>
+              <li>
+                <NavLink item={LOGIN_ITEM} pathname={pathname} dark={isDarkRoute} />
+              </li>
+            </ul>
+            <Link
+              href={PRIMARY_CTA.href}
+              className="bg-[#FF2424] text-white px-[20px] py-[8px] font-archivo text-[11px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-colors"
+            >
+              {PRIMARY_CTA.label}
+            </Link>
+          </nav>
 
-      <button className="md:hidden p-2" style={{ color: textColor }} onClick={() => setIsMobileMenuOpen((open) => !open)}>
-        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+          <button className="md:hidden p-2" style={{ color: textColor }} onClick={() => setIsMobileMenuOpen((open) => !open)}>
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
 
-      {isMobileMenuOpen && (
-        <div className={`absolute top-[64px] left-0 w-full border-b p-6 flex flex-col gap-4 md:hidden shadow-2xl z-[210] ${mobileBg}`}>
-          {MOBILE_SECTIONS.map((section) => (
-            <div key={`section-${section.label}`} className="flex flex-col gap-2">
-              <div className={`text-[11px] uppercase tracking-[1.5px] font-bold ${isDarkRoute ? "text-[#7A8BA8]" : "text-[#666]"}`}>
-                {section.label}
-              </div>
-              {section.items.map((item) => (
+          {isMobileMenuOpen && (
+            <div className={`absolute top-[64px] left-0 w-full border-b p-6 flex flex-col gap-4 md:hidden shadow-2xl z-[210] ${mobileBg}`}>
+              {MOBILE_SECTIONS.map((section) => (
+                <div key={`section-${section.label}`} className="flex flex-col gap-2">
+                  <div className={`text-[11px] uppercase tracking-[1.5px] font-bold ${isDarkRoute ? "text-[#7A8BA8]" : "text-[#666]"}`}>
+                    {section.label}
+                  </div>
+                  {section.items.map((item) => (
+                    <NavLink
+                      key={`mobile-${section.label}-${item.label}`}
+                      item={item}
+                      pathname={pathname}
+                      mobile
+                      dark={isDarkRoute}
+                      onNavigate={() => setIsMobileMenuOpen(false)}
+                    />
+                  ))}
+                </div>
+              ))}
+              {DESKTOP_LINKS.map((item) => (
                 <NavLink
-                  key={`mobile-${section.label}-${item.label}`}
+                  key={`mobile-link-${item.label}`}
                   item={item}
                   pathname={pathname}
                   mobile
@@ -196,27 +211,17 @@ export default function SiteHeader() {
                   onNavigate={() => setIsMobileMenuOpen(false)}
                 />
               ))}
+              <NavLink item={LOGIN_ITEM} pathname={pathname} mobile dark={isDarkRoute} onNavigate={() => setIsMobileMenuOpen(false)} />
+              <Link
+                href={PRIMARY_CTA.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full py-3 mt-2 rounded-[4px] bg-[#FF2424] text-white font-archivo uppercase tracking-[1.5px] text-[12px] flex items-center justify-center"
+              >
+                {PRIMARY_CTA.label}
+              </Link>
             </div>
-          ))}
-          {DESKTOP_LINKS.map((item) => (
-            <NavLink
-              key={`mobile-link-${item.label}`}
-              item={item}
-              pathname={pathname}
-              mobile
-              dark={isDarkRoute}
-              onNavigate={() => setIsMobileMenuOpen(false)}
-            />
-          ))}
-          <NavLink item={LOGIN_ITEM} pathname={pathname} mobile dark={isDarkRoute} onNavigate={() => setIsMobileMenuOpen(false)} />
-          <Link
-            href={PRIMARY_CTA.href}
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="w-full py-3 mt-2 rounded-[4px] bg-[#FF2424] text-white font-archivo uppercase tracking-[1.5px] text-[12px] flex items-center justify-center"
-          >
-            {PRIMARY_CTA.label}
-          </Link>
-        </div>
+          )}
+        </>
       )}
     </header>
   );

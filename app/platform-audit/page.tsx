@@ -536,7 +536,7 @@ export default function PlatformAuditPage() {
   const initMermaid = () => {
     if (typeof window === "undefined" || !window.mermaid) return;
     window.mermaid.initialize({
-      startOnLoad: true,
+      startOnLoad: false,
       theme: "base",
       themeVariables: {
         primaryColor: "#FFFFFF",
@@ -552,6 +552,21 @@ export default function PlatformAuditPage() {
     });
     window.mermaid.run();
   };
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.mermaid) {
+      initMermaid();
+    } else {
+      const id = setInterval(() => {
+        if (window.mermaid) {
+          clearInterval(id);
+          initMermaid();
+        }
+      }, 100);
+      return () => clearInterval(id);
+    }
+  }, []);
 
   return (
     <>
