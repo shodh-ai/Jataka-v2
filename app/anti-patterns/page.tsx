@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Database, Zap, Cpu, AlertTriangle, Lock } from "lucide-react";
+import { Cpu, EyeOff, GitBranch, Database, Zap, Lock, AlertTriangle } from "lucide-react";
 import {
   MarketingShell,
   PageHero,
@@ -9,6 +9,27 @@ import {
   ContentSection,
 } from "../components/marketing";
 import { FadeIn } from "../components/home";
+
+const featured = [
+  {
+    title: "The O(n²) CPU Timeout",
+    body: "How hiding a SOQL query three helper-methods deep bypasses regex linters, but gets caught by Jataka's dynamic limit simulation.",
+    icon: Cpu,
+    href: "/anti-patterns/cpu-timeout",
+  },
+  {
+    title: "The Guest User Data Leak",
+    body: "Exploring the multi-hop vulnerability where a public Experience Cloud profile interacts with without-sharing Apex to expose private PII.",
+    icon: EyeOff,
+    href: "/enterprise-governance",
+  },
+  {
+    title: "The Configuration Drift",
+    body: 'Case studies of "Silent Admin Hotfixes" in production that break CI/CD pipelines, and how Bitemporal streaming catches them.',
+    icon: GitBranch,
+    href: "/knowledge-graph",
+  },
+];
 
 const limitBreaches = [
   {
@@ -18,7 +39,6 @@ const limitBreaches = [
     description:
       "The classic SOQL-in-a-for-loop. Works in dev, then crashes production when data volumes are real.",
     icon: Database,
-    limit: "100 queries per transaction",
     severity: "Critical",
   },
   {
@@ -28,7 +48,6 @@ const limitBreaches = [
     description:
       "DML inside a loop hits 151 statements. Trigger crashes mid-transaction — partial rollback chaos.",
     icon: Zap,
-    limit: "150 statements per transaction",
     severity: "Critical",
   },
   {
@@ -38,7 +57,6 @@ const limitBreaches = [
     description:
       "Nested loops that pass in Sandbox burn through 10 seconds of CPU with production volumes.",
     icon: Cpu,
-    limit: "10,000ms sync / 60,000ms async",
     severity: "Critical",
   },
   {
@@ -48,7 +66,6 @@ const limitBreaches = [
     description:
       "Setup and non-Setup DML in the same transaction. Salesforce blocks it — many teams find out in prod.",
     icon: AlertTriangle,
-    limit: "Setup & non-Setup objects",
     severity: "High",
   },
   {
@@ -58,7 +75,6 @@ const limitBreaches = [
     description:
       "Data skew on a hot parent record. Concurrent updates stall the org waiting for a lock.",
     icon: Lock,
-    limit: "Record lock contention",
     severity: "High",
   },
 ];
@@ -67,16 +83,79 @@ export default function AntiPatternsPage() {
   return (
     <MarketingShell>
       <PageHero
-        title="Caught before"
-        italicWord="production"
-        subtitle="When developers hit a Governor Limit at 2:00 AM, they Google the error. These pages show exactly how Jataka blocks the breach before merge."
+        eyebrow="Anti-Patterns Library"
+        title="The Encyclopedia of Enterprise System"
+        italicWord="Failures"
+        subtitle="Dive into the exact architectural flaws, infinite loops, and multi-hop data leaks that traditional static linters (like SonarQube) miss, but Jataka's AST Graph catches instantly."
         ctas={[
-          { label: "Book a pilot →", href: "/book-pilot", primary: true },
-          { label: "How it works", href: "/docs" },
+          { label: "Scan Your Org for Anti-Patterns →", href: "/book-pilot", primary: true },
+          { label: "Enterprise Governance", href: "/enterprise-governance" },
         ]}
       />
 
-      <ContentSection title="The" italicWord="library">
+      <section className="relative overflow-hidden bg-[#F3F3F4] px-5 pb-4 sm:px-6 md:px-10">
+        <div className="relative z-10 mx-auto max-w-[1100px]">
+          <FadeIn>
+            <div className="grid overflow-hidden rounded-[22px] border border-[#111]/08 shadow-[0_18px_50px_rgba(17,17,17,0.05)] md:grid-cols-2">
+              <div className="bg-[#FEF2F2] p-6 md:p-7">
+                <p className="font-mono text-[10px] tracking-[0.16em] text-rose-500 uppercase">
+                  The human mistake
+                </p>
+                <pre className="mt-4 overflow-x-auto font-mono text-[12px] leading-[1.7] text-rose-800">
+{`for (Account a : accounts) {
+  // buried 3 helpers deep
+  List<Contact> c =
+    [SELECT Id FROM Contact
+     WHERE AccountId = :a.Id];
+}`}
+                </pre>
+              </div>
+              <div className="bg-[#ECFDF5] p-6 md:p-7">
+                <p className="font-mono text-[10px] tracking-[0.16em] text-emerald-600 uppercase">
+                  Jataka AST patch
+                </p>
+                <pre className="mt-4 overflow-x-auto font-mono text-[12px] leading-[1.7] text-emerald-800">
+{`Map<Id, List<Contact>> byAcct =
+  groupByAccount(
+    [SELECT Id, AccountId
+     FROM Contact
+     WHERE AccountId IN :acctIds]
+  );`}
+                </pre>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <ContentSection title="What's" italicWord="inside">
+        <div className="grid gap-4 md:grid-cols-3">
+          {featured.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <FadeIn key={item.title} delay={i * 0.05}>
+                <Link
+                  href={item.href}
+                  className="group flex h-full flex-col rounded-[20px] border border-[#111]/08 bg-white p-6 shadow-[0_12px_36px_rgba(17,17,17,0.04)] transition-colors hover:border-[#111]/2 md:p-7"
+                >
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-[#111]/08 bg-[#F8FAFC] text-[#2563EB]">
+                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="text-[1.1rem] font-semibold tracking-[-0.02em] text-[#111]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2.5 flex-1 text-[14px] leading-[1.65] text-[#5F5F66]">
+                    {item.body}
+                  </p>
+                  <span className="mt-4 text-[13px] font-medium text-[#111]">Explore →</span>
+                </Link>
+              </FadeIn>
+            );
+          })}
+        </div>
+      </ContentSection>
+
+      <ContentSection title="Governor limit" italicWord="breaches">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {limitBreaches.map((breach, i) => {
             const Icon = breach.icon;
@@ -103,10 +182,7 @@ export default function AntiPatternsPage() {
                   <p className="mt-3 flex-1 text-[14px] leading-[1.65] text-[#5F5F66]">
                     {breach.description}
                   </p>
-                  <p className="mt-4 text-[12px] text-[#8A93A3]">Limit: {breach.limit}</p>
-                  <span className="mt-4 text-[13px] font-medium text-[#111] transition-transform group-hover:translate-x-0.5">
-                    Read the fix →
-                  </span>
+                  <span className="mt-4 text-[13px] font-medium text-[#111]">Read the fix →</span>
                 </Link>
               </FadeIn>
             );
@@ -115,11 +191,13 @@ export default function AntiPatternsPage() {
       </ContentSection>
 
       <PageCta
-        title="Jataka catches every breach before the"
-        italicWord="merge"
-        subtitle="Book a demo and watch real limit breaches get blocked in real time."
-        secondaryLabel="View use cases"
-        secondaryHref="/use-cases"
+        title="Scan your org for"
+        italicWord="anti-patterns"
+        subtitle="Jataka's AST Graph catches the failures static linters never see."
+        primaryLabel="Scan Your Org for Anti-Patterns →"
+        primaryHref="/book-pilot"
+        secondaryLabel="Engineering Blog"
+        secondaryHref="/blog"
       />
     </MarketingShell>
   );

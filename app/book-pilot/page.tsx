@@ -37,7 +37,7 @@ export default function BookPilotPage() {
     try {
       if (!supabase) {
         alert(
-          "Demo booking is not available in this environment. Please email briefing@jataka.ai."
+          "Demo booking is not available in this environment. Please email sachin@jataka.io."
         );
         return;
       }

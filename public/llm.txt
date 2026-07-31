@@ -278,9 +278,7 @@ Full technical documentation available at https://jataka.io/docs
 - **Docs**: https://jataka.io/docs
 - **Twitter**: @jataka_ai
 - **LinkedIn**: /company/jataka
-- **Legal**: legal@jataka.io
-- **Support**: support@jataka.io
-- **Billing**: billing@jataka.io
+- **Email**: sachin@jataka.io
 
 ## Geographic Targeting
 

@@ -8,12 +8,12 @@ const panelShell =
   "flex h-full flex-col overflow-hidden rounded-xl border border-[#111]/08 bg-white";
 const panelBody = "flex min-h-[168px] flex-1 flex-col";
 
-function SlackIntentPanel() {
+function UserIntentPanel() {
   return (
     <div className={panelShell}>
       <div className="flex items-center justify-between border-b border-[#111]/08 px-3 py-2.5">
         <p className="text-[11px] font-semibold tracking-[0.12em] text-[#9A9AA3] uppercase">
-          01 · Slack Intent
+          01 · User Intent
         </p>
         <span className="rounded bg-red-500 px-1.5 py-0.5 text-[9px] font-semibold text-white">
           S1
@@ -128,7 +128,7 @@ function DashboardUI() {
           <span className="h-2 w-2 shrink-0 rounded-full bg-[#FFBD2E]" />
           <span className="h-2 w-2 shrink-0 rounded-full bg-[#27C93F]" />
           <span className="ml-1 truncate font-mono text-[10px] text-[#6B7280]">
-            JATAKA · INC-2841 · LIVE
+            JATAKA · LIVE
           </span>
         </div>
         <span className="shrink-0 text-[9px] font-semibold tracking-[0.08em] text-emerald-600 uppercase">
@@ -144,7 +144,7 @@ function DashboardUI() {
 
       {/* Mobile: stack */}
       <div className="grid gap-2 p-2.5 md:hidden">
-        <SlackIntentPanel />
+        <UserIntentPanel />
         <BlastRadiusPanel />
         <AstPatchPanel />
         <DeltaBoxPanel />
@@ -152,7 +152,7 @@ function DashboardUI() {
 
       {/* Desktop: equal compact cards, no tall empty shell */}
       <div className="hidden gap-2.5 p-2.5 md:grid md:grid-cols-2 lg:grid-cols-4">
-        <SlackIntentPanel />
+        <UserIntentPanel />
         <BlastRadiusPanel />
         <AstPatchPanel />
         <DeltaBoxPanel />

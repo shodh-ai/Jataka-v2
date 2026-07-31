@@ -39,7 +39,7 @@ Last Updated: April 13, 2026
 AGREEMENT TO OUR LEGAL TERMS
 We are Jataka Inc. ("Company", "we", "us", "our")
 We operate the website jataka.io (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").
-You can contact us by email at legal@jataka.io.
+You can contact us by email at sachin@jataka.io.
 These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and Jataka Inc., concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
 We will provide you with prior notice of any scheduled changes to the Services you are using. The modified Legal Terms will become effective upon posting or notifying you by email, as stated in the email message. By continuing to use the Services after the effective date of any changes, you agree to be bound by the modified terms.
 The Services are intended for users who are at least 18 years old. Persons under the age of 18 are not permitted to use or register for the Services.
@@ -90,7 +90,7 @@ access the Services; and
 download or print a copy of any portion of the Content to which you have properly gained access,
 solely for your internal business purpose.
 Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.
-If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: legal@jataka.io. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.
+If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: sachin@jataka.io. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.
 
 We reserve all rights not expressly granted to you in and to the Services, Content, and Marks.
 Any breach of these Intellectual Property Rights will constitute a material breach of our Legal Terms and your right to use our Services will terminate immediately.
@@ -218,7 +218,7 @@ These Legal Terms and any policies or operating rules posted by us on the Servic
 25. CONTACT US
 In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at:
 Jataka Inc.
-Email: legal@jataka.io`;
+Email: sachin@jataka.io`;
 
 function renderLines(text: string) {
   return text.split("\n").map((line, idx) => {

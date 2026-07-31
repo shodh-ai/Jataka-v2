@@ -60,16 +60,28 @@ function NavLink({
   dark?: boolean;
   onNavigate?: () => void;
 }) {
+  const active = isActive(pathname, item.href);
   const baseClass = mobile
     ? `block w-full text-center text-[18px] font-medium py-3.5 ${dark ? "text-[#E8E4DC]" : "text-[#1a1a1a]"}`
-    : "text-[12.5px] font-medium tracking-[0.3px] transition-colors xl:text-[13.5px] xl:tracking-[0.4px]";
-  const stateClass = isActive(pathname, item.href)
-    ? dark
-      ? "text-[#E8E4DC]"
-      : "text-[#1a1a1a]"
-    : dark
-      ? "text-[#7A8BA8] hover:text-[#E8E4DC]"
-      : "text-[#666] hover:text-[#1a1a1a]";
+    : [
+        "relative inline-flex items-center rounded-full px-3 py-1.5",
+        "text-[12px] font-medium tracking-[0.02em] transition-all duration-200 xl:text-[13px]",
+      ].join(" ");
+  const stateClass = mobile
+    ? active
+      ? dark
+        ? "text-[#E8E4DC]"
+        : "text-[#1a1a1a]"
+      : dark
+        ? "text-[#7A8BA8] hover:text-[#E8E4DC]"
+        : "text-[#666] hover:text-[#1a1a1a]"
+    : active
+      ? dark
+        ? "bg-white/10 text-[#E8E4DC]"
+        : "bg-[#111]/06 text-[#111]"
+      : dark
+        ? "text-[#8A9BB5] hover:bg-white/6 hover:text-[#E8E4DC]"
+        : "text-[#5F5F66] hover:bg-[#111]/04 hover:text-[#111]";
 
   if (item.external) {
     return (
@@ -105,23 +117,29 @@ function DropdownMenu({
   const dropdownBg = dark ? "bg-[#0C1320] border-[rgba(255,255,255,0.08)]" : "bg-white border-[#1a1a1a]/10";
   const itemHover = dark ? "hover:bg-[rgba(255,255,255,0.05)] text-[#E8E4DC]" : "hover:bg-[#F3F3F4] text-[#1a1a1a]";
   const triggerClass = dark
-    ? "text-[#7A8BA8] hover:text-[#E8E4DC]"
-    : "text-[#666] hover:text-[#1a1a1a]";
+    ? "text-[#8A9BB5] hover:bg-white/6 hover:text-[#E8E4DC]"
+    : "text-[#5F5F66] hover:bg-[#111]/04 hover:text-[#111]";
   const isAnyActive = dropdown.items.some((item) => isActive(pathname, item.href));
 
   return (
     <li className="relative pt-[8px] -mt-[8px]" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
       <button
         onClick={() => setOpen((current) => !current)}
-        className={`flex items-center gap-[5px] text-[12.5px] font-medium tracking-[0.3px] transition-colors xl:gap-[6px] xl:text-[13.5px] xl:tracking-[0.4px] ${isAnyActive ? (dark ? "text-[#E8E4DC]" : "text-[#1a1a1a]") : triggerClass}`}
+        className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-medium tracking-[0.02em] transition-all duration-200 xl:text-[13px] ${
+          isAnyActive
+            ? dark
+              ? "bg-white/10 text-[#E8E4DC]"
+              : "bg-[#111]/06 text-[#111]"
+            : triggerClass
+        }`}
       >
         {dropdown.label}
-        <svg className={`h-[12px] w-[12px] transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg className={`h-3 w-3 opacity-70 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
           <path d="M6 9l6 6 6-6" />
         </svg>
       </button>
       {open && (
-        <div className={`absolute top-full left-0 z-[230] w-[280px] rounded-[12px] border py-[8px] shadow-lg ${dropdownBg}`}>
+        <div className={`absolute top-full left-0 z-[230] w-[300px] rounded-[12px] border py-[8px] shadow-lg ${dropdownBg}`}>
           {dropdown.items.map((item) =>
             item.external ? (
               <a
@@ -429,19 +447,29 @@ function HomeMorphHeader({
   const boxShadow = useMotionTemplate`${shadow}`;
 
   useEffect(() => {
-    const update = () => {
+    const update = (scrollY?: number) => {
       viewportW.set(window.innerWidth);
-      const y = window.scrollY;
+      const y =
+        typeof scrollY === "number"
+          ? scrollY
+          : window.scrollY || document.documentElement.scrollTop || 0;
       const t = Math.min(1, Math.max(0, (y - 16) / 150));
       progress.set(t);
     };
+    const onWindowScroll = () => update();
+    const onLenisScroll = (e: Event) => {
+      const detail = (e as CustomEvent<{ scroll?: number }>).detail;
+      update(detail?.scroll);
+    };
     update();
     setReady(true);
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update, { passive: true });
+    window.addEventListener("scroll", onWindowScroll, { passive: true });
+    window.addEventListener("resize", onWindowScroll, { passive: true });
+    window.addEventListener("jataka:scroll", onLenisScroll);
     return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+      window.removeEventListener("scroll", onWindowScroll);
+      window.removeEventListener("resize", onWindowScroll);
+      window.removeEventListener("jataka:scroll", onLenisScroll);
     };
   }, [progress, viewportW]);
 
@@ -553,62 +581,10 @@ export default function SiteHeader() {
     }
   };
 
-  if (isHome) {
-    return (
-      <>
-        <HomeMorphHeader onFloatChange={() => {}}>
-          <Link href="/" className="flex shrink-0 items-center" onClick={goHomeHero}>
-            <LogoWordmark textColor={textColor} />
-          </Link>
-
-          {!isDataRoomRoute && (
-            <>
-              <nav className="m-0 hidden list-none items-center gap-3 p-0 lg:flex xl:gap-5 2xl:gap-6">
-                {links}
-                <Link
-                  href={PRIMARY_CTA.href}
-                  className="btn-primary-bloom ml-1 inline-flex shrink-0 items-center justify-center rounded-full bg-[#111] px-3.5 py-2 text-[12px] font-medium text-white transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98] xl:ml-2 xl:px-4"
-                >
-                  Request access →
-                </Link>
-              </nav>
-
-              <button
-                type="button"
-                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-                aria-expanded={isMobileMenuOpen}
-                className="relative flex h-10 w-10 items-center justify-center lg:hidden"
-                style={{ color: textColor }}
-                onClick={() => setIsMobileMenuOpen((open) => !open)}
-              >
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.span
-                    key={isMobileMenuOpen ? "close" : "menu"}
-                    initial={{ opacity: 0, rotate: -45, scale: 0.8 }}
-                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                    exit={{ opacity: 0, rotate: 45, scale: 0.8 }}
-                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0 flex items-center justify-center"
-                  >
-                    {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-                  </motion.span>
-                </AnimatePresence>
-              </button>
-            </>
-          )}
-        </HomeMorphHeader>
-        {mobileMenu}
-      </>
-    );
-  }
-
-  const headerShell =
-    "fixed top-0 left-0 right-0 z-[220] h-[64px] border-b border-[rgba(17,17,17,0.08)] bg-[#F3F3F4]/92 px-4 backdrop-blur-[14px] sm:px-6 md:px-10 lg:px-[48px]";
-
   return (
     <>
-      <header className={`${headerShell} flex items-center justify-between`}>
-        <Link href="/" className="flex items-center" onClick={goHomeHero}>
+      <HomeMorphHeader onFloatChange={() => {}}>
+        <Link href="/" className="flex shrink-0 items-center" onClick={goHomeHero}>
           <LogoWordmark textColor={textColor} />
         </Link>
 
@@ -620,7 +596,7 @@ export default function SiteHeader() {
                 href={PRIMARY_CTA.href}
                 className="btn-primary-bloom ml-1 inline-flex shrink-0 items-center justify-center rounded-full bg-[#111] px-3.5 py-2 text-[12px] font-medium text-white transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98] xl:ml-2 xl:px-4"
               >
-                {PRIMARY_CTA.label}
+                {isHome ? "Request access →" : PRIMARY_CTA.label}
               </Link>
             </nav>
 
@@ -647,7 +623,7 @@ export default function SiteHeader() {
             </button>
           </>
         )}
-      </header>
+      </HomeMorphHeader>
       {mobileMenu}
     </>
   );

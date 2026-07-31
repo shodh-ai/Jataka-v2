@@ -95,7 +95,7 @@ GENERAL PROVISIONS
 11.4 Export Compliance. Customer represents that it is not named on any U.S. government denied-party list and will not permit users to access the Services in a U.S.-embargoed country.
 11.5 Assignment. Neither party may assign this Agreement without the other party's prior written consent, except in connection with a merger, acquisition, corporate reorganization, or sale of all or substantially all of its assets.
 11.6 Severability and Waiver. If any provision is deemed void, the remaining provisions will remain in effect. No failure or delay in exercising any right constitutes a waiver.
-11.7 Notices. Notices to Jataka must be sent via email to legal@jataka.io. Notices to Customer will be sent to the email address provided on the Order Form.
+11.7 Notices. Notices to Jataka must be sent via email to sachin@jataka.io. Notices to Customer will be sent to the email address provided on the Order Form.
 11.8 Entire Agreement. This Agreement constitutes the entire agreement between the parties and supersedes all prior agreements regarding its subject matter.`;
 
 function renderLines(text: string) {

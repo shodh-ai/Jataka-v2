@@ -49,7 +49,7 @@ Sev-1 (Critical): The Services are completely down or unavailable, preventing Cu
 Sev-2 (High): A major feature is broken or significantly impaired, but Customer can continue limited operations. Response Time: Within 8 hours of ticket submission.
 Sev-3 (Medium): General questions, non-critical bugs, or minor feature issues. Response Time: Within 24 hours of ticket submission.
 
-2.2 Support Channels. Enterprise Tier customers may submit support requests via: (a) Slack support channel for Sev-1 and Sev-2 issues; (b) Email to support@jataka.io for all severity levels; (c) Customer portal ticketing system.
+2.2 Support Channels. Enterprise Tier customers may submit support requests via: (a) Slack support channel for Sev-1 and Sev-2 issues; (b) Email to sachin@jataka.io for all severity levels; (c) Customer portal ticketing system.
 
 2.3 Response Time Measurement. Response Time is measured from the time Customer submits a valid support request to the time Jataka provides an initial response acknowledging the issue and assigning a support engineer.
 
@@ -65,7 +65,7 @@ Monthly Uptime Percentage of < 95.0%: 20% Service Credit
 
 3.4 Service Credit Application. Service Credits will be applied as a credit to Customer's next invoice. Service Credits are non-refundable and may not be exchanged for cash. Service Credits may not exceed thirty percent (30%) of any single month's fees (calculated as 1/12th of the annual Subscription Fee, if billed annually) in the aggregate.
 
-3.5 Claim Process. To receive a Service Credit, Customer must submit a written claim to billing@jataka.io within 30 days of the end of the applicable month, including: (a) the date and duration of the outage or support delay; (b) evidence of the service failure; and (c) the applicable Service Credit calculation. Jataka will review and respond to all claims within 15 business days.
+3.5 Claim Process. To receive a Service Credit, Customer must submit a written claim to sachin@jataka.io within 30 days of the end of the applicable month, including: (a) the date and duration of the outage or support delay; (b) evidence of the service failure; and (c) the applicable Service Credit calculation. Jataka will review and respond to all claims within 15 business days.
 
 4. MAINTENANCE
 4.1 Scheduled Maintenance. Jataka may perform Scheduled Maintenance to maintain, upgrade, or improve the Services. Scheduled Maintenance will be announced at least 24 hours in advance via email or Slack notification and will be scheduled during off-peak hours (typically 10:00 PM to 6:00 AM Eastern Time on weekends) to the extent reasonably practicable.

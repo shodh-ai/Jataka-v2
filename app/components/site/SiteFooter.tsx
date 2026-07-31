@@ -4,17 +4,17 @@ const columns = [
   {
     title: "Product",
     links: [
-      { label: "Limit Firewall", href: "/use-cases/limit-firewall" },
-      { label: "Automated PR Reviews", href: "/use-cases/automated-pr-reviews" },
-      { label: "Self-Healing UI Tests", href: "/use-cases/self-healing-ui-tests" },
+      { label: "Autonomous Support", href: "/autonomous-support" },
       { label: "Knowledge Graph", href: "/knowledge-graph" },
+      { label: "DeltaBox", href: "/deltabox" },
+      { label: "Enterprise Governance", href: "/enterprise-governance" },
     ],
   },
   {
     title: "Security",
     links: [
-      { label: "Security & Trust", href: "/security" },
-      { label: "Sub-processors", href: "/sub-processor-registry" },
+      { label: "Trust & Security Center", href: "/security" },
+      { label: "Sovereign Audit", href: "/sovereign-audit" },
       { label: "DPA", href: "/dpa" },
       { label: "MSA", href: "/msa" },
     ],
@@ -22,10 +22,10 @@ const columns = [
   {
     title: "Resources",
     links: [
-      { label: "Documentation", href: "https://docs.jataka.io", external: true },
+      { label: "Shadow Mode Pilot", href: "/shadow-mode" },
       { label: "Engineering Blog", href: "/blog" },
       { label: "ROI Calculator", href: "/roi-calculator" },
-      { label: "Product Demos", href: "/demos" },
+      { label: "Anti-Patterns", href: "/anti-patterns" },
     ],
   },
   {

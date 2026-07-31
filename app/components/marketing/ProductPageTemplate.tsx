@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 import MarketingShell from "./MarketingShell";
 import PageHero from "./PageHero";
 import PageCta from "./PageCta";
@@ -13,30 +14,52 @@ export type ProductPageProps = {
   eyebrow?: string;
   title: string;
   italicWord?: string;
+  titleSuffix?: string;
   subtitle: string;
   problemTitle?: string;
+  problemItalic?: string;
   problemBody?: string;
   featuresTitle?: string;
   featuresItalic?: string;
   features: FeatureCard[];
   resultTitle?: string;
+  resultItalic?: string;
   resultBody?: string;
   related?: { label: string; href: string }[];
+  visual?: ReactNode;
+  primaryCtaLabel?: string;
+  primaryCtaHref?: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
+  bottomCtaTitle?: string;
+  bottomCtaItalic?: string;
+  bottomCtaSubtitle?: string;
 };
 
 export default function ProductPageTemplate({
   eyebrow,
   title,
   italicWord,
+  titleSuffix = ".",
   subtitle,
   problemTitle = "The problem",
+  problemItalic = "we solve",
   problemBody,
   featuresTitle = "What you",
   featuresItalic = "get",
   features,
   resultTitle = "The",
+  resultItalic = "result",
   resultBody,
   related,
+  visual,
+  primaryCtaLabel = "Book a pilot →",
+  primaryCtaHref = "/book-pilot",
+  secondaryCtaLabel = "See pricing",
+  secondaryCtaHref = "/pricing",
+  bottomCtaTitle = "See it on your",
+  bottomCtaItalic = "org",
+  bottomCtaSubtitle = "14-day Shadow Mode. Zero risk. We prove value before you pay.",
 }: ProductPageProps) {
   return (
     <MarketingShell>
@@ -44,15 +67,24 @@ export default function ProductPageTemplate({
         eyebrow={eyebrow}
         title={title}
         italicWord={italicWord}
+        titleSuffix={titleSuffix}
         subtitle={subtitle}
         ctas={[
-          { label: "Book a pilot →", href: "/book-pilot", primary: true },
-          { label: "See pricing", href: "/pricing" },
+          { label: primaryCtaLabel, href: primaryCtaHref, primary: true },
+          ...(secondaryCtaLabel && secondaryCtaHref
+            ? [{ label: secondaryCtaLabel, href: secondaryCtaHref }]
+            : []),
         ]}
       />
 
+      {visual ? (
+        <section className="relative overflow-hidden bg-[#F3F3F4] px-5 pb-4 sm:px-6 md:px-10">
+          <div className="relative z-10 mx-auto max-w-[1100px]">{visual}</div>
+        </section>
+      ) : null}
+
       {problemBody ? (
-        <ContentSection title={problemTitle} italicWord="we solve">
+        <ContentSection title={problemTitle} italicWord={problemItalic}>
           <FadeIn>
             <p className="max-w-[640px] text-[16px] leading-[1.75] text-[#5F5F66]">{problemBody}</p>
           </FadeIn>
@@ -64,7 +96,7 @@ export default function ProductPageTemplate({
       </ContentSection>
 
       {resultBody ? (
-        <ContentSection title={resultTitle} italicWord="result">
+        <ContentSection title={resultTitle} italicWord={resultItalic}>
           <FadeIn>
             <div className="rounded-[20px] border border-[#111]/08 bg-white p-6 shadow-[0_12px_36px_rgba(17,17,17,0.04)] md:p-8">
               <p className="max-w-[680px] text-[16px] leading-[1.75] text-[#3A3A42]">{resultBody}</p>
@@ -90,9 +122,13 @@ export default function ProductPageTemplate({
       ) : null}
 
       <PageCta
-        title="See it on your"
-        italicWord="org"
-        subtitle="14-day Shadow Mode. Zero risk. We prove value before you pay."
+        title={bottomCtaTitle}
+        italicWord={bottomCtaItalic}
+        subtitle={bottomCtaSubtitle}
+        primaryLabel={primaryCtaLabel}
+        primaryHref={primaryCtaHref}
+        secondaryLabel={secondaryCtaLabel}
+        secondaryHref={secondaryCtaHref}
       />
     </MarketingShell>
   );

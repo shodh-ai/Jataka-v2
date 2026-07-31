@@ -13,10 +13,10 @@ const columns = [
   {
     title: "PRODUCT",
     links: [
-      { label: "Engine v2.0", href: "/#pillars" },
-      { label: "Dashboard", href: "/#dashboard" },
-      { label: "Use cases", href: "/use-cases" },
-      { label: "Engineering blog", href: "/blog" },
+      { label: "Autonomous Support", href: "/autonomous-support" },
+      { label: "Knowledge Graph", href: "/knowledge-graph" },
+      { label: "DeltaBox", href: "/deltabox" },
+      { label: "Enterprise Governance", href: "/enterprise-governance" },
     ],
   },
   {
@@ -40,8 +40,7 @@ const columns = [
   {
     title: "CONTACT",
     links: [
-      { label: "briefing@jataka.ai", href: "mailto:briefing@jataka.ai" },
-      { label: "security@jataka.ai", href: "mailto:security@jataka.ai" },
+      { label: "sachin@jataka.io", href: "mailto:sachin@jataka.io" },
       { label: "Docs", href: "/docs" },
       { label: "Compare", href: "/compare" },
     ],
@@ -123,10 +122,10 @@ export default function HomeFooter() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
-                href="mailto:briefing@jataka.ai"
+                href="mailto:sachin@jataka.io"
                 className="btn-primary-bloom inline-flex items-center justify-center rounded-full bg-[#111] px-5 py-3.5 text-center text-[13px] font-medium text-white sm:px-6"
               >
-                Book briefing → briefing@jataka.ai
+                Book briefing → sachin@jataka.io
               </a>
               <Link
                 href="/security"

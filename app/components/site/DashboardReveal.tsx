@@ -31,7 +31,7 @@ function Panel({
 function AirTrafficDashboard() {
   return (
     <div className="grid h-full grid-cols-2 grid-rows-2 gap-2 p-2 md:gap-2.5 md:p-3">
-      <Panel title="Slack Intent">
+      <Panel title="User Intent">
         <div className="space-y-2">
           <div className="rounded-md border border-white/10 bg-white/[0.03] p-2">
             <p className="text-[10px] text-slate-500">#sev1-checkout</p>

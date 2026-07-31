@@ -5,6 +5,30 @@ import type { ReactNode } from "react";
 import { FadeIn } from "../home/FadeIn";
 import { RevealHeading } from "../home/RevealHeading";
 
+function CtaLink({
+  href,
+  className,
+  children,
+}: {
+  href: string;
+  className: string;
+  children: ReactNode;
+}) {
+  const external = href.startsWith("mailto:") || href.startsWith("http");
+  if (external) {
+    return (
+      <a href={href} className={className} {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
+}
+
 export default function PageCta({
   title,
   italicWord,
@@ -55,19 +79,19 @@ export default function PageCta({
         ) : null}
         <FadeIn delay={0.14}>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
+            <CtaLink
               href={primaryHref}
               className="btn-primary-bloom inline-flex w-full items-center justify-center rounded-full bg-[#111] px-7 py-3.5 text-[14px] font-medium text-white sm:w-auto"
             >
               {primaryLabel}
-            </Link>
+            </CtaLink>
             {secondaryLabel && secondaryHref ? (
-              <Link
+              <CtaLink
                 href={secondaryHref}
                 className="inline-flex w-full items-center justify-center rounded-full border border-[#111]/15 bg-white px-7 py-3.5 text-[14px] font-medium text-[#111] sm:w-auto"
               >
                 {secondaryLabel}
-              </Link>
+              </CtaLink>
             ) : null}
           </div>
         </FadeIn>

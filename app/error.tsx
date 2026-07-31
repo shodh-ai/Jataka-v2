@@ -30,7 +30,7 @@ export default function Error({
         subtitle="We hit an unexpected issue loading this page. You can try again, or head back to the homepage."
         ctas={[
           { label: "Back home →", href: "/", primary: true },
-          { label: "Contact support", href: "mailto:support@jataka.ai" },
+          { label: "Contact support", href: "mailto:sachin@jataka.io" },
         ]}
       />
 
@@ -59,7 +59,7 @@ export default function Error({
         italicWord="hand"
         subtitle="Email support with the page URL and we’ll dig in."
         primaryLabel="Email support →"
-        primaryHref="mailto:support@jataka.ai"
+        primaryHref="mailto:sachin@jataka.io"
         secondaryLabel="Book a pilot"
         secondaryHref="/book-pilot"
       />

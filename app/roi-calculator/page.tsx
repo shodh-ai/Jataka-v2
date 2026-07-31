@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Users, Clock, AlertTriangle, DollarSign, TrendingUp, CheckCircle } from "lucide-react";
+import { Ticket, Clock, DollarSign, CheckCircle, TrendingUp } from "lucide-react";
 import {
   MarketingShell,
   PageHero,
@@ -9,32 +9,6 @@ import {
   ContentSection,
 } from "../components/marketing";
 import { FadeIn } from "../components/home";
-
-const industryBenchmarks = [
-  { metric: "Avg Salesforce developer hourly rate", value: "$175" },
-  { metric: "Avg Sev-1 incident cost", value: "$150,000" },
-  { metric: "Avg downtime per Sev-1", value: "4 hours" },
-  { metric: "Avg test maintenance hours/week", value: "15 hours" },
-];
-
-const assumptions = [
-  {
-    title: "40% reduction in PR review time",
-    body: "Jataka catches Governor Limit breaches before the PR reaches the reviewer, eliminating the most time-consuming reviews.",
-  },
-  {
-    title: "90% reduction in test maintenance",
-    body: "Self-healing tests automatically adapt to Salesforce UI changes, eliminating manual test fixes.",
-  },
-  {
-    title: "80% of Sev-1 incidents prevented",
-    body: "Jataka catches the majority of limit breaches and data corruption issues before they reach production.",
-  },
-  {
-    title: "Your Sev-1 cost estimate",
-    body: "You provided this value above. Industry average is $150,000, but your actual cost may vary based on company size and customer impact.",
-  },
-];
 
 function SliderField({
   icon: Icon,
@@ -48,7 +22,7 @@ function SliderField({
   suffix,
   hint,
 }: {
-  icon: typeof Users;
+  icon: typeof Ticket;
   label: string;
   value: number;
   onChange: (v: number) => void;
@@ -87,39 +61,31 @@ function SliderField({
 }
 
 export default function ROICalculatorPage() {
-  const [developers, setDevelopers] = useState(20);
-  const [reviewHours, setReviewHours] = useState(10);
-  const [sev1Incidents, setSev1Incidents] = useState(3);
-  const [sev1Cost, setSev1Cost] = useState(150000);
-  const [testMaintenanceHours, setTestMaintenanceHours] = useState(15);
-  const [seniorDeveloperRate, setSeniorDeveloperRate] = useState(175);
+  const [incidents, setIncidents] = useState(120);
+  const [mttrHours, setMttrHours] = useState(8);
+  const [hourlyRate, setHourlyRate] = useState(150);
+  const [automationRate] = useState(0.5);
 
-  const [savings, setSavings] = useState({
-    reviewTime: 0,
-    testMaintenance: 0,
-    preventedIncidents: 0,
-    totalAnnual: 0,
+  const [outputs, setOutputs] = useState({
+    wastedSpend: 0,
+    downtimeCost: 0,
+    marginExpansion: 0,
+    total: 0,
   });
 
   useEffect(() => {
-    // PR review time saved: 40% reduction in review time * hours * weeks * rate
-    const reviewTimeSaved = reviewHours * 0.4 * 52 * seniorDeveloperRate;
-
-    // Test maintenance saved: 90% reduction in test maintenance
-    const testMaintenanceSaved = testMaintenanceHours * 0.9 * 52 * seniorDeveloperRate;
-
-    // Prevented incidents: 80% of Sev-1s prevented * user-defined cost
-    const preventedIncidentsCost = sev1Incidents * 0.8 * sev1Cost;
-
-    const total = reviewTimeSaved + testMaintenanceSaved + preventedIncidentsCost;
-
-    setSavings({
-      reviewTime: Math.round(reviewTimeSaved),
-      testMaintenance: Math.round(testMaintenanceSaved),
-      preventedIncidents: Math.round(preventedIncidentsCost),
-      totalAnnual: Math.round(total),
+    const annualIncidents = incidents * 12;
+    const wastedSpend = annualIncidents * mttrHours * hourlyRate;
+    const downtimeCost = annualIncidents * 0.35 * mttrHours * hourlyRate * 2.5;
+    const automatedHours = annualIncidents * mttrHours * automationRate;
+    const marginExpansion = automatedHours * hourlyRate;
+    setOutputs({
+      wastedSpend: Math.round(wastedSpend),
+      downtimeCost: Math.round(downtimeCost),
+      marginExpansion: Math.round(marginExpansion),
+      total: Math.round(wastedSpend * automationRate + downtimeCost * 0.5),
     });
-  }, [developers, reviewHours, sev1Incidents, sev1Cost, testMaintenanceHours, seniorDeveloperRate]);
+  }, [incidents, mttrHours, hourlyRate, automationRate]);
 
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat("en-US", {
@@ -132,12 +98,13 @@ export default function ROICalculatorPage() {
   return (
     <MarketingShell>
       <PageHero
-        title="Calculate your annual"
-        italicWord="savings"
-        subtitle="Recovered engineering hours and prevented downtime. CFOs and VPs of Engineering use this to justify the investment."
+        eyebrow="ROI & Margin Calculator"
+        title="Calculate the True Cost of Your Escalation"
+        italicWord="Queue"
+        subtitle="See exactly how much margin you are losing to manual L1–L3 triage, and how Jataka transforms your Managed Services profitability."
         ctas={[
-          { label: "Book a pilot →", href: "/book-pilot", primary: true },
-          { label: "See pricing", href: "/pricing" },
+          { label: "Get a Custom Value Assessment →", href: "/book-pilot", primary: true },
+          { label: "Shadow Mode Pilot", href: "/shadow-mode" },
         ]}
       />
 
@@ -146,83 +113,62 @@ export default function ROICalculatorPage() {
           <FadeIn>
             <div className="rounded-[20px] border border-[#111]/08 bg-white p-6 shadow-[0_12px_36px_rgba(17,17,17,0.04)] md:p-8">
               <h2 className="mb-6 text-[1.15rem] font-semibold tracking-[-0.02em] text-[#111]">
-                Your inputs
+                The interactive tool
               </h2>
 
               <SliderField
-                icon={Users}
-                label="Salesforce developers"
-                value={developers}
-                onChange={setDevelopers}
+                icon={Ticket}
+                label="L2/L3 Salesforce incidents / month"
+                value={incidents}
+                onChange={setIncidents}
+                min={10}
+                max={500}
+                step={5}
+                hint="Input 1 · Volume of escalated Salesforce incidents"
+              />
+              <SliderField
+                icon={Clock}
+                label="Average time to resolution (hours)"
+                value={mttrHours}
+                onChange={setMttrHours}
                 min={1}
-                max={200}
-              />
-              <SliderField
-                icon={Clock}
-                label="Senior PR review hours / week"
-                value={reviewHours}
-                onChange={setReviewHours}
-                min={0}
-                max={80}
-              />
-              <SliderField
-                icon={Clock}
-                label="Test maintenance hours / week"
-                value={testMaintenanceHours}
-                onChange={setTestMaintenanceHours}
-                min={0}
-                max={80}
-              />
-              <SliderField
-                icon={AlertTriangle}
-                label="Sev-1 incidents last year"
-                value={sev1Incidents}
-                onChange={setSev1Incidents}
-                min={0}
-                max={20}
+                max={40}
+                hint="Input 2 · Manual investigation + fix time"
               />
               <SliderField
                 icon={DollarSign}
-                label="Avg cost per Sev-1 outage"
-                value={sev1Cost}
-                onChange={setSev1Cost}
-                min={10000}
-                max={500000}
-                step={5000}
-                prefix="$"
-                hint="Includes downtime, emergency engineering, customer impact"
-              />
-              <SliderField
-                icon={DollarSign}
-                label="Senior developer hourly rate"
-                value={seniorDeveloperRate}
-                onChange={setSeniorDeveloperRate}
+                label="Outsourced / internal blended hourly rate"
+                value={hourlyRate}
+                onChange={setHourlyRate}
                 min={50}
                 max={400}
                 step={5}
                 prefix="$"
+                hint="Input 3 · GSI or internal blended rate"
               />
             </div>
           </FadeIn>
 
           <FadeIn delay={0.06}>
-            <div className="flex h-full flex-col rounded-[20px] border border-[#111]/08 bg-[#111] p-6 text-white shadow-[0_12px_36px_rgba(17,17,17,0.04)] md:p-8">
-              <h2 className="mb-6 text-[1.15rem] font-semibold tracking-[-0.02em]">Your savings</h2>
+            <div className="flex h-full flex-col rounded-[20px] border border-[#111]/08 bg-[#0C1320] p-6 text-white shadow-[0_12px_36px_rgba(17,17,17,0.04)] md:p-8">
+              <h2 className="mb-6 text-[1.15rem] font-semibold tracking-[-0.02em]">
+                Annual output
+              </h2>
 
               <div className="mb-6 rounded-[16px] bg-white px-6 py-7 text-center text-[#111]">
                 <p className="text-[11px] font-semibold tracking-[0.16em] text-[#8A93A3] uppercase">
-                  Total annual savings
+                  Recoverable value (50% automation)
                 </p>
                 <p className="mt-2 text-[clamp(2.2rem,4vw,3rem)] font-semibold tracking-[-0.04em]">
-                  {formatCurrency(savings.totalAnnual)}
+                  {formatCurrency(outputs.total)}
                 </p>
               </div>
 
               <div className="flex-1 space-y-3">
                 {[
-                  { label: "PR Review Time Saved", value: savings.reviewTime },
-                  { label: "Test Maintenance Saved", value: savings.testMaintenance },
-                  { label: "Prevented Sev-1 Incidents", value: savings.preventedIncidents },
+                  { label: "Wasted Investigation Spend", value: outputs.wastedSpend },
+                  { label: "Cost of Downtime", value: outputs.downtimeCost },
+                  { label: "Jataka Margin Expansion", value: outputs.marginExpansion },
                 ].map((row) => (
                   <div
                     key={row.label}
@@ -232,67 +178,40 @@ export default function ROICalculatorPage() {
                       <CheckCircle className="h-4 w-4 text-emerald-400" />
                       <span className="text-[14px] text-white/85">{row.label}</span>
                     </div>
-                    <span className="text-[15px] font-semibold">
-                      {formatCurrency(row.value)}
-                    </span>
+                    <span className="text-[15px] font-semibold">{formatCurrency(row.value)}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-6 border-t border-white/10 pt-5">
-                <div className="flex items-center justify-between text-[14px]">
-                  <span className="text-white/55">Typical Jataka investment</span>
-                  <span className="font-medium">$30,000 – $50,000/year</span>
-                </div>
-                <div className="mt-3 flex items-center justify-between">
-                  <span className="text-[14px] font-medium">Your ROI</span>
-                  <span className="text-[1.25rem] font-semibold text-emerald-400">
-                    {Math.round((savings.totalAnnual / 40000) * 100)}%
-                  </span>
-                </div>
-              </div>
+              <p className="mt-6 border-t border-white/10 pt-5 text-[13px] leading-[1.6] text-white/55">
+                Automating 50% of the workload instantly doubles GSI profit margins on the
+                remaining managed-services capacity.
+              </p>
             </div>
           </FadeIn>
         </div>
       </ContentSection>
 
-      <ContentSection title="Industry" italicWord="benchmarks" align="center">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {industryBenchmarks.map((benchmark, i) => (
-            <FadeIn key={benchmark.metric} delay={i * 0.05}>
-              <div className="rounded-[20px] border border-[#111]/08 bg-white p-5 text-center shadow-[0_12px_36px_rgba(17,17,17,0.04)]">
-                <p className="text-[11px] tracking-[0.12em] text-[#8A93A3] uppercase">
-                  {benchmark.metric}
-                </p>
-                <p className="mt-3 text-[1.5rem] font-semibold tracking-[-0.03em] text-[#111]">
-                  {benchmark.value}
-                </p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </ContentSection>
-
-      <ContentSection title="Calculation" italicWord="assumptions" align="center">
-        <div className="mx-auto max-w-[720px] space-y-3">
-          {assumptions.map((item, i) => (
-            <FadeIn key={item.title} delay={i * 0.04}>
-              <div className="flex items-start gap-3 rounded-[16px] border border-[#111]/08 bg-white p-5 text-left shadow-[0_12px_36px_rgba(17,17,17,0.04)]">
-                <TrendingUp className="mt-0.5 h-4 w-4 shrink-0 text-[#2563EB]" />
-                <p className="text-[14px] leading-[1.65] text-[#5F5F66]">
-                  <strong className="text-[#111]">{item.title}</strong> — {item.body}
-                </p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
+      <ContentSection title="Why it" italicWord="matters">
+        <FadeIn>
+          <div className="flex items-start gap-3 rounded-[20px] border border-[#111]/08 bg-white p-6 shadow-[0_12px_36px_rgba(17,17,17,0.04)] md:p-8">
+            <TrendingUp className="mt-0.5 h-5 w-5 shrink-0 text-[#2563EB]" />
+            <p className="max-w-[680px] text-[16px] leading-[1.75] text-[#5F5F66]">
+              Stop paying engineers $150/hour to read logs and guess blast radiuses. Shift your
+              engineering budget from maintenance to innovation.
+            </p>
+          </div>
+        </FadeIn>
       </ContentSection>
 
       <PageCta
-        title={`Ready to save ${formatCurrency(savings.totalAnnual)}?`}
-        subtitle="See Jataka catch Governor Limit breaches and heal broken tests in real time."
-        secondaryLabel="See pricing"
-        secondaryHref="/pricing"
+        title="Get a custom value"
+        italicWord="assessment"
+        subtitle="We'll model your ticket volume, MTTR, and contract margins under NDA."
+        primaryLabel="Get a Custom Value Assessment →"
+        primaryHref="/book-pilot"
+        secondaryLabel="M&A Tech Debt"
+        secondaryHref="/ma-org-merge-intelligence"
       />
     </MarketingShell>
   );

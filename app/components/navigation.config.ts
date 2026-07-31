@@ -12,16 +12,12 @@ export type NavDropdown = {
 export const PRODUCT_DROPDOWN: NavDropdown = {
   label: "Product",
   items: [
-    { label: "Limit Firewall", href: "/use-cases/limit-firewall" },
-    { label: "Automated PR Reviews", href: "/use-cases/automated-pr-reviews" },
-    { label: "Self-Healing UI Tests", href: "/use-cases/self-healing-ui-tests" },
-    { label: "Blast Radius Prediction", href: "/demos/blast-radius-prediction" },
-    { label: "Architecture Agent", href: "/architecture-agent" },
-    { label: "Compliance & Security Audit", href: "/compliance-security-xray" },
-    { label: "API Contract Guardian", href: "/api-contract-guardian" },
-    { label: "M&A Org Merge Analysis", href: "/ma-org-merge-intelligence" },
-    { label: "Synthetic Production Monitoring", href: "/synthetic-production-monitoring" },
-    { label: "Knowledge Graph", href: "/knowledge-graph" },
+    { label: "Autonomous Support (L1–L3)", href: "/autonomous-support" },
+    { label: "Bitemporal Knowledge Graph", href: "/knowledge-graph" },
+    { label: "DeltaBox Sandboxing", href: "/deltabox" },
+    { label: "Sovereign Audit & Approvals", href: "/sovereign-audit" },
+    { label: "M&A Org Merge & Tech Debt", href: "/ma-org-merge-intelligence" },
+    { label: "Enterprise Governance", href: "/enterprise-governance" },
   ],
 };
 
@@ -38,9 +34,11 @@ export const COMPARE_DROPDOWN: NavDropdown = {
 export const RESOURCES_DROPDOWN: NavDropdown = {
   label: "Resources",
   items: [
+    { label: "Shadow Mode Pilot", href: "/shadow-mode" },
+    { label: "Trust & Security Center", href: "/security" },
+    { label: "ROI & Margin Calculator", href: "/roi-calculator" },
     { label: "Anti-Patterns Library", href: "/anti-patterns" },
     { label: "Engineering Blog", href: "/blog" },
-    { label: "ROI Calculator", href: "/roi-calculator" },
   ],
 };
 

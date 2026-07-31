@@ -167,6 +167,14 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     window.addEventListener("wheel", onScrollActivity, { passive: true });
     window.addEventListener("touchmove", onScrollActivity, { passive: true });
 
+    // Broadcast scroll so SiteHeader (outside SmoothScroll) can morph on every page
+    const broadcastScroll = (e: { scroll: number }) => {
+      window.dispatchEvent(
+        new CustomEvent("jataka:scroll", { detail: { scroll: e.scroll } })
+      );
+    };
+    lenis.on("scroll", broadcastScroll);
+
     const persistScroll = () => {
       saveScrollPosition(scrollKey(), lenis.scroll || currentScrollY());
     };
