@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 import Link from "next/link";
+import { MarketingShell } from "../../../components/marketing";
 import {
   ArrowRight,
   Lock,
@@ -86,7 +87,7 @@ const CHART_LIMIT_FIREWALL = `flowchart TD
     CTX -. "Production volumes\\ndrive the simulation" .-> CPU
     CTX -. "Org data distribution\\npowers skew detection" .-> SKEW
 
-    style CTX fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff`;
+    style CTX fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff`;
 
 const CHART_QA = `flowchart TD
     TRIGGER["TEST TRIGGERED\\nPR merge, schedule, or on-demand"]
@@ -105,7 +106,7 @@ const CHART_QA = `flowchart TD
     HEAL -->|No| RECORD --> VERIFY --> REPORT
     CTX -. "Business intent\\npowers visual healing" .-> VISION
 
-    style CTX fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff`;
+    style CTX fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff`;
 
 const CHART_TECH_DEBT = `flowchart TD
     CHANGE["CHANGE DETECTED\\nNew PR with metadata changes"]
@@ -191,16 +192,16 @@ const CHART_ENTERPRISE = `flowchart TD
         MI1["Scan for Workflow Rules"] --> MI2["Parse conditions + actions"] --> MI3["Generate equivalent Flow"] --> MI4["Create PR with\\nFlow + tests + proof"]
     end
 
-    style APCTX fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff
-    style MA1A fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff
-    style MA1B fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff
-    style MA3 fill:#1a1a1a,stroke:#FF2424,stroke-width:2px,color:#ffffff`;
+    style APCTX fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff
+    style MA1A fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff
+    style MA1B fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff
+    style MA3 fill:#1a1a1a,stroke:#2563EB,stroke-width:2px,color:#ffffff`;
 
 // ------------------------------------------------------------------
 // OS Platform visual data
 // ------------------------------------------------------------------
 const MODULES = [
-  { label: "Limit Firewall", icon: Shield, color: "#FF2424", bg: "bg-[#FF2424]/10", text: "text-[#FF2424]" },
+  { label: "Limit Firewall", icon: Shield, color: "#2563EB", bg: "bg-[#2563EB]/10", text: "text-[#2563EB]" },
   { label: "API Guardian", icon: Link2, color: "#155EEF", bg: "bg-[#155EEF]/10", text: "text-[#155EEF]" },
   { label: "Autonomous QA", icon: Sparkles, color: "#7C3AED", bg: "bg-[#7C3AED]/10", text: "text-[#7C3AED]" },
   { label: "Shadow Merge", icon: Zap, color: "#D97706", bg: "bg-[#D97706]/10", text: "text-[#D97706]" },
@@ -251,7 +252,7 @@ function AppCard({
                 Native App · Powered by Jataka Graph
               </span>
             </div>
-            <h3 className="font-archivo text-[clamp(18px,2vw,22px)] uppercase leading-[1.1] tracking-[-0.5px] text-[#1a1a1a]">
+            <h3 className="font-semibold tracking-tight text-[clamp(18px,2vw,22px)] uppercase leading-[1.1] tracking-[-0.5px] text-[#1a1a1a]">
               {title}
             </h3>
           </div>
@@ -304,9 +305,9 @@ export default function ApplicationsPage() {
       themeVariables: {
         primaryColor: "#FFFFFF",
         primaryTextColor: "#1a1a1a",
-        primaryBorderColor: "#FF2424",
+        primaryBorderColor: "#2563EB",
         lineColor: "#1a1a1a",
-        secondaryColor: "#FAF8F3",
+        secondaryColor: "#F3F3F4",
         tertiaryColor: "#F5F3ED",
         fontFamily: "sans-serif",
         fontSize: "13px",
@@ -329,6 +330,7 @@ export default function ApplicationsPage() {
   }, []);
 
   return (
+    <MarketingShell>
     <>
       <Script
         src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"
@@ -336,7 +338,7 @@ export default function ApplicationsPage() {
         onLoad={initMermaid}
       />
 
-      <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
+      <div className="min-h-screen bg-[#F3F3F4] text-[#1a1a1a]">
 
         {/* ── HERO ───────────────────────────────────────────────────── */}
         <section className="border-b border-[#1a1a1a]/8 px-6 pb-[56px] pt-[70px] md:px-12">
@@ -344,18 +346,18 @@ export default function ApplicationsPage() {
 
             {/* Breadcrumb */}
             <div className="mb-[20px] flex items-center gap-2 font-mono text-[11px] text-[#888]">
-              <Link href="/insider/dataroom-botcon" className="hover:text-[#FF2424] transition">Data Room</Link>
+              <Link href="/insider/dataroom-botcon" className="hover:text-[#2563EB] transition">Data Room</Link>
               <ChevronRight className="h-3 w-3" />
               <span className="text-[#1a1a1a]">Enterprise Applications</span>
             </div>
 
-            <div className="inline-flex items-center gap-[9px] rounded-[4px] border border-[#FF2424]/25 bg-[#FF2424]/10 px-[14px] py-[6px] font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424]">
+            <div className="inline-flex items-center gap-[9px] rounded-[4px] border border-[#2563EB]/25 bg-[#2563EB]/10 px-[14px] py-[6px] font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#2563EB]">
               <Lock className="h-[11px] w-[11px]" />
               The Enterprise Operating System
             </div>
 
-            <h1 className="mt-5 font-archivo text-[clamp(30px,5vw,58px)] leading-[1.02] tracking-[-2px] uppercase text-[#1a1a1a]">
-              One Engine.<br /><span className="text-[#FF2424]">New Revenue Streams.</span>
+            <h1 className="mt-5 font-semibold tracking-tight text-[clamp(30px,5vw,58px)] leading-[1.02] tracking-[-2px] uppercase text-[#1a1a1a]">
+              One Engine.<br /><span className="text-[#2563EB]">New Revenue Streams.</span>
             </h1>
             <p className="mt-5 max-w-[740px] text-[16px] leading-[1.75] text-[#444]">
               Jataka is not a fragmented suite of tools; it is an{" "}
@@ -367,7 +369,7 @@ export default function ApplicationsPage() {
               expanding <strong className="text-[#1a1a1a]">your own profit margins.</strong>
             </p>
             <div className="mt-5 flex flex-wrap gap-4">
-              <div className="inline-flex items-center gap-2 rounded-[6px] border border-[#FF2424]/20 bg-[#FF2424]/8 px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424]">
+              <div className="inline-flex items-center gap-2 rounded-[6px] border border-[#2563EB]/20 bg-[#2563EB]/8 px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#2563EB]">
                 <Shield className="h-[13px] w-[13px]" /> The Shield — Protecting Revenue
               </div>
               <div className="inline-flex items-center gap-2 rounded-[6px] border border-[#16A34A]/20 bg-[#16A34A]/8 px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#16A34A]">
@@ -381,10 +383,10 @@ export default function ApplicationsPage() {
         <section className="border-b border-[#1a1a1a]/8 bg-[#F2EFE8] px-6 py-[48px] md:px-12">
           <div className="mx-auto max-w-[1100px]">
             <Reveal>
-              <p className="mb-[8px] font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424]">
+              <p className="mb-[8px] font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#2563EB]">
                 The OS Metaphor
               </p>
-              <h2 className="mb-[32px] font-archivo text-[clamp(22px,3vw,32px)] uppercase leading-[1.05] tracking-[-0.8px] text-[#1a1a1a]">
+              <h2 className="mb-[32px] font-semibold tracking-tight text-[clamp(22px,3vw,32px)] uppercase leading-[1.05] tracking-[-0.8px] text-[#1a1a1a]">
                 Apps Powered by the Brain Below
               </h2>
             </Reveal>
@@ -416,10 +418,10 @@ export default function ApplicationsPage() {
             <Reveal delay={160}>
               <div className="mt-0 flex items-center justify-center rounded-[14px] bg-[#1a1a1a] px-6 py-5 shadow-[0_12px_40px_rgba(26,26,26,0.18)]">
                 <div className="text-center">
-                  <div className="mb-1 font-mono text-[9.5px] font-bold uppercase tracking-[3px] text-[#FF2424]">
+                  <div className="mb-1 font-mono text-[9.5px] font-bold uppercase tracking-[3px] text-[#2563EB]">
                     The Foundational Layer
                   </div>
-                  <div className="font-archivo text-[clamp(16px,2vw,22px)] uppercase tracking-[-0.5px] text-white">
+                  <div className="font-semibold tracking-tight text-[clamp(16px,2vw,22px)] uppercase tracking-[-0.5px] text-white">
                     The Jataka Context Engine (OS)
                   </div>
                   <div className="mt-1 font-mono text-[11px] text-white/50">
@@ -435,7 +437,7 @@ export default function ApplicationsPage() {
         <section className="border-b border-[#1a1a1a]/8 px-6 py-[48px] md:px-12">
           <div className="mx-auto max-w-[1100px] text-center">
             <Reveal>
-              <h2 className="font-archivo text-[clamp(26px,4vw,46px)] uppercase leading-[1.04] tracking-[-1.5px] text-[#1a1a1a]">
+              <h2 className="font-semibold tracking-tight text-[clamp(26px,4vw,46px)] uppercase leading-[1.04] tracking-[-1.5px] text-[#1a1a1a]">
                 The Shield and The Sword.
               </h2>
               <p className="mx-auto mt-5 max-w-[760px] text-[16px] leading-[1.75] text-[#444]">
@@ -454,12 +456,12 @@ export default function ApplicationsPage() {
           <section className="py-[56px]">
             <Reveal>
               <div className="mb-[32px] flex items-center gap-4">
-                <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[12px] bg-[#FF2424]/10 text-[#FF2424]">
+                <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[12px] bg-[#2563EB]/10 text-[#2563EB]">
                   <Shield className="h-7 w-7" />
                 </div>
                 <div>
-                  <div className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424]">Section 01</div>
-                  <h2 className="font-archivo text-[clamp(24px,3.5vw,38px)] uppercase leading-[1.05] tracking-[-1px] text-[#1a1a1a]">
+                  <div className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#2563EB]">Section 01</div>
+                  <h2 className="font-semibold tracking-tight text-[clamp(24px,3.5vw,38px)] uppercase leading-[1.05] tracking-[-1px] text-[#1a1a1a]">
                     The Shield: Protecting the Bottom Line
                   </h2>
                 </div>
@@ -479,8 +481,8 @@ export default function ApplicationsPage() {
                 impact="<strong>Prevents Millions in SLA Penalties.</strong> An SAP integration crash on the last day of the quarter costs enterprises millions in unrecognized revenue. By simulating peak data volumes <em>before</em> code merges, we guarantee the org will never buckle."
                 context="The engine uses your Live Production Data Map to run mathematical physics simulations on PRs, catching CPU timeouts that traditional testing misses."
                 chart={CHART_LIMIT_FIREWALL}
-                accent="#FF2424"
-                accentBg="bg-[#FF2424]/10"
+                accent="#2563EB"
+                accentBg="bg-[#2563EB]/10"
                 Icon={Shield}
               />
 
@@ -515,7 +517,7 @@ export default function ApplicationsPage() {
                   <p className="mb-1 font-mono text-[9.5px] font-bold uppercase tracking-[2px] text-[#7C3AED]">
                     Also Part of App 03
                   </p>
-                  <h4 className="mb-4 font-archivo text-[18px] uppercase tracking-[-0.4px] text-[#1a1a1a]">
+                  <h4 className="mb-4 font-semibold tracking-tight text-[18px] uppercase tracking-[-0.4px] text-[#1a1a1a]">
                     Tech Debt Cleanup Flow
                   </h4>
                   <MermaidBlock chart={CHART_TECH_DEBT} />
@@ -533,7 +535,7 @@ export default function ApplicationsPage() {
                 </div>
                 <div>
                   <div className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#16A34A]">Section 02</div>
-                  <h2 className="font-archivo text-[clamp(24px,3.5vw,38px)] uppercase leading-[1.05] tracking-[-1px] text-[#1a1a1a]">
+                  <h2 className="font-semibold tracking-tight text-[clamp(24px,3.5vw,38px)] uppercase leading-[1.05] tracking-[-1px] text-[#1a1a1a]">
                     The Sword: Accelerating Revenue & Margins
                   </h2>
                 </div>
@@ -575,10 +577,10 @@ export default function ApplicationsPage() {
           {/* ── ENTERPRISE FLOWCHART SECTION ───────────────────────── */}
           <section className="border-t border-[#1a1a1a]/8 py-[56px]">
             <Reveal>
-              <span className="mb-[16px] inline-block rounded-[4px] bg-[#FF2424]/10 px-[12px] py-[6px] font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424]">
+              <span className="mb-[16px] inline-block rounded-[4px] bg-[#2563EB]/10 px-[12px] py-[6px] font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#2563EB]">
                 Enterprise Applications · Technical Overview
               </span>
-              <h2 className="mb-[12px] font-archivo text-[clamp(22px,3vw,34px)] uppercase leading-[1.05] tracking-[-0.8px] text-[#1a1a1a]">
+              <h2 className="mb-[12px] font-semibold tracking-tight text-[clamp(22px,3vw,34px)] uppercase leading-[1.05] tracking-[-0.8px] text-[#1a1a1a]">
                 Full Enterprise Applications Flowchart
               </h2>
               <p className="mb-[8px] max-w-[640px] text-[15px] leading-[1.7] text-[#555]">
@@ -595,17 +597,17 @@ export default function ApplicationsPage() {
         <section className="border-t border-[#1a1a1a]/8 bg-[#1a1a1a] px-6 py-[72px] md:px-12">
           <div className="mx-auto max-w-[1100px] text-center">
             <Reveal>
-              <Network className="mx-auto mb-6 h-10 w-10 text-[#FF2424]" />
-              <p className="font-archivo text-[clamp(22px,3.5vw,38px)] uppercase leading-[1.08] tracking-[-1px] text-white">
+              <Network className="mx-auto mb-6 h-10 w-10 text-[#2563EB]" />
+              <p className="font-semibold tracking-tight text-[clamp(22px,3.5vw,38px)] uppercase leading-[1.08] tracking-[-1px] text-white">
                 This is how a Global Delivery Center transitions from selling &quot;developer hours&quot; to selling{" "}
-                <span className="text-[#FF2424]">Mathematically Verified Delivery.</span>
+                <span className="text-[#2563EB]">Mathematically Verified Delivery.</span>
               </p>
               <p className="mx-auto mt-5 max-w-[560px] text-[15px] leading-[1.7] text-white/55">
                 See the exact financial impact these applications generate for BOT Consulting.
               </p>
               <Link
                 href="/insider/dataroom-botcon/roi"
-                className="mt-8 inline-flex items-center gap-[10px] rounded-[6px] bg-[#FF2424] px-[28px] py-[13px] font-archivo text-[12px] uppercase tracking-[1.5px] text-white transition hover:bg-[#d91f1f]"
+                className="mt-8 inline-flex items-center gap-[10px] rounded-[6px] bg-[#2563EB] px-[28px] py-[13px] font-semibold tracking-tight text-[12px] uppercase tracking-[1.5px] text-white transition hover:bg-[#1d4ed8]"
               >
                 See the GCC Financial Impact
                 <ArrowRight className="h-[14px] w-[14px]" />
@@ -622,5 +624,7 @@ export default function ApplicationsPage() {
         </footer>
       </div>
     </>
+  
+    </MarketingShell>
   );
 }

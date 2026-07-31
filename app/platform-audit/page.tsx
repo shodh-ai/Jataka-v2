@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import Script from "next/script";
 import { useRouter } from "next/navigation";
+import { MarketingShell } from "../components/marketing";
+import { useLenisScroll } from "../components/home/SmoothScroll";
 import {
   ArrowRight,
   Download,
@@ -12,50 +14,107 @@ import {
 } from "lucide-react";
 
 // ------------------------------------------------------------------
-// Scroll reveal
+// Soft scroll reveal (always visible in print via CSS)
 // ------------------------------------------------------------------
-function useScrollReveal(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-
-  return { ref, isVisible };
-}
-
 function Reveal({
   children,
-  delay = 0,
   className = "",
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
 }) {
-  const { ref, isVisible } = useScrollReveal(0.1);
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(30px)",
-        transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
-        transitionDelay: `${delay}ms`,
-      }}
-    >
-      {children}
-    </div>
-  );
+  // No opacity:0 — that was blanking whole PDF pages for off-screen sections
+  return <div className={`pa-reveal pa-reveal--in ${className}`.trim()}>{children}</div>;
+}
+
+/** Turn Mermaid SVGs into PNGs — Chrome print blanks foreignObject HTML labels */
+function rasterizeMermaidForPrint(): () => void {
+  const restorers: Array<() => void> = [];
+
+  document.querySelectorAll<SVGSVGElement>(".pa-mermaid svg").forEach((svg) => {
+    try {
+      const parent = svg.parentElement;
+      if (!parent) return;
+      if (parent.querySelector("img.pa-mermaid-print-img")) return;
+
+      const bbox = svg.getBoundingClientRect();
+      const width = Math.max(1, Math.ceil(bbox.width || svg.clientWidth || 800));
+      const height = Math.max(1, Math.ceil(bbox.height || svg.clientHeight || 400));
+
+      const clone = svg.cloneNode(true) as SVGSVGElement;
+      clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      if (!clone.getAttribute("width")) clone.setAttribute("width", String(width));
+      if (!clone.getAttribute("height")) clone.setAttribute("height", String(height));
+
+      const xml = new XMLSerializer().serializeToString(clone);
+      const url = URL.createObjectURL(
+        new Blob([xml], { type: "image/svg+xml;charset=utf-8" })
+      );
+
+      const canvas = document.createElement("canvas");
+      const scale = Math.min(2, 1400 / width);
+      canvas.width = Math.ceil(width * scale);
+      canvas.height = Math.ceil(height * scale);
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        URL.revokeObjectURL(url);
+        return;
+      }
+
+      const printImg = document.createElement("img");
+      printImg.alt = "Diagram";
+      printImg.className = "pa-mermaid-print-img";
+      printImg.style.cssText =
+        "display:block;width:100%;height:auto;max-height:240mm;";
+
+      svg.style.display = "none";
+      parent.appendChild(printImg);
+
+      const restore = () => {
+        printImg.remove();
+        svg.style.display = "";
+        URL.revokeObjectURL(url);
+      };
+      restorers.push(restore);
+
+      const loader = new Image();
+      loader.onload = () => {
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(loader, 0, 0, canvas.width, canvas.height);
+        printImg.src = canvas.toDataURL("image/png");
+        URL.revokeObjectURL(url);
+      };
+      loader.onerror = () => {
+        restore();
+        const i = restorers.indexOf(restore);
+        if (i >= 0) restorers.splice(i, 1);
+      };
+      loader.src = url;
+    } catch {
+      /* skip broken diagram */
+    }
+  });
+
+  return () => restorers.forEach((fn) => fn());
+}
+
+function waitForPrintImages(ms = 900): Promise<void> {
+  return new Promise((resolve) => {
+    const start = Date.now();
+    const tick = () => {
+      const imgs = Array.from(
+        document.querySelectorAll<HTMLImageElement>("img.pa-mermaid-print-img")
+      );
+      const ready =
+        imgs.length === 0 ||
+        imgs.every((img) => img.complete && img.naturalWidth > 0);
+      if (ready || Date.now() - start > ms) resolve();
+      else requestAnimationFrame(tick);
+    };
+    tick();
+  });
 }
 
 // ------------------------------------------------------------------
@@ -88,7 +147,7 @@ const breadcrumbSchema = {
 // Shared UI helpers
 // ------------------------------------------------------------------
 const SECTION_LABEL_CLS =
-  "inline-block font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] bg-[#FF2424]/10 text-[#FF2424] px-[12px] py-[6px] rounded-[4px] mb-[16px]";
+  "inline-block font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] bg-[#2563EB]/10 text-[#2563EB] px-[12px] py-[6px] rounded-[4px] mb-[16px]";
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return <span className={SECTION_LABEL_CLS}>{children}</span>;
@@ -96,7 +155,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-archivo text-[clamp(28px,4vw,44px)] leading-[1.05] tracking-[-1px] uppercase mb-[16px]">
+    <h2 className="font-semibold tracking-tight text-[clamp(28px,4vw,44px)] leading-[1.05] tracking-[-1px] uppercase mb-[16px]">
       {children}
     </h2>
   );
@@ -106,7 +165,7 @@ function H3({ children, id }: { children: React.ReactNode; id?: string }) {
   return (
     <h3
       id={id}
-      className="font-archivo text-[clamp(20px,2.4vw,26px)] tracking-[-0.5px] uppercase mt-[40px] mb-[14px]"
+      className="font-semibold tracking-tight text-[clamp(20px,2.4vw,26px)] tracking-[-0.5px] uppercase mt-[40px] mb-[14px]"
     >
       {children}
     </h3>
@@ -115,7 +174,7 @@ function H3({ children, id }: { children: React.ReactNode; id?: string }) {
 
 function H4({ children }: { children: React.ReactNode }) {
   return (
-    <h4 className="font-archivo text-[clamp(16px,1.8vw,18px)] tracking-[-0.3px] uppercase mt-[28px] mb-[10px] text-[#1a1a1a]">
+    <h4 className="font-semibold tracking-tight text-[clamp(16px,1.8vw,18px)] tracking-[-0.3px] uppercase mt-[28px] mb-[10px] text-[#1a1a1a]">
       {children}
     </h4>
   );
@@ -133,8 +192,8 @@ function Callout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white border border-[#1a1a1a]/8 border-l-4 border-l-[#FF2424] rounded-[8px] p-[20px] my-[24px]">
-      <p className="font-archivo text-[13px] uppercase tracking-[1px] text-[#1a1a1a] mb-[6px]">
+    <div className="bg-white border border-[#1a1a1a]/8 border-l-4 border-l-[#2563EB] rounded-[8px] p-[20px] my-[24px]">
+      <p className="font-semibold tracking-tight text-[13px] uppercase tracking-[1px] text-[#1a1a1a] mb-[6px]">
         {title}
       </p>
       <div className="text-[14.5px] leading-[1.65] text-[#444]">{children}</div>
@@ -179,7 +238,7 @@ function PRComment({
 
 function MermaidBlock({ chart }: { chart: string }) {
   return (
-    <div className="bg-white border border-[#1a1a1a]/10 rounded-[12px] p-[20px] md:p-[28px] my-[24px] overflow-x-auto">
+    <div className="pa-mermaid bg-white border border-[#1a1a1a]/10 rounded-[12px] p-[20px] md:p-[28px] my-[24px] overflow-x-auto">
       <pre className="mermaid flex justify-center text-[13px]">{chart}</pre>
     </div>
   );
@@ -199,7 +258,7 @@ function Table({
     <div className="overflow-x-auto my-[20px] rounded-[10px] border border-[#1a1a1a]/8">
       <table className="w-full text-[13.5px] bg-white">
         <thead>
-          <tr className="bg-[#FAF8F3]">{head}</tr>
+          <tr className="bg-[#F3F3F4]">{head}</tr>
         </thead>
         <tbody>{children}</tbody>
       </table>
@@ -209,7 +268,7 @@ function Table({
 
 function Th({ children }: { children: React.ReactNode }) {
   return (
-    <th className="text-left font-archivo font-normal uppercase tracking-[1px] text-[11px] text-[#1a1a1a]/70 px-[14px] py-[12px] border-b border-[#1a1a1a]/10">
+    <th className="text-left font-semibold tracking-tight font-normal uppercase tracking-[1px] text-[11px] text-[#1a1a1a]/70 px-[14px] py-[12px] border-b border-[#1a1a1a]/10">
       {children}
     </th>
   );
@@ -351,7 +410,7 @@ const CHART_LIMIT_FIREWALL = `flowchart TD
     CTX -. "Production volumes\ndrive the simulation" .-> CPU
     CTX -. "Org data distribution\npowers skew detection" .-> SKEW
 
-    style CTX fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff`;
+    style CTX fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff`;
 
 const CHART_TECH_DEBT = `flowchart TD
     CHANGE["CHANGE DETECTED\nNew PR with metadata changes"]
@@ -404,7 +463,7 @@ const CHART_QA = `flowchart TD
     HEAL -->|No| RECORD --> VERIFY --> REPORT
     CTX -. "Business intent\npowers visual healing" .-> VISION
 
-    style CTX fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff`;
+    style CTX fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff`;
 
 const CHART_DEVXP = `flowchart TD
     subgraph IDE_FLOW["IDE INTEGRATION"]
@@ -449,10 +508,10 @@ const CHART_ENTERPRISE = `flowchart TD
         MI1["Scan for Workflow Rules"] --> MI2["Parse conditions + actions"] --> MI3["Generate equivalent Flow"] --> MI4["Create PR with\nFlow + tests + proof"]
     end
 
-    style APCTX fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff
-    style MA1A fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff
-    style MA1B fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff
-    style MA3 fill:#1a1a1a,stroke:#FF2424,stroke-width:2px,color:#ffffff`;
+    style APCTX fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff
+    style MA1A fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff
+    style MA1B fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff
+    style MA3 fill:#1a1a1a,stroke:#2563EB,stroke-width:2px,color:#ffffff`;
 
 // ------------------------------------------------------------------
 // Capability matrix rows
@@ -503,10 +562,10 @@ function ImpactCard({
 }) {
   return (
     <div className="bg-white border border-[#1a1a1a]/8 rounded-[12px] p-[20px]">
-      <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[10px]">
+      <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[10px]">
         {label}
       </p>
-      <p className="font-archivo text-[36px] leading-[1] tracking-[-1.5px] text-[#1a1a1a] mb-[8px]">
+      <p className="font-semibold tracking-tight text-[36px] leading-[1] tracking-[-1.5px] text-[#1a1a1a] mb-[8px]">
         {value}
       </p>
       <p className="text-[12.5px] text-[#666] leading-[1.5]">{desc}</p>
@@ -530,8 +589,79 @@ declare global {
 // ------------------------------------------------------------------
 // Main page
 // ------------------------------------------------------------------
-export default function PlatformAuditPage() {
+function PlatformAuditContent() {
   const router = useRouter();
+  const { scrollTo, stop: stopLenis, start: startLenis } = useLenisScroll();
+
+  // Sticky site header (~64px) + sticky sub-nav (~52px)
+  const SECTION_OFFSET = 130;
+  const SCROLL_DURATION = 2.35;
+
+  const scrollToSection = useCallback(
+    (hash: string, e?: React.MouseEvent) => {
+      e?.preventDefault();
+      e?.stopPropagation();
+      const id = hash.replace(/^#/, "");
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const y = Math.max(
+        0,
+        el.getBoundingClientRect().top + window.scrollY - SECTION_OFFSET
+      );
+      scrollTo(y, { duration: SCROLL_DURATION });
+    },
+    [scrollTo]
+  );
+
+  const exportPdf = useCallback(async () => {
+    const root = document.documentElement;
+    root.classList.add("is-printing");
+
+    stopLenis();
+    root.style.transform = "none";
+    document.body.style.transform = "none";
+    root.style.height = "auto";
+    document.body.style.height = "auto";
+    window.scrollTo(0, 0);
+
+    const restoreMermaid = rasterizeMermaidForPrint();
+    await waitForPrintImages(1200);
+
+    let cleaned = false;
+    const cleanup = () => {
+      if (cleaned) return;
+      cleaned = true;
+      restoreMermaid();
+      root.classList.remove("is-printing");
+      root.style.transform = "";
+      document.body.style.transform = "";
+      root.style.height = "";
+      document.body.style.height = "";
+      startLenis();
+      window.removeEventListener("afterprint", cleanup);
+    };
+    window.addEventListener("afterprint", cleanup);
+
+    window.print();
+    window.setTimeout(cleanup, 2000);
+  }, [stopLenis, startLenis]);
+
+  // Deep-link only on first paint: /platform-audit#exec
+  useEffect(() => {
+    const id = window.location.hash.replace(/^#/, "");
+    if (!id || !document.getElementById(id)) return;
+    const t = window.setTimeout(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const y = Math.max(
+        0,
+        el.getBoundingClientRect().top + window.scrollY - SECTION_OFFSET
+      );
+      scrollTo(y, { duration: SCROLL_DURATION });
+    }, 120);
+    return () => window.clearTimeout(t);
+  }, [scrollTo]);
 
   const initMermaid = () => {
     if (typeof window === "undefined" || !window.mermaid) return;
@@ -541,14 +671,20 @@ export default function PlatformAuditPage() {
       themeVariables: {
         primaryColor: "#FFFFFF",
         primaryTextColor: "#1a1a1a",
-        primaryBorderColor: "#FF2424",
+        primaryBorderColor: "#2563EB",
         lineColor: "#1a1a1a",
-        secondaryColor: "#FAF8F3",
+        secondaryColor: "#F3F3F4",
         tertiaryColor: "#F5F3ED",
         fontFamily: "var(--font-inter), sans-serif",
         fontSize: "13px",
       },
-      flowchart: { htmlLabels: true, curve: "basis", padding: 15 },
+      flowchart: {
+        // foreignObject HTML labels print as blank pages in Chrome — use SVG text
+        htmlLabels: false,
+        curve: "basis",
+        padding: 12,
+        useMaxWidth: true,
+      },
     });
     window.mermaid.run();
   };
@@ -588,44 +724,138 @@ export default function PlatformAuditPage() {
       <style
         dangerouslySetInnerHTML={{
           __html: `
+        /* print hooks use .pa-reveal / .pa-mermaid classes */
+
         @media print {
+          /* Kill fixed chrome / overlays */
           header,
           .pa-subnav,
-          .pa-print-hide {
+          .pa-print-hide,
+          .global-grain,
+          nav,
+          .pointer-events-none.fixed {
             display: none !important;
           }
-          body {
+
+          html, body {
             background: #fff !important;
+            color: #1a1a1a !important;
+            height: auto !important;
+            min-height: 0 !important;
+            overflow: visible !important;
+            transform: none !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
           }
+
+          .pa-shell,
+          .home-theme,
+          main,
+          footer,
+          .pa-shell * {
+            transform: none !important;
+            filter: none !important;
+            backdrop-filter: none !important;
+            animation: none !important;
+            transition: none !important;
+          }
+
+          .pa-shell,
+          .home-theme,
+          main,
+          footer {
+            background: #fff !important;
+            height: auto !important;
+            min-height: 0 !important;
+            overflow: visible !important;
+            position: static !important;
+          }
+
           .pa-shell {
-            background: #fff !important;
+            min-height: 0 !important;
+            padding: 0 !important;
           }
-          section {
-            page-break-inside: avoid;
+
+          * {
+            break-inside: auto !important;
+            page-break-inside: auto !important;
+          }
+
+          .pa-mermaid {
+            overflow: visible !important;
+            max-width: 100% !important;
+            padding: 8px !important;
+            margin: 12px 0 !important;
+          }
+          /* Prefer rasterized diagram when present; otherwise keep SVG */
+          .pa-mermaid:has(.pa-mermaid-print-img) svg {
+            display: none !important;
+          }
+          .pa-mermaid-print-img {
+            display: block !important;
+            width: 100% !important;
+            height: auto !important;
+            max-height: 240mm !important;
+          }
+          .pa-mermaid svg {
+            max-width: 100% !important;
+            height: auto !important;
+            max-height: 240mm !important;
+          }
+
+          .overflow-x-auto {
+            overflow: visible !important;
+          }
+
+          .pa-shell h2 {
+            font-size: 22pt !important;
+            margin: 14pt 0 8pt !important;
+          }
+          .pa-shell h3 {
+            font-size: 14pt !important;
+            margin: 12pt 0 6pt !important;
+          }
+          .pa-shell h4 {
+            font-size: 11pt !important;
+            margin: 10pt 0 4pt !important;
+          }
+          .pa-shell p {
+            font-size: 10pt !important;
+            line-height: 1.45 !important;
+            margin-bottom: 6pt !important;
+          }
+          .pa-shell section {
+            padding-top: 12pt !important;
+            padding-bottom: 12pt !important;
+            scroll-margin: 0 !important;
           }
         }
       `,
         }}
       />
 
-      <div className="pa-shell min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
+      <div className="pa-shell min-h-screen bg-[#F3F3F4] text-[#1a1a1a]">
         {/* STICKY SUB-NAV */}
-        <nav className="pa-subnav sticky top-[64px] z-40 bg-[#FAF8F3]/90 backdrop-blur-md border-b border-[#1a1a1a]/8">
+        <nav className="pa-subnav sticky top-[64px] z-40 bg-[#F3F3F4]/90 backdrop-blur-md border-b border-[#1a1a1a]/8">
           <div className="max-w-[1100px] mx-auto px-[16px] md:px-[32px] py-[10px] flex items-center justify-between gap-[16px]">
             <div className="flex items-center gap-[8px] overflow-x-auto scrollbar-hide">
               {SUB_NAV.map((item) => (
-                <a
+                <button
                   key={item.href}
-                  href={item.href}
-                  className="flex-shrink-0 text-[11.5px] font-mono font-semibold uppercase tracking-[1.2px] text-[#444] hover:text-[#FF2424] px-[10px] py-[6px] rounded-[4px] hover:bg-[#FF2424]/8 transition"
+                  type="button"
+                  onClick={(e) => scrollToSection(item.href, e)}
+                  className="flex-shrink-0 cursor-pointer text-[11.5px] font-mono font-semibold uppercase tracking-[1.2px] text-[#444] hover:text-[#2563EB] px-[10px] py-[6px] rounded-[4px] hover:bg-[#2563EB]/8 transition"
                 >
                   {item.label}
-                </a>
+                </button>
               ))}
             </div>
             <button
-              onClick={() => typeof window !== "undefined" && window.print()}
-              className="pa-print-hide flex-shrink-0 bg-[#FF2424] text-white px-[14px] py-[7px] font-archivo text-[10.5px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition inline-flex items-center gap-[6px]"
+              type="button"
+              onClick={() => {
+                void exportPdf();
+              }}
+              className="pa-print-hide flex-shrink-0 bg-[#2563EB] text-white px-[14px] py-[7px] font-semibold tracking-tight text-[10.5px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#1d4ed8] transition inline-flex items-center gap-[6px]"
             >
               <Download className="w-[12px] h-[12px]" />
               Export PDF
@@ -637,16 +867,16 @@ export default function PlatformAuditPage() {
         <section className="pt-[70px] pb-[40px] px-[24px] md:px-[48px] border-b border-[#1a1a1a]/8">
           <div className="max-w-[1000px] mx-auto text-center">
             <Reveal>
-              <div className="inline-flex items-center gap-[9px] bg-[#FF2424]/10 border border-[#FF2424]/20 px-[18px] py-[6px] mb-[20px] text-[11.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424] rounded-[4px]">
+              <div className="inline-flex items-center gap-[9px] bg-[#2563EB]/10 border border-[#2563EB]/20 px-[18px] py-[6px] mb-[20px] text-[11.5px] font-bold uppercase tracking-[2.5px] text-[#2563EB] rounded-[4px]">
                 <FileText className="w-[14px] h-[14px]" />
                 Complete Platform Audit
               </div>
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="font-archivo text-[clamp(36px,5.6vw,64px)] leading-[1.02] tracking-[-2px] uppercase mb-[20px]">
+              <h1 className="font-semibold tracking-tight text-[clamp(36px,5.6vw,64px)] leading-[1.02] tracking-[-2px] uppercase mb-[20px]">
                 Jataka - <br />
-                <span className="text-[#FF2424]">Complete Platform Audit</span>
+                <span className="text-[#2563EB]">Complete Platform Audit</span>
               </h1>
             </Reveal>
 
@@ -693,13 +923,14 @@ export default function PlatformAuditPage() {
                     ["#roi", "09 - Business Impact & ROI"],
                   ].map(([href, label]) => (
                     <li key={href} className="flex items-start gap-[10px]">
-                      <span className="w-[6px] h-[6px] rounded-full bg-[#FF2424] mt-[8px] flex-shrink-0" />
-                      <a
-                        href={href}
-                        className="text-[14.5px] font-medium text-[#1a1a1a] hover:text-[#FF2424] transition"
+                      <span className="w-[6px] h-[6px] rounded-full bg-[#2563EB] mt-[8px] flex-shrink-0" />
+                      <button
+                        type="button"
+                        onClick={(e) => scrollToSection(href, e)}
+                        className="cursor-pointer text-left text-[14.5px] font-medium text-[#1a1a1a] hover:text-[#2563EB] transition"
                       >
                         {label}
-                      </a>
+                      </button>
                     </li>
                   ))}
                 </ol>
@@ -708,7 +939,7 @@ export default function PlatformAuditPage() {
           </section>
 
           {/* 01 EXECUTIVE SUMMARY */}
-          <section id="exec" className="py-[48px] border-t border-[#1a1a1a]/8">
+          <section id="exec" className="scroll-mt-[130px] py-[48px] border-t border-[#1a1a1a]/8">
             <Reveal>
               <SectionLabel>Section 01</SectionLabel>
               <H2>Executive Summary</H2>
@@ -774,7 +1005,7 @@ export default function PlatformAuditPage() {
           </section>
 
           {/* 02 ARCHITECTURE */}
-          <section id="arch" className="py-[48px] border-t border-[#1a1a1a]/8">
+          <section id="arch" className="scroll-mt-[130px] py-[48px] border-t border-[#1a1a1a]/8">
             <Reveal>
               <SectionLabel>Section 02</SectionLabel>
               <H2>Platform Architecture - How Jataka Works</H2>
@@ -797,7 +1028,7 @@ export default function PlatformAuditPage() {
           </section>
 
           {/* M1 LIMIT FIREWALL */}
-          <section id="m1" className="py-[48px] border-t border-[#1a1a1a]/8">
+          <section id="m1" className="scroll-mt-[130px] py-[48px] border-t border-[#1a1a1a]/8">
             <Reveal>
               <SectionLabel>Module 01</SectionLabel>
               <H2>The Limit Firewall</H2>
@@ -896,19 +1127,19 @@ export default function PlatformAuditPage() {
                   <Td>SOQL in loops</Td>
                   <Td>100 queries/txn</Td>
                   <Td>AST + indirect call tracing</Td>
-                  <Td><strong className="text-[#FF2424]">Critical</strong></Td>
+                  <Td><strong className="text-[#2563EB]">Critical</strong></Td>
                 </tr>
                 <tr>
                   <Td>DML in loops</Td>
                   <Td>150 statements/txn</Td>
                   <Td>AST + indirect call tracing</Td>
-                  <Td><strong className="text-[#FF2424]">Critical</strong></Td>
+                  <Td><strong className="text-[#2563EB]">Critical</strong></Td>
                 </tr>
                 <tr>
                   <Td>CPU time</Td>
                   <Td>10,000ms / 60,000ms</Td>
                   <Td>Complexity estimation</Td>
-                  <Td><strong className="text-[#FF2424]">Critical</strong></Td>
+                  <Td><strong className="text-[#2563EB]">Critical</strong></Td>
                 </tr>
                 <tr>
                   <Td>Data skew</Td>
@@ -920,7 +1151,7 @@ export default function PlatformAuditPage() {
                   <Td>API callouts</Td>
                   <Td>100 sync / 200 async</Td>
                   <Td>Callout path tracing</Td>
-                  <Td><strong className="text-[#FF2424]">Critical</strong></Td>
+                  <Td><strong className="text-[#2563EB]">Critical</strong></Td>
                 </tr>
               </Table>
 
@@ -934,7 +1165,7 @@ export default function PlatformAuditPage() {
           </section>
 
           {/* M2 TECH DEBT */}
-          <section id="m2" className="py-[48px] border-t border-[#1a1a1a]/8">
+          <section id="m2" className="scroll-mt-[130px] py-[48px] border-t border-[#1a1a1a]/8">
             <Reveal>
               <SectionLabel>Module 02</SectionLabel>
               <H2>Tech Debt & Architecture Governance</H2>
@@ -1003,7 +1234,7 @@ export default function PlatformAuditPage() {
                 <tr>
                   <Td>No hardcoded IDs</Td>
                   <Td>
-                    <code className="bg-[#FAF8F3] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
+                    <code className="bg-[#F3F3F4] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
                       Id profileId = &apos;00e...&apos;
                     </code>
                   </Td>
@@ -1023,7 +1254,7 @@ export default function PlatformAuditPage() {
                   <Td>Error handling</Td>
                   <Td>
                     Bare{" "}
-                    <code className="bg-[#FAF8F3] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
+                    <code className="bg-[#F3F3F4] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
                       try/catch
                     </code>{" "}
                     blocks
@@ -1035,7 +1266,7 @@ export default function PlatformAuditPage() {
               <H4>4.3.4 - Autonomous Cleanup</H4>
               <P>
                 Auto-generates{" "}
-                <code className="bg-[#FAF8F3] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
+                <code className="bg-[#F3F3F4] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
                   destructiveChanges.xml
                 </code>{" "}
                 deployment packages for confirmed orphan metadata. Ready to deploy - just review
@@ -1047,9 +1278,13 @@ export default function PlatformAuditPage() {
                 Detects single-record patterns in Apex and{" "}
                 <strong>autonomously refactors</strong> into bulk-safe logic using Maps, Sets,
                 and Lists. Pushes refactored code as a fix commit, verified by the{" "}
-                <a href="#m3" className="text-[#FF2424] underline">
+                <button
+                  type="button"
+                  onClick={(e) => scrollToSection("#m3", e)}
+                  className="text-[#2563EB] underline bg-transparent p-0 border-0 cursor-pointer font-inherit"
+                >
                   Verification Protocol
-                </a>
+                </button>
                 .
               </P>
 
@@ -1063,7 +1298,7 @@ export default function PlatformAuditPage() {
               <H4>4.3.7 - Best Practice Maintenance</H4>
               <P>
                 Every push verified for:{" "}
-                <code className="bg-[#FAF8F3] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
+                <code className="bg-[#F3F3F4] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
                   with sharing
                 </code>{" "}
                 usage, CRUD/FLS checks, test coverage thresholds, async patterns, collection
@@ -1079,7 +1314,7 @@ export default function PlatformAuditPage() {
           </section>
 
           {/* M3 AUTONOMOUS QA */}
-          <section id="m3" className="py-[48px] border-t border-[#1a1a1a]/8">
+          <section id="m3" className="scroll-mt-[130px] py-[48px] border-t border-[#1a1a1a]/8">
             <Reveal>
               <SectionLabel>Module 03</SectionLabel>
               <H2>Autonomous QA</H2>
@@ -1154,7 +1389,7 @@ export default function PlatformAuditPage() {
           </section>
 
           {/* M4 DEV XP */}
-          <section id="m4" className="py-[48px] border-t border-[#1a1a1a]/8">
+          <section id="m4" className="scroll-mt-[130px] py-[48px] border-t border-[#1a1a1a]/8">
             <Reveal>
               <SectionLabel>Module 04</SectionLabel>
               <H2>Developer Experience</H2>
@@ -1244,7 +1479,7 @@ export default function PlatformAuditPage() {
           </section>
 
           {/* M5 ENTERPRISE */}
-          <section id="m5" className="py-[48px] border-t border-[#1a1a1a]/8">
+          <section id="m5" className="scroll-mt-[130px] py-[48px] border-t border-[#1a1a1a]/8">
             <Reveal>
               <SectionLabel>Module 05</SectionLabel>
               <H2>Enterprise Use Cases</H2>
@@ -1278,7 +1513,7 @@ export default function PlatformAuditPage() {
               >
                 <tr>
                   <Td>
-                    <code className="bg-[#FAF8F3] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
+                    <code className="bg-[#F3F3F4] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
                       Account.Revenue__c
                     </code>
                   </Td>
@@ -1289,7 +1524,7 @@ export default function PlatformAuditPage() {
                 </tr>
                 <tr>
                   <Td>
-                    <code className="bg-[#FAF8F3] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
+                    <code className="bg-[#F3F3F4] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
                       Account.Status__c
                     </code>
                   </Td>
@@ -1300,7 +1535,7 @@ export default function PlatformAuditPage() {
                 </tr>
                 <tr>
                   <Td>
-                    <code className="bg-[#FAF8F3] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
+                    <code className="bg-[#F3F3F4] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
                       LeadScoring
                     </code>{" "}
                     Flow
@@ -1312,7 +1547,7 @@ export default function PlatformAuditPage() {
                 </tr>
                 <tr>
                   <Td>
-                    <code className="bg-[#FAF8F3] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
+                    <code className="bg-[#F3F3F4] border border-[#1a1a1a]/10 px-[6px] py-[2px] rounded-[3px] font-mono text-[12px]">
                       AccountTrigger
                     </code>
                   </Td>
@@ -1379,7 +1614,7 @@ export default function PlatformAuditPage() {
           </section>
 
           {/* MATRIX */}
-          <section id="matrix" className="py-[48px] border-t border-[#1a1a1a]/8">
+          <section id="matrix" className="scroll-mt-[130px] py-[48px] border-t border-[#1a1a1a]/8">
             <Reveal>
               <SectionLabel>Reference</SectionLabel>
               <H2>Complete Capability Matrix</H2>
@@ -1413,7 +1648,7 @@ export default function PlatformAuditPage() {
           </section>
 
           {/* ROI */}
-          <section id="roi" className="py-[48px] border-t border-[#1a1a1a]/8">
+          <section id="roi" className="scroll-mt-[130px] py-[48px] border-t border-[#1a1a1a]/8">
             <Reveal>
               <SectionLabel>Business Case</SectionLabel>
               <H2>Business Impact & ROI</H2>
@@ -1493,35 +1728,35 @@ export default function PlatformAuditPage() {
                   <Td>Governor limit outages</Td>
                   <Td>5-15 per year</Td>
                   <Td>
-                    <strong className="text-[#FF2424]">Near zero</strong>
+                    <strong className="text-[#2563EB]">Near zero</strong>
                   </Td>
                 </tr>
                 <tr>
                   <Td>Integration breakages</Td>
                   <Td>2-5 per quarter</Td>
                   <Td>
-                    <strong className="text-[#FF2424]">Zero</strong>
+                    <strong className="text-[#2563EB]">Zero</strong>
                   </Td>
                 </tr>
                 <tr>
                   <Td>Refactoring regressions</Td>
                   <Td>Unknown (silent)</Td>
                   <Td>
-                    <strong className="text-[#FF2424]">Zero (verified)</strong>
+                    <strong className="text-[#2563EB]">Zero (verified)</strong>
                   </Td>
                 </tr>
                 <tr>
                   <Td>Compliance audit failures</Td>
                   <Td>Possible</Td>
                   <Td>
-                    <strong className="text-[#FF2424]">Eliminated</strong>
+                    <strong className="text-[#2563EB]">Eliminated</strong>
                   </Td>
                 </tr>
                 <tr>
                   <Td>Undetected production outages</Td>
                   <Td>Hours</Td>
                   <Td>
-                    <strong className="text-[#FF2424]">&lt;15 minutes</strong>
+                    <strong className="text-[#2563EB]">&lt;15 minutes</strong>
                   </Td>
                 </tr>
               </Table>
@@ -1578,16 +1813,16 @@ export default function PlatformAuditPage() {
         <section className="pa-print-hide py-[90px] px-[24px] md:px-[48px] bg-[#1a1a1a]">
           <div className="max-w-[1000px] mx-auto text-center">
             <Reveal>
-              <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#FF2424] mb-[24px]">
+              <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#2563EB] mb-[24px]">
                 Ready to Govern Your Salesforce Org?
               </p>
             </Reveal>
 
             <Reveal delay={100}>
-              <h2 className="font-archivo text-[clamp(32px,5vw,56px)] leading-[1.02] tracking-[-1.5px] uppercase mb-[20px] text-white">
+              <h2 className="font-semibold tracking-tight text-[clamp(32px,5vw,56px)] leading-[1.02] tracking-[-1.5px] uppercase mb-[20px] text-white">
                 Start the pilot.
                 <br />
-                <span className="text-[#FF2424]">See Jataka in action.</span>
+                <span className="text-[#2563EB]">See Jataka in action.</span>
               </h2>
             </Reveal>
 
@@ -1602,14 +1837,14 @@ export default function PlatformAuditPage() {
               <div className="flex flex-col md:flex-row gap-[14px] justify-center">
                 <button
                   onClick={() => router.push("/book-pilot")}
-                  className="group bg-[#FF2424] text-white px-[36px] py-[15px] font-archivo text-[13px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition flex items-center justify-center gap-[10px]"
+                  className="group bg-[#2563EB] text-white px-[36px] py-[15px] font-semibold tracking-tight text-[13px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#1d4ed8] transition flex items-center justify-center gap-[10px]"
                 >
                   Book Pilot
                   <ArrowRight className="w-[14px] h-[14px] group-hover:translate-x-[4px] transition-transform" />
                 </button>
                 <button
                   onClick={() => router.push("/pricing")}
-                  className="group bg-transparent text-white px-[36px] py-[15px] font-archivo text-[13px] uppercase tracking-[1.5px] rounded-[4px] border border-[#333] hover:border-[#FF2424]/50 transition flex items-center justify-center gap-[10px]"
+                  className="group bg-transparent text-white px-[36px] py-[15px] font-semibold tracking-tight text-[13px] uppercase tracking-[1.5px] rounded-[4px] border border-[#333] hover:border-[#2563EB]/50 transition flex items-center justify-center gap-[10px]"
                 >
                   View Pricing
                 </button>
@@ -1619,5 +1854,13 @@ export default function PlatformAuditPage() {
         </section>
       </div>
     </>
+  );
+}
+
+export default function PlatformAuditPage() {
+  return (
+    <MarketingShell showFooter={false}>
+      <PlatformAuditContent />
+    </MarketingShell>
   );
 }

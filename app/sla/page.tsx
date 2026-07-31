@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Clock, Shield, CreditCard } from "lucide-react";
+import {
+  LegalDocument,
+  LegalHeading,
+  LegalParagraph,
+  LegalQuote,
+} from "../components/marketing";
 
 export const metadata: Metadata = {
   title: "Service Level Agreement",
@@ -73,121 +77,51 @@ Monthly Uptime Percentage of < 95.0%: 20% Service Credit
 5.2 Entire Agreement. This SLA is incorporated into the Master Subscription Agreement. In the event of any conflict between this SLA and the Master Subscription Agreement, the Master Subscription Agreement shall prevail.
 5.3 Governing Law. This SLA shall be governed by the laws of the State of Delaware, without regard to its conflict of laws principles.`;
 
+function renderLines(text: string) {
+  return text.split("\n").map((line, idx) => {
+    if (!line.trim()) return <div key={idx} className="h-2" />;
+    if (line === "SERVICE LEVEL AGREEMENT (SLA)" || line.startsWith("Last Updated:")) {
+      return null;
+    }
+    if (/^\d+\.\s[A-Z]/.test(line) || /^[A-Z][A-Z\s&()/]+$/.test(line)) {
+      return <LegalHeading key={idx}>{line}</LegalHeading>;
+    }
+    if (/^\d+\.\d+\s/.test(line)) {
+      const space = line.indexOf(" ");
+      return (
+        <LegalParagraph key={idx}>
+          <span className="font-semibold text-[#111]">{line.slice(0, space + 1)}</span>
+          {line.slice(space + 1)}
+        </LegalParagraph>
+      );
+    }
+    if (line.startsWith('"')) {
+      return <LegalQuote key={idx}>{line}</LegalQuote>;
+    }
+    if (line.includes(":")) {
+      const parts = line.split(":");
+      if (parts.length === 2 && parts[0].length < 50) {
+        return (
+          <LegalParagraph key={idx}>
+            <span className="font-semibold text-[#111]">{parts[0]}:</span>
+            {parts[1]}
+          </LegalParagraph>
+        );
+      }
+    }
+    return <LegalParagraph key={idx}>{line}</LegalParagraph>;
+  });
+}
+
 export default function SLAPage() {
-  const lines = SLA_TEXT.split("\n");
-
   return (
-    <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
-      
-
-      <main className="mx-auto max-w-[980px] px-[24px] md:px-[40px] pt-[112px] pb-[80px]">
-        <section className="mb-[24px] rounded-[12px] border border-[#1a1a1a]/10 bg-white p-[24px] md:p-[36px]">
-          <p className="inline-flex items-center gap-[8px] bg-[#22c55e]/10 border border-[#22c55e]/20 px-[12px] py-[5px] text-[11px] font-bold uppercase tracking-[2px] text-[#22c55e]">
-            <Shield className="w-[14px] h-[14px]" />
-            Enterprise Support
-          </p>
-          <h1 className="mt-[16px] font-archivo text-[clamp(30px,5vw,48px)] leading-[1] tracking-[-1.2px] uppercase">
-            Service Level Agreement
-          </h1>
-          <p className="mt-[12px] text-[15px] text-[#555]">
-            Uptime Guarantee, Support Response Times, and Service Credits
-          </p>
-        </section>
-
-        <section className="rounded-[12px] border border-[#1a1a1a]/10 bg-white p-[22px] md:p-[36px]">
-          <div className="space-y-[12px]">
-            {lines.map((line, idx) => {
-              if (!line.trim()) {
-                return <div key={idx} className="h-[2px]" />;
-              }
-
-              if (/^\d+\.\s[A-Z]/.test(line)) {
-                return (
-                  <h2
-                    key={idx}
-                    className="pt-[12px] font-archivo text-[20px] md:text-[24px] leading-[1.1] tracking-[-0.5px] uppercase"
-                  >
-                    {line}
-                  </h2>
-                );
-              }
-
-              if (/^\d+\.\d+\s/.test(line)) {
-                return (
-                  <p
-                    key={idx}
-                    className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]"
-                  >
-                    <span className="font-semibold text-[#1a1a1a]">{line.slice(0, line.indexOf(" ") + 1)}</span>
-                    {line.slice(line.indexOf(" ") + 1)}
-                  </p>
-                );
-              }
-
-              if (line.startsWith('"')) {
-                return (
-                  <p
-                    key={idx}
-                    className="pl-[12px] border-l-2 border-[#1a1a1a]/10 text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]"
-                  >
-                    {line}
-                  </p>
-                );
-              }
-
-              return (
-                <p key={idx} className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]">
-                  {line}
-                </p>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="mt-[24px] rounded-[12px] border border-[#22c55e]/20 bg-[#22c55e]/5 p-[24px] md:p-[36px]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[16px]">
-            <div className="flex items-start gap-[12px]">
-              <div className="w-[40px] h-[40px] rounded-[8px] bg-[#22c55e]/10 flex items-center justify-center flex-shrink-0">
-                <Clock className="w-[20px] h-[20px] text-[#22c55e]" />
-              </div>
-              <div>
-                <h3 className="font-archivo text-[16px] tracking-[-0.3px] uppercase mb-[4px]">
-                  99.9% Uptime
-                </h3>
-                <p className="text-[13px] text-[#666]">
-                  ~43 minutes downtime/month allowed
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-[12px]">
-              <div className="w-[40px] h-[40px] rounded-[8px] bg-[#22c55e]/10 flex items-center justify-center flex-shrink-0">
-                <Shield className="w-[20px] h-[20px] text-[#22c55e]" />
-              </div>
-              <div>
-                <h3 className="font-archivo text-[16px] tracking-[-0.3px] uppercase mb-[4px]">
-                  Priority Support
-                </h3>
-                <p className="text-[13px] text-[#666]">
-                  Sev-1: 2hrs, Sev-2: 8hrs, Sev-3: 24hrs
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-[12px]">
-              <div className="w-[40px] h-[40px] rounded-[8px] bg-[#22c55e]/10 flex items-center justify-center flex-shrink-0">
-                <CreditCard className="w-[20px] h-[20px] text-[#22c55e]" />
-              </div>
-              <div>
-                <h3 className="font-archivo text-[16px] tracking-[-0.3px] uppercase mb-[4px]">
-                  Service Credits
-                </h3>
-                <p className="text-[13px] text-[#666]">
-                  5-20% credit for SLA failures
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
+    <LegalDocument
+      title="Service Level"
+      italicWord="Agreement"
+      subtitle="Enterprise uptime guarantee, support response times, and service credits."
+      updated="April 13, 2026"
+    >
+      {renderLines(SLA_TEXT)}
+    </LegalDocument>
   );
 }

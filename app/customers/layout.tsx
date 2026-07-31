@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Customers | Jataka",
-  description: "See how enterprise Salesforce teams trust Jataka to eliminate Sev-1 incidents, reduce test maintenance, and accelerate development velocity.",
+  title: "Customers",
+  description:
+    "See how Salesforce design partners use Jataka to prevent Sev-1s, heal broken tests, and save engineering hours — with proof.",
   alternates: {
     canonical: "https://jataka.io/customers",
   },

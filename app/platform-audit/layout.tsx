@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Platform Audit - Jataka / Jataka | Complete Capability Report",
+  title: "Platform Audit",
   description:
     "Jataka Complete Platform Audit: the autonomous Salesforce governance engine. From Limit Firewall to Tech Debt, QA, Developer Experience, and Enterprise use cases.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://jataka.io/platform-audit",
   },
   openGraph: {
-    title: "Platform Audit - Jataka / Jataka",
+    title: "Platform Audit",
     description:
       "The autonomous Salesforce governance engine. From code review to compliance, Jataka guards your org at every stage of the development lifecycle.",
     url: "https://jataka.io/platform-audit",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Platform Audit - Jataka / Jataka",
+    title: "Platform Audit",
     description:
       "Jataka: the autonomous Salesforce governance engine. Complete capability audit across 5 modules.",
     images: ["/og-image.png"],

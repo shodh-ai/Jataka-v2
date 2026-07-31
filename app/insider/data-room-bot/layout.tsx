@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Data Room - Jataka | The Enterprise Context Engine",
+  title: "Data Room",
   description:
     "Jataka is the world's first Context Engine for Enterprise Architecture. A Platform + Apps data room for GCC operators and Fortune 500 CIOs.",
   keywords: [

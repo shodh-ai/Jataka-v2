@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Lock, Brain, Shield, TrendingUp, Wrench, ArrowRight, FileText, Calendar } from "lucide-react";
+import { MarketingShell } from "../../components/marketing";
 
 const ACTS = [
   { label: "Act 1", id: "Yza1VjpcmkI", desc: "The Problem" },
@@ -35,11 +36,11 @@ const CARDS = [
       "Explore the suite of superhuman apps running on the Jataka Engine: The Limit Firewall, API Contract Guardian, Autonomous QA, and M&A Org Merge.",
     cta: "Explore the Tech",
     href: "/insider/dataroom-botcon/applications",
-    accentColor: "#FF2424",
-    accentClass: "bg-[#FF2424]/10 text-[#FF2424]",
-    borderClass: "border-[#FF2424]/15",
-    tagClass: "text-[#FF2424]",
-    leftAccent: "border-l-[#FF2424]",
+    accentColor: "#2563EB",
+    accentClass: "bg-[#2563EB]/10 text-[#2563EB]",
+    borderClass: "border-[#2563EB]/15",
+    tagClass: "text-[#2563EB]",
+    leftAccent: "border-l-[#2563EB]",
   },
   {
     id: "03",
@@ -77,7 +78,8 @@ export default function DataRoomBotConPage() {
   const [activeAct, setActiveAct] = useState(0);
 
   return (
-    <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
+    <MarketingShell>
+      <div className="min-h-screen bg-[#F3F3F4] text-[#1a1a1a]">
 
       {/* ── HERO ───────────────────────────────────────────────── */}
       <section className="border-b border-[#1a1a1a]/8 px-6 pb-[56px] pt-[70px] md:px-12">
@@ -85,7 +87,7 @@ export default function DataRoomBotConPage() {
 
           {/* Confidential badge */}
           <div className="mb-[20px] flex justify-center">
-            <div className="inline-flex items-center gap-[9px] rounded-[4px] border border-[#FF2424]/25 bg-[#FF2424]/10 px-[18px] py-[7px] font-mono text-[11px] font-bold uppercase tracking-[3px] text-[#FF2424]">
+            <div className="inline-flex items-center gap-[9px] rounded-[4px] border border-[#2563EB]/25 bg-[#2563EB]/10 px-[18px] py-[7px] font-mono text-[11px] font-bold uppercase tracking-[3px] text-[#2563EB]">
               <Lock className="h-[13px] w-[13px]" />
               Confidential: Executive Briefing for BOT Consulting
             </div>
@@ -95,9 +97,9 @@ export default function DataRoomBotConPage() {
             The era of generating code is over. The era of governing it is here.
           </div>
 
-          <h1 className="mb-[10px] text-center font-archivo text-[clamp(32px,5.2vw,62px)] leading-[1.02] tracking-[-2px] uppercase text-[#1a1a1a]">
+          <h1 className="mb-[10px] text-center font-semibold tracking-tight text-[clamp(32px,5.2vw,62px)] leading-[1.02] tracking-[-2px] uppercase text-[#1a1a1a]">
             The World&apos;s First <br />
-            <span className="text-[#FF2424]">Context Engine</span> for <br />
+            <span className="text-[#2563EB]">Context Engine</span> for <br />
             Enterprise Architecture.
           </h1>
 
@@ -126,8 +128,8 @@ export default function DataRoomBotConPage() {
                     onClick={() => setActiveAct(i)}
                     className={`flex flex-1 items-center justify-center px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[2px] transition ${
                       activeAct === i
-                        ? "border-b-2 border-[#FF2424] bg-white text-[#1a1a1a]"
-                        : "border-b-2 border-transparent bg-[#FAF8F3] text-[#888] hover:text-[#1a1a1a]"
+                        ? "border-b-2 border-[#2563EB] bg-white text-[#1a1a1a]"
+                        : "border-b-2 border-transparent bg-[#F3F3F4] text-[#888] hover:text-[#1a1a1a]"
                     }`}
                   >
                     {act.label}
@@ -148,8 +150,8 @@ export default function DataRoomBotConPage() {
             </div>
 
             {/* Hook copy */}
-            <div className="rounded-[16px] border border-[#1a1a1a]/8 border-l-4 border-l-[#FF2424] bg-white p-7 shadow-[0_12px_36px_rgba(26,26,26,0.05)]">
-              <p className="mb-3 font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424]">
+            <div className="rounded-[16px] border border-[#1a1a1a]/8 border-l-4 border-l-[#2563EB] bg-white p-7 shadow-[0_12px_36px_rgba(26,26,26,0.05)]">
+              <p className="mb-3 font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#2563EB]">
                 The Hook
               </p>
               <p className="text-[16px] leading-[1.75] text-[#333]">
@@ -163,7 +165,7 @@ export default function DataRoomBotConPage() {
               </p>
               <a
                 href="#rooms"
-                className="mt-6 inline-flex items-center gap-[8px] rounded-[4px] bg-[#1a1a1a] px-[20px] py-[10px] font-archivo text-[11.5px] uppercase tracking-[1.5px] text-white transition hover:bg-[#000]"
+                className="mt-6 inline-flex items-center gap-[8px] rounded-[4px] bg-[#1a1a1a] px-[20px] py-[10px] font-semibold tracking-tight text-[11.5px] uppercase tracking-[1.5px] text-white transition hover:bg-[#000]"
               >
                 Tour the Data Room
                 <ArrowRight className="h-[14px] w-[14px]" />
@@ -177,7 +179,7 @@ export default function DataRoomBotConPage() {
       <section id="rooms" className="px-6 py-[64px] md:px-12">
         <div className="mx-auto max-w-[1100px]">
           <div className="mb-[10px]">
-            <span className="inline-block rounded-[4px] bg-[#FF2424]/10 px-[12px] py-[6px] font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424]">
+            <span className="inline-block rounded-[4px] bg-[#2563EB]/10 px-[12px] py-[6px] font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#2563EB]">
               Navigate the Briefing
             </span>
           </div>
@@ -206,7 +208,7 @@ export default function DataRoomBotConPage() {
                   <p className={`mb-[5px] font-mono text-[10px] font-bold uppercase tracking-[2.2px] ${card.tagClass}`}>
                     {card.subtitle}
                   </p>
-                  <h3 className="mb-[10px] font-archivo text-[20px] uppercase leading-[1.08] tracking-[-0.4px] text-[#1a1a1a]">
+                  <h3 className="mb-[10px] font-semibold tracking-tight text-[20px] uppercase leading-[1.08] tracking-[-0.4px] text-[#1a1a1a]">
                     {card.tag}
                   </h3>
                   <p className="flex-1 text-[13.5px] leading-[1.68] text-[#555]">
@@ -231,5 +233,6 @@ export default function DataRoomBotConPage() {
         </p>
       </footer>
     </div>
+    </MarketingShell>
   );
 }

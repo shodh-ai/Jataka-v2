@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import {
+  LegalDocument,
+  LegalHeading,
+  LegalParagraph,
+  LegalQuote,
+} from "../components/marketing";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
@@ -215,139 +220,51 @@ In order to resolve a complaint regarding the Services or to receive further inf
 Jataka Inc.
 Email: legal@jataka.io`;
 
+function renderLines(text: string) {
+  return text.split("\n").map((line, idx) => {
+    if (!line.trim()) return <div key={idx} className="h-2" />;
+    if (line === "TERMS OF USE" || line.startsWith("Last Updated:")) {
+      return null;
+    }
+    if (/^\d+\.\s[A-Z]/.test(line) || /^[A-Z][A-Z\s&()/]+$/.test(line)) {
+      return <LegalHeading key={idx}>{line}</LegalHeading>;
+    }
+    if (/^\d+\.\d+\s/.test(line)) {
+      const space = line.indexOf(" ");
+      return (
+        <LegalParagraph key={idx}>
+          <span className="font-semibold text-[#111]">{line.slice(0, space + 1)}</span>
+          {line.slice(space + 1)}
+        </LegalParagraph>
+      );
+    }
+    if (line.startsWith('"')) {
+      return <LegalQuote key={idx}>{line}</LegalQuote>;
+    }
+    if (line.includes(":")) {
+      const parts = line.split(":");
+      if (parts.length === 2 && parts[0].length < 50) {
+        return (
+          <LegalParagraph key={idx}>
+            <span className="font-semibold text-[#111]">{parts[0]}:</span>
+            {parts[1]}
+          </LegalParagraph>
+        );
+      }
+    }
+    return <LegalParagraph key={idx}>{line}</LegalParagraph>;
+  });
+}
+
 export default function TermsOfUsePage() {
-  const lines = TERMS_TEXT.split("\n");
-
   return (
-    <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
-      
-
-      <main className="mx-auto max-w-[980px] px-[24px] md:px-[40px] pt-[112px] pb-[80px]">
-        <section className="mb-[24px] rounded-[12px] border border-[#1a1a1a]/10 bg-white p-[24px] md:p-[36px]">
-          <p className="inline-flex items-center gap-[8px] bg-[#FF2424]/10 border border-[#FF2424]/20 px-[12px] py-[5px] text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424]">
-            Legal
-          </p>
-          <h1 className="mt-[16px] font-archivo text-[clamp(30px,5vw,48px)] leading-[1] tracking-[-1.2px] uppercase">
-            Terms of Use
-          </h1>
-          <p className="mt-[12px] text-[14px] text-[#666]">
-            Last Updated: April 13, 2026
-          </p>
-        </section>
-
-        <section className="rounded-[12px] border border-[#1a1a1a]/10 bg-white p-[22px] md:p-[36px]">
-          <div className="space-y-[12px]">
-            {lines.map((line, idx) => {
-              if (!line.trim()) {
-                return <div key={idx} className="h-[2px]" />;
-              }
-
-              // Main headings (all caps, no numbers)
-              if (/^[A-Z\s]+$/.test(line) && line.length > 10 && !line.includes("Last Updated")) {
-                return (
-                  <h2
-                    key={idx}
-                    className="pt-[16px] font-archivo text-[20px] md:text-[24px] leading-[1.1] tracking-[-0.5px] uppercase"
-                  >
-                    {line}
-                  </h2>
-                );
-              }
-
-              // Numbered sections (e.g., "1. OUR SERVICES")
-              if (/^\d+\.\s[A-Z]/.test(line)) {
-                return (
-                  <h3
-                    key={idx}
-                    className="pt-[12px] font-archivo text-[18px] md:text-[20px] leading-[1.1] tracking-[-0.5px] uppercase"
-                  >
-                    {line}
-                  </h3>
-                );
-              }
-
-              // Subsections (e.g., "Our intellectual property")
-              if (/^[A-Z][a-z]+/i.test(line) && line.length < 60 && line.includes(" ") && !line.includes(":")) {
-                return (
-                  <h4
-                    key={idx}
-                    className="pt-[8px] font-semibold text-[15px] md:text-[16px] text-[#1a1a1a]"
-                  >
-                    {line}
-                  </h4>
-                );
-              }
-
-              // Numbered lists (e.g., "(1) all registration information")
-              if (/^\(\d+\)/.test(line)) {
-                return (
-                  <p
-                    key={idx}
-                    className="pl-[16px] text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]"
-                  >
-                    {line}
-                  </p>
-                );
-              }
-
-              // Bullet points
-              if (/^[a-z]+:/.test(line) && line.length < 100) {
-                return (
-                  <p
-                    key={idx}
-                    className="pl-[16px] text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]"
-                  >
-                    <span className="font-semibold text-[#1a1a1a]">{line.split(":")[0]}:</span>
-                    {line.slice(line.indexOf(":"))}
-                  </p>
-                );
-              }
-
-              // Email addresses - make clickable
-              if (line.includes("legal@jataka.io")) {
-                const email = "legal@jataka.io";
-                const beforeEmail = line.split(email)[0];
-                const afterEmail = line.split(email)[1] || "";
-                return (
-                  <p key={idx} className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]">
-                    {beforeEmail}
-                    <a href={`mailto:${email}`} className="text-[#FF2424] underline hover:text-[#d91f1f]">
-                      {email}
-                    </a>
-                    {afterEmail}
-                  </p>
-                );
-              }
-
-              // Website URLs - make clickable
-              if (line.includes("jataka.io")) {
-                const urlMatch = line.match(/jataka\.io\/?[a-zA-Z0-9\-]*/);
-                if (urlMatch) {
-                  const url = urlMatch[0];
-                  const beforeUrl = line.split(url)[0];
-                  const afterUrl = line.split(url)[1] || "";
-                  return (
-                    <p key={idx} className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]">
-                      {beforeUrl}
-                      <Link href={`/${url.split('/')[1] || ''}`} className="text-[#FF2424] underline hover:text-[#d91f1f]">
-                        {url}
-                      </Link>
-                      {afterUrl}
-                    </p>
-                  );
-                }
-              }
-
-              // Regular paragraph
-              return (
-                <p key={idx} className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]">
-                  {line}
-                </p>
-              );
-            })}
-          </div>
-        </section>
-      </main>
-    </div>
+    <LegalDocument
+      title="Terms of"
+      italicWord="Use"
+      subtitle="Legal terms governing access to and use of Jataka's platform and Services."
+      updated="April 13, 2026"
+    >
+      {renderLines(TERMS_TEXT)}
+    </LegalDocument>
   );
 }

@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import {
+  LegalDocument,
+  LegalHeading,
+  LegalParagraph,
+  LegalQuote,
+} from "../components/marketing";
 
 export const metadata: Metadata = {
   title: "Privacy Notice",
@@ -113,104 +118,51 @@ Email: legal@jataka.io
 13. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?
 Based on the applicable laws of your country, you may have the right to request access to the personal information we collect from you, details about how we have processed it, correct inaccuracies, or delete your personal information. You may also have the right to withdraw your consent to our processing of your personal information. These rights may be limited in some circumstances by applicable law. To request to review, update, or delete your personal information, please fill out and submit a data subject access request.`;
 
+function renderLines(text: string) {
+  return text.split("\n").map((line, idx) => {
+    if (!line.trim()) return <div key={idx} className="h-2" />;
+    if (line === "PRIVACY NOTICE" || line.startsWith("Last updated:")) {
+      return null;
+    }
+    if (/^\d+\.\s[A-Z]/.test(line) || /^[A-Z][A-Z\s&()/]+$/.test(line)) {
+      return <LegalHeading key={idx}>{line}</LegalHeading>;
+    }
+    if (/^\d+\.\d+\s/.test(line)) {
+      const space = line.indexOf(" ");
+      return (
+        <LegalParagraph key={idx}>
+          <span className="font-semibold text-[#111]">{line.slice(0, space + 1)}</span>
+          {line.slice(space + 1)}
+        </LegalParagraph>
+      );
+    }
+    if (line.startsWith('"')) {
+      return <LegalQuote key={idx}>{line}</LegalQuote>;
+    }
+    if (line.includes(":")) {
+      const parts = line.split(":");
+      if (parts.length === 2 && parts[0].length < 50) {
+        return (
+          <LegalParagraph key={idx}>
+            <span className="font-semibold text-[#111]">{parts[0]}:</span>
+            {parts[1]}
+          </LegalParagraph>
+        );
+      }
+    }
+    return <LegalParagraph key={idx}>{line}</LegalParagraph>;
+  });
+}
+
 export default function PrivacyPolicyPage() {
-  const lines = PRIVACY_TEXT.split("\n");
-
   return (
-    <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
-      
-
-      <main className="mx-auto max-w-[980px] px-[24px] md:px-[40px] pt-[112px] pb-[80px]">
-        <section className="mb-[24px] rounded-[12px] border border-[#1a1a1a]/10 bg-white p-[24px] md:p-[36px]">
-          <p className="inline-flex items-center gap-[8px] bg-[#FF2424]/10 border border-[#FF2424]/20 px-[12px] py-[5px] text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424]">
-            Legal
-          </p>
-          <h1 className="mt-[16px] font-archivo text-[clamp(30px,5vw,48px)] leading-[1] tracking-[-1.2px] uppercase">
-            Privacy Notice
-          </h1>
-        </section>
-
-        <section className="rounded-[12px] border border-[#1a1a1a]/10 bg-white p-[22px] md:p-[36px]">
-          <div className="space-y-[12px]">
-            {lines.map((line, idx) => {
-              if (!line.trim()) {
-                return <div key={idx} className="h-[2px]" />;
-              }
-
-              if (/^\d+\.\s[A-Z]/.test(line) || /^\d+\.\d+\.\s[A-Z]/.test(line)) {
-                return (
-                  <h2
-                    key={idx}
-                    className="pt-[12px] font-archivo text-[20px] md:text-[24px] leading-[1.1] tracking-[-0.5px] uppercase"
-                  >
-                    {line}
-                  </h2>
-                );
-              }
-
-              if (/^\d+\.\d+\s/.test(line) || /^\d+\.\d+\.\d+\s/.test(line)) {
-                return (
-                  <p
-                    key={idx}
-                    className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]"
-                  >
-                    <span className="font-semibold text-[#1a1a1a]">{line.slice(0, line.indexOf(" ") + 1)}</span>
-                    {line.slice(line.indexOf(" ") + 1)}
-                  </p>
-                );
-              }
-
-              if (line.startsWith('"')) {
-                return (
-                  <p
-                    key={idx}
-                    className="pl-[12px] border-l-2 border-[#1a1a1a]/10 text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]"
-                  >
-                    {line}
-                  </p>
-                );
-              }
-
-              if (line.includes(":") && line.length < 100) {
-                const parts = line.split(":");
-                if (parts.length === 2) {
-                  return (
-                    <p
-                      key={idx}
-                      className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]"
-                    >
-                      <span className="font-semibold text-[#1a1a1a]">{parts[0]}:</span>
-                      {parts[1]}
-                    </p>
-                  );
-                }
-              }
-
-              // Email addresses - make clickable
-              if (line.includes("legal@jataka.io")) {
-                const email = "legal@jataka.io";
-                const beforeEmail = line.split(email)[0];
-                const afterEmail = line.split(email)[1] || "";
-                return (
-                  <p key={idx} className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]">
-                    {beforeEmail}
-                    <a href={`mailto:${email}`} className="text-[#FF2424] underline hover:text-[#d91f1f]">
-                      {email}
-                    </a>
-                    {afterEmail}
-                  </p>
-                );
-              }
-
-              return (
-                <p key={idx} className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]">
-                  {line}
-                </p>
-              );
-            })}
-          </div>
-        </section>
-      </main>
-    </div>
+    <LegalDocument
+      title="Privacy"
+      italicWord="Notice"
+      subtitle="How Jataka collects, uses, and protects your personal information when you use our Services."
+      updated="April 13, 2026"
+    >
+      {renderLines(PRIVACY_TEXT)}
+    </LegalDocument>
   );
 }

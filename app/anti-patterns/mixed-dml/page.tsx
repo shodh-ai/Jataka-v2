@@ -1,127 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import { Menu, X, AlertTriangle, Play, Code, CheckCircle, ArrowRight, Clock, Shield, Split } from "lucide-react";
-
-// Scroll reveal hook
-function useScrollReveal(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [threshold]);
-
-  return { ref, isVisible };
-}
-
-// Reveal component
-function Reveal({ 
-  children, 
-  delay = 0, 
-  className = "" 
-}: { 
-  children: React.ReactNode; 
-  delay?: number; 
-  className?: string;
-}) {
-  const { ref, isVisible } = useScrollReveal(0.1);
-
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transitionDelay: `${delay}ms`
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-// Light grid background component
-function LightGridBg() {
-  return (
-    <div 
-      className="absolute inset-0 pointer-events-none z-0"
-      style={{
-        backgroundImage: `
-          linear-gradient(rgba(26,26,26,0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(26,26,26,0.04) 1px, transparent 1px)
-        `,
-        backgroundSize: '48px 48px'
-      }}
-    />
-  );
-}
-
-// JSON-LD Schema
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "How to Fix UNCOMMITTED_WORK_PENDING: Mixed DML Operations in Salesforce",
-  "description": "Learn why mixing Setup and non-Setup object DML causes UNCOMMITTED_WORK_PENDING errors and how Jataka catches this anti-pattern before it hits production.",
-  "author": {
-    "@type": "Organization",
-    "name": "Jataka"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Jataka",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://jataka.io/logo.png"
-    }
-  },
-  "datePublished": "2024-01-15",
-  "dateModified": "2024-01-15",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://jataka.io/anti-patterns/mixed-dml"
-  }
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://jataka.io"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Anti-Patterns",
-      "item": "https://jataka.io/anti-patterns"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "UNCOMMITTED_WORK_PENDING",
-      "item": "https://jataka.io/anti-patterns/mixed-dml"
-    }
-  ]
-};
+import {
+  MarketingShell,
+  PageHero,
+  PageCta,
+  ContentSection,
+} from "../../components/marketing";
+import { FadeIn } from "../../components/home";
 
 const badCodeExample = `// ❌ BAD: Mixed DML operations in same transaction
 // Setup objects (User, Profile) mixed with non-Setup (Account)
@@ -172,412 +57,91 @@ public static void createAccountAsync(Account acc) {
     insert acc; // Separate transaction - no conflict
 }`;
 
-const setupObjects = [
-  "User", "Profile", "PermissionSet", "Role", "Network", "Group", "Queue"
-];
-
-const nonSetupObjects = [
-  "Account", "Contact", "Opportunity", "Lead", "Case", "Custom Objects"
-];
-
-const relatedAntiPatterns = [
-  { id: "soql-101", title: "Too many SOQL queries: 101", severity: "Critical" },
-  { id: "dml-151", title: "Too many DML statements: 151", severity: "Critical" },
-  { id: "lock-contention", title: "UNABLE_TO_LOCK_ROW", severity: "High" }
-];
-
-export default function MixedDMLPage() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+export default function AntiPatternPage() {
   return (
-    <>
-      {/* JSON-LD Schemas */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    <MarketingShell>
+      <PageHero
+        title="UNCOMMITTED_WORK"
+        italicWord="PENDING"
+        subtitle="Setup and non-Setup DML in the same transaction. Salesforce blocks it for data integrity — many teams discover this in prod."
+        ctas={[
+          { label: "Book a pilot →", href: "/book-pilot", primary: true },
+          { label: "All anti-patterns", href: "/anti-patterns" },
+        ]}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
 
-      <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
-        
-
-        {isMobileMenuOpen && (
-          <div className="fixed top-[64px] left-0 right-0 z-[150] bg-[#FAF8F3] border-b border-[#1a1a1a]/10 md:hidden">
-            <div className="px-[24px] py-[20px] flex flex-col gap-[16px]">
-              <Link href="/" className="text-[#666] text-[14px] font-medium">Home</Link>
-              <Link href="/blog" className="text-[#666] text-[14px] font-medium">Demos</Link>
-              <Link href="/use-cases" className="text-[#666] text-[14px] font-medium">Use Cases</Link>
-              <Link href="/anti-patterns" className="text-[#1a1a1a] font-medium text-[14px]">Anti-Patterns</Link>
-              <Link href="/book-pilot" className="bg-[#FF2424] text-white px-[20px] py-[12px] font-archivo text-[12px] uppercase tracking-[1.5px] rounded-[4px]">Book Demo</Link>
-            </div>
-          </div>
-        )}
-
-        {/* BREADCRUMB */}
-        <div className="pt-[80px] px-[24px] md:px-[48px] relative">
-          <div className="max-w-[1200px] mx-auto relative z-10">
-            <div className="flex items-center gap-[8px] text-[13px] text-[#666]">
-              <Link href="/" className="hover:text-[#1a1a1a]">Home</Link>
-              <span>/</span>
-              <Link href="/anti-patterns" className="hover:text-[#1a1a1a]">Anti-Patterns</Link>
-              <span>/</span>
-              <span className="text-[#1a1a1a]">Mixed DML</span>
-            </div>
-          </div>
+      <ContentSection title="The" italicWord="rule" subtitle="System.DmlException: UNCOMMITTED_WORK_PENDING">
+        <FadeIn>
+          <p className="mb-8 max-w-[640px] text-[16px] leading-[1.75] text-[#5F5F66]">
+            You cannot mix Setup objects (User, Profile, PermissionSet) with non-Setup objects (Account, Contact) in the same transaction.
+          </p>
+        </FadeIn>
+        <div className="grid gap-4 sm:grid-cols-3">
+              <FadeIn delay={0.0}>
+                <div className="rounded-[20px] border border-[#111]/08 bg-white p-6 text-center shadow-[0_12px_36px_rgba(17,17,17,0.04)]">
+                  <p className="text-[2rem] font-semibold tracking-[-0.04em] text-[#111]">Setup</p>
+                  <p className="mt-2 text-[13px] leading-[1.5] text-[#5F5F66]">User, Profile, PermissionSet</p>
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.05}>
+                <div className="rounded-[20px] border border-[#111]/08 bg-white p-6 text-center shadow-[0_12px_36px_rgba(17,17,17,0.04)]">
+                  <p className="text-[2rem] font-semibold tracking-[-0.04em] text-[#111]">Non-Setup</p>
+                  <p className="mt-2 text-[13px] leading-[1.5] text-[#5F5F66]">Account, Contact, Opportunity</p>
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.1}>
+                <div className="rounded-[20px] border border-[#111]/08 bg-white p-6 text-center shadow-[0_12px_36px_rgba(17,17,17,0.04)]">
+                  <p className="text-[2rem] font-semibold tracking-[-0.04em] text-[#111]">2 hrs</p>
+                  <p className="mt-2 text-[13px] leading-[1.5] text-[#5F5F66]">Average recovery time</p>
+                </div>
+              </FadeIn>
         </div>
+      </ContentSection>
 
-        {/* HERO */}
-        <section className="pt-[40px] pb-[60px] px-[24px] md:px-[48px] relative overflow-hidden">
-          <LightGridBg />
-          <div className="max-w-[1200px] mx-auto relative z-10">
-            <Reveal>
-              <div className="inline-flex items-center gap-[9px] bg-[#FF6B35]/10 border border-[#FF6B35]/20 px-[18px] py-[6px] mb-[24px] text-[11.5px] font-bold uppercase tracking-[2.5px] text-[#FF6B35]">
-                <Split className="w-[14px] h-[14px]" />
-                High Severity Limit Breach
+      <ContentSection title="Bad vs" italicWord="good">
+        <div className="grid gap-4 lg:grid-cols-2">
+          <FadeIn>
+            <div className="overflow-hidden rounded-[20px] border border-[#111]/08 bg-[#111] shadow-[0_12px_36px_rgba(17,17,17,0.04)]">
+              <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
+                <span className="font-mono text-[12px] text-[#8A93A3]">UserProvisioningService.cls</span>
+                <span className="text-[10px] font-semibold tracking-[0.14em] text-[#F87171] uppercase">Anti-pattern</span>
               </div>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <h1 className="font-archivo text-[clamp(32px,5vw,56px)] leading-[1.1] tracking-[-1.5px] uppercase mb-[24px]">
-                System.DmlException:<br />
-                <span className="text-[#FF6B35]">UNCOMMITTED_WORK_PENDING</span>
-              </h1>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <code className="inline-block text-[14px] font-mono text-[#666] bg-[#f5f5f5] px-[16px] py-[10px] rounded-[6px] mb-[30px]">
-                System.DmlException: UNCOMMITTED_WORK_PENDING, Your call requires to be in an active transaction
-              </code>
-            </Reveal>
-
-            <Reveal delay={300}>
-              <p className="text-[17px] leading-[1.7] text-[#444] max-w-[800px] mb-[20px]">
-                Mixed DML operations. You tried to insert a User (Setup object) and an Account (non-Setup object) 
-                in the same transaction. Salesforce blocks this for data integrity reasons. You didn't know about 
-                the Setup/non-Setup separation rule.
-              </p>
-            </Reveal>
-
-            <Reveal delay={400}>
-              <p className="text-[15px] leading-[1.6] text-[#666] max-w-[700px]">
-                <strong className="text-[#1a1a1a]">3,100 developers</strong> search for this error every month. 
-                It's one of the most confusing Salesforce errors because the documentation is buried deep.
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* VIDEO DEMO */}
-        <section className="pb-[60px] px-[24px] md:px-[48px] relative overflow-hidden">
-          <LightGridBg />
-          <div className="max-w-[900px] mx-auto relative z-10">
-            <Reveal>
-              <div className="bg-[#1a1a1a] rounded-[12px] overflow-hidden">
-                <div className="flex items-center justify-between px-[20px] py-[14px] border-b border-[#333]">
-                  <div className="flex items-center gap-[12px]">
-                    <div className="w-[10px] h-[10px] rounded-full bg-[#FF6B35]"></div>
-                    <span className="text-[12px] font-mono text-[#888]">Jataka catches Mixed DML in real-time</span>
-                  </div>
-                  <div className="flex items-center gap-[8px]">
-                    <Clock className="w-[14px] h-[14px] text-[#666]" />
-                    <span className="text-[12px] text-[#666]">0:52</span>
-                  </div>
-                </div>
-
-                <div className="aspect-video bg-[#0a0a0a] flex items-center justify-center relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/10 to-transparent"></div>
-                  <button className="relative z-10 w-[80px] h-[80px] rounded-full bg-[#FF6B35] flex items-center justify-center hover:scale-105 transition-transform">
-                    <Play className="w-[32px] h-[32px] text-white ml-[4px]" fill="white" />
-                  </button>
-                  <div className="absolute bottom-[20px] left-[20px] right-[20px] flex items-center justify-between">
-                    <span className="text-[11px] text-[#666]">Watch: Mixed DML detected → Jataka blocks PR</span>
-                    <span className="text-[11px] text-[#888]">Loom Recording</span>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* THE RULE */}
-        <section className="py-[60px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
-          <LightGridBg />
-          <div className="max-w-[1000px] mx-auto relative z-10">
-            <Reveal>
-              <h2 className="font-archivo text-[clamp(28px,4vw,40px)] leading-[1.1] tracking-[-1px] uppercase mb-[30px]">
-                The Rule: <span className="text-[#FF6B35]">Setup vs non-Setup objects</span>
-              </h2>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <p className="text-[16px] leading-[1.7] text-[#444] max-w-[800px] mb-[40px]">
-                Salesforce enforces a strict separation between Setup objects (User, Profile, PermissionSet) 
-                and non-Setup objects (Account, Contact, Opportunity). You cannot perform DML on both types 
-                in the same transaction. This protects org security and metadata integrity.
-              </p>
-            </Reveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] mb-[40px] items-stretch">
-              <Reveal delay={200} className="h-full min-h-0">
-                <div className="h-full flex flex-col bg-[#FAF8F3] rounded-[12px] p-[24px] border-l-4 border-[#FF6B35]">
-                  <p className="text-[12px] font-bold uppercase tracking-[1.5px] text-[#FF6B35] mb-[16px]">Setup Objects</p>
-                  <p className="text-[14px] text-[#555] mb-[12px]">Cannot mix with non-Setup DML in same transaction:</p>
-                  <ul className="space-y-[8px]">
-                    {setupObjects.map((obj) => (
-                      <li key={obj} className="text-[14px] font-mono text-[#1a1a1a]">• {obj}</li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-              <Reveal delay={200} className="h-full min-h-0">
-                <div className="h-full flex flex-col bg-[#FAF8F3] rounded-[12px] p-[24px] border-l-4 border-[#1a1a1a]">
-                  <p className="text-[12px] font-bold uppercase tracking-[1.5px] text-[#1a1a1a] mb-[16px]">Non-Setup Objects</p>
-                  <p className="text-[14px] text-[#555] mb-[12px]">Business data that conflicts with Setup DML:</p>
-                  <ul className="space-y-[8px]">
-                    {nonSetupObjects.map((obj) => (
-                      <li key={obj} className="text-[14px] font-mono text-[#1a1a1a]">• {obj}</li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
+              <pre className="overflow-x-auto p-5 font-mono text-[12px] leading-[1.65] text-[#E8E8EC]">
+                {badCodeExample}
+              </pre>
             </div>
-
-            <Reveal delay={400}>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px] items-stretch">
-                <div className="h-full flex flex-col bg-[#FAF8F3] rounded-[12px] p-[24px]">
-                  <div className="text-[36px] font-archivo text-[#FF6B35] mb-[8px]">2 hrs</div>
-                  <p className="text-[14px] text-[#555] flex-1">Average time to debug this confusing error message</p>
-                </div>
-                <div className="h-full flex flex-col bg-[#FAF8F3] rounded-[12px] p-[24px]">
-                  <div className="text-[36px] font-archivo text-[#FF6B35] mb-[8px]">0</div>
-                  <p className="text-[14px] text-[#555] flex-1">Static analysis tools that catch this pattern</p>
-                </div>
-                <div className="h-full flex flex-col bg-[#FAF8F3] rounded-[12px] p-[24px]">
-                  <div className="text-[36px] font-archivo text-[#FF6B35] mb-[8px]">100%</div>
-                  <p className="text-[14px] text-[#555] flex-1">Prevented when detected before deployment</p>
-                </div>
+          </FadeIn>
+          <FadeIn delay={0.06}>
+            <div className="overflow-hidden rounded-[20px] border border-[#111]/08 bg-[#111] shadow-[0_12px_36px_rgba(17,17,17,0.04)]">
+              <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
+                <span className="font-mono text-[12px] text-[#8A93A3]">UserProvisioningService.cls</span>
+                <span className="text-[10px] font-semibold tracking-[0.14em] text-emerald-400 uppercase">Fixed</span>
               </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* BAD CODE */}
-        <section className="py-[60px] px-[24px] md:px-[48px] relative overflow-hidden">
-          <LightGridBg />
-          <div className="max-w-[1000px] mx-auto relative z-10">
-            <Reveal>
-              <div className="flex items-center gap-[12px] mb-[24px]">
-                <div className="w-[40px] h-[40px] rounded-[8px] bg-[#FF6B35]/10 flex items-center justify-center">
-                  <AlertTriangle className="w-[20px] h-[20px] text-[#FF6B35]" />
-                </div>
-                <h2 className="font-archivo text-[clamp(24px,3vw,32px)] leading-[1.1] tracking-[-1px] uppercase">
-                  The Bad Code
-                </h2>
-              </div>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <p className="text-[15px] text-[#666] mb-[20px]">
-                This code looks perfectly logical. Create a user, create their account. What could go wrong?
-              </p>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <div className="bg-[#1a1a1a] rounded-[12px] overflow-hidden">
-                <div className="flex items-center justify-between px-[20px] py-[12px] border-b border-[#333]">
-                  <span className="text-[12px] font-mono text-[#888]">UserOnboardingController.cls</span>
-                  <span className="text-[10px] uppercase tracking-[1px] text-[#FF6B35] font-bold">❌ Anti-Pattern</span>
-                </div>
-                <pre className="p-[20px] text-[13px] font-mono text-[#e0e0e0] overflow-x-auto leading-[1.6]">
-                  {badCodeExample}
-                </pre>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* JATAKA REPORT CARD */}
-        <section className="py-[60px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
-          <LightGridBg />
-          <div className="max-w-[1000px] mx-auto relative z-10">
-            <Reveal>
-              <div className="flex items-center gap-[12px] mb-[24px]">
-                <div className="w-[40px] h-[40px] rounded-[8px] bg-[#22c55e]/10 flex items-center justify-center">
-                  <Shield className="w-[20px] h-[20px] text-[#22c55e]" />
-                </div>
-                <h2 className="font-archivo text-[clamp(24px,3vw,32px)] leading-[1.1] tracking-[-1px] uppercase">
-                  Jataka Report Card
-                </h2>
-              </div>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <p className="text-[15px] text-[#666] mb-[30px]">
-                Jataka's transaction analyzer detects Setup/non-Setup DML conflicts before execution.
-              </p>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <div className="bg-[#FAF8F3] rounded-[12px] border border-[#1a1a1a]/5 overflow-hidden">
-                <div className="flex items-center justify-between px-[24px] py-[16px] border-b border-[#1a1a1a]/5">
-                  <div className="flex items-center gap-[12px]">
-                    <CheckCircle className="w-[18px] h-[18px] text-[#22c55e]" />
-                    <span className="font-medium text-[14px]">PR #156 Blocked</span>
-                  </div>
-                  <span className="text-[12px] text-[#666]">12 minutes ago</span>
-                </div>
-
-                <div className="p-[24px]">
-                  <div className="bg-[#FF6B35]/5 border border-[#FF6B35]/20 rounded-[8px] p-[16px]">
-                    <div className="flex items-start gap-[12px]">
-                      <AlertTriangle className="w-[18px] h-[18px] text-[#FF6B35] flex-shrink-0 mt-[2px]" />
-                      <div>
-                        <p className="text-[14px] font-semibold text-[#FF6B35] mb-[4px]">Mixed DML Detected</p>
-                        <p className="text-[13px] text-[#555] mb-[12px]">
-                          Transaction contains DML on both Setup (User) and non-Setup (Account) objects. 
-                          This will cause UNCOMMITTED_WORK_PENDING error.
-                        </p>
-                        <div className="flex items-center gap-[16px] text-[12px]">
-                          <span className="text-[#FF6B35] font-mono">Line 12: insert newUser;</span>
-                          <span className="text-[#888]">→</span>
-                          <span className="text-[#FF6B35] font-mono">Line 19: insert newAccount;</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* THE FIX */}
-        <section className="py-[60px] px-[24px] md:px-[48px] relative overflow-hidden">
-          <LightGridBg />
-          <div className="max-w-[1000px] mx-auto relative z-10">
-            <Reveal>
-              <div className="flex items-center gap-[12px] mb-[24px]">
-                <div className="w-[40px] h-[40px] rounded-[8px] bg-[#22c55e]/10 flex items-center justify-center">
-                  <CheckCircle className="w-[20px] h-[20px] text-[#22c55e]" />
-                </div>
-                <h2 className="font-archivo text-[clamp(24px,3vw,32px)] leading-[1.1] tracking-[-1px] uppercase">
-                  The Fix
-                </h2>
-              </div>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <p className="text-[15px] text-[#666] mb-[20px]">
-                Separate the DML operations into different transactions using async Apex.
-              </p>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <div className="bg-[#1a1a1a] rounded-[12px] overflow-hidden">
-                <div className="flex items-center justify-between px-[20px] py-[12px] border-b border-[#333]">
-                  <span className="text-[12px] font-mono text-[#888]">UserOnboardingController.cls</span>
-                  <span className="text-[10px] uppercase tracking-[1px] text-[#22c55e] font-bold">✓ Fixed</span>
-                </div>
-                <pre className="p-[20px] text-[13px] font-mono text-[#e0e0e0] overflow-x-auto leading-[1.6]">
-                  {goodCodeExample}
-                </pre>
-              </div>
-            </Reveal>
-
-            <Reveal delay={300}>
-              <div className="mt-[24px] p-[20px] bg-[#22c55e]/5 border border-[#22c55e]/20 rounded-[8px]">
-                <p className="text-[14px] text-[#444]">
-                  <strong className="text-[#22c55e]">Result:</strong> Setup DML completes in main transaction. 
-                  Non-Setup DML runs in separate async transaction. No conflict. Both operations succeed.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* RELATED */}
-        <section className="py-[60px] px-[24px] md:px-[48px] bg-white relative overflow-hidden">
-          <LightGridBg />
-          <div className="max-w-[1000px] mx-auto relative z-10">
-            <Reveal>
-              <h2 className="font-archivo text-[clamp(24px,3vw,32px)] leading-[1.1] tracking-[-1px] uppercase mb-[30px]">
-                Related Anti-Patterns
-              </h2>
-            </Reveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px] items-stretch">
-              {relatedAntiPatterns.map((pattern) => (
-                <Reveal key={pattern.id} delay={100} className="h-full min-h-0">
-                  <Link
-                    href={`/anti-patterns/${pattern.id}`}
-                    className="w-full h-full min-h-0 text-left bg-[#FAF8F3] rounded-[12px] p-[24px] border border-[#1a1a1a]/5 hover:border-[#FF2424]/30 transition-all group flex flex-col"
-                  >
-                    <span 
-                      className="text-[10px] font-bold uppercase tracking-[1.5px] px-[10px] py-[4px] rounded-[4px] mb-[12px] inline-block shrink-0"
-                      style={{ 
-                        backgroundColor: pattern.severity === "Critical" ? "#FF242415" : "#FF6B3515",
-                        color: pattern.severity === "Critical" ? "#FF2424" : "#FF6B35"
-                      }}
-                    >
-                      {pattern.severity}
-                    </span>
-                    <p className="text-[15px] font-medium group-hover:text-[#FF2424] transition-colors flex-1">
-                      {pattern.title}
-                    </p>
-                  </Link>
-                </Reveal>
-              ))}
+              <pre className="overflow-x-auto p-5 font-mono text-[12px] leading-[1.65] text-[#E8E8EC]">
+                {goodCodeExample}
+              </pre>
             </div>
+          </FadeIn>
+        </div>
+      </ContentSection>
+
+      <ContentSection title="The" italicWord="fix">
+        <FadeIn>
+          <div className="rounded-[20px] border border-[#111]/08 bg-white p-6 shadow-[0_12px_36px_rgba(17,17,17,0.04)] md:p-8">
+            <p className="max-w-[680px] text-[16px] leading-[1.75] text-[#3A3A42]">
+              Split Setup DML into a separate async transaction (@future or Queueable). Jataka detects Setup/non-Setup conflicts during Sandbox execution.
+            </p>
           </div>
-        </section>
+        </FadeIn>
+      </ContentSection>
 
-        {/* CTA */}
-        <section className="py-[100px] px-[24px] md:px-[48px] bg-[#1a1a1a] relative overflow-hidden">
-          <LightGridBg />
-          <div className="max-w-[1000px] mx-auto text-center relative z-10">
-            <Reveal>
-              <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#FF6B35] mb-[30px]">
-                Catch confusing errors early
-              </p>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[20px] text-white">
-                Jataka catches Mixed DML<br />
-                <span className="text-[#FF6B35]">before the merge.</span>
-              </h2>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <p className="text-[17px] leading-[1.7] text-[#999] max-w-[600px] mx-auto mb-[40px]">
-                Book a demo and watch Jataka detect Setup/non-Setup conflicts automatically. 
-                Your developers learn the rule without the 2-hour debugging session.
-              </p>
-            </Reveal>
-
-            <Reveal delay={300}>
-              <div className="flex flex-col md:flex-row gap-[16px] justify-center">
-                <Link 
-                  href="/book-pilot"
-                  className="group bg-[#FF6B35] text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#e55a2b] transition-all duration-300 flex items-center justify-center gap-[12px]"
-                >
-                  Book a Demo
-                  <ArrowRight className="w-[14px] h-[14px] group-hover:translate-x-[4px] transition-transform" />
-                </Link>
-                <Link 
-                  href="/anti-patterns"
-                  className="group bg-transparent text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] border border-[#333] hover:border-[#FF6B35]/50 transition-all duration-300 flex items-center justify-center gap-[12px]"
-                >
-                  All Anti-Patterns
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      </div>
-    </>
+      <PageCta
+        title="Catch this before"
+        italicWord="production"
+        subtitle="Book a pilot and watch Jataka block this exact anti-pattern on your next PR."
+        secondaryLabel="All anti-patterns"
+        secondaryHref="/anti-patterns"
+      />
+    </MarketingShell>
   );
 }

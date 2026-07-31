@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 import { useRouter } from "next/navigation";
+import { MarketingShell } from "../../components/marketing";
 import {
   ArrowRight,
   FileText,
@@ -74,7 +75,7 @@ function Reveal({
 // Shared UI helpers (matching /platform-audit)
 // ------------------------------------------------------------------
 const SECTION_LABEL_CLS =
-  "inline-block font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] bg-[#FF2424]/10 text-[#FF2424] px-[12px] py-[6px] rounded-[4px] mb-[16px]";
+  "inline-block font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] bg-[#2563EB]/10 text-[#2563EB] px-[12px] py-[6px] rounded-[4px] mb-[16px]";
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return <span className={SECTION_LABEL_CLS}>{children}</span>;
@@ -82,7 +83,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-archivo text-[clamp(28px,4vw,44px)] leading-[1.05] tracking-[-1px] uppercase mb-[16px]">
+    <h2 className="font-semibold tracking-tight text-[clamp(28px,4vw,44px)] leading-[1.05] tracking-[-1px] uppercase mb-[16px]">
       {children}
     </h2>
   );
@@ -92,7 +93,7 @@ function H3({ children, id }: { children: React.ReactNode; id?: string }) {
   return (
     <h3
       id={id}
-      className="font-archivo text-[clamp(20px,2.4vw,26px)] tracking-[-0.5px] uppercase mt-[40px] mb-[14px]"
+      className="font-semibold tracking-tight text-[clamp(20px,2.4vw,26px)] tracking-[-0.5px] uppercase mt-[40px] mb-[14px]"
     >
       {children}
     </h3>
@@ -279,9 +280,9 @@ export default function DataRoomBotPage() {
       themeVariables: {
         primaryColor: "#FFFFFF",
         primaryTextColor: "#1a1a1a",
-        primaryBorderColor: "#FF2424",
+        primaryBorderColor: "#2563EB",
         lineColor: "#1a1a1a",
-        secondaryColor: "#FAF8F3",
+        secondaryColor: "#F3F3F4",
         tertiaryColor: "#F5F3ED",
         fontFamily: "var(--font-inter), sans-serif",
         fontSize: "13px",
@@ -292,6 +293,7 @@ export default function DataRoomBotPage() {
   };
 
   return (
+    <MarketingShell>
     <>
       <script
         type="application/ld+json"
@@ -316,16 +318,16 @@ export default function DataRoomBotPage() {
         }}
       />
 
-      <div className="pa-shell min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
+      <div className="pa-shell min-h-screen bg-[#F3F3F4] text-[#1a1a1a]">
         {/* STICKY SUB-NAV */}
-        <nav className="pa-subnav sticky top-[64px] z-40 bg-[#FAF8F3]/90 backdrop-blur-md border-b border-[#1a1a1a]/8">
+        <nav className="pa-subnav sticky top-[64px] z-40 bg-[#F3F3F4]/90 backdrop-blur-md border-b border-[#1a1a1a]/8">
           <div className="max-w-[1100px] mx-auto px-[16px] md:px-[32px] py-[10px] flex items-center justify-between gap-[16px]">
             <div className="flex items-center gap-[8px] overflow-x-auto scrollbar-hide">
               {SUB_NAV.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="flex-shrink-0 text-[11.5px] font-mono font-semibold uppercase tracking-[1.2px] text-[#444] hover:text-[#FF2424] px-[10px] py-[6px] rounded-[4px] hover:bg-[#FF2424]/8 transition"
+                  className="flex-shrink-0 text-[11.5px] font-mono font-semibold uppercase tracking-[1.2px] text-[#444] hover:text-[#2563EB] px-[10px] py-[6px] rounded-[4px] hover:bg-[#2563EB]/8 transition"
                 >
                   {item.label}
                 </a>
@@ -333,7 +335,7 @@ export default function DataRoomBotPage() {
             </div>
             <button
               onClick={() => router.push("/platform-audit")}
-              className="pa-print-hide flex-shrink-0 bg-[#FF2424] text-white px-[14px] py-[7px] font-archivo text-[10.5px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition inline-flex items-center gap-[6px]"
+              className="pa-print-hide flex-shrink-0 bg-[#2563EB] text-white px-[14px] py-[7px] font-semibold tracking-tight text-[10.5px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#1d4ed8] transition inline-flex items-center gap-[6px]"
             >
               <FileText className="w-[12px] h-[12px]" />
               Full Platform Audit
@@ -345,7 +347,7 @@ export default function DataRoomBotPage() {
         <section className="pt-[70px] pb-[40px] px-[24px] md:px-[48px] border-b border-[#1a1a1a]/8">
           <div className="max-w-[1000px] mx-auto text-center">
             <Reveal>
-              <div className="inline-flex items-center gap-[9px] bg-[#FF2424]/10 border border-[#FF2424]/25 px-[18px] py-[7px] mb-[20px] text-[11px] font-bold uppercase tracking-[3px] text-[#FF2424] rounded-[4px]">
+              <div className="inline-flex items-center gap-[9px] bg-[#2563EB]/10 border border-[#2563EB]/25 px-[18px] py-[7px] mb-[20px] text-[11px] font-bold uppercase tracking-[3px] text-[#2563EB] rounded-[4px]">
                 <Lock className="w-[13px] h-[13px]" />
                 Confidential: Executive Briefing Prepared for BOT Consulting
               </div>
@@ -358,9 +360,9 @@ export default function DataRoomBotPage() {
             </Reveal>
 
             <Reveal delay={140}>
-              <h1 className="font-archivo text-[clamp(34px,5.6vw,64px)] leading-[1.02] tracking-[-2px] uppercase mb-[20px]">
+              <h1 className="font-semibold tracking-tight text-[clamp(34px,5.6vw,64px)] leading-[1.02] tracking-[-2px] uppercase mb-[20px]">
                 The World&apos;s First <br />
-                <span className="text-[#FF2424]">Context Engine</span> for <br />
+                <span className="text-[#2563EB]">Context Engine</span> for <br />
                 Enterprise Architecture.
               </h1>
             </Reveal>
@@ -396,14 +398,14 @@ export default function DataRoomBotPage() {
               <div className="mt-[32px] flex flex-col md:flex-row gap-[12px] justify-center">
                 <a
                   href="#core"
-                  className="bg-[#1a1a1a] text-white px-[28px] py-[13px] font-archivo text-[12px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#000] transition inline-flex items-center justify-center gap-[8px]"
+                  className="bg-[#1a1a1a] text-white px-[28px] py-[13px] font-semibold tracking-tight text-[12px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#000] transition inline-flex items-center justify-center gap-[8px]"
                 >
                   Tour the Data Room
                   <ArrowRight className="w-[14px] h-[14px]" />
                 </a>
                 <a
                   href="#close"
-                  className="bg-transparent text-[#1a1a1a] px-[28px] py-[13px] font-archivo text-[12px] uppercase tracking-[1.5px] rounded-[4px] border border-[#1a1a1a]/20 hover:border-[#FF2424]/60 transition inline-flex items-center justify-center gap-[8px]"
+                  className="bg-transparent text-[#1a1a1a] px-[28px] py-[13px] font-semibold tracking-tight text-[12px] uppercase tracking-[1.5px] rounded-[4px] border border-[#1a1a1a]/20 hover:border-[#2563EB]/60 transition inline-flex items-center justify-center gap-[8px]"
                 >
                   Partnership Terms
                 </a>
@@ -439,7 +441,7 @@ export default function DataRoomBotPage() {
                   <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#1a1a1a]/70 mb-[10px]">
                     The Problem / The Blind Developer
                   </p>
-                  <h3 className="font-archivo text-[22px] leading-[1.15] tracking-[-0.5px] uppercase mb-[16px]">
+                  <h3 className="font-semibold tracking-tight text-[22px] leading-[1.15] tracking-[-0.5px] uppercase mb-[16px]">
                     The Danger of Building in a Vacuum
                   </h3>
                   <ul className="space-y-[10px] text-[14.5px] leading-[1.55] text-[#444]">
@@ -463,24 +465,24 @@ export default function DataRoomBotPage() {
               </Reveal>
 
               <Reveal delay={100}>
-                <div className="bg-white border border-[#1a1a1a]/8 rounded-[12px] p-[28px] h-full border-l-4 border-l-[#FF2424]">
-                  <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424] mb-[10px]">
+                <div className="bg-white border border-[#1a1a1a]/8 rounded-[12px] p-[28px] h-full border-l-4 border-l-[#2563EB]">
+                  <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#2563EB] mb-[10px]">
                     The Solution / The Omniscient Brain
                   </p>
-                  <h3 className="font-archivo text-[22px] leading-[1.15] tracking-[-0.5px] uppercase mb-[16px]">
+                  <h3 className="font-semibold tracking-tight text-[22px] leading-[1.15] tracking-[-0.5px] uppercase mb-[16px]">
                     The Jataka Context Engine
                   </h3>
                   <ul className="space-y-[10px] text-[14.5px] leading-[1.55] text-[#444]">
                     <li className="flex gap-[10px]">
-                      <span className="mt-[8px] w-[5px] h-[5px] rounded-full bg-[#FF2424] flex-shrink-0" />
+                      <span className="mt-[8px] w-[5px] h-[5px] rounded-full bg-[#2563EB] flex-shrink-0" />
                       <span>A live <strong className="text-[#1a1a1a]">Knowledge Graph</strong> of your full enterprise DNA.</span>
                     </li>
                     <li className="flex gap-[10px]">
-                      <span className="mt-[8px] w-[5px] h-[5px] rounded-full bg-[#FF2424] flex-shrink-0" />
+                      <span className="mt-[8px] w-[5px] h-[5px] rounded-full bg-[#2563EB] flex-shrink-0" />
                       <span>An <strong className="text-[#1a1a1a]">omniscient Chief Architect</strong> sitting between dev and prod.</span>
                     </li>
                     <li className="flex gap-[10px]">
-                      <span className="mt-[8px] w-[5px] h-[5px] rounded-full bg-[#FF2424] flex-shrink-0" />
+                      <span className="mt-[8px] w-[5px] h-[5px] rounded-full bg-[#2563EB] flex-shrink-0" />
                       <span>Every deploy is <strong className="text-[#1a1a1a]">mathematically proven safe</strong>.</span>
                     </li>
                   </ul>
@@ -517,10 +519,10 @@ export default function DataRoomBotPage() {
                       >
                         <Icon className="w-[20px] h-[20px]" />
                       </div>
-                      <p className="font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[6px]">
+                      <p className="font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[6px]">
                         {c.kicker}
                       </p>
-                      <h4 className="font-archivo text-[16px] leading-[1.25] tracking-[-0.3px] uppercase mb-[10px] text-[#1a1a1a]">
+                      <h4 className="font-semibold tracking-tight text-[16px] leading-[1.25] tracking-[-0.3px] uppercase mb-[10px] text-[#1a1a1a]">
                         {c.title}
                       </h4>
                       <p
@@ -536,10 +538,10 @@ export default function DataRoomBotPage() {
             {/* Transition to Section 2 */}
             <Reveal>
               <div className="mt-[48px] text-center bg-white border border-[#1a1a1a]/8 rounded-[12px] p-[32px]">
-                <p className="font-archivo text-[clamp(18px,2.2vw,24px)] leading-[1.3] tracking-[-0.5px] uppercase text-[#1a1a1a]">
+                <p className="font-semibold tracking-tight text-[clamp(18px,2.2vw,24px)] leading-[1.3] tracking-[-0.5px] uppercase text-[#1a1a1a]">
                   Because we have solved the Context Problem at the foundational
                   level, <br className="hidden md:block" /> we have unlocked{" "}
-                  <span className="text-[#FF2424]">
+                  <span className="text-[#2563EB]">
                     superhuman capabilities
                   </span>{" "}
                   for the enterprise.
@@ -549,7 +551,7 @@ export default function DataRoomBotPage() {
                 </p>
                 <a
                   href="#apps"
-                  className="mt-[20px] inline-flex items-center gap-[8px] bg-[#1a1a1a] text-white px-[22px] py-[11px] font-archivo text-[11.5px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#000] transition"
+                  className="mt-[20px] inline-flex items-center gap-[8px] bg-[#1a1a1a] text-white px-[22px] py-[11px] font-semibold tracking-tight text-[11.5px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#000] transition"
                 >
                   Continue <ArrowRight className="w-[14px] h-[14px]" />
                 </a>
@@ -581,14 +583,14 @@ export default function DataRoomBotPage() {
                   <Reveal key={app.title} delay={i * 80}>
                     <div className="bg-white border border-[#1a1a1a]/8 rounded-[12px] p-[26px] h-full flex flex-col">
                       <div className="flex items-start gap-[14px] mb-[14px]">
-                        <div className="inline-flex w-[44px] h-[44px] rounded-[10px] items-center justify-center bg-[#FF2424]/10 text-[#FF2424] flex-shrink-0">
+                        <div className="inline-flex w-[44px] h-[44px] rounded-[10px] items-center justify-center bg-[#2563EB]/10 text-[#2563EB] flex-shrink-0">
                           <Icon className="w-[22px] h-[22px]" />
                         </div>
                         <div>
-                          <p className="font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[4px]">
+                          <p className="font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[4px]">
                             {app.appTag}
                           </p>
-                          <h3 className="font-archivo text-[18px] leading-[1.2] tracking-[-0.3px] uppercase text-[#1a1a1a]">
+                          <h3 className="font-semibold tracking-tight text-[18px] leading-[1.2] tracking-[-0.3px] uppercase text-[#1a1a1a]">
                             {app.title}
                           </h3>
                         </div>
@@ -614,12 +616,12 @@ export default function DataRoomBotPage() {
 
                       <a
                         href={app.auditAnchor}
-                        className="mt-auto inline-flex items-center justify-between gap-[8px] bg-[#FAF8F3] border border-[#1a1a1a]/8 hover:border-[#FF2424]/40 rounded-[8px] px-[14px] py-[12px] transition group"
+                        className="mt-auto inline-flex items-center justify-between gap-[8px] bg-[#F3F3F4] border border-[#1a1a1a]/8 hover:border-[#2563EB]/40 rounded-[8px] px-[14px] py-[12px] transition group"
                       >
-                        <span className="font-mono text-[10.5px] font-bold uppercase tracking-[1.8px] text-[#1a1a1a] group-hover:text-[#FF2424] transition">
+                        <span className="font-mono text-[10.5px] font-bold uppercase tracking-[1.8px] text-[#1a1a1a] group-hover:text-[#2563EB] transition">
                           {app.auditLabel}
                         </span>
-                        <ArrowRight className="w-[12px] h-[12px] text-[#FF2424] group-hover:translate-x-[3px] transition-transform" />
+                        <ArrowRight className="w-[12px] h-[12px] text-[#2563EB] group-hover:translate-x-[3px] transition-transform" />
                       </a>
                     </div>
                   </Reveal>
@@ -630,15 +632,15 @@ export default function DataRoomBotPage() {
             {/* Why-this-wins bar */}
             <Reveal>
               <div className="mt-[36px] bg-[#1a1a1a] text-white rounded-[12px] p-[28px]">
-                <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424] mb-[12px]">
+                <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#2563EB] mb-[12px]">
                   Why this layout wins the deal
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px]">
                   <div>
-                    <div className="inline-flex w-[32px] h-[32px] rounded-[6px] items-center justify-center bg-[#FF2424]/15 text-[#FF2424] mb-[10px]">
+                    <div className="inline-flex w-[32px] h-[32px] rounded-[6px] items-center justify-center bg-[#2563EB]/15 text-[#2563EB] mb-[10px]">
                       <Brain className="w-[16px] h-[16px]" />
                     </div>
-                    <h4 className="font-archivo text-[14px] uppercase tracking-[-0.2px] mb-[6px]">
+                    <h4 className="font-semibold tracking-tight text-[14px] uppercase tracking-[-0.2px] mb-[6px]">
                       Answers &quot;How?&quot;
                     </h4>
                     <p className="text-[13px] leading-[1.6] text-[#aaa]">
@@ -648,10 +650,10 @@ export default function DataRoomBotPage() {
                     </p>
                   </div>
                   <div>
-                    <div className="inline-flex w-[32px] h-[32px] rounded-[6px] items-center justify-center bg-[#FF2424]/15 text-[#FF2424] mb-[10px]">
+                    <div className="inline-flex w-[32px] h-[32px] rounded-[6px] items-center justify-center bg-[#2563EB]/15 text-[#2563EB] mb-[10px]">
                       <Network className="w-[16px] h-[16px]" />
                     </div>
-                    <h4 className="font-archivo text-[14px] uppercase tracking-[-0.2px] mb-[6px]">
+                    <h4 className="font-semibold tracking-tight text-[14px] uppercase tracking-[-0.2px] mb-[6px]">
                       Connects Audit to Vision
                     </h4>
                     <p className="text-[13px] leading-[1.6] text-[#aaa]">
@@ -661,10 +663,10 @@ export default function DataRoomBotPage() {
                     </p>
                   </div>
                   <div>
-                    <div className="inline-flex w-[32px] h-[32px] rounded-[6px] items-center justify-center bg-[#FF2424]/15 text-[#FF2424] mb-[10px]">
+                    <div className="inline-flex w-[32px] h-[32px] rounded-[6px] items-center justify-center bg-[#2563EB]/15 text-[#2563EB] mb-[10px]">
                       <Zap className="w-[16px] h-[16px]" />
                     </div>
-                    <h4 className="font-archivo text-[14px] uppercase tracking-[-0.2px] mb-[6px]">
+                    <h4 className="font-semibold tracking-tight text-[14px] uppercase tracking-[-0.2px] mb-[6px]">
                       Sets Up the Close
                     </h4>
                     <p className="text-[13px] leading-[1.6] text-[#aaa]">
@@ -688,12 +690,12 @@ export default function DataRoomBotPage() {
         >
           <div className="max-w-[1000px] mx-auto">
             <Reveal>
-              <span className="inline-block font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] bg-[#FF2424]/15 text-[#FF2424] px-[12px] py-[6px] rounded-[4px] mb-[16px]">
+              <span className="inline-block font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] bg-[#2563EB]/15 text-[#2563EB] px-[12px] py-[6px] rounded-[4px] mb-[16px]">
                 Section 03 / The Business Impact
               </span>
-              <h2 className="font-archivo text-[clamp(30px,4.4vw,48px)] leading-[1.02] tracking-[-1.5px] uppercase mb-[18px]">
+              <h2 className="font-semibold tracking-tight text-[clamp(30px,4.4vw,48px)] leading-[1.02] tracking-[-1.5px] uppercase mb-[18px]">
                 The GCC Advantage: <br />
-                <span className="text-[#FF2424]">
+                <span className="text-[#2563EB]">
                   Delivering Zero-Risk Engineering
                 </span>
               </h2>
@@ -719,7 +721,7 @@ export default function DataRoomBotPage() {
                   <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#4ADE80] mb-[6px]">
                     The Shield
                   </p>
-                  <h3 className="font-archivo text-[clamp(22px,3vw,30px)] leading-[1.05] tracking-[-0.8px] uppercase mb-[6px]">
+                  <h3 className="font-semibold tracking-tight text-[clamp(22px,3vw,30px)] leading-[1.05] tracking-[-0.8px] uppercase mb-[6px]">
                     Absolute Risk Mitigation &amp; Cost Reduction
                   </h3>
                   <p className="text-[14.5px] leading-[1.65] text-[#999]">
@@ -736,10 +738,10 @@ export default function DataRoomBotPage() {
                   <p className="font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#4ADE80] mb-[10px]">
                     Impact Metric 01
                   </p>
-                  <p className="font-archivo text-[36px] leading-[1] tracking-[-1.5px] mb-[10px]">
+                  <p className="font-semibold tracking-tight text-[36px] leading-[1] tracking-[-1.5px] mb-[10px]">
                     0 P1 Outages
                   </p>
-                  <h4 className="font-archivo text-[15px] uppercase tracking-[-0.2px] mb-[8px] text-white">
+                  <h4 className="font-semibold tracking-tight text-[15px] uppercase tracking-[-0.2px] mb-[8px] text-white">
                     &amp; Deployment Rollbacks
                   </h4>
                   <p className="text-[13.5px] leading-[1.65] text-[#aaa]">
@@ -753,10 +755,10 @@ export default function DataRoomBotPage() {
                   <p className="font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#4ADE80] mb-[10px]">
                     Impact Metric 02
                   </p>
-                  <p className="font-archivo text-[36px] leading-[1] tracking-[-1.5px] mb-[10px]">
+                  <p className="font-semibold tracking-tight text-[36px] leading-[1] tracking-[-1.5px] mb-[10px]">
                     -80%
                   </p>
-                  <h4 className="font-archivo text-[15px] uppercase tracking-[-0.2px] mb-[8px] text-white">
+                  <h4 className="font-semibold tracking-tight text-[15px] uppercase tracking-[-0.2px] mb-[8px] text-white">
                     QA &amp; Maintenance Overhead
                   </h4>
                   <p className="text-[13.5px] leading-[1.65] text-[#aaa]">
@@ -769,14 +771,14 @@ export default function DataRoomBotPage() {
             {/* SWORD */}
             <Reveal>
               <div className="mt-[48px] grid grid-cols-1 md:grid-cols-[auto_1fr] gap-[18px] items-start mb-[14px]">
-                <div className="inline-flex w-[52px] h-[52px] rounded-[10px] items-center justify-center bg-[#2E1A1A] text-[#FF2424]">
+                <div className="inline-flex w-[52px] h-[52px] rounded-[10px] items-center justify-center bg-[#2E1A1A] text-[#2563EB]">
                   <Swords className="w-[26px] h-[26px]" />
                 </div>
                 <div>
-                  <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424] mb-[6px]">
+                  <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#2563EB] mb-[6px]">
                     The Sword
                   </p>
-                  <h3 className="font-archivo text-[clamp(22px,3vw,30px)] leading-[1.05] tracking-[-0.8px] uppercase mb-[6px]">
+                  <h3 className="font-semibold tracking-tight text-[clamp(22px,3vw,30px)] leading-[1.05] tracking-[-0.8px] uppercase mb-[6px]">
                     Superhuman Velocity &amp; Margin Expansion
                   </h3>
                   <p className="text-[14.5px] leading-[1.65] text-[#999]">
@@ -790,13 +792,13 @@ export default function DataRoomBotPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
               <Reveal>
                 <div className="bg-[#111] border border-white/8 rounded-[12px] p-[24px] h-full">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[10px]">
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[10px]">
                     Impact Metric 03
                   </p>
-                  <p className="font-archivo text-[36px] leading-[1] tracking-[-1.5px] mb-[10px]">
+                  <p className="font-semibold tracking-tight text-[36px] leading-[1] tracking-[-1.5px] mb-[10px]">
                     +40%
                   </p>
-                  <h4 className="font-archivo text-[15px] uppercase tracking-[-0.2px] mb-[8px] text-white">
+                  <h4 className="font-semibold tracking-tight text-[15px] uppercase tracking-[-0.2px] mb-[8px] text-white">
                     Faster &quot;Time-to-Revenue&quot;
                   </h4>
                   <p className="text-[13.5px] leading-[1.65] text-[#aaa]">
@@ -807,13 +809,13 @@ export default function DataRoomBotPage() {
 
               <Reveal delay={80}>
                 <div className="bg-[#111] border border-white/8 rounded-[12px] p-[24px] h-full">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[10px]">
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[10px]">
                     Impact Metric 04
                   </p>
-                  <p className="font-archivo text-[36px] leading-[1] tracking-[-1.5px] mb-[10px]">
+                  <p className="font-semibold tracking-tight text-[36px] leading-[1] tracking-[-1.5px] mb-[10px]">
                     10x
                   </p>
-                  <h4 className="font-archivo text-[15px] uppercase tracking-[-0.2px] mb-[8px] text-white">
+                  <h4 className="font-semibold tracking-tight text-[15px] uppercase tracking-[-0.2px] mb-[8px] text-white">
                     Architect Scalability (AI Swarms)
                   </h4>
                   <p className="text-[13.5px] leading-[1.65] text-[#aaa]">
@@ -826,21 +828,21 @@ export default function DataRoomBotPage() {
             {/* Partnership close */}
             <div id="close">
               <Reveal>
-                <div className="mt-[56px] bg-gradient-to-br from-[#121212] to-[#0B0B0B] border border-[#FF2424]/30 rounded-[14px] p-[32px] md:p-[40px] relative overflow-hidden">
+                <div className="mt-[56px] bg-gradient-to-br from-[#121212] to-[#0B0B0B] border border-[#2563EB]/30 rounded-[14px] p-[32px] md:p-[40px] relative overflow-hidden">
                   <div
                     className="absolute inset-0 opacity-[0.05] pointer-events-none"
                     style={{
                       background:
-                        "radial-gradient(ellipse at top right, #FF2424, transparent 60%)",
+                        "radial-gradient(ellipse at top right, #2563EB, transparent 60%)",
                     }}
                   />
                   <div className="relative">
-                    <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424] mb-[10px]">
+                    <p className="font-mono text-[10.5px] font-bold uppercase tracking-[2.5px] text-[#2563EB] mb-[10px]">
                       Private Deal Room
                     </p>
-                    <h3 className="font-archivo text-[clamp(24px,3.4vw,36px)] leading-[1.05] tracking-[-1px] uppercase mb-[20px] text-white">
+                    <h3 className="font-semibold tracking-tight text-[clamp(24px,3.4vw,36px)] leading-[1.05] tracking-[-1px] uppercase mb-[20px] text-white">
                       Proposed Next Steps for <br />
-                      <span className="text-[#FF2424]">BOT Consulting</span>
+                      <span className="text-[#2563EB]">BOT Consulting</span>
                     </h3>
                     <p className="text-[15px] leading-[1.7] text-[#bbb] mb-[28px] max-w-[720px]">
                       We want BOT Consulting to be <strong className="text-white">Site Zero</strong>. Let&apos;s get on a call this week to discuss Phase 1 (Internal Pilot) and Phase 2 (Enterprise Rollout).
@@ -849,10 +851,10 @@ export default function DataRoomBotPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-[16px] mb-[28px]">
                       <div className="bg-black/30 border border-white/10 rounded-[10px] p-[20px]">
                         <div className="flex items-center gap-[10px] mb-[10px]">
-                          <div className="inline-flex w-[30px] h-[30px] rounded-[6px] items-center justify-center bg-[#FF2424]/15 text-[#FF2424]">
+                          <div className="inline-flex w-[30px] h-[30px] rounded-[6px] items-center justify-center bg-[#2563EB]/15 text-[#2563EB]">
                             <Cpu className="w-[15px] h-[15px]" />
                           </div>
-                          <p className="font-archivo text-[13px] uppercase tracking-[-0.2px]">
+                          <p className="font-semibold tracking-tight text-[13px] uppercase tracking-[-0.2px]">
                             Phase 1 / Internal Deployment
                           </p>
                         </div>
@@ -865,10 +867,10 @@ export default function DataRoomBotPage() {
                       </div>
                       <div className="bg-black/30 border border-white/10 rounded-[10px] p-[20px]">
                         <div className="flex items-center gap-[10px] mb-[10px]">
-                          <div className="inline-flex w-[30px] h-[30px] rounded-[6px] items-center justify-center bg-[#FF2424]/15 text-[#FF2424]">
+                          <div className="inline-flex w-[30px] h-[30px] rounded-[6px] items-center justify-center bg-[#2563EB]/15 text-[#2563EB]">
                             <Eye className="w-[15px] h-[15px]" />
                           </div>
-                          <p className="font-archivo text-[13px] uppercase tracking-[-0.2px]">
+                          <p className="font-semibold tracking-tight text-[13px] uppercase tracking-[-0.2px]">
                             Phase 2 / Enterprise Differentiator
                           </p>
                         </div>
@@ -880,8 +882,8 @@ export default function DataRoomBotPage() {
                       </div>
                     </div>
 
-                    <blockquote className="border-l-2 border-[#FF2424] pl-[20px] py-[6px] mb-[28px]">
-                      <p className="font-archivo text-[clamp(16px,1.9vw,20px)] leading-[1.35] text-white italic">
+                    <blockquote className="border-l-2 border-[#2563EB] pl-[20px] py-[6px] mb-[28px]">
+                      <p className="font-semibold tracking-tight text-[clamp(16px,1.9vw,20px)] leading-[1.35] text-white italic">
                         &quot;Every single line of code delivered by our GCC is
                         governed by an AI Context Engine that mathematically
                         guarantees your business process logic will never
@@ -895,14 +897,14 @@ export default function DataRoomBotPage() {
                     <div className="flex flex-col md:flex-row gap-[12px]">
                       <button
                         onClick={() => router.push("/book-pilot")}
-                        className="group bg-[#FF2424] text-white px-[30px] py-[14px] font-archivo text-[12px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition flex items-center justify-center gap-[10px]"
+                        className="group bg-[#2563EB] text-white px-[30px] py-[14px] font-semibold tracking-tight text-[12px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#1d4ed8] transition flex items-center justify-center gap-[10px]"
                       >
                         Book Technical Deep Dive
                         <ArrowRight className="w-[14px] h-[14px] group-hover:translate-x-[4px] transition-transform" />
                       </button>
                       <button
                         onClick={() => router.push("/platform-audit")}
-                        className="group bg-transparent text-white px-[30px] py-[14px] font-archivo text-[12px] uppercase tracking-[1.5px] rounded-[4px] border border-white/20 hover:border-[#FF2424]/60 transition flex items-center justify-center gap-[10px]"
+                        className="group bg-transparent text-white px-[30px] py-[14px] font-semibold tracking-tight text-[12px] uppercase tracking-[1.5px] rounded-[4px] border border-white/20 hover:border-[#2563EB]/60 transition flex items-center justify-center gap-[10px]"
                       >
                         <FileText className="w-[14px] h-[14px]" />
                         Open Full Platform Audit
@@ -930,5 +932,7 @@ export default function DataRoomBotPage() {
         </div>
       </div>
     </>
+  
+    </MarketingShell>
   );
 }

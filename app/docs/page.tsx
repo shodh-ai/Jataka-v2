@@ -1,547 +1,155 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import { Menu, X, Shield, GitBranch, Database, Lock, Code, Zap, ArrowRight, CheckCircle } from "lucide-react";
+import {
+  MarketingShell,
+  PageHero,
+  PageCta,
+  ContentSection,
+  FeatureGrid,
+} from "../components/marketing";
+import { FadeIn } from "../components/home";
+import { Database, Lock, Shield, CheckCircle } from "lucide-react";
 
-// Scroll reveal hook
-function useScrollReveal(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [threshold]);
-
-  return { ref, isVisible };
-}
-
-// Light grid background component
-function LightGridBg() {
-  return (
-    <div 
-      className="absolute inset-0 pointer-events-none z-0"
-      style={{
-        backgroundImage: `
-          linear-gradient(rgba(26,26,26,0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(26,26,26,0.04) 1px, transparent 1px)
-        `,
-        backgroundSize: '48px 48px'
-      }}
-    />
-  );
-}
-
-// Floating accent blob
-function FloatingBlob({ className }: { className?: string }) {
-  return (
-    <div className={`absolute pointer-events-none ${className}`}>
-      <div className="w-[300px] h-[300px] rounded-full bg-[#FF2424]/5 blur-[100px] animate-pulse" />
-    </div>
-  );
-}
-
-// Reveal wrapper component
-function Reveal({ 
-  children, 
-  delay = 0,
-  className = ""
-}: { 
-  children: React.ReactNode; 
-  delay?: number;
-  className?: string;
-}) {
-  const { ref, isVisible } = useScrollReveal(0.1);
-
-  return (
-    <div 
-      ref={ref}
-      className={`transition-all duration-700 ${className}`}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transitionDelay: `${delay}ms`
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-// WebPage JSON-LD Schema
-const webPageSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Jataka Documentation - Technical Architecture & Getting Started",
-  "description": "Complete technical documentation for Jataka's Backend Firewall and Developer Experience platform. Learn about Kamikaze Pods, Vision AI, Knowledge dependency graphs, and MCP protocol integration.",
-  "url": "https://jataka.io/docs",
-  "mainEntity": {
-    "@type": "SoftwareApplication",
-    "name": "Jataka",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Web-based",
-    "featureList": [
-      "Governor Limit Profiling",
-      "Self-Healing UI Tests",
-      "Blast Radius Prediction",
-      "Kamikaze Pods",
-      "Vision AI",
-      "Knowledge Dependency Graph"
-    ]
+const architectureSteps = [
+  {
+    title: "GitHub",
+    body: "When a PR is opened or updated, GitHub fires a webhook to our One-Backend orchestration layer. The codebase is fetched and queued for analysis.",
+    meta: "Step 01",
   },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Jataka",
-    "url": "https://jataka.io"
-  }
-};
+  {
+    title: "One-Backend",
+    body: "The central brain that coordinates all Jataka services. It manages job queues, handles OAuth authentication, and routes tasks to the right engines.",
+    meta: "Step 02",
+  },
+  {
+    title: "Static Analysis Engine",
+    body: "Our LLM layer understands Salesforce Apex natively. It analyzes the AST, flags potential limit risks, and generates deterministic tests for uncovered paths.",
+    meta: "Step 03",
+  },
+  {
+    title: "Kamikaze",
+    body: "Isolated Sandbox pods execute real transactions, parse Debug Logs, and return measured Governor Limit metrics — not estimates.",
+    meta: "Step 04",
+  },
+];
 
-// Breadcrumb Schema
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://jataka.io"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Documentation",
-      "item": "https://jataka.io/docs"
-    }
-  ]
-};
+const securityFeatures = [
+  {
+    title: "Zero-Retention APIs",
+    body: "Enterprise Zero-Retention APIs process your code in-memory only. Once analysis completes, artifacts are purged. No training on your IP.",
+    icon: Database,
+  },
+  {
+    title: "AES-256 Encryption",
+    body: "All OAuth tokens are AES-256 encrypted at rest. Salesforce credentials never appear in logs, dashboards, or debug output.",
+    icon: Lock,
+  },
+  {
+    title: "No Model Training",
+    body: "Contractual guarantee: we do not train models on your proprietary Salesforce code. Your competitive advantage stays yours.",
+    icon: Shield,
+  },
+  {
+    title: "SOC 2 Compliant",
+    body: "Infrastructure meets SOC 2 Type II standards for security, availability, and confidentiality. Annual audits verify controls.",
+    icon: CheckCircle,
+  },
+];
 
-export default function DocsPage() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const architectureSteps = [
-    { 
-      label: "GitHub", 
-      description: "Webhook triggers on PR",
-      detail: "When a PR is opened or updated, GitHub fires a webhook to our One-Backend orchestration layer. The entire codebase is fetched and queued for analysis."
-    },
-    { 
-      label: "One-Backend", 
-      description: "Orchestrates the pipeline",
-      detail: "The central brain that coordinates all Jataka services. It manages job queues, handles OAuth authentication, and routes tasks to the appropriate engines."
-    },
-    { 
-      label: "Static Analysis Engine", 
-      description: "Analyzes code & generates test coverage",
-      detail: "Our proprietary LLM layer understands Salesforce Apex patterns natively. It analyzes AST (Abstract Syntax Tree), identifies potential limit breaches, and generates deterministic test cases for uncovered paths before execution."
-    },
-    { 
-      label: "Kamikaze", 
-      description: "Executes API/UI testing",
-      detail: "The execution engine that spins up isolated Sandbox pods, runs actual transactions, parses Debug Logs, and returns real Governor Limit metrics."
-    },
-  ];
-
-  const securityFeatures = [
-    {
-      title: "Zero-Retention APIs",
-      description: "We use Enterprise Zero-Retention APIs. Your code is processed but never stored or used for training. Once the analysis completes, all code artifacts are immediately purged from memory.",
-      detailedDescription: "Unlike other AI tools that may cache your code for model improvement, Jataka's enterprise agreements with our LLM providers guarantee that your proprietary Salesforce code is processed in-memory only. No disk writes. No persistent storage. No training on your IP.",
-      icon: Database,
-    },
-    {
-      title: "AES-256 Encryption",
-      description: "All OAuth tokens are AES-256 encrypted at rest. Your Salesforce credentials are never exposed in logs, dashboards, or debug output.",
-      detailedDescription: "Every OAuth refresh token is encrypted with a unique key derived from your organization's master key. Even if our database were compromised, attackers would see only encrypted blobs. We rotate encryption keys quarterly.",
-      icon: Lock,
-    },
-    {
-      title: "No Model Training",
-      description: "Jataka does not train AI models on your proprietary Salesforce code. Your IP stays yours. We don't learn from your codebase to improve our models.",
-      detailedDescription: "This is a contractual guarantee, not just a technical implementation. Our enterprise agreements explicitly prohibit using customer code for any model training or improvement. Your competitive advantage remains yours alone.",
-      icon: Shield,
-    },
-    {
-      title: "SOC 2 Compliant",
-      description: "Our infrastructure meets SOC 2 Type II standards for security, availability, and confidentiality. Annual audits verify our controls.",
-      detailedDescription: "We undergo annual SOC 2 Type II audits by an independent CPA firm. The audit covers access controls, encryption practices, incident response, and change management. Reports available under NDA for enterprise prospects.",
-      icon: CheckCircle,
-    },
-  ];
-
-  const limitParsingFeatures = [
-    {
-      title: "Tooling API Integration",
-      description: "We query Salesforce Tooling API to inspect Apex classes, triggers, and dependencies in real-time. This gives us the symbol tables and metadata needed for static analysis.",
-      detailedDescription: "The Tooling API provides access to the SymbolTable of every Apex class, revealing method signatures, variable types, and cross-references. We build a complete dependency graph before executing a single line of code.",
-      code: `GET /services/data/v58.0/tooling/query/?q=
+const limitParsingFeatures = [
+  {
+    title: "Tooling API Integration",
+    body: "We query the Salesforce Tooling API for Apex classes, triggers, and SymbolTables — building a dependency graph before a single line executes.",
+    code: `GET /services/data/v58.0/tooling/query/?q=
 SELECT Id, Name, SymbolTable, Body 
 FROM ApexClass 
 WHERE NamespacePrefix = NULL`,
-    },
-    {
-      title: "Sforce-Limit-Info Headers",
-      description: "Every API call returns limit consumption headers. We parse these to build your real-time limit profile during Sandbox execution.",
-      detailedDescription: "Salesforce includes limit information in every API response header. We intercept these headers during Sandbox execution to track exactly how many SOQL queries, DML statements, and CPU milliseconds each transaction consumes.",
-      code: `Sforce-Limit-Info: api-usage=95/500
+  },
+  {
+    title: "Sforce-Limit-Info Headers",
+    body: "Every API call returns limit consumption headers. We parse them during Sandbox execution to build a real-time limit profile.",
+    code: `Sforce-Limit-Info: api-usage=95/500
 Sforce-Limit-Info: api-max=500
 Sforce-Limit-Info: per-app-api-usage=42/100`,
-    },
-    {
-      title: "Debug Log Analysis",
-      description: "We execute your code in Sandbox and parse Debug Logs to extract actual runtime metrics. This is where we catch the real limit breaches.",
-      detailedDescription: "After executing the transaction in an isolated Sandbox, we analyze the execution trace to extract exact runtime metrics. This gives us precise measurements: 97 SOQL queries, 48,000 query rows, 8,500 DML rows. Not estimates, measured facts.",
-      code: `> Parsing execution trace...
+  },
+  {
+    title: "Debug Log Analysis",
+    body: "We execute your code in Sandbox and parse Debug Logs for measured facts — SOQL, DML, CPU, heap — not static guesses.",
+    code: `> Parsing execution trace...
 > SOQL queries detected: 97/100
 > Query rows: 48,000/50,000
 > DML statements: 45/150
 > CPU time: 8,500ms/10,000ms`,
-    },
-    {
-      title: "Blast Radius Calculation",
-      description: "Using graph analysis, we map dependencies and predict impact of code changes before they're deployed.",
-      detailedDescription: "Every Salesforce component is mapped in our dependency graph. When you change a trigger, we analyze the relationships to identify every downstream component that could be affected.",
-      code: `> Initiating Blast Radius Traversal...
+  },
+  {
+    title: "Blast Radius Calculation",
+    body: "Graph analysis maps dependencies and predicts the impact of a change before it ships.",
+    code: `> Initiating Blast Radius Traversal...
 > Finding 12 downstream dependencies
 > Mapping impact across 3 layers
 > Risk assessment: CRITICAL`,
-    },
-  ];
+  },
+];
 
+export default function DocsPage() {
   return (
-    <>
-      {/* JSON-LD Schemas */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+    <MarketingShell>
+      <PageHero
+        title="How Jataka actually"
+        italicWord="works"
+        subtitle="Architecture, security model, and the limit parsing engine — transparency that builds trust with engineering and security teams."
+        ctas={[
+          { label: "Book a pilot →", href: "/book-pilot", primary: true },
+          { label: "Security overview", href: "/security" },
+        ]}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+
+      <ContentSection
+        id="architecture"
+        title="The"
+        italicWord="architecture"
+        subtitle="A modular pipeline from GitHub webhook to deployment decision."
+      >
+        <FeatureGrid features={architectureSteps} columns={2} />
+      </ContentSection>
+
+      <ContentSection
+        id="security"
+        title="Security &"
+        italicWord="privacy"
+        subtitle="Designed to pass CISO review without friction."
+      >
+        <FeatureGrid features={securityFeatures} columns={2} />
+      </ContentSection>
+
+      <ContentSection
+        id="limit-parsing"
+        title="Limit"
+        italicWord="parsing"
+        subtitle="The secret sauce behind measured Governor Limit profiling."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {limitParsingFeatures.map((feature, i) => (
+            <FadeIn key={feature.title} delay={i * 0.05}>
+              <article className="h-full rounded-[20px] border border-[#111]/08 bg-white p-6 shadow-[0_12px_36px_rgba(17,17,17,0.04)] md:p-7">
+                <h3 className="text-[1.15rem] font-semibold tracking-[-0.02em] text-[#111]">
+                  {feature.title}
+                </h3>
+                <p className="mt-2.5 text-[14px] leading-[1.65] text-[#5F5F66]">{feature.body}</p>
+                <pre className="mt-5 overflow-x-auto rounded-xl bg-[#111] p-4 font-mono text-[12px] leading-[1.6] text-[#E8E8EC]">
+                  {feature.code}
+                </pre>
+              </article>
+            </FadeIn>
+          ))}
+        </div>
+      </ContentSection>
+
+      <PageCta
+        title="See the architecture in"
+        italicWord="action"
+        subtitle="Book a demo and watch Jataka catch real issues in your Salesforce codebase."
       />
-
-      <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
-      
-
-      {/* ── HERO SECTION ── */}
-      <section className="relative min-h-[60vh] flex flex-col justify-center px-[40px] md:px-[80px] lg:px-[120px] xl:px-[160px] pt-[120px] pb-[80px] overflow-hidden">
-        <LightGridBg />
-        <FloatingBlob className="top-[20%] right-[10%]" />
-        <FloatingBlob className="bottom-[30%] left-[5%]" />
-        
-        <div className="relative z-10 max-w-[1000px]">
-          <Reveal>
-            <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[40px]">
-              01 ,  Technical Documentation
-            </p>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <h1 className="font-archivo text-[clamp(40px,6vw,72px)] leading-[1] tracking-[-2px] uppercase mb-[40px]">
-              How Jataka
-              <br />
-              <span className="text-[#FF2424]">Actually Works</span>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={200}>
-            <p className="text-[clamp(18px,1.8vw,22px)] leading-[1.6] text-[#444] max-w-[680px] mb-[30px]">
-              Deep dive into the architecture, security model, and the <strong className="text-[#1a1a1a] font-semibold">secret sauce</strong> behind our limit parsing engine. Transparency builds trust.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── ARCHITECTURE SECTION ── */}
-      <section id="architecture" className="relative border-t border-[#1a1a1a]/10 overflow-hidden">
-        <LightGridBg />
-        
-        {/* Large watermark */}
-        <div className="absolute top-[50%] left-[-5%] transform -translate-y-1/2 font-archivo text-[180px] md:text-[250px] text-[#1a1a1a]/[0.02] uppercase tracking-[-10px] pointer-events-none select-none">
-          PIPELINE
-        </div>
-        
-        <div className="relative z-10 max-w-[1200px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[80px] md:py-[120px]">
-          <Reveal>
-            <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[30px]">
-              02 ,  Architecture
-            </p>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[20px]">
-              The Pipeline
-            </h2>
-          </Reveal>
-
-          <Reveal delay={200}>
-            <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[700px] mb-[60px]">
-              A clean, modular architecture that processes your PRs in seconds. Here's how the data flows from your GitHub webhook to a deployment decision.
-            </p>
-          </Reveal>
-
-          {/* Architecture Diagram */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px] mb-[60px] items-stretch">
-            {architectureSteps.map((step, index) => {
-              return (
-                <Reveal key={step.label} delay={300} className="h-full min-h-0">
-                  <div className="group bg-white rounded-[12px] p-[28px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300 cursor-default h-full flex flex-col">
-                    <div className="w-[48px] h-[48px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center mb-[20px] group-hover:bg-[#FF2424]/20 transition-colors">
-                      {index === 0 && <GitBranch className="w-[24px] h-[24px] text-[#FF2424]" />}
-                      {index === 1 && <Zap className="w-[24px] h-[24px] text-[#FF2424]" />}
-                      {index === 2 && <Code className="w-[24px] h-[24px] text-[#FF2424]" />}
-                      {index === 3 && <Shield className="w-[24px] h-[24px] text-[#FF2424]" />}
-                    </div>
-                    <p className="text-[12px] font-mono uppercase tracking-[2px] text-[#888] mb-[12px]">Step {index + 1}</p>
-                    <h3 className="font-archivo text-[18px] uppercase tracking-[0.5px] mb-[8px]">{step.label}</h3>
-                    <p className="text-[14px] leading-[1.6] text-[#555] mb-[16px] flex-1">{step.description}</p>
-                    <p className="text-[13px] leading-[1.6] text-[#777] mt-auto">{step.detail}</p>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-
-          {/* Flow Description */}
-          <Reveal delay={700}>
-            <div className="bg-[#F5F0E8] rounded-[12px] p-[32px] md:p-[40px]">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] items-stretch">
-                <div className="h-full flex flex-col">
-                  <p className="text-[12px] font-medium uppercase tracking-[2px] text-[#888] mb-[16px]">
-                    Input
-                  </p>
-                  <p className="text-[15px] leading-[1.7] text-[#444] flex-1">
-                    GitHub webhook fires on PR creation/update. Jataka receives the payload, authenticates with your Salesforce org via OAuth, and queues the analysis job in our distributed task queue.
-                  </p>
-                </div>
-                <div className="h-full flex flex-col">
-                  <p className="text-[12px] font-medium uppercase tracking-[2px] text-[#888] mb-[16px]">
-                    Output
-                  </p>
-                  <p className="text-[15px] leading-[1.7] text-[#444] flex-1">
-                    Pass/Fail status posted to GitHub PR checks. Detailed limit report attached as PR comment with line-by-line attribution. Deployment blocked if thresholds exceeded.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── SECURITY SECTION ── */}
-      <section id="security" className="relative bg-[#F5F0E8] border-t border-[#1a1a1a]/10 overflow-hidden">
-        <LightGridBg />
-        
-        {/* Large watermark */}
-        <div className="absolute top-[50%] right-[-10%] transform -translate-y-1/2 font-archivo text-[180px] md:text-[250px] text-[#1a1a1a]/[0.02] uppercase tracking-[-10px] pointer-events-none select-none">
-          SECURITY
-        </div>
-        
-        <div className="relative z-10 max-w-[1200px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[80px] md:py-[120px]">
-          <Reveal>
-            <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[30px]">
-              03 ,  Security & Data Privacy
-            </p>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[20px]">
-              Enterprise-Grade
-              <br />
-              <span className="text-[#FF2424]">Protection</span>
-            </h2>
-          </Reveal>
-
-          <Reveal delay={200}>
-            <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[700px] mb-[60px]">
-              Built for US Enterprise sales. Your code is your IP. Here's <strong className="text-[#1a1a1a] font-semibold">exactly</strong> how we protect it, no vague promises, just specifics.
-            </p>
-          </Reveal>
-
-          {/* Security Grid */}
-          <div className="space-y-[24px]">
-            {securityFeatures.map((feature, index) => {
-              const IconComponent = feature.icon;
-              return (
-                <Reveal key={feature.title} delay={300 + index * 100}>
-                  <div className="group bg-white rounded-[12px] p-[32px] md:p-[40px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300">
-                    <div className="flex flex-col md:flex-row gap-[24px]">
-                      <div className="flex-shrink-0">
-                        <div className="w-[56px] h-[56px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center group-hover:bg-[#FF2424]/20 transition-colors">
-                          <IconComponent className="w-[26px] h-[26px] text-[#FF2424]" />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-archivo text-[20px] uppercase tracking-[0.5px] mb-[12px]">
-                          {feature.title}
-                        </h3>
-                        <p className="text-[15px] leading-[1.7] text-[#444] mb-[16px]">
-                          {feature.description}
-                        </p>
-                        <p className="text-[14px] leading-[1.7] text-[#666]">
-                          {feature.detailedDescription}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-
-          {/* Compliance Badges */}
-          <Reveal delay={700}>
-            <div className="mt-[60px] flex flex-wrap items-center gap-[16px] justify-center">
-              {["SOC 2 Type II", "AES-256 Encryption"].map((badge) => (
-                <div key={badge} className="px-[24px] py-[12px] border border-[#1a1a1a]/10 rounded-[6px] text-[11px] font-bold uppercase tracking-[1.5px] text-[#666] hover:border-[#FF2424]/30 hover:text-[#FF2424] transition-colors cursor-default">
-                  {badge}
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── LIMIT PARSING SECTION ── */}
-      <section id="limits" className="relative border-t border-[#1a1a1a]/10 overflow-hidden">
-        <LightGridBg />
-        
-        {/* Large watermark */}
-        <div className="absolute top-[50%] left-[-5%] transform -translate-y-1/2 font-archivo text-[180px] md:text-[250px] text-[#1a1a1a]/[0.02] uppercase tracking-[-10px] pointer-events-none select-none">
-          LIMITS
-        </div>
-        
-        <div className="relative z-10 max-w-[1200px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[80px] md:py-[120px]">
-          <Reveal>
-            <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#666] mb-[30px]">
-              04 ,  How We Parse Limits
-            </p>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[20px]">
-              The
-              <br />
-              <span className="text-[#FF2424]">Secret Sauce</span>
-            </h2>
-          </Reveal>
-
-          <Reveal delay={200}>
-            <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#444] max-w-[700px] mb-[60px]">
-              Transparency builds trust. Here's <strong className="text-[#1a1a1a] font-semibold">exactly</strong> how Jataka detects Governor Limit breaches with precision. No black boxes.
-            </p>
-          </Reveal>
-
-          {/* Limit Parsing Features */}
-          <div className="space-y-[32px]">
-            {limitParsingFeatures.map((feature, index) => (
-              <Reveal key={feature.title} delay={300 + index * 100}>
-                <div className="group bg-white rounded-[12px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#1a1a1a]/5 hover:shadow-[0_8px_30px_rgba(255,36,36,0.08)] hover:border-[#FF2424]/20 transition-all duration-300">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch">
-                    <div className="p-[32px] md:p-[40px] flex flex-col h-full min-h-0">
-                      <p className="text-[12px] font-mono uppercase tracking-[2px] text-[#888] mb-[16px]">
-                        0{index + 1}
-                      </p>
-                      <h3 className="font-archivo text-[20px] uppercase tracking-[0.5px] mb-[16px]">
-                        {feature.title}
-                      </h3>
-                      <p className="text-[15px] leading-[1.7] text-[#444] mb-[16px]">
-                        {feature.description}
-                      </p>
-                      <p className="text-[14px] leading-[1.7] text-[#666]">
-                        {feature.detailedDescription}
-                      </p>
-                    </div>
-                    <div className="bg-[#1a1a1a] p-[24px] md:p-[32px] font-mono text-[12px] md:text-[13px] text-[#8B949E] overflow-x-auto min-h-[200px] lg:min-h-full flex">
-                      <pre className="whitespace-pre-wrap break-all flex-1">{feature.code}</pre>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Accuracy Guarantee */}
-          <Reveal delay={700}>
-            <div className="mt-[60px] bg-[#FF2424]/5 border-l-[3px] border-[#FF2424] p-[32px] md:p-[40px] rounded-[4px]">
-              <div className="flex items-start gap-[20px]">
-                <div className="w-[48px] h-[48px] rounded-[8px] bg-[#FF2424]/10 flex items-center justify-center flex-shrink-0">
-                  <Zap className="w-[24px] h-[24px] text-[#FF2424]" />
-                </div>
-                <div>
-                  <h4 className="font-archivo text-[18px] uppercase tracking-[0.5px] mb-[12px]">
-                    Accuracy Guarantee
-                  </h4>
-                  <p className="text-[15px] leading-[1.7] text-[#444]">
-                    We don't guess. We execute your code in a Sandbox and measure real metrics. If we say you're at 97/100 SOQL queries, 
-                    that's not an estimate, it's a <strong className="text-[#1a1a1a] font-semibold">measured fact</strong> from the actual execution. Zero false positives.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── CTA SECTION ── */}
-      <section className="relative bg-[#1a1a1a] overflow-hidden">
-        <LightGridBg />
-        <div className="relative z-10 max-w-[1000px] mx-auto px-[40px] md:px-[80px] lg:px-[120px] py-[100px] text-center">
-          <Reveal>
-            <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#FF2424] mb-[30px]">
-              Ready to Ship?
-            </p>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[20px] text-white">
-              Deploy with
-              <br />
-              <span className="text-[#FF2424]">absolute certainty.</span>
-            </h2>
-          </Reveal>
-
-          <Reveal delay={200}>
-            <p className="text-[clamp(17px,1.6vw,20px)] leading-[1.7] text-[#999] max-w-[600px] mx-auto mb-[40px]">
-              See the architecture in action. Book a demo and watch Jataka catch real issues in your Salesforce codebase.
-            </p>
-          </Reveal>
-
-          <Reveal delay={300}>
-            <div className="flex flex-col md:flex-row gap-[16px] justify-center">
-              <Link 
-                href="/book-pilot"
-                className="group bg-[#FF2424] text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-all duration-300 flex items-center justify-center gap-[12px]"
-              >
-                Book a Demo
-                <svg className="w-[16px] h-[16px] group-hover:translate-x-[4px] transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-              <Link 
-                href="/use-cases"
-                className="group bg-transparent text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] border border-[#333] hover:border-[#FF2424]/50 transition-all duration-300 flex items-center justify-center gap-[12px]"
-              >
-                View Use Cases
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-    </div>
-    </>
+    </MarketingShell>
   );
 }

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Script from "next/script";
+import { MarketingShell } from "../../../components/marketing";
 import {
   ArrowRight,
   Shield,
@@ -79,11 +80,11 @@ const CHART_PROBLEM = `flowchart TD
     B -->|Business Stops| F[Revenue Impact]
     
     style A fill:#1a1a1a,stroke:#1a1a1a,stroke-width:2px,color:#ffffff
-    style B fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff
-    style C fill:#fff,stroke:#FF2424,stroke-width:2px,color:#1a1a1a
-    style D fill:#fff,stroke:#FF2424,stroke-width:2px,color:#1a1a1a
-    style E fill:#fff,stroke:#FF2424,stroke-width:2px,color:#1a1a1a
-    style F fill:#FF2424,stroke:#FF2424,stroke-width:3px,color:#ffffff`;
+    style B fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff
+    style C fill:#fff,stroke:#2563EB,stroke-width:2px,color:#1a1a1a
+    style D fill:#fff,stroke:#2563EB,stroke-width:2px,color:#1a1a1a
+    style E fill:#fff,stroke:#2563EB,stroke-width:2px,color:#1a1a1a
+    style F fill:#2563EB,stroke:#2563EB,stroke-width:3px,color:#ffffff`;
 
 // Chart 2: Business Context Flow
 const CHART_BUSINESS = `flowchart LR
@@ -109,10 +110,10 @@ const CHART_BUSINESS = `flowchart LR
     JC --> BLK
     JC --> RSL
     
-    style JC fill:#FF2424,stroke:#FF2424,stroke-width:4px,color:#ffffff
+    style JC fill:#2563EB,stroke:#2563EB,stroke-width:4px,color:#ffffff
     style JT fill:#fff,stroke:#1a1a1a,color:#1a1a1a
-    style DC fill:#fff,stroke:#FF2424,color:#1a1a1a
-    style BLK fill:#FF2424,stroke:#FF2424,color:#ffffff
+    style DC fill:#fff,stroke:#2563EB,color:#1a1a1a
+    style BLK fill:#2563EB,stroke:#2563EB,color:#ffffff
     style RSL fill:#4ADE80,stroke:#4ADE80,color:#ffffff`;
 
 // Chart 3: Architecture Context (Blast Radius)
@@ -137,13 +138,13 @@ const CHART_ARCHITECTURE = `flowchart TD
     CF --> MS
     CF --> WD
     
-    style CF fill:#FF2424,stroke:#FF2424,stroke-width:3px,color:#ffffff
-    style F1 fill:#fff,stroke:#FF2424,color:#1a1a1a
-    style F2 fill:#fff,stroke:#FF2424,color:#1a1a1a
-    style F3 fill:#fff,stroke:#FF2424,color:#1a1a1a
-    style AC fill:#fff,stroke:#FF2424,color:#1a1a1a
-    style MS fill:#fff,stroke:#FF2424,color:#1a1a1a
-    style WD fill:#fff,stroke:#FF2424,color:#1a1a1a`;
+    style CF fill:#2563EB,stroke:#2563EB,stroke-width:3px,color:#ffffff
+    style F1 fill:#fff,stroke:#2563EB,color:#1a1a1a
+    style F2 fill:#fff,stroke:#2563EB,color:#1a1a1a
+    style F3 fill:#fff,stroke:#2563EB,color:#1a1a1a
+    style AC fill:#fff,stroke:#2563EB,color:#1a1a1a
+    style MS fill:#fff,stroke:#2563EB,color:#1a1a1a
+    style WD fill:#fff,stroke:#2563EB,color:#1a1a1a`;
 
 // Chart 4: Runtime Context (Simulation)
 const CHART_RUNTIME = `flowchart LR
@@ -164,9 +165,9 @@ const CHART_RUNTIME = `flowchart LR
     SE --> CRASH
     SE --> SURVIVE
     
-    style SE fill:#FF2424,stroke:#FF2424,stroke-width:4px,color:#ffffff
+    style SE fill:#2563EB,stroke:#2563EB,stroke-width:4px,color:#ffffff
     style DC fill:#fff,stroke:#1a1a1a,color:#1a1a1a
-    style CRASH fill:#FF2424,stroke:#FF2424,color:#ffffff
+    style CRASH fill:#2563EB,stroke:#2563EB,color:#ffffff
     style SURVIVE fill:#4ADE80,stroke:#4ADE80,color:#ffffff`;
 
 function MermaidBlock({ chart }: { chart: string }) {
@@ -189,9 +190,9 @@ export default function BriefStoryPage() {
         themeVariables: {
           primaryColor: "#FFFFFF",
           primaryTextColor: "#1a1a1a",
-          primaryBorderColor: "#FF2424",
+          primaryBorderColor: "#2563EB",
           lineColor: "#1a1a1a",
-          secondaryColor: "#FAF8F3",
+          secondaryColor: "#F3F3F4",
           fontFamily: "var(--font-inter), sans-serif",
           fontSize: "14px",
         },
@@ -202,7 +203,8 @@ export default function BriefStoryPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a] font-sans">
+    <MarketingShell>
+    <div className="min-h-screen bg-[#F3F3F4] text-[#1a1a1a] font-sans">
       <Script
         src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"
         strategy="beforeInteractive"
@@ -212,16 +214,16 @@ export default function BriefStoryPage() {
       <section className="pt-[80px] pb-[60px] px-[24px] md:px-[48px] border-b border-[#1a1a1a]/8">
         <div className="max-w-[900px] mx-auto text-center">
           <Reveal>
-            <div className="inline-flex items-center gap-[8px] bg-[#FF2424]/10 border border-[#FF2424]/20 px-[16px] py-[6px] mb-[24px] text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424] rounded-[4px]">
+            <div className="inline-flex items-center gap-[8px] bg-[#2563EB]/10 border border-[#2563EB]/20 px-[16px] py-[6px] mb-[24px] text-[11px] font-bold uppercase tracking-[2px] text-[#2563EB] rounded-[4px]">
               <Lock className="w-[12px] h-[12px]" />
               Private Executive Data Room
             </div>
           </Reveal>
 
           <Reveal delay={100}>
-            <h1 className="font-archivo text-[clamp(36px,5vw,64px)] leading-[1.05] tracking-[-1.5px] uppercase mb-[24px]">
+            <h1 className="font-semibold tracking-tight text-[clamp(36px,5vw,64px)] leading-[1.05] tracking-[-1.5px] uppercase mb-[24px]">
               The Multi-Million Dollar Problem <br />
-              <span className="text-[#FF2424]">And The Solution</span>
+              <span className="text-[#2563EB]">And The Solution</span>
             </h1>
           </Reveal>
 
@@ -237,10 +239,10 @@ export default function BriefStoryPage() {
       {/* ================= PART 1: THE PROBLEM ================= */}
       <section className="py-[70px] px-[24px] md:px-[48px] max-w-[1000px] mx-auto">
         <Reveal>
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[12px]">
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[12px]">
             Part 1 / The Multi-Million Dollar Problem
           </p>
-          <h2 className="font-archivo text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
+          <h2 className="font-semibold tracking-tight text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
             Building Blind in a Vacuum
           </h2>
           <div className="text-[16px] leading-[1.8] text-[#444] space-y-[20px] max-w-[800px]">
@@ -267,10 +269,10 @@ export default function BriefStoryPage() {
       <section className="py-[70px] px-[24px] md:px-[48px] bg-white border-y border-[#1a1a1a]/8">
         <div className="max-w-[1000px] mx-auto">
           <Reveal>
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[12px]">
+            <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[12px]">
               Part 2 / The Solution
             </p>
-            <h2 className="font-archivo text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
+            <h2 className="font-semibold tracking-tight text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
               The Jataka Context Box
             </h2>
             <div className="text-[16px] leading-[1.8] text-[#444] space-y-[20px] max-w-[800px] mb-[40px]">
@@ -290,11 +292,11 @@ export default function BriefStoryPage() {
           {/* The 3 Contexts Overview */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px] mb-[60px]">
             <Reveal delay={100}>
-              <div className="bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
+              <div className="bg-[#F3F3F4] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
                 <div className="inline-flex w-[48px] h-[48px] bg-blue-100 text-blue-600 rounded-[10px] items-center justify-center mb-[16px]">
                   <Briefcase className="w-[24px] h-[24px]" />
                 </div>
-                <h3 className="font-archivo text-[20px] font-semibold uppercase mb-[8px]">Business Context</h3>
+                <h3 className="font-semibold tracking-tight text-[20px] font-semibold uppercase mb-[8px]">Business Context</h3>
                 <p className="text-[12px] font-mono text-[#666] uppercase tracking-[1px] mb-[12px]">The "Why" and The Rules</p>
                 <p className="text-[14.5px] leading-[1.6] text-[#444]">
                   Reads Jira tickets to know your company's actual business rules.
@@ -303,11 +305,11 @@ export default function BriefStoryPage() {
             </Reveal>
 
             <Reveal delay={200}>
-              <div className="bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
+              <div className="bg-[#F3F3F4] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
                 <div className="inline-flex w-[48px] h-[48px] bg-purple-100 text-purple-600 rounded-[10px] items-center justify-center mb-[16px]">
                   <Network className="w-[24px] h-[24px]" />
                 </div>
-                <h3 className="font-archivo text-[20px] font-semibold uppercase mb-[8px]">Architecture Context</h3>
+                <h3 className="font-semibold tracking-tight text-[20px] font-semibold uppercase mb-[8px]">Architecture Context</h3>
                 <p className="text-[12px] font-mono text-[#666] uppercase tracking-[1px] mb-[12px]">The "Blast Radius"</p>
                 <p className="text-[14.5px] leading-[1.6] text-[#444]">
                   Maps every wire, dependency, and external system in your enterprise.
@@ -316,11 +318,11 @@ export default function BriefStoryPage() {
             </Reveal>
 
             <Reveal delay={300}>
-              <div className="bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
+              <div className="bg-[#F3F3F4] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
                 <div className="inline-flex w-[48px] h-[48px] bg-green-100 text-green-600 rounded-[10px] items-center justify-center mb-[16px]">
                   <Activity className="w-[24px] h-[24px]" />
                 </div>
-                <h3 className="font-archivo text-[20px] font-semibold uppercase mb-[8px]">Runtime Context</h3>
+                <h3 className="font-semibold tracking-tight text-[20px] font-semibold uppercase mb-[8px]">Runtime Context</h3>
                 <p className="text-[12px] font-mono text-[#666] uppercase tracking-[1px] mb-[12px]">The "Physics of Scale"</p>
                 <p className="text-[14.5px] leading-[1.6] text-[#444]">
                   Simulates live Production data volumes to understand scale physics.
@@ -338,7 +340,7 @@ export default function BriefStoryPage() {
             <Briefcase className="w-[14px] h-[14px]" />
             Deep Dive 1
           </div>
-          <h2 className="font-archivo text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
+          <h2 className="font-semibold tracking-tight text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
             Business Context
           </h2>
           <p className="text-[12px] font-mono text-[#666] uppercase tracking-[1px] mb-[16px]">The "Why" and The Rules</p>
@@ -362,16 +364,16 @@ export default function BriefStoryPage() {
         </Reveal>
 
         <Reveal delay={200}>
-          <h3 className="font-archivo text-[24px] uppercase mb-[20px]">The Use Cases</h3>
+          <h3 className="font-semibold tracking-tight text-[24px] uppercase mb-[20px]">The Use Cases</h3>
           <div className="space-y-[24px]">
             <div className="bg-white border border-[#1a1a1a]/10 rounded-[12px] p-[28px]">
-              <h4 className="font-archivo text-[20px] uppercase mb-[12px] text-[#1a1a1a]">Business Logic Enforcement</h4>
+              <h4 className="font-semibold tracking-tight text-[20px] uppercase mb-[12px] text-[#1a1a1a]">Business Logic Enforcement</h4>
               <p className="text-[15px] leading-[1.7] text-[#444]">
                 Jataka mathematically proves that the code actually does what the Jira ticket asked for, stopping rogue logic before it deploys.
               </p>
             </div>
             <div className="bg-white border border-[#1a1a1a]/10 rounded-[12px] p-[28px]">
-              <h4 className="font-archivo text-[20px] uppercase mb-[12px] text-[#1a1a1a]">Self-Healing QA</h4>
+              <h4 className="font-semibold tracking-tight text-[20px] uppercase mb-[12px] text-[#1a1a1a]">Self-Healing QA</h4>
               <p className="text-[15px] leading-[1.7] text-[#444]">
                 Because Jataka knows the intent of a test (e.g., "Click the checkout button"), when Salesforce updates their UI and changes 
                 the button's color or location, Jataka's Vision AI uses business context to visually find the new button and fix the test automatically.
@@ -389,14 +391,14 @@ export default function BriefStoryPage() {
               <Network className="w-[14px] h-[14px]" />
               Deep Dive 2
             </div>
-            <h2 className="font-archivo text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
+            <h2 className="font-semibold tracking-tight text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
               Architecture Context
             </h2>
             <p className="text-[12px] font-mono text-[#666] uppercase tracking-[1px] mb-[16px]">The "Blast Radius"</p>
           </Reveal>
 
           <Reveal delay={100}>
-            <div className="bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[12px] p-[32px] mb-[32px]">
+            <div className="bg-[#F3F3F4] border border-[#1a1a1a]/10 rounded-[12px] p-[32px] mb-[32px]">
               <p className="text-[16px] leading-[1.8] text-[#444] italic mb-[16px]">
                 "You can't safely demolish a wall in a skyscraper unless you know if it's load-bearing. Architecture Context maps every single wire, 
                 dependency, and external system in your enterprise."
@@ -413,24 +415,24 @@ export default function BriefStoryPage() {
           </Reveal>
 
           <Reveal delay={200}>
-            <h3 className="font-archivo text-[24px] uppercase mb-[20px]">The Use Cases</h3>
+            <h3 className="font-semibold tracking-tight text-[24px] uppercase mb-[20px]">The Use Cases</h3>
             <div className="space-y-[24px]">
-              <div className="bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[12px] p-[28px]">
-                <h4 className="font-archivo text-[20px] uppercase mb-[12px] text-[#1a1a1a]">API Contract Guardian</h4>
+              <div className="bg-[#F3F3F4] border border-[#1a1a1a]/10 rounded-[12px] p-[28px]">
+                <h4 className="font-semibold tracking-tight text-[20px] uppercase mb-[12px] text-[#1a1a1a]">API Contract Guardian</h4>
                 <p className="text-[15px] leading-[1.7] text-[#444]">
                   If a developer tries to delete or rename a field that an external system (like SAP) relies on, Jataka instantly blocks it and alerts 
                   the integration team. Zero broken APIs.
                 </p>
               </div>
-              <div className="bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[12px] p-[28px]">
-                <h4 className="font-archivo text-[20px] uppercase mb-[12px] text-[#1a1a1a]">M&A Org Mergers</h4>
+              <div className="bg-[#F3F3F4] border border-[#1a1a1a]/10 rounded-[12px] p-[28px]">
+                <h4 className="font-semibold tracking-tight text-[20px] uppercase mb-[12px] text-[#1a1a1a]">M&A Org Mergers</h4>
                 <p className="text-[15px] leading-[1.7] text-[#444]">
                   When you acquire a company, comparing their Salesforce system to yours takes consultants a year. Architecture Context mathematically 
                   compares both systems and prints a conflict-and-overlap map in days.
                 </p>
               </div>
-              <div className="bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[12px] p-[28px]">
-                <h4 className="font-archivo text-[20px] uppercase mb-[12px] text-[#1a1a1a]">Tech Debt Prevention</h4>
+              <div className="bg-[#F3F3F4] border border-[#1a1a1a]/10 rounded-[12px] p-[28px]">
+                <h4 className="font-semibold tracking-tight text-[20px] uppercase mb-[12px] text-[#1a1a1a]">Tech Debt Prevention</h4>
                 <p className="text-[15px] leading-[1.7] text-[#444]">
                   It stops developers from creating duplicate fields by instantly cross-referencing the entire org to see if a similar field already exists.
                 </p>
@@ -447,7 +449,7 @@ export default function BriefStoryPage() {
             <Activity className="w-[14px] h-[14px]" />
             Deep Dive 3
           </div>
-          <h2 className="font-archivo text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
+          <h2 className="font-semibold tracking-tight text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
             Runtime Context
           </h2>
           <p className="text-[12px] font-mono text-[#666] uppercase tracking-[1px] mb-[16px]">The "Physics of Scale"</p>
@@ -471,17 +473,17 @@ export default function BriefStoryPage() {
         </Reveal>
 
         <Reveal delay={200}>
-          <h3 className="font-archivo text-[24px] uppercase mb-[20px]">The Use Cases</h3>
+          <h3 className="font-semibold tracking-tight text-[24px] uppercase mb-[20px]">The Use Cases</h3>
           <div className="space-y-[24px]">
             <div className="bg-white border border-[#1a1a1a]/10 rounded-[12px] p-[28px]">
-              <h4 className="font-archivo text-[20px] uppercase mb-[12px] text-[#1a1a1a]">The Limit Firewall</h4>
+              <h4 className="font-semibold tracking-tight text-[20px] uppercase mb-[12px] text-[#1a1a1a]">The Limit Firewall</h4>
               <p className="text-[15px] leading-[1.7] text-[#444]">
                 Salesforce has hard limits (Governor Limits). Jataka simulates the data load on every piece of code. If a developer accidentally 
                 puts a database query inside a loop that will crash the system at scale, Jataka blocks it.
               </p>
             </div>
             <div className="bg-white border border-[#1a1a1a]/10 rounded-[12px] p-[28px]">
-              <h4 className="font-archivo text-[20px] uppercase mb-[12px] text-[#1a1a1a]">Data Skew Detection</h4>
+              <h4 className="font-semibold tracking-tight text-[20px] uppercase mb-[12px] text-[#1a1a1a]">Data Skew Detection</h4>
               <p className="text-[15px] leading-[1.7] text-[#444]">
                 It identifies if new code will cause database traffic jams (row locks) based on how your company's data is actually distributed.
               </p>
@@ -494,10 +496,10 @@ export default function BriefStoryPage() {
       <section className="py-[70px] px-[24px] md:px-[48px] bg-[#0B0B0B] text-white">
         <div className="max-w-[1000px] mx-auto">
           <Reveal>
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[12px]">
+            <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[12px]">
               Part 3 / The Grand Finale
             </p>
-            <h2 className="font-archivo text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
+            <h2 className="font-semibold tracking-tight text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
               The Impact of Jataka
             </h2>
             <div className="text-[16px] leading-[1.8] text-[#aaa] space-y-[20px] max-w-[800px] mb-[40px]">
@@ -515,31 +517,31 @@ export default function BriefStoryPage() {
                 <div className="absolute top-0 right-0 p-8 opacity-5">
                   <Shield size={120} />
                 </div>
-                <div className="inline-flex w-[56px] h-[56px] bg-red-500/10 text-[#FF2424] rounded-[12px] items-center justify-center mb-[20px]">
+                <div className="inline-flex w-[56px] h-[56px] bg-red-500/10 text-[#2563EB] rounded-[12px] items-center justify-center mb-[20px]">
                   <Shield className="w-[28px] h-[28px]" />
                 </div>
-                <h3 className="font-archivo text-[28px] uppercase tracking-[-0.5px] mb-[12px]">
+                <h3 className="font-semibold tracking-tight text-[28px] uppercase tracking-[-0.5px] mb-[12px]">
                   🛡️ The Shield
                 </h3>
                 <p className="text-[15px] text-[#aaa] mb-[32px]">Risk Mitigation & Cost Reduction.</p>
                 
                 <div className="space-y-[20px]">
                   <div className="flex items-start gap-[12px]">
-                    <CheckCircle2 className="w-[20px] h-[20px] text-[#FF2424] mt-[2px] flex-shrink-0" />
+                    <CheckCircle2 className="w-[20px] h-[20px] text-[#2563EB] mt-[2px] flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-white mb-[4px]">Zero Production Crashes</p>
                       <p className="text-[13px] text-[#888]">Because of the Runtime Context, governor limit outages are eliminated.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-[12px]">
-                    <CheckCircle2 className="w-[20px] h-[20px] text-[#FF2424] mt-[2px] flex-shrink-0" />
+                    <CheckCircle2 className="w-[20px] h-[20px] text-[#2563EB] mt-[2px] flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-white mb-[4px]">Zero Broken Integrations</p>
                       <p className="text-[13px] text-[#888]">Because of the Architecture Context, accidental ERP/API breakages drop to zero.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-[12px]">
-                    <CheckCircle2 className="w-[20px] h-[20px] text-[#FF2424] mt-[2px] flex-shrink-0" />
+                    <CheckCircle2 className="w-[20px] h-[20px] text-[#2563EB] mt-[2px] flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-white mb-[4px]">80% Drop in QA Costs</p>
                       <p className="text-[13px] text-[#888]">Because of the Business Context, your UI tests heal themselves, meaning you can stop paying armies of manual testers to fix broken test scripts every month.</p>
@@ -558,7 +560,7 @@ export default function BriefStoryPage() {
                 <div className="inline-flex w-[56px] h-[56px] bg-green-500/10 text-[#4ADE80] rounded-[12px] items-center justify-center mb-[20px]">
                   <TrendingUp className="w-[28px] h-[28px]" />
                 </div>
-                <h3 className="font-archivo text-[28px] uppercase tracking-[-0.5px] mb-[12px]">
+                <h3 className="font-semibold tracking-tight text-[28px] uppercase tracking-[-0.5px] mb-[12px]">
                   ⚔️ The Sword
                 </h3>
                 <p className="text-[15px] text-[#aaa] mb-[32px]">Velocity & Growth.</p>
@@ -596,8 +598,8 @@ export default function BriefStoryPage() {
       <section className="py-[80px] px-[24px] md:px-[48px] bg-white border-t border-[#1a1a1a]/10 text-center">
         <div className="max-w-[800px] mx-auto">
           <Reveal>
-            <Zap className="w-[32px] h-[32px] text-[#FF2424] mx-auto mb-[20px]" />
-            <h2 className="font-archivo text-[32px] md:text-[44px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
+            <Zap className="w-[32px] h-[32px] text-[#2563EB] mx-auto mb-[20px]" />
+            <h2 className="font-semibold tracking-tight text-[32px] md:text-[44px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
               Ready to govern your enterprise?
             </h2>
             <p className="text-[18px] leading-[1.6] text-[#444] mb-[40px]">
@@ -606,7 +608,7 @@ export default function BriefStoryPage() {
               <span className="text-[14px] font-mono uppercase tracking-[1px] text-[#888]">— Your pitch to the Board of Directors.</span>
             </p>
             
-            <button className="bg-[#FF2424] text-white px-[32px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[6px] hover:bg-[#d91f1f] transition-all flex items-center justify-center gap-[10px] mx-auto shadow-lg hover:shadow-xl hover:-translate-y-1">
+            <button className="bg-[#2563EB] text-white px-[32px] py-[16px] font-semibold tracking-tight text-[14px] uppercase tracking-[1.5px] rounded-[6px] hover:bg-[#1d4ed8] transition-all flex items-center justify-center gap-[10px] mx-auto shadow-lg hover:shadow-xl hover:-translate-y-1">
               Start the Executive Pilot
               <ArrowRight className="w-[16px] h-[16px]" />
             </button>
@@ -615,9 +617,11 @@ export default function BriefStoryPage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-[30px] border-t border-[#1a1a1a]/10 text-center text-[12px] text-[#888] bg-[#FAF8F3]">
+      <footer className="py-[30px] border-t border-[#1a1a1a]/10 text-center text-[12px] text-[#888] bg-[#F3F3F4]">
         <p>Jataka Context Engine &copy; 2026. Confidential VIP Briefing.</p>
       </footer>
     </div>
+  
+    </MarketingShell>
   );
 }

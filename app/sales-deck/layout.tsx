@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sales Deck | Jataka",
+  title: "Sales Deck",
   description: "Jataka sales presentation deck for enterprise Salesforce teams. Learn about our AI-powered DevSecOps platform, pricing, and customer success stories.",
   alternates: {
     canonical: "https://jataka.io/sales-deck",

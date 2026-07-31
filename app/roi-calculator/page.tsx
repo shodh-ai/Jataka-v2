@@ -1,101 +1,92 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
-import { Menu, X, ArrowRight, Calculator, DollarSign, Clock, Users, AlertTriangle, TrendingUp, CheckCircle } from "lucide-react";
-
-// Scroll reveal hook
-function useScrollReveal(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [threshold]);
-
-  return { ref, isVisible };
-}
-
-// Reveal component
-function Reveal({ 
-  children, 
-  delay = 0, 
-  className = "" 
-}: { 
-  children: React.ReactNode; 
-  delay?: number; 
-  className?: string;
-}) {
-  const { ref, isVisible } = useScrollReveal(0.1);
-
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transitionDelay: `${delay}ms`
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-// JSON-LD Schema
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Jataka ROI Calculator - Calculate Your Savings",
-  "description": "Calculate how much your enterprise will save with Jataka's Governor Limit prevention and self-healing tests. Recover engineering hours and prevent costly downtime.",
-  "url": "https://jataka.io/roi-calculator"
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://jataka.io"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "ROI Calculator",
-      "item": "https://jataka.io/roi-calculator"
-    }
-  ]
-};
+import { useEffect, useState } from "react";
+import { Users, Clock, AlertTriangle, DollarSign, TrendingUp, CheckCircle } from "lucide-react";
+import {
+  MarketingShell,
+  PageHero,
+  PageCta,
+  ContentSection,
+} from "../components/marketing";
+import { FadeIn } from "../components/home";
 
 const industryBenchmarks = [
   { metric: "Avg Salesforce developer hourly rate", value: "$175" },
   { metric: "Avg Sev-1 incident cost", value: "$150,000" },
   { metric: "Avg downtime per Sev-1", value: "4 hours" },
-  { metric: "Avg test maintenance hours/week", value: "15 hours" }
+  { metric: "Avg test maintenance hours/week", value: "15 hours" },
 ];
 
+const assumptions = [
+  {
+    title: "40% reduction in PR review time",
+    body: "Jataka catches Governor Limit breaches before the PR reaches the reviewer, eliminating the most time-consuming reviews.",
+  },
+  {
+    title: "90% reduction in test maintenance",
+    body: "Self-healing tests automatically adapt to Salesforce UI changes, eliminating manual test fixes.",
+  },
+  {
+    title: "80% of Sev-1 incidents prevented",
+    body: "Jataka catches the majority of limit breaches and data corruption issues before they reach production.",
+  },
+  {
+    title: "Your Sev-1 cost estimate",
+    body: "You provided this value above. Industry average is $150,000, but your actual cost may vary based on company size and customer impact.",
+  },
+];
+
+function SliderField({
+  icon: Icon,
+  label,
+  value,
+  onChange,
+  min,
+  max,
+  step = 1,
+  prefix,
+  suffix,
+  hint,
+}: {
+  icon: typeof Users;
+  label: string;
+  value: number;
+  onChange: (v: number) => void;
+  min: number;
+  max: number;
+  step?: number;
+  prefix?: string;
+  suffix?: string;
+  hint?: string;
+}) {
+  return (
+    <div className="mb-6 last:mb-0">
+      <label className="mb-3 flex items-center justify-between gap-3">
+        <span className="flex items-center gap-2 text-[14px] font-medium text-[#111]">
+          <Icon className="h-4 w-4 text-[#2563EB]" />
+          {label}
+        </span>
+        <span className="font-mono text-[14px] font-semibold text-[#111]">
+          {prefix}
+          {value.toLocaleString()}
+          {suffix}
+        </span>
+      </label>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        className="h-2 w-full cursor-pointer appearance-none rounded-full bg-[#E8E8EC] accent-[#111]"
+      />
+      {hint ? <p className="mt-2 text-[12px] text-[#8A93A3]">{hint}</p> : null}
+    </div>
+  );
+}
+
 export default function ROICalculatorPage() {
-  const router = useRouter();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-  // Calculator inputs
   const [developers, setDevelopers] = useState(20);
   const [reviewHours, setReviewHours] = useState(10);
   const [sev1Incidents, setSev1Incidents] = useState(3);
@@ -103,368 +94,206 @@ export default function ROICalculatorPage() {
   const [testMaintenanceHours, setTestMaintenanceHours] = useState(15);
   const [seniorDeveloperRate, setSeniorDeveloperRate] = useState(175);
 
-  // Calculated values
   const [savings, setSavings] = useState({
     reviewTime: 0,
     testMaintenance: 0,
     preventedIncidents: 0,
-    totalAnnual: 0
+    totalAnnual: 0,
   });
 
-  // Calculate savings
   useEffect(() => {
     // PR review time saved: 40% reduction in review time * hours * weeks * rate
     const reviewTimeSaved = reviewHours * 0.4 * 52 * seniorDeveloperRate;
-    
+
     // Test maintenance saved: 90% reduction in test maintenance
     const testMaintenanceSaved = testMaintenanceHours * 0.9 * 52 * seniorDeveloperRate;
-    
+
     // Prevented incidents: 80% of Sev-1s prevented * user-defined cost
     const preventedIncidentsCost = sev1Incidents * 0.8 * sev1Cost;
-    
+
     const total = reviewTimeSaved + testMaintenanceSaved + preventedIncidentsCost;
-    
+
     setSavings({
       reviewTime: Math.round(reviewTimeSaved),
       testMaintenance: Math.round(testMaintenanceSaved),
       preventedIncidents: Math.round(preventedIncidentsCost),
-      totalAnnual: Math.round(total)
+      totalAnnual: Math.round(total),
     });
   }, [developers, reviewHours, sev1Incidents, sev1Cost, testMaintenanceHours, seniorDeveloperRate]);
 
-  const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
+  const formatCurrency = (value: number) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
       minimumFractionDigits: 0,
-      maximumFractionDigits: 0
+      maximumFractionDigits: 0,
     }).format(value);
-  };
 
   return (
-    <>
-      {/* JSON-LD Schemas */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    <MarketingShell>
+      <PageHero
+        title="Calculate your annual"
+        italicWord="savings"
+        subtitle="Recovered engineering hours and prevented downtime. CFOs and VPs of Engineering use this to justify the investment."
+        ctas={[
+          { label: "Book a pilot →", href: "/book-pilot", primary: true },
+          { label: "See pricing", href: "/pricing" },
+        ]}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+
+      <ContentSection>
+        <div className="grid gap-4 lg:grid-cols-2">
+          <FadeIn>
+            <div className="rounded-[20px] border border-[#111]/08 bg-white p-6 shadow-[0_12px_36px_rgba(17,17,17,0.04)] md:p-8">
+              <h2 className="mb-6 text-[1.15rem] font-semibold tracking-[-0.02em] text-[#111]">
+                Your inputs
+              </h2>
+
+              <SliderField
+                icon={Users}
+                label="Salesforce developers"
+                value={developers}
+                onChange={setDevelopers}
+                min={1}
+                max={200}
+              />
+              <SliderField
+                icon={Clock}
+                label="Senior PR review hours / week"
+                value={reviewHours}
+                onChange={setReviewHours}
+                min={0}
+                max={80}
+              />
+              <SliderField
+                icon={Clock}
+                label="Test maintenance hours / week"
+                value={testMaintenanceHours}
+                onChange={setTestMaintenanceHours}
+                min={0}
+                max={80}
+              />
+              <SliderField
+                icon={AlertTriangle}
+                label="Sev-1 incidents last year"
+                value={sev1Incidents}
+                onChange={setSev1Incidents}
+                min={0}
+                max={20}
+              />
+              <SliderField
+                icon={DollarSign}
+                label="Avg cost per Sev-1 outage"
+                value={sev1Cost}
+                onChange={setSev1Cost}
+                min={10000}
+                max={500000}
+                step={5000}
+                prefix="$"
+                hint="Includes downtime, emergency engineering, customer impact"
+              />
+              <SliderField
+                icon={DollarSign}
+                label="Senior developer hourly rate"
+                value={seniorDeveloperRate}
+                onChange={setSeniorDeveloperRate}
+                min={50}
+                max={400}
+                step={5}
+                prefix="$"
+              />
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.06}>
+            <div className="flex h-full flex-col rounded-[20px] border border-[#111]/08 bg-[#111] p-6 text-white shadow-[0_12px_36px_rgba(17,17,17,0.04)] md:p-8">
+              <h2 className="mb-6 text-[1.15rem] font-semibold tracking-[-0.02em]">Your savings</h2>
+
+              <div className="mb-6 rounded-[16px] bg-white px-6 py-7 text-center text-[#111]">
+                <p className="text-[11px] font-semibold tracking-[0.16em] text-[#8A93A3] uppercase">
+                  Total annual savings
+                </p>
+                <p className="mt-2 text-[clamp(2.2rem,4vw,3rem)] font-semibold tracking-[-0.04em]">
+                  {formatCurrency(savings.totalAnnual)}
+                </p>
+              </div>
+
+              <div className="flex-1 space-y-3">
+                {[
+                  { label: "PR Review Time Saved", value: savings.reviewTime },
+                  { label: "Test Maintenance Saved", value: savings.testMaintenance },
+                  { label: "Prevented Sev-1 Incidents", value: savings.preventedIncidents },
+                ].map((row) => (
+                  <div
+                    key={row.label}
+                    className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3.5"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <CheckCircle className="h-4 w-4 text-emerald-400" />
+                      <span className="text-[14px] text-white/85">{row.label}</span>
+                    </div>
+                    <span className="text-[15px] font-semibold">
+                      {formatCurrency(row.value)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 border-t border-white/10 pt-5">
+                <div className="flex items-center justify-between text-[14px]">
+                  <span className="text-white/55">Typical Jataka investment</span>
+                  <span className="font-medium">$30,000 – $50,000/year</span>
+                </div>
+                <div className="mt-3 flex items-center justify-between">
+                  <span className="text-[14px] font-medium">Your ROI</span>
+                  <span className="text-[1.25rem] font-semibold text-emerald-400">
+                    {Math.round((savings.totalAnnual / 40000) * 100)}%
+                  </span>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </ContentSection>
+
+      <ContentSection title="Industry" italicWord="benchmarks" align="center">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {industryBenchmarks.map((benchmark, i) => (
+            <FadeIn key={benchmark.metric} delay={i * 0.05}>
+              <div className="rounded-[20px] border border-[#111]/08 bg-white p-5 text-center shadow-[0_12px_36px_rgba(17,17,17,0.04)]">
+                <p className="text-[11px] tracking-[0.12em] text-[#8A93A3] uppercase">
+                  {benchmark.metric}
+                </p>
+                <p className="mt-3 text-[1.5rem] font-semibold tracking-[-0.03em] text-[#111]">
+                  {benchmark.value}
+                </p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </ContentSection>
+
+      <ContentSection title="Calculation" italicWord="assumptions" align="center">
+        <div className="mx-auto max-w-[720px] space-y-3">
+          {assumptions.map((item, i) => (
+            <FadeIn key={item.title} delay={i * 0.04}>
+              <div className="flex items-start gap-3 rounded-[16px] border border-[#111]/08 bg-white p-5 text-left shadow-[0_12px_36px_rgba(17,17,17,0.04)]">
+                <TrendingUp className="mt-0.5 h-4 w-4 shrink-0 text-[#2563EB]" />
+                <p className="text-[14px] leading-[1.65] text-[#5F5F66]">
+                  <strong className="text-[#111]">{item.title}</strong> — {item.body}
+                </p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </ContentSection>
+
+      <PageCta
+        title={`Ready to save ${formatCurrency(savings.totalAnnual)}?`}
+        subtitle="See Jataka catch Governor Limit breaches and heal broken tests in real time."
+        secondaryLabel="See pricing"
+        secondaryHref="/pricing"
       />
-
-      <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
-        
-
-        {isMobileMenuOpen && (
-          <div className="fixed top-[64px] left-0 right-0 z-[150] bg-[#FAF8F3] border-b border-[#1a1a1a]/10 md:hidden">
-            <div className="px-[24px] py-[20px] flex flex-col gap-[16px]">
-              <button onClick={() => router.push("/")} className="text-[#666] text-[14px] font-medium">Home</button>
-              <button onClick={() => router.push("/blog")} className="text-[#666] text-[14px] font-medium">Demos</button>
-              <button onClick={() => router.push("/use-cases")} className="text-[#666] text-[14px] font-medium">Use Cases</button>
-              <button onClick={() => router.push("/anti-patterns")} className="text-[#666] text-[14px] font-medium">Anti-Patterns</button>
-              <button onClick={() => router.push("/book-pilot")} className="bg-[#FF2424] text-white px-[20px] py-[12px] font-archivo text-[12px] uppercase tracking-[1.5px] rounded-[4px]">Book Demo</button>
-            </div>
-          </div>
-        )}
-
-        {/* HERO */}
-        <section className="pt-[120px] pb-[40px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1200px] mx-auto text-center">
-            <Reveal>
-              <div className="inline-flex items-center gap-[9px] bg-[#FF2424]/10 border border-[#FF2424]/20 px-[18px] py-[6px] mb-[24px] text-[11.5px] font-bold uppercase tracking-[2.5px] text-[#FF2424]">
-                <Calculator className="w-[14px] h-[14px]" />
-                ROI Calculator
-              </div>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <h1 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1.1] tracking-[-1.5px] uppercase mb-[24px]">
-                Calculate Your<br />
-                <span className="text-[#FF2424]">Annual Savings</span>
-              </h1>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <p className="text-[17px] leading-[1.7] text-[#444] max-w-[700px] mx-auto">
-                See how much Jataka will save your enterprise in recovered engineering hours 
-                and prevented downtime. CFOs and VPs of Engineering use this to justify the investment.
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* CALCULATOR */}
-        <section className="pb-[60px] px-[24px] md:px-[48px]">
-          <div className="max-w-[1100px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[40px]">
-              {/* INPUTS */}
-              <Reveal>
-                <div className="bg-white rounded-[12px] p-[32px] border border-[#1a1a1a]/5">
-                  <h2 className="font-archivo text-[20px] tracking-[-0.5px] uppercase mb-[30px]">
-                    Your Inputs
-                  </h2>
-
-                  {/* Developers */}
-                  <div className="mb-[24px]">
-                    <label className="flex items-center gap-[8px] text-[14px] font-medium mb-[8px]">
-                      <Users className="w-[16px] h-[16px] text-[#FF2424]" />
-                      How many Salesforce developers do you have?
-                    </label>
-                    <input
-                      type="number"
-                      value={developers}
-                      onChange={(e) => setDevelopers(Math.max(1, parseInt(e.target.value) || 1))}
-                      className="w-full bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[8px] px-[16px] py-[12px] text-[16px] focus:outline-none focus:border-[#FF2424]/30"
-                    />
-                  </div>
-
-                  {/* Review Hours */}
-                  <div className="mb-[24px]">
-                    <label className="flex items-center gap-[8px] text-[14px] font-medium mb-[8px]">
-                      <Clock className="w-[16px] h-[16px] text-[#FF2424]" />
-                      How many hours/week do seniors spend on PR review?
-                    </label>
-                    <input
-                      type="number"
-                      value={reviewHours}
-                      onChange={(e) => setReviewHours(Math.max(0, parseInt(e.target.value) || 0))}
-                      className="w-full bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[8px] px-[16px] py-[12px] text-[16px] focus:outline-none focus:border-[#FF2424]/30"
-                    />
-                  </div>
-
-                  {/* Test Maintenance */}
-                  <div className="mb-[24px]">
-                    <label className="flex items-center gap-[8px] text-[14px] font-medium mb-[8px]">
-                      <Clock className="w-[16px] h-[16px] text-[#FF2424]" />
-                      How many hours/week on test maintenance?
-                    </label>
-                    <input
-                      type="number"
-                      value={testMaintenanceHours}
-                      onChange={(e) => setTestMaintenanceHours(Math.max(0, parseInt(e.target.value) || 0))}
-                      className="w-full bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[8px] px-[16px] py-[12px] text-[16px] focus:outline-none focus:border-[#FF2424]/30"
-                    />
-                  </div>
-
-                  {/* Sev-1 Incidents */}
-                  <div className="mb-[24px]">
-                    <label className="flex items-center gap-[8px] text-[14px] font-medium mb-[8px]">
-                      <AlertTriangle className="w-[16px] h-[16px] text-[#FF2424]" />
-                      How many Sev-1 rollback incidents last year?
-                    </label>
-                    <input
-                      type="number"
-                      value={sev1Incidents}
-                      onChange={(e) => setSev1Incidents(Math.max(0, parseInt(e.target.value) || 0))}
-                      className="w-full bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[8px] px-[16px] py-[12px] text-[16px] focus:outline-none focus:border-[#FF2424]/30"
-                    />
-                  </div>
-
-                  {/* Sev-1 Cost */}
-                  <div className="mb-[24px]">
-                    <label className="flex items-center gap-[8px] text-[14px] font-medium mb-[8px]">
-                      <DollarSign className="w-[16px] h-[16px] text-[#FF2424]" />
-                      Average cost per Sev-1 outage ($)
-                    </label>
-                    <input
-                      type="number"
-                      value={sev1Cost}
-                      onChange={(e) => setSev1Cost(Math.max(0, parseInt(e.target.value) || 0))}
-                      className="w-full bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[8px] px-[16px] py-[12px] text-[16px] focus:outline-none focus:border-[#FF2424]/30"
-                    />
-                    <p className="text-[12px] text-[#888] mt-[6px]">Includes downtime, emergency engineering, customer impact</p>
-                  </div>
-
-                  {/* Developer Rate */}
-                  <div className="mb-[8px]">
-                    <label className="flex items-center gap-[8px] text-[14px] font-medium mb-[8px]">
-                      <DollarSign className="w-[16px] h-[16px] text-[#FF2424]" />
-                      Senior developer hourly rate ($)
-                    </label>
-                    <input
-                      type="number"
-                      value={seniorDeveloperRate}
-                      onChange={(e) => setSeniorDeveloperRate(Math.max(50, parseInt(e.target.value) || 50))}
-                      className="w-full bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[8px] px-[16px] py-[12px] text-[16px] focus:outline-none focus:border-[#FF2424]/30"
-                    />
-                  </div>
-                </div>
-              </Reveal>
-
-              {/* RESULTS */}
-              <Reveal delay={100}>
-                <div className="bg-[#1a1a1a] rounded-[12px] p-[32px] text-white h-full flex flex-col">
-                  <h2 className="font-archivo text-[20px] tracking-[-0.5px] uppercase mb-[30px]">
-                    Your Savings
-                  </h2>
-
-                  {/* Total */}
-                  <div className="bg-[#FF2424] rounded-[12px] p-[24px] mb-[24px] text-center">
-                    <p className="text-[12px] uppercase tracking-[2px] text-white/80 mb-[8px]">Total Annual Savings</p>
-                    <p className="text-[48px] font-archivo text-white leading-[1]">
-                      {formatCurrency(savings.totalAnnual)}
-                    </p>
-                  </div>
-
-                  {/* Breakdown */}
-                  <div className="space-y-[16px] flex-grow">
-                    <div className="flex items-center justify-between p-[16px] bg-white/5 rounded-[8px]">
-                      <div className="flex items-center gap-[12px]">
-                        <CheckCircle className="w-[16px] h-[16px] text-[#22c55e]" />
-                        <span className="text-[14px]">PR Review Time Saved</span>
-                      </div>
-                      <span className="text-[16px] font-archivo">{formatCurrency(savings.reviewTime)}</span>
-                    </div>
-
-                    <div className="flex items-center justify-between p-[16px] bg-white/5 rounded-[8px]">
-                      <div className="flex items-center gap-[12px]">
-                        <CheckCircle className="w-[16px] h-[16px] text-[#22c55e]" />
-                        <span className="text-[14px]">Test Maintenance Saved</span>
-                      </div>
-                      <span className="text-[16px] font-archivo">{formatCurrency(savings.testMaintenance)}</span>
-                    </div>
-
-                    <div className="flex items-center justify-between p-[16px] bg-white/5 rounded-[8px]">
-                      <div className="flex items-center gap-[12px]">
-                        <CheckCircle className="w-[16px] h-[16px] text-[#22c55e]" />
-                        <span className="text-[14px]">Prevented Sev-1 Incidents</span>
-                      </div>
-                      <span className="text-[16px] font-archivo">{formatCurrency(savings.preventedIncidents)}</span>
-                    </div>
-                  </div>
-
-                  {/* ROI */}
-                  <div className="mt-[24px] pt-[24px] border-t border-white/10">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[14px] text-white/60">Typical Jataka Investment</span>
-                      <span className="text-[16px] font-archivo">$30,000 - $50,000/year</span>
-                    </div>
-                    <div className="flex items-center justify-between mt-[12px]">
-                      <span className="text-[14px] font-medium">Your ROI</span>
-                      <span className="text-[20px] font-archivo text-[#22c55e]">
-                        {Math.round((savings.totalAnnual / 40000) * 100)}%
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        {/* BENCHMARKS */}
-        <section className="py-[60px] px-[24px] md:px-[48px] bg-white">
-          <div className="max-w-[1000px] mx-auto">
-            <Reveal>
-              <h2 className="font-archivo text-[clamp(24px,3vw,32px)] leading-[1.1] tracking-[-1px] uppercase mb-[30px] text-center">
-                Industry Benchmarks Used
-              </h2>
-            </Reveal>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px] items-stretch">
-              {industryBenchmarks.map((benchmark) => (
-                <Reveal key={benchmark.metric} delay={100} className="h-full min-h-0">
-                  <div className="bg-[#FAF8F3] rounded-[12px] p-[20px] text-center h-full flex flex-col justify-center">
-                    <p className="text-[11px] uppercase tracking-[1px] text-[#888] mb-[8px]">{benchmark.metric}</p>
-                    <p className="text-[24px] font-archivo text-[#FF2424]">{benchmark.value}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ASSUMPTIONS */}
-        <section className="py-[60px] px-[24px] md:px-[48px]">
-          <div className="max-w-[800px] mx-auto">
-            <Reveal>
-              <h2 className="font-archivo text-[clamp(24px,3vw,32px)] leading-[1.1] tracking-[-1px] uppercase mb-[30px] text-center">
-                Calculation Assumptions
-              </h2>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <div className="bg-[#FAF8F3] rounded-[12px] p-[28px] space-y-[16px]">
-                <div className="flex items-start gap-[12px]">
-                  <TrendingUp className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[2px]" />
-                  <p className="text-[14px] text-[#444]">
-                    <strong className="text-[#1a1a1a]">40% reduction in PR review time</strong> ,  Jataka catches 
-                    Governor Limit breaches before the PR reaches the reviewer, eliminating the most time-consuming reviews.
-                  </p>
-                </div>
-
-                <div className="flex items-start gap-[12px]">
-                  <TrendingUp className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[2px]" />
-                  <p className="text-[14px] text-[#444]">
-                    <strong className="text-[#1a1a1a]">90% reduction in test maintenance</strong> ,  Self-healing tests 
-                    automatically adapt to Salesforce UI changes, eliminating manual test fixes.
-                  </p>
-                </div>
-
-                <div className="flex items-start gap-[12px]">
-                  <TrendingUp className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[2px]" />
-                  <p className="text-[14px] text-[#444]">
-                    <strong className="text-[#1a1a1a]">80% of Sev-1 incidents prevented</strong> ,  Jataka catches 
-                    the majority of limit breaches and data corruption issues before they reach production.
-                  </p>
-                </div>
-
-                <div className="flex items-start gap-[12px]">
-                  <TrendingUp className="w-[16px] h-[16px] text-[#FF2424] flex-shrink-0 mt-[2px]" />
-                  <p className="text-[14px] text-[#444]">
-                    <strong className="text-[#1a1a1a]">Your Sev-1 cost estimate</strong> ,  You provided this value above. 
-                    Industry average is $150,000, but your actual cost may vary based on company size and customer impact.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="py-[100px] px-[24px] md:px-[48px] bg-[#1a1a1a]">
-          <div className="max-w-[1000px] mx-auto text-center">
-            <Reveal>
-              <p className="text-[12px] font-medium uppercase tracking-[3px] text-[#FF2424] mb-[30px]">
-                Ready to save {formatCurrency(savings.totalAnnual)}?
-              </p>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <h2 className="font-archivo text-[clamp(36px,5vw,60px)] leading-[1] tracking-[-1.5px] uppercase mb-[20px] text-white">
-                Book a demo and<br />
-                <span className="text-[#FF2424]">start saving.</span>
-              </h2>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <p className="text-[17px] leading-[1.7] text-[#999] max-w-[600px] mx-auto mb-[40px]">
-                See Jataka in action. Watch it catch Governor Limit breaches and heal broken tests in real-time. 
-                Your ROI calculation will become reality.
-              </p>
-            </Reveal>
-
-            <Reveal delay={300}>
-              <div className="flex flex-col md:flex-row gap-[16px] justify-center">
-                <button 
-                  onClick={() => router.push("/book-pilot")} 
-                  className="group bg-[#FF2424] text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] hover:bg-[#d91f1f] transition-all duration-300 flex items-center justify-center gap-[12px]"
-                >
-                  Book a Demo
-                  <ArrowRight className="w-[14px] h-[14px] group-hover:translate-x-[4px] transition-transform" />
-                </button>
-                <button 
-                  onClick={() => router.push("/use-cases/enterprise")} 
-                  className="group bg-transparent text-white px-[40px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[4px] border border-[#333] hover:border-[#FF2424]/50 transition-all duration-300 flex items-center justify-center gap-[12px]"
-                >
-                  Enterprise Use Case
-                </button>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      </div>
-    </>
+    </MarketingShell>
   );
 }

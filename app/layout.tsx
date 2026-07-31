@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Archivo_Black, JetBrains_Mono } from "next/font/google";
+import { Inter, Archivo_Black, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "./components/SiteHeader";
+import RouteScrollManager from "./components/RouteScrollManager";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,10 +23,17 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "600"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-instrument-serif",
+  weight: "400",
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://jataka.io"),
   title: {
-    default: "Jataka ,  AI-Powered Salesforce Development Platform | Stop Rollbacks Before They Happen",
+    default: "Jataka — AI-Powered Salesforce Development Platform | Stop Rollbacks Before They Happen",
     template: "%s | Jataka"
   },
   description: "Jataka helps Salesforce teams catch Governor Limit breaches before deployment, automatically heal UI tests, and predict blast radius of code changes. Zero Sev-1s. 90% less test maintenance. Deploy with confidence.",
@@ -69,7 +78,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://jataka.io",
     siteName: "Jataka",
-    title: "Jataka ,  AI-Powered Salesforce Development Platform",
+    title: "Jataka — AI-Powered Salesforce Development Platform",
     description: "Catch Governor Limit breaches before deployment. Automatically heal UI tests. Predict blast radius of code changes. Zero Sev-1s. Deploy with confidence.",
     images: [
       {
@@ -82,7 +91,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jataka ,  AI-Powered Salesforce Development Platform",
+    title: "Jataka — AI-Powered Salesforce Development Platform",
     description: "Catch Governor Limit breaches before deployment. Automatically heal UI tests. Predict blast radius of code changes.",
     images: ["/og-image.png"],
     creator: "@jataka_ai",
@@ -90,9 +99,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/TabLogo.svg", type: "image/svg+xml" },
     ],
-    apple: "/apple-touch-icon.png",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.json",
   alternates: {
@@ -113,10 +124,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body
-        className={`${inter.variable} ${archivoBlack.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${inter.variable} ${archivoBlack.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable} antialiased`}
       >
+        <RouteScrollManager />
         <SiteHeader />
         <div className="pt-[64px]">{children}</div>
       </body>

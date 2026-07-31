@@ -3,11 +3,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ArrowLeft, ArrowRight, ArrowDown, Zap, Lock } from "lucide-react";
+import { MarketingShell } from "../../../components/marketing";
 
 // --- Custom Brand Logos (Accurate SVGs) ---
 function JiraLogo({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 32" fill="none" className={className} aria-hidden="true">
+      <svg viewBox="0 0 32 32" fill="none" className={className} aria-hidden="true">
       <g id="Icon">
         <path d="M24.664 3H12.2603C12.2603 5.99443 14.7697 8.43176 17.8527 8.43176H20.147V10.5557C20.147 13.5501 22.6565 15.9875 25.7395 15.9875V4.04457C25.7395 3.45265 25.2735 3 24.664 3Z" fill="#2684FF"/>
         <path d="M18.5339 8.98877H6.13013C6.13013 11.9832 8.63956 14.4205 11.7226 14.4205H14.0169V16.5793C14.0169 19.5737 16.5264 22.0111 19.6094 22.0111V10.0333C19.6094 9.47623 19.1433 8.98877 18.5339 8.98877Z" fill="url(#paint0_linear)"/>
@@ -46,7 +47,7 @@ function SalesforceLogo({ className }: { className?: string }) {
 // --- Shared Components ---
 function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-[#FF2424]/20 bg-[#FF2424]/10 px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424]">
+    <span className="inline-flex items-center rounded-full border border-[#2563EB]/20 bg-[#2563EB]/10 px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#2563EB]">
       {children}
     </span>
   );
@@ -63,33 +64,33 @@ function ProblemFlowDiagram() {
   return (
     <div className="overflow-hidden rounded-[32px] border border-[#1A1A1A]/10 bg-[linear-gradient(180deg,#fff_0%,#fff7f5_100%)] p-5 shadow-[0_28px_70px_rgba(255,36,36,0.08)] md:p-8">
       <div className="relative h-full rounded-[24px] border border-[#1A1A1A]/8 bg-[radial-gradient(circle_at_center,_rgba(255,36,36,0.1),_transparent_62%),linear-gradient(180deg,#fff_0%,#fffaf8_100%)] px-4 py-6 md:px-8 md:py-8">
-        <div className="absolute inset-x-0 bottom-0 mx-auto h-24 w-40 rounded-full bg-[#FF2424]/10 blur-3xl" />
+        <div className="absolute inset-x-0 bottom-0 mx-auto h-24 w-40 rounded-full bg-[#2563EB]/10 blur-3xl" />
         <div className="relative mx-auto flex w-full max-w-[280px] items-center justify-center rounded-[18px] bg-[#1A1A1A] px-5 py-4 text-center text-white shadow-[0_18px_40px_rgba(26,26,26,0.2)]">
           <div>
-            <div className="font-archivo text-[16px] uppercase leading-[1.05] tracking-[-0.4px] md:text-[17px]">Developer or AI Agent</div>
+            <div className="font-semibold tracking-tight text-[16px] uppercase leading-[1.05] tracking-[-0.4px] md:text-[17px]">Developer or AI Agent</div>
             <div className="mt-2 text-[11px] leading-[1.45] text-white/72 md:text-[12px]">Changes Lead Status Dropdown</div>
           </div>
         </div>
 
         <div className="relative mx-auto flex h-14 w-10 items-center justify-center">
-          <div className="h-full w-px bg-gradient-to-b from-[#1A1A1A] via-[#5E5E5E] to-[#FF2424]" />
-          <div className="absolute bottom-[5px] h-0 w-0 border-l-[5px] border-r-[5px] border-t-[8px] border-l-transparent border-r-transparent border-t-[#FF2424]" />
+          <div className="h-full w-px bg-gradient-to-b from-[#1A1A1A] via-[#5E5E5E] to-[#2563EB]" />
+          <div className="absolute bottom-[5px] h-0 w-0 border-l-[5px] border-r-[5px] border-t-[8px] border-l-transparent border-r-transparent border-t-[#2563EB]" />
         </div>
 
-        <div className="relative mx-auto flex h-[188px] w-[188px] items-center justify-center rotate-45 rounded-[32px] border border-white/25 bg-[#FF2424] shadow-[0_26px_50px_rgba(255,36,36,0.32)] md:h-[196px] md:w-[196px]">
+        <div className="relative mx-auto flex h-[188px] w-[188px] items-center justify-center rotate-45 rounded-[32px] border border-white/25 bg-[#2563EB] shadow-[0_26px_50px_rgba(255,36,36,0.32)] md:h-[196px] md:w-[196px]">
           <div className="absolute inset-[14px] rounded-[24px] border border-white/20" />
           <div className="-rotate-45 px-5 text-center text-white">
-            <div className="font-archivo text-[21px] uppercase leading-[0.96] tracking-[-0.6px] md:text-[24px]">Builds in Vacuum</div>
+            <div className="font-semibold tracking-tight text-[21px] uppercase leading-[0.96] tracking-[-0.6px] md:text-[24px]">Builds in Vacuum</div>
             <div className="mt-2 text-[11px] font-medium uppercase tracking-[1.3px] text-white/80 md:text-[12px]">No Enterprise Context</div>
           </div>
         </div>
 
         <div className="relative mx-auto mt-8 hidden h-[86px] w-full max-w-[620px] lg:block">
           <div className="absolute left-1/2 top-0 h-[18px] w-px -translate-x-1/2 bg-[#1A1A1A]/45" />
-          <div className="absolute left-[12%] top-[34px] h-px w-[38%] origin-right rotate-[-18deg] bg-gradient-to-r from-[#FF2424]/0 via-[#1A1A1A]/45 to-[#1A1A1A]/45" />
-          <div className="absolute left-[29%] top-[24px] h-px w-[22%] origin-right rotate-[-39deg] bg-gradient-to-r from-[#FF2424]/0 via-[#1A1A1A]/45 to-[#1A1A1A]/45" />
-          <div className="absolute right-[29%] top-[24px] h-px w-[22%] origin-left rotate-[39deg] bg-gradient-to-l from-[#FF2424]/0 via-[#1A1A1A]/45 to-[#1A1A1A]/45" />
-          <div className="absolute right-[12%] top-[34px] h-px w-[38%] origin-left rotate-[18deg] bg-gradient-to-l from-[#FF2424]/0 via-[#1A1A1A]/45 to-[#1A1A1A]/45" />
+          <div className="absolute left-[12%] top-[34px] h-px w-[38%] origin-right rotate-[-18deg] bg-gradient-to-r from-[#2563EB]/0 via-[#1A1A1A]/45 to-[#1A1A1A]/45" />
+          <div className="absolute left-[29%] top-[24px] h-px w-[22%] origin-right rotate-[-39deg] bg-gradient-to-r from-[#2563EB]/0 via-[#1A1A1A]/45 to-[#1A1A1A]/45" />
+          <div className="absolute right-[29%] top-[24px] h-px w-[22%] origin-left rotate-[39deg] bg-gradient-to-l from-[#2563EB]/0 via-[#1A1A1A]/45 to-[#1A1A1A]/45" />
+          <div className="absolute right-[12%] top-[34px] h-px w-[38%] origin-left rotate-[18deg] bg-gradient-to-l from-[#2563EB]/0 via-[#1A1A1A]/45 to-[#1A1A1A]/45" />
         </div>
 
         <div className="relative mt-6 grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-4">
@@ -97,14 +98,14 @@ function ProblemFlowDiagram() {
             <div
               key={outcome.title}
               className={outcome.critical
-                ? "flex flex-col overflow-hidden rounded-[20px] border border-[#FF2424] bg-[#FF2424] px-3 py-4 text-center text-white shadow-[0_14px_34px_rgba(255,36,36,0.24)] md:px-4"
-                : "flex flex-col overflow-hidden rounded-[20px] border border-[#FF2424]/18 bg-white/95 px-3 py-4 text-center shadow-[0_12px_30px_rgba(26,26,26,0.05)] backdrop-blur md:px-4"
+                ? "flex flex-col overflow-hidden rounded-[20px] border border-[#2563EB] bg-[#2563EB] px-3 py-4 text-center text-white shadow-[0_14px_34px_rgba(255,36,36,0.24)] md:px-4"
+                : "flex flex-col overflow-hidden rounded-[20px] border border-[#2563EB]/18 bg-white/95 px-3 py-4 text-center shadow-[0_12px_30px_rgba(26,26,26,0.05)] backdrop-blur md:px-4"
               }
             >
-              <div className={outcome.critical ? "font-mono text-[9px] uppercase tracking-[1.4px] text-white/75" : "font-mono text-[9px] uppercase tracking-[1.4px] text-[#FF2424]"}>
+              <div className={outcome.critical ? "font-mono text-[9px] uppercase tracking-[1.4px] text-white/75" : "font-mono text-[9px] uppercase tracking-[1.4px] text-[#2563EB]"}>
                 {outcome.label}
               </div>
-              <div className={outcome.critical ? "mt-2 break-words font-archivo text-[12px] uppercase leading-[1.15] tracking-[-0.2px] md:text-[13px]" : "mt-2 break-words font-archivo text-[12px] uppercase leading-[1.15] tracking-[-0.2px] text-[#1A1A1A] md:text-[13px]"}>
+              <div className={outcome.critical ? "mt-2 break-words font-semibold tracking-tight text-[12px] uppercase leading-[1.15] tracking-[-0.2px] md:text-[13px]" : "mt-2 break-words font-semibold tracking-tight text-[12px] uppercase leading-[1.15] tracking-[-0.2px] text-[#1A1A1A] md:text-[13px]"}>
                 {outcome.title}
               </div>
             </div>
@@ -117,8 +118,9 @@ function ProblemFlowDiagram() {
 
 export default function ExecutiveStoryPage() {
   return (
-    <main className="relative min-h-screen bg-[#F7F1E8] text-[#1A1A1A]">
-      <div className="absolute inset-x-0 top-0 h-[600px] bg-[radial-gradient(circle_at_top,_rgba(255,36,36,0.12),_transparent_60%)]" />
+    <MarketingShell>
+    <main className="relative min-h-screen bg-[#F3F3F4] text-[#1A1A1A]">
+      <div className="absolute inset-x-0 top-0 h-[600px] bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.12),_transparent_60%)]" />
 
       {/* ========================================================
           SECTION 1: THE PROBLEM (THE BLINDFOLDED BUILDER)
@@ -134,16 +136,16 @@ export default function ExecutiveStoryPage() {
           </Link>
 
           <div className="mt-14 max-w-[1080px]">
-            <div className="inline-flex items-center gap-[9px] rounded-[4px] border border-[#FF2424]/25 bg-[#FF2424]/10 px-[18px] py-[7px] text-[11px] font-bold uppercase tracking-[3px] text-[#FF2424]">
+            <div className="inline-flex items-center gap-[9px] rounded-[4px] border border-[#2563EB]/25 bg-[#2563EB]/10 px-[18px] py-[7px] text-[11px] font-bold uppercase tracking-[3px] text-[#2563EB]">
               <Lock className="h-[13px] w-[13px]" />
               Confidential: Executive Briefing Prepared for BOT Consulting
             </div>
             <p className="mt-6 font-mono text-[11.5px] font-bold uppercase tracking-[3px] text-[#666]">
               The era of generating code is over. The era of governing it is here.
             </p>
-            <h1 className="mt-5 max-w-[980px] font-archivo text-[clamp(34px,5.6vw,64px)] leading-[1.02] tracking-[-2px] uppercase text-[#1A1A1A]">
+            <h1 className="mt-5 max-w-[980px] font-semibold tracking-tight text-[clamp(34px,5.6vw,64px)] leading-[1.02] tracking-[-2px] uppercase text-[#1A1A1A]">
               The World&apos;s First <br />
-              <span className="text-[#FF2424]">Context Engine</span> for <br />
+              <span className="text-[#2563EB]">Context Engine</span> for <br />
               Enterprise Architecture.
             </h1>
             <p className="mt-8 max-w-[760px] text-[18px] leading-[1.7] text-[#4B4B4B] md:text-[20px]">
@@ -153,15 +155,15 @@ export default function ExecutiveStoryPage() {
           </div>
 
           <div className="mt-16 grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(460px,1.08fr)] lg:items-stretch">
-            <div className="rounded-[32px] border-l-4 border-[#FF2424] bg-white p-8 shadow-[0_22px_60px_rgba(26,26,26,0.06)] md:p-12">
-              <h2 className="font-archivo text-[28px] leading-none tracking-[-0.8px] uppercase text-[#1A1A1A]">
+            <div className="rounded-[32px] border-l-4 border-[#2563EB] bg-white p-8 shadow-[0_22px_60px_rgba(26,26,26,0.06)] md:p-12">
+              <h2 className="font-semibold tracking-tight text-[28px] leading-none tracking-[-0.8px] uppercase text-[#1A1A1A]">
                 The Problem: The Blindfolded Builder
               </h2>
               <div className="mt-6 space-y-4 text-[16px] leading-[1.8] text-[#4B4B4B]">
                 <p>
                   AI and offshore teams can ship faster than ever, but without enterprise context they are still building blindfolded.
                 </p>
-                <ul className="list-inside list-disc space-y-2 marker:text-[#FF2424]">
+                <ul className="list-inside list-disc space-y-2 marker:text-[#2563EB]">
                   <li>Small code changes can silently break ERP workflows, billing, and downstream integrations.</li>
                   <li>Code that works on 10 records can fail catastrophically at 150,000 records under real production load.</li>
                   <li>Clients lose revenue, GCCs absorb SLA penalties, and senior architects become the manual safety net.</li>
@@ -185,7 +187,7 @@ export default function ExecutiveStoryPage() {
         <div className="mx-auto max-w-[1240px]">
           <div className="text-center">
             <Eyebrow>The Solution</Eyebrow>
-            <h2 className="mt-6 font-archivo text-[clamp(34px,5vw,56px)] leading-[1] tracking-[-1.5px] uppercase">
+            <h2 className="mt-6 font-semibold tracking-tight text-[clamp(34px,5vw,56px)] leading-[1] tracking-[-1.5px] uppercase">
               Triangulation of Context
             </h2>
             <p className="mx-auto mt-5 max-w-[760px] text-[17px] leading-[1.8] text-[#4B4B4B]">
@@ -203,10 +205,10 @@ export default function ExecutiveStoryPage() {
                     <JiraLogo className="h-8 w-8" />
                   </div>
                   <div>
-                    <div className="font-archivo text-[18px] uppercase leading-tight tracking-[-0.4px] text-[#1A1A1A]">Jira feeds</div>
+                    <div className="font-semibold tracking-tight text-[18px] uppercase leading-tight tracking-[-0.4px] text-[#1A1A1A]">Jira feeds</div>
                     <div className="mt-1 text-[14px] text-[#666]">Business Intent (The "Why")</div>
                   </div>
-                  <div className="hidden h-10 w-10 items-center justify-center rounded-full bg-[#FF2424]/10 text-[#FF2424] xl:flex">
+                  <div className="hidden h-10 w-10 items-center justify-center rounded-full bg-[#2563EB]/10 text-[#2563EB] xl:flex">
                     <ArrowRight className="h-5 w-5" />
                   </div>
                 </div>
@@ -216,10 +218,10 @@ export default function ExecutiveStoryPage() {
                     <GithubLogo className="h-8 w-8" />
                   </div>
                   <div>
-                    <div className="font-archivo text-[18px] uppercase leading-tight tracking-[-0.4px] text-[#1A1A1A]">GitHub feeds</div>
+                    <div className="font-semibold tracking-tight text-[18px] uppercase leading-tight tracking-[-0.4px] text-[#1A1A1A]">GitHub feeds</div>
                     <div className="mt-1 text-[14px] text-[#666]">Architecture Map (The "Where")</div>
                   </div>
-                  <div className="hidden h-10 w-10 items-center justify-center rounded-full bg-[#FF2424]/10 text-[#FF2424] xl:flex">
+                  <div className="hidden h-10 w-10 items-center justify-center rounded-full bg-[#2563EB]/10 text-[#2563EB] xl:flex">
                     <ArrowRight className="h-5 w-5" />
                   </div>
                 </div>
@@ -229,31 +231,31 @@ export default function ExecutiveStoryPage() {
                     <SalesforceLogo className="h-8 w-8" />
                   </div>
                   <div>
-                    <div className="font-archivo text-[18px] uppercase leading-tight tracking-[-0.4px] text-[#1A1A1A]">Salesforce feeds</div>
+                    <div className="font-semibold tracking-tight text-[18px] uppercase leading-tight tracking-[-0.4px] text-[#1A1A1A]">Salesforce feeds</div>
                     <div className="mt-1 text-[14px] text-[#666]">Live Physics (The "Scale")</div>
                   </div>
-                  <div className="hidden h-10 w-10 items-center justify-center rounded-full bg-[#FF2424]/10 text-[#FF2424] xl:flex">
+                  <div className="hidden h-10 w-10 items-center justify-center rounded-full bg-[#2563EB]/10 text-[#2563EB] xl:flex">
                     <ArrowRight className="h-5 w-5" />
                   </div>
                 </div>
 
                 <div className="flex justify-center xl:hidden">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FF2424]/10 text-[#FF2424]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#2563EB]/10 text-[#2563EB]">
                     <ArrowDown className="h-6 w-6" />
                   </div>
                 </div>
               </div>
 
               <div className="relative">
-                <div className="absolute left-0 top-[86px] hidden h-px w-10 bg-gradient-to-r from-[#FF2424]/0 to-[#FF2424]/35 xl:block" />
-                <div className="rounded-[30px] border border-[#1A1A1A]/8 bg-[radial-gradient(circle_at_top,_rgba(255,36,36,0.12),_transparent_38%),linear-gradient(180deg,#ffffff_0%,#fff8f5_100%)] p-6 shadow-[0_22px_70px_rgba(255,36,36,0.08)] md:p-8">
+                <div className="absolute left-0 top-[86px] hidden h-px w-10 bg-gradient-to-r from-[#2563EB]/0 to-[#2563EB]/35 xl:block" />
+                <div className="rounded-[30px] border border-[#1A1A1A]/8 bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.12),_transparent_38%),linear-gradient(180deg,#ffffff_0%,#fff8f5_100%)] p-6 shadow-[0_22px_70px_rgba(255,36,36,0.08)] md:p-8">
                   <div className="flex flex-col gap-6 border-b border-[#1A1A1A]/8 pb-8 md:flex-row md:items-start">
-                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-[18px] bg-[#FF2424]/12 text-[#FF2424] shadow-[0_14px_30px_rgba(255,36,36,0.14)]">
+                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-[18px] bg-[#2563EB]/12 text-[#2563EB] shadow-[0_14px_30px_rgba(255,36,36,0.14)]">
                       <Zap className="h-8 w-8" />
                     </div>
                     <div>
-                      <div className="font-mono text-[10px] font-bold uppercase tracking-[2.4px] text-[#FF2424]">The Jataka Core</div>
-                      <h3 className="mt-3 font-archivo text-[clamp(28px,3.5vw,44px)] leading-[0.96] tracking-[-1.2px] uppercase text-[#1A1A1A]">
+                      <div className="font-mono text-[10px] font-bold uppercase tracking-[2.4px] text-[#2563EB]">The Jataka Core</div>
+                      <h3 className="mt-3 font-semibold tracking-tight text-[clamp(28px,3.5vw,44px)] leading-[0.96] tracking-[-1.2px] uppercase text-[#1A1A1A]">
                         The Jataka <br className="hidden sm:block" />Context Engine
                       </h3>
                       <p className="mt-4 max-w-[620px] text-[16px] leading-[1.72] text-[#4B4B4B]">
@@ -267,10 +269,10 @@ export default function ExecutiveStoryPage() {
                       <div className="mb-4 inline-flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#155EEF]/10 text-[#155EEF]">
                         <JiraLogo className="h-5 w-5" />
                       </div>
-                      <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#FF2424]">
+                      <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#2563EB]">
                         Business Context
                       </p>
-                      <h4 className="mb-3 font-archivo text-[20px] uppercase leading-[1.05] tracking-[-0.5px] text-[#1A1A1A]">
+                      <h4 className="mb-3 font-semibold tracking-tight text-[20px] uppercase leading-[1.05] tracking-[-0.5px] text-[#1A1A1A]">
                         Business Intent &amp; Process Logic
                       </h4>
                       <div className="mt-5 rounded-[16px] bg-[#155EEF]/5 px-4 py-4">
@@ -287,10 +289,10 @@ export default function ExecutiveStoryPage() {
                       <div className="mb-4 inline-flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#1A1A1A]/6 text-[#1A1A1A]">
                         <GithubLogo className="h-5 w-5" />
                       </div>
-                      <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#FF2424]">
+                      <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#2563EB]">
                         Architectural Context
                       </p>
-                      <h4 className="mb-3 font-archivo text-[20px] uppercase leading-[1.05] tracking-[-0.5px] text-[#1A1A1A]">
+                      <h4 className="mb-3 font-semibold tracking-tight text-[20px] uppercase leading-[1.05] tracking-[-0.5px] text-[#1A1A1A]">
                         The Blast Radius Map
                       </h4>
                       <div className="mt-5 rounded-[16px] bg-[#1A1A1A]/4 px-4 py-4">
@@ -307,10 +309,10 @@ export default function ExecutiveStoryPage() {
                       <div className="mb-4 inline-flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#00A1E0]/10 text-[#00A1E0]">
                         <SalesforceLogo className="h-5 w-5" />
                       </div>
-                      <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#FF2424]">
+                      <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[2px] text-[#2563EB]">
                         Runtime Context
                       </p>
-                      <h4 className="mb-3 font-archivo text-[20px] uppercase leading-[1.05] tracking-[-0.5px] text-[#1A1A1A]">
+                      <h4 className="mb-3 font-semibold tracking-tight text-[20px] uppercase leading-[1.05] tracking-[-0.5px] text-[#1A1A1A]">
                         The Physics of Scale
                       </h4>
                       <div className="mt-5 rounded-[16px] bg-[#00A1E0]/6 px-4 py-4">
@@ -332,21 +334,21 @@ export default function ExecutiveStoryPage() {
 
       <section className="relative px-6 py-24 md:px-10 lg:px-16">
         <div className="mx-auto max-w-[1040px]">
-          <div className="rounded-[34px] border border-[#FF2424]/15 bg-[#121212] p-8 text-white shadow-[0_30px_90px_rgba(255,36,36,0.12)] md:p-12">
+          <div className="rounded-[34px] border border-[#2563EB]/15 bg-[#121212] p-8 text-white shadow-[0_30px_90px_rgba(37,99,235,0.12)] md:p-12">
             <Eyebrow>What It Unlocks</Eyebrow>
-            <h2 className="mt-6 max-w-[860px] font-archivo text-[clamp(32px,4.4vw,58px)] leading-[1.02] tracking-[-1.6px] uppercase">
-              Because we have solved the Context Problem at the foundational level, we have unlocked <span className="text-[#FF2424]">superhuman capabilities</span> for the enterprise.
+            <h2 className="mt-6 max-w-[860px] font-semibold tracking-tight text-[clamp(32px,4.4vw,58px)] leading-[1.02] tracking-[-1.6px] uppercase">
+              Because we have solved the Context Problem at the foundational level, we have unlocked <span className="text-[#2563EB]">superhuman capabilities</span> for the enterprise.
             </h2>
 
             <div className="mt-10 flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
               <div>
-                <div className="font-archivo text-[clamp(26px,3vw,40px)] uppercase leading-[1] tracking-[-1px]">
+                <div className="font-semibold tracking-tight text-[clamp(26px,3vw,40px)] uppercase leading-[1] tracking-[-1px]">
                   See the Applications Powered by the Context Engine
                 </div>
               </div>
               <Link
                 href="/insider/dataroom-botcon/applications"
-                className="inline-flex items-center gap-3 rounded-full bg-[#FF2424] px-6 py-3 font-archivo text-[15px] uppercase tracking-[0.4px] text-white transition hover:bg-[#e61f1f]"
+                className="inline-flex items-center gap-3 rounded-full bg-[#2563EB] px-6 py-3 font-semibold tracking-tight text-[15px] uppercase tracking-[0.4px] text-white transition hover:bg-[#1d4ed8]"
               >
                 Continue
                 <ArrowRight className="h-4 w-4" />
@@ -357,5 +359,6 @@ export default function ExecutiveStoryPage() {
       </section>
 
     </main>
+    </MarketingShell>
   );
 }

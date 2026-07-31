@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Script from "next/script";
+import { MarketingShell } from "../../../components/marketing";
 import {
   ArrowRight,
   Shield,
@@ -75,10 +76,10 @@ const CHART_PROBLEM = `flowchart TD
     B -->|Silent Breakage| E[System Crashes at Scale]
     
     style A fill:#1a1a1a,stroke:#1a1a1a,stroke-width:2px,color:#ffffff
-    style B fill:#FF2424,stroke:#FF2424,stroke-width:2px,color:#ffffff
-    style C fill:#fff,stroke:#FF2424,stroke-width:2px,color:#1a1a1a
-    style D fill:#fff,stroke:#FF2424,stroke-width:2px,color:#1a1a1a
-    style E fill:#fff,stroke:#FF2424,stroke-width:2px,color:#1a1a1a`;
+    style B fill:#2563EB,stroke:#2563EB,stroke-width:2px,color:#ffffff
+    style C fill:#fff,stroke:#2563EB,stroke-width:2px,color:#1a1a1a
+    style D fill:#fff,stroke:#2563EB,stroke-width:2px,color:#1a1a1a
+    style E fill:#fff,stroke:#2563EB,stroke-width:2px,color:#1a1a1a`;
 
 // Chart 2: The Solution (Context Engine)
 const CHART_SOLUTION = `flowchart LR
@@ -105,7 +106,7 @@ const CHART_SOLUTION = `flowchart LR
     CE --> O2
     CE --> O3
 
-    style CE fill:#FF2424,stroke:#FF2424,stroke-width:4px,color:#ffffff
+    style CE fill:#2563EB,stroke:#2563EB,stroke-width:4px,color:#ffffff
     style J fill:#fff,stroke:#1a1a1a,color:#1a1a1a
     style G fill:#fff,stroke:#1a1a1a,color:#1a1a1a
     style S fill:#fff,stroke:#1a1a1a,color:#1a1a1a`;
@@ -130,9 +131,9 @@ export default function VIPBriefingPage() {
         themeVariables: {
           primaryColor: "#FFFFFF",
           primaryTextColor: "#1a1a1a",
-          primaryBorderColor: "#FF2424",
+          primaryBorderColor: "#2563EB",
           lineColor: "#1a1a1a",
-          secondaryColor: "#FAF8F3",
+          secondaryColor: "#F3F3F4",
           fontFamily: "var(--font-inter), sans-serif",
           fontSize: "14px",
         },
@@ -143,7 +144,8 @@ export default function VIPBriefingPage() {
   },[]);
 
   return (
-    <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a] font-sans">
+    <MarketingShell>
+    <div className="min-h-screen bg-[#F3F3F4] text-[#1a1a1a] font-sans">
       <Script
         src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"
         strategy="beforeInteractive"
@@ -153,16 +155,16 @@ export default function VIPBriefingPage() {
       <section className="pt-[80px] pb-[60px] px-[24px] md:px-[48px] border-b border-[#1a1a1a]/8">
         <div className="max-w-[900px] mx-auto text-center">
           <Reveal>
-            <div className="inline-flex items-center gap-[8px] bg-[#FF2424]/10 border border-[#FF2424]/20 px-[16px] py-[6px] mb-[24px] text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424] rounded-[4px]">
+            <div className="inline-flex items-center gap-[8px] bg-[#2563EB]/10 border border-[#2563EB]/20 px-[16px] py-[6px] mb-[24px] text-[11px] font-bold uppercase tracking-[2px] text-[#2563EB] rounded-[4px]">
               <Lock className="w-[12px] h-[12px]" />
               Private Executive Data Room
             </div>
           </Reveal>
 
           <Reveal delay={100}>
-            <h1 className="font-archivo text-[clamp(36px,5vw,64px)] leading-[1.05] tracking-[-1.5px] uppercase mb-[24px]">
+            <h1 className="font-semibold tracking-tight text-[clamp(36px,5vw,64px)] leading-[1.05] tracking-[-1.5px] uppercase mb-[24px]">
               The era of generating code is over. <br />
-              <span className="text-[#FF2424]">The era of governing it is here.</span>
+              <span className="text-[#2563EB]">The era of governing it is here.</span>
             </h1>
           </Reveal>
 
@@ -178,10 +180,10 @@ export default function VIPBriefingPage() {
       {/* ================= 1. THE PROBLEM ================= */}
       <section className="py-[70px] px-[24px] md:px-[48px] max-w-[1000px] mx-auto">
         <Reveal>
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[12px]">
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[12px]">
             01 / The Problem
           </p>
-          <h2 className="font-archivo text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[20px]">
+          <h2 className="font-semibold tracking-tight text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[20px]">
             The Butterfly Effect in Enterprise IT
           </h2>
           <p className="text-[16px] leading-[1.7] text-[#444] mb-[30px] max-w-[800px]">
@@ -203,10 +205,10 @@ export default function VIPBriefingPage() {
       <section className="py-[70px] px-[24px] md:px-[48px] bg-white border-y border-[#1a1a1a]/8">
         <div className="max-w-[1000px] mx-auto">
           <Reveal>
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[12px]">
+            <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[12px]">
               02 / The Solution
             </p>
-            <h2 className="font-archivo text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[20px]">
+            <h2 className="font-semibold tracking-tight text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[20px]">
               The Omniscient Brain
             </h2>
             <p className="text-[16px] leading-[1.7] text-[#444] mb-[40px] max-w-[800px]">
@@ -220,11 +222,11 @@ export default function VIPBriefingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px] mb-[40px]">
             {/* Context 1 */}
             <Reveal delay={100}>
-              <div className="bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
+              <div className="bg-[#F3F3F4] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
                 <div className="inline-flex w-[48px] h-[48px] bg-blue-100 text-blue-600 rounded-[10px] items-center justify-center mb-[16px]">
                   <Briefcase className="w-[24px] h-[24px]" />
                 </div>
-                <h3 className="font-archivo text-[20px] font-semibold uppercase mb-[8px]">1. Business Context</h3>
+                <h3 className="font-semibold tracking-tight text-[20px] font-semibold uppercase mb-[8px]">1. Business Context</h3>
                 <p className="text-[12px] font-mono text-[#666] uppercase tracking-[1px] mb-[12px]">Source: Jira Boards</p>
                 <p className="text-[14.5px] leading-[1.6] text-[#444]">
                   <strong>What it knows:</strong> The actual business rules. It knows that an order over $10k requires VP approval. If a developer's code accidentally bypasses that rule, Jataka stops it.
@@ -234,11 +236,11 @@ export default function VIPBriefingPage() {
 
             {/* Context 2 */}
             <Reveal delay={200}>
-              <div className="bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
+              <div className="bg-[#F3F3F4] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
                 <div className="inline-flex w-[48px] h-[48px] bg-purple-100 text-purple-600 rounded-[10px] items-center justify-center mb-[16px]">
                   <Network className="w-[24px] h-[24px]" />
                 </div>
-                <h3 className="font-archivo text-[20px] font-semibold uppercase mb-[8px]">2. Architecture Context</h3>
+                <h3 className="font-semibold tracking-tight text-[20px] font-semibold uppercase mb-[8px]">2. Architecture Context</h3>
                 <p className="text-[12px] font-mono text-[#666] uppercase tracking-[1px] mb-[12px]">Source: GitHub</p>
                 <p className="text-[14.5px] leading-[1.6] text-[#444]">
                   <strong>What it knows:</strong> The Blast Radius. It maps every wire in the company. It knows that deleting a specific Salesforce field will crash your external Workday HR system.
@@ -248,11 +250,11 @@ export default function VIPBriefingPage() {
 
             {/* Context 3 */}
             <Reveal delay={300}>
-              <div className="bg-[#FAF8F3] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
+              <div className="bg-[#F3F3F4] border border-[#1a1a1a]/10 rounded-[12px] p-[28px] h-full">
                 <div className="inline-flex w-[48px] h-[48px] bg-green-100 text-green-600 rounded-[10px] items-center justify-center mb-[16px]">
                   <Activity className="w-[24px] h-[24px]" />
                 </div>
-                <h3 className="font-archivo text-[20px] font-semibold uppercase mb-[8px]">3. Runtime Context</h3>
+                <h3 className="font-semibold tracking-tight text-[20px] font-semibold uppercase mb-[8px]">3. Runtime Context</h3>
                 <p className="text-[12px] font-mono text-[#666] uppercase tracking-[1px] mb-[12px]">Source: Salesforce</p>
                 <p className="text-[14.5px] leading-[1.6] text-[#444]">
                   <strong>What it knows:</strong> The Physics of Scale. It simulates Black Friday traffic levels on new code to mathematically prove it won't crash when millions of users log in.
@@ -270,10 +272,10 @@ export default function VIPBriefingPage() {
       {/* ================= 3. APPLICATIONS & USE CASES ================= */}
       <section className="py-[70px] px-[24px] md:px-[48px] max-w-[1000px] mx-auto">
         <Reveal>
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[12px]">
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[12px]">
             03 / Enterprise Applications
           </p>
-          <h2 className="font-archivo text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[20px]">
+          <h2 className="font-semibold tracking-tight text-[32px] md:text-[40px] leading-[1.1] tracking-[-1px] uppercase mb-[20px]">
             What Does The Brain Actually Do?
           </h2>
           <p className="text-[16px] leading-[1.7] text-[#444] mb-[40px]">
@@ -290,7 +292,7 @@ export default function VIPBriefingPage() {
                 <div className="inline-flex items-center gap-[8px] bg-green-100 text-green-700 px-[12px] py-[4px] rounded-[4px] text-[11px] font-bold uppercase tracking-[1px] mb-[12px]">
                   Powered by Runtime Context
                 </div>
-                <h3 className="font-archivo text-[24px] uppercase leading-[1.1] mb-[12px]">The Outage Firewall</h3>
+                <h3 className="font-semibold tracking-tight text-[24px] uppercase leading-[1.1] mb-[12px]">The Outage Firewall</h3>
               </div>
               <div className="md:w-2/3 border-l-0 md:border-l border-[#1a1a1a]/10 md:pl-[24px]">
                 <p className="text-[15px] leading-[1.6] text-[#444]">
@@ -309,7 +311,7 @@ export default function VIPBriefingPage() {
                 <div className="inline-flex items-center gap-[8px] bg-purple-100 text-purple-700 px-[12px] py-[4px] rounded-[4px] text-[11px] font-bold uppercase tracking-[1px] mb-[12px]">
                   Powered by Architecture Context
                 </div>
-                <h3 className="font-archivo text-[24px] uppercase leading-[1.1] mb-[12px]">Integration Guardian</h3>
+                <h3 className="font-semibold tracking-tight text-[24px] uppercase leading-[1.1] mb-[12px]">Integration Guardian</h3>
               </div>
               <div className="md:w-2/3 border-l-0 md:border-l border-[#1a1a1a]/10 md:pl-[24px]">
                 <p className="text-[15px] leading-[1.6] text-[#444]">
@@ -328,7 +330,7 @@ export default function VIPBriefingPage() {
                 <div className="inline-flex items-center gap-[8px] bg-[#1a1a1a] text-white px-[12px] py-[4px] rounded-[4px] text-[11px] font-bold uppercase tracking-[1px] mb-[12px]">
                   Powered by All Contexts
                 </div>
-                <h3 className="font-archivo text-[24px] uppercase leading-[1.1] mb-[12px]">M&A System Merger</h3>
+                <h3 className="font-semibold tracking-tight text-[24px] uppercase leading-[1.1] mb-[12px]">M&A System Merger</h3>
               </div>
               <div className="md:w-2/3 border-l-0 md:border-l border-[#1a1a1a]/10 md:pl-[24px]">
                 <p className="text-[15px] leading-[1.6] text-[#444]">
@@ -346,10 +348,10 @@ export default function VIPBriefingPage() {
       <section className="py-[80px] px-[24px] md:px-[48px] bg-[#0B0B0B] text-white">
         <div className="max-w-[1000px] mx-auto">
           <Reveal>
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424] mb-[12px]">
+            <p className="font-mono text-[11px] font-bold uppercase tracking-[2px] text-[#2563EB] mb-[12px]">
               04 / Business Impact
             </p>
-            <h2 className="font-archivo text-[32px] md:text-[48px] leading-[1.1] tracking-[-1px] uppercase mb-[20px]">
+            <h2 className="font-semibold tracking-tight text-[32px] md:text-[48px] leading-[1.1] tracking-[-1px] uppercase mb-[20px]">
               The Shield & The Sword
             </h2>
             <p className="text-[16.5px] leading-[1.6] text-[#aaa] mb-[60px] max-w-[700px]">
@@ -365,24 +367,24 @@ export default function VIPBriefingPage() {
                 <div className="absolute top-0 right-0 p-8 opacity-5">
                   <Shield size={120} />
                 </div>
-                <div className="inline-flex w-[56px] h-[56px] bg-red-500/10 text-[#FF2424] rounded-[12px] items-center justify-center mb-[20px]">
+                <div className="inline-flex w-[56px] h-[56px] bg-red-500/10 text-[#2563EB] rounded-[12px] items-center justify-center mb-[20px]">
                   <Shield className="w-[28px] h-[28px]" />
                 </div>
-                <h3 className="font-archivo text-[28px] uppercase tracking-[-0.5px] mb-[12px]">
+                <h3 className="font-semibold tracking-tight text-[28px] uppercase tracking-[-0.5px] mb-[12px]">
                   The Shield
                 </h3>
                 <p className="text-[15px] text-[#aaa] mb-[32px]">Absolute Risk Mitigation & Cost Reduction.</p>
                 
                 <div className="space-y-[24px]">
                   <div>
-                    <p className="font-archivo text-[40px] leading-[1] text-white mb-[4px]">0</p>
-                    <p className="font-mono text-[12px] uppercase text-[#FF2424] tracking-[1px] mb-[4px]">Production Crashes</p>
+                    <p className="font-semibold tracking-tight text-[40px] leading-[1] text-white mb-[4px]">0</p>
+                    <p className="font-mono text-[12px] uppercase text-[#2563EB] tracking-[1px] mb-[4px]">Production Crashes</p>
                     <p className="text-[14px] text-[#888]">We mathematically prevent code from breaking your system limits.</p>
                   </div>
                   <div className="h-[1px] bg-white/10 w-full"></div>
                   <div>
-                    <p className="font-archivo text-[40px] leading-[1] text-white mb-[4px]">-80%</p>
-                    <p className="font-mono text-[12px] uppercase text-[#FF2424] tracking-[1px] mb-[4px]">QA & Testing Costs</p>
+                    <p className="font-semibold tracking-tight text-[40px] leading-[1] text-white mb-[4px]">-80%</p>
+                    <p className="font-mono text-[12px] uppercase text-[#2563EB] tracking-[1px] mb-[4px]">QA & Testing Costs</p>
                     <p className="text-[14px] text-[#888]">Tests self-heal using AI, retiring expensive manual testing armies.</p>
                   </div>
                 </div>
@@ -398,20 +400,20 @@ export default function VIPBriefingPage() {
                 <div className="inline-flex w-[56px] h-[56px] bg-green-500/10 text-[#4ADE80] rounded-[12px] items-center justify-center mb-[20px]">
                   <TrendingUp className="w-[28px] h-[28px]" />
                 </div>
-                <h3 className="font-archivo text-[28px] uppercase tracking-[-0.5px] mb-[12px]">
+                <h3 className="font-semibold tracking-tight text-[28px] uppercase tracking-[-0.5px] mb-[12px]">
                   The Sword
                 </h3>
                 <p className="text-[15px] text-[#aaa] mb-[32px]">Superhuman Velocity & Scaling.</p>
                 
                 <div className="space-y-[24px]">
                   <div>
-                    <p className="font-archivo text-[40px] leading-[1] text-white mb-[4px]">+40%</p>
+                    <p className="font-semibold tracking-tight text-[40px] leading-[1] text-white mb-[4px]">+40%</p>
                     <p className="font-mono text-[12px] uppercase text-[#4ADE80] tracking-[1px] mb-[4px]">Faster Time-to-Market</p>
                     <p className="text-[14px] text-[#888]">Developers don't wait for manual reviews. Context is instant.</p>
                   </div>
                   <div className="h-[1px] bg-white/10 w-full"></div>
                   <div>
-                    <p className="font-archivo text-[40px] leading-[1] text-white mb-[4px]">10x</p>
+                    <p className="font-semibold tracking-tight text-[40px] leading-[1] text-white mb-[4px]">10x</p>
                     <p className="font-mono text-[12px] uppercase text-[#4ADE80] tracking-[1px] mb-[4px]">Team Scalability</p>
                     <p className="text-[14px] text-[#888]">One Senior Architect can safely oversee 50 AI agents or junior developers safely.</p>
                   </div>
@@ -426,8 +428,8 @@ export default function VIPBriefingPage() {
       <section className="py-[80px] px-[24px] md:px-[48px] bg-white border-t border-[#1a1a1a]/10 text-center">
         <div className="max-w-[800px] mx-auto">
           <Reveal>
-            <Zap className="w-[32px] h-[32px] text-[#FF2424] mx-auto mb-[20px]" />
-            <h2 className="font-archivo text-[32px] md:text-[44px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
+            <Zap className="w-[32px] h-[32px] text-[#2563EB] mx-auto mb-[20px]" />
+            <h2 className="font-semibold tracking-tight text-[32px] md:text-[44px] leading-[1.1] tracking-[-1px] uppercase mb-[24px]">
               Ready to secure your enterprise?
             </h2>
             <p className="text-[18px] leading-[1.6] text-[#444] mb-[40px]">
@@ -436,7 +438,7 @@ export default function VIPBriefingPage() {
               <span className="text-[14px] font-mono uppercase tracking-[1px] text-[#888]">— Your pitch to the Board of Directors.</span>
             </p>
             
-            <button className="bg-[#FF2424] text-white px-[32px] py-[16px] font-archivo text-[14px] uppercase tracking-[1.5px] rounded-[6px] hover:bg-[#d91f1f] transition-all flex items-center justify-center gap-[10px] mx-auto shadow-lg hover:shadow-xl hover:-translate-y-1">
+            <button className="bg-[#2563EB] text-white px-[32px] py-[16px] font-semibold tracking-tight text-[14px] uppercase tracking-[1.5px] rounded-[6px] hover:bg-[#1d4ed8] transition-all flex items-center justify-center gap-[10px] mx-auto shadow-lg hover:shadow-xl hover:-translate-y-1">
               Start the Executive Pilot
               <ArrowRight className="w-[16px] h-[16px]" />
             </button>
@@ -445,9 +447,11 @@ export default function VIPBriefingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-[30px] border-t border-[#1a1a1a]/10 text-center text-[12px] text-[#888] bg-[#FAF8F3]">
+      <footer className="py-[30px] border-t border-[#1a1a1a]/10 text-center text-[12px] text-[#888] bg-[#F3F3F4]">
         <p>Jataka Context Engine &copy; 2026. Confidential VIP Briefing.</p>
       </footer>
     </div>
+  
+    </MarketingShell>
   );
 }

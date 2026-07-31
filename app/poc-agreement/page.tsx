@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { LegalDocument, renderLegalLines } from "../components/marketing";
 
 export const metadata: Metadata = {
   title: "Proof of Concept Agreement",
@@ -74,110 +74,15 @@ This Proof of Concept Agreement ("POC Agreement") is entered into by and between
 13.1 By clicking "Accept" or by accessing or using the Services during the POC Term, Customer agrees to be bound by this POC Agreement and the incorporated DPA.
 13.2 Effective Date. This POC Agreement becomes effective on the date Customer accepts these terms or first accesses the Services.`;
 
-export default function POCAgreementPage() {
-  const lines = POC_TEXT.split("\n");
-
+export default function Page() {
   return (
-    <div className="min-h-screen bg-[#FAF8F3] text-[#1a1a1a]">
-      
-
-      <main className="mx-auto max-w-[980px] px-[24px] md:px-[40px] pt-[112px] pb-[80px]">
-        <section className="mb-[24px] rounded-[12px] border border-[#1a1a1a]/10 bg-white p-[24px] md:p-[36px]">
-          <p className="inline-flex items-center gap-[8px] bg-[#FF2424]/10 border border-[#FF2424]/20 px-[12px] py-[5px] text-[11px] font-bold uppercase tracking-[2px] text-[#FF2424]">
-            Legal
-          </p>
-          <h1 className="mt-[16px] font-archivo text-[clamp(30px,5vw,48px)] leading-[1] tracking-[-1.2px] uppercase">
-            Proof of Concept Agreement
-          </h1>
-          <p className="mt-[12px] text-[14px] text-[#666]">
-            14-Day Free Pilot with Zero Data Retention
-          </p>
-        </section>
-
-        <section className="rounded-[12px] border border-[#1a1a1a]/10 bg-white p-[22px] md:p-[36px]">
-          <div className="space-y-[12px]">
-            {lines.map((line, idx) => {
-              if (!line.trim()) {
-                return <div key={idx} className="h-[2px]" />;
-              }
-
-              if (/^\d+\.\s[A-Z]/.test(line) || /^\d+\.\d+\.\s[A-Z]/.test(line)) {
-                return (
-                  <h2
-                    key={idx}
-                    className="pt-[12px] font-archivo text-[20px] md:text-[24px] leading-[1.1] tracking-[-0.5px] uppercase"
-                  >
-                    {line}
-                  </h2>
-                );
-              }
-
-              if (/^\d+\.\d+\s/.test(line) || /^\d+\.\d+\.\d+\s/.test(line)) {
-                return (
-                  <p
-                    key={idx}
-                    className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]"
-                  >
-                    <span className="font-semibold text-[#1a1a1a]">{line.slice(0, line.indexOf(" ") + 1)}</span>
-                    {line.slice(line.indexOf(" ") + 1)}
-                  </p>
-                );
-              }
-
-              if (line.startsWith('"')) {
-                return (
-                  <p
-                    key={idx}
-                    className="pl-[12px] border-l-2 border-[#1a1a1a]/10 text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]"
-                  >
-                    {line}
-                  </p>
-                );
-              }
-
-              if (line.includes(":") && line.length < 100 && !line.includes("http")) {
-                const parts = line.split(":");
-                if (parts.length === 2) {
-                  return (
-                    <p
-                      key={idx}
-                      className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]"
-                    >
-                      <span className="font-semibold text-[#1a1a1a]">{parts[0]}:</span>
-                      {parts[1]}
-                    </p>
-                  );
-                }
-              }
-
-              // Make URLs clickable
-              if (line.includes("jataka.io/")) {
-                const urlMatch = line.match(/(jataka\.io\/[a-zA-Z0-9\-]+)/);
-                if (urlMatch) {
-                  const url = urlMatch[0];
-                  const beforeUrl = line.split(url)[0];
-                  const afterUrl = line.split(url)[1] || "";
-                  return (
-                    <p key={idx} className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]">
-                      {beforeUrl}
-                      <Link href={`/${url.split('/')[1]}`} className="text-[#FF2424] underline hover:text-[#d91f1f]">
-                        {url}
-                      </Link>
-                      {afterUrl}
-                    </p>
-                  );
-                }
-              }
-
-              return (
-                <p key={idx} className="text-[14px] md:text-[15px] leading-[1.85] text-[#2c2c2c]">
-                  {line}
-                </p>
-              );
-            })}
-          </div>
-        </section>
-      </main>
-    </div>
+    <LegalDocument
+      title="Proof of Concept"
+      italicWord="Agreement"
+      subtitle="14-day free pilot with sandbox-only access, zero data retention, and automatic deletion."
+      updated="April 13, 2026"
+    >
+      {renderLegalLines(POC_TEXT, ['PROOF OF CONCEPT (POC) AGREEMENT', 'Last Updated:'])}
+    </LegalDocument>
   );
 }

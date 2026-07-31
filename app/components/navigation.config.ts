@@ -21,9 +21,11 @@ export const PRODUCT_DROPDOWN: NavDropdown = {
     { label: "API Contract Guardian", href: "/api-contract-guardian" },
     { label: "M&A Org Merge Analysis", href: "/ma-org-merge-intelligence" },
     { label: "Synthetic Production Monitoring", href: "/synthetic-production-monitoring" },
+    { label: "Knowledge Graph", href: "/knowledge-graph" },
   ],
 };
 
+/** Hidden for now (senior request) — keep export for easy restore */
 export const COMPARE_DROPDOWN: NavDropdown = {
   label: "Compare",
   items: [
@@ -36,21 +38,23 @@ export const COMPARE_DROPDOWN: NavDropdown = {
 export const RESOURCES_DROPDOWN: NavDropdown = {
   label: "Resources",
   items: [
-    { label: "Documentation", href: "https://docs.jataka.io", external: true },
     { label: "Anti-Patterns Library", href: "/anti-patterns" },
     { label: "Engineering Blog", href: "/blog" },
     { label: "ROI Calculator", href: "/roi-calculator" },
   ],
 };
 
-export const DESKTOP_LINKS: NavItem[] = [
-  { label: "Customers", href: "/customers" },
-  { label: "Pricing", href: "/pricing" },
-];
+/** Standalone Docs link — shown next to Resources */
+export const DOCS_ITEM: NavItem = {
+  label: "Docs",
+  href: "/docs",
+};
+
+/** Hidden for now: Customers, Pricing */
+export const DESKTOP_LINKS: NavItem[] = [];
 
 export const MOBILE_SECTIONS: NavDropdown[] = [
   PRODUCT_DROPDOWN,
-  COMPARE_DROPDOWN,
   RESOURCES_DROPDOWN,
 ];
 
