@@ -43,9 +43,14 @@ export const RESOURCES_DROPDOWN: NavDropdown = {
 };
 
 /** Standalone Docs link — shown next to Resources */
+export const DOCS_URL = (
+  process.env.NEXT_PUBLIC_DOCS_URL || "https://docs.jataka.io"
+).replace(/\/$/, "");
+
 export const DOCS_ITEM: NavItem = {
   label: "Docs",
-  href: "/docs",
+  href: DOCS_URL,
+  external: true,
 };
 
 /** Hidden for now: Customers, Pricing */

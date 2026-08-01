@@ -8,6 +8,7 @@ import {
   saveScrollPosition,
   scrollKey,
 } from "../scrollHistory";
+import { DOCS_URL } from "../navigation.config";
 
 const columns = [
   {
@@ -41,13 +42,21 @@ const columns = [
     title: "CONTACT",
     links: [
       { label: "sachin@jataka.io", href: "mailto:sachin@jataka.io" },
-      { label: "Docs", href: "/docs" },
+      { label: "Docs", href: DOCS_URL, external: true },
       { label: "Compare", href: "/compare" },
     ],
   },
 ];
 
-function FooterLink({ href, label }: { href: string; label: string }) {
+function FooterLink({
+  href,
+  label,
+  external,
+}: {
+  href: string;
+  label: string;
+  external?: boolean;
+}) {
   const pathname = usePathname();
   const router = useRouter();
   const { scrollToId } = useLenisScroll();
@@ -57,6 +66,14 @@ function FooterLink({ href, label }: { href: string; label: string }) {
   if (href.startsWith("mailto:")) {
     return (
       <a href={href} className={className}>
+        {label}
+      </a>
+    );
+  }
+
+  if (external || href.startsWith("http")) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
         {label}
       </a>
     );
@@ -145,7 +162,11 @@ export default function HomeFooter() {
                 <ul className="space-y-2 sm:space-y-2.5">
                   {col.links.map((link) => (
                     <li key={link.label}>
-                      <FooterLink href={link.href} label={link.label} />
+                      <FooterLink
+                        href={link.href}
+                        label={link.label}
+                        external={"external" in link ? link.external : false}
+                      />
                     </li>
                   ))}
                 </ul>

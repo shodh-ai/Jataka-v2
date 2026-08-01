@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 import {
   MarketingShell,
   PageHero,
@@ -9,6 +8,7 @@ import {
   PageCta,
 } from "./components/marketing";
 import { FadeIn } from "./components/home/FadeIn";
+import { DOCS_URL } from "./components/navigation.config";
 
 export default function Error({
   error,
@@ -47,9 +47,9 @@ export default function Error({
             >
               Retry this page
             </button>
-            <Link href="/docs" className="text-[14px] font-medium text-[#2563EB] hover:underline">
+            <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-[14px] font-medium text-[#2563EB] hover:underline">
               Browse documentation →
-            </Link>
+            </a>
           </div>
         </FadeIn>
       </ContentSection>
